@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import UIKit
 
 protocol MainInteractable: Interactable {
     var router: MainRouting? { get set }
@@ -17,10 +18,26 @@ protocol MainViewControllable: ViewControllable {
 }
 
 final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, MainRouting {
-
-    // TODO: Constructor inject child builder protocols to allow building children.
-    override init(interactor: MainInteractable, viewController: MainViewControllable) {
+    
+    private let watchList: UIViewController
+    private let opinions: UIViewController
+    private let news: UIViewController
+    
+    init(
+        interactor: MainInteractable,
+        viewController: MainViewControllable,
+        watchList: UIViewController,
+        opinions: UIViewController,
+        news: UIViewController
+    ) {
+        self.watchList = watchList
+        self.opinions = opinions
+        self.news = news
+        
         super.init(interactor: interactor, viewController: viewController)
-        interactor.router = self
+    }
+    
+    func attachControllers() {
+        
     }
 }

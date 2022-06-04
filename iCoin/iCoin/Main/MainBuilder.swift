@@ -4,7 +4,7 @@
 //
 //  Created by 김윤석 on 2022/06/05.
 //
-
+import UIKit
 import ModernRIBs
 
 protocol MainDependency: Dependency {
@@ -34,6 +34,12 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
         let viewController = MainViewController()
         let interactor = MainInteractor(presenter: viewController)
         interactor.listener = listener
-        return MainRouter(interactor: interactor, viewController: viewController)
+        return MainRouter(
+            interactor: interactor,
+            viewController: viewController,
+            watchList: UIViewController(),
+            opinions: UIViewController(),
+            news: UIViewController()
+        )
     }
 }
