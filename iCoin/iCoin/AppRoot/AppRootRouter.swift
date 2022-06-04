@@ -24,7 +24,7 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
         
         attachChild(appHomeRouting)
         
-        viewController.replaceScreen(viewController: appHomeRouting.viewControllable)
+        viewController.replaceScreen(viewController: NavigationControllerable(root:  appHomeRouting.viewControllable))
     }
     
     
