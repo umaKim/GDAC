@@ -29,14 +29,6 @@ final class AppRootBuilder: Builder<AppRootDependency>, AppRootBuildable {
     override init(dependency: AppRootDependency) {
         super.init(dependency: dependency)
     }
-
-//    func build(withListener listener: AppRootListener) -> AppRootRouting {
-//        let component = AppRootComponent(dependency: dependency)
-//        let viewController = UINavigationController(rootViewController: AppRootViewController())
-//        let interactor = AppRootInteractor(presenter: viewController)
-//        interactor.listener = listener
-//        return AppRootRouter(interactor: interactor, viewController: viewController)
-//    }
     
     func build() -> LaunchRouting {
         let component = AppRootComponent(dependency: dependency)
@@ -54,5 +46,3 @@ final class AppRootBuilder: Builder<AppRootDependency>, AppRootBuildable {
         return router
     }
 }
-//            AppRootPresentable
-//            AppRootPresentable

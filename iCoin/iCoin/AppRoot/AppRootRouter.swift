@@ -14,20 +14,11 @@ protocol AppRootInteractable: Interactable, MainListener {
 
 protocol AppRootViewControllable: ViewControllable {
     // TODO: Declare methods the router invokes to manipulate the view hierarchy.
-//    func setViewControllers(_ viewControllers: [ViewControllable])
     func replaceScreen(viewController: ViewControllable)
 }
 
 final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControllable>, AppRootRouting {
-    func attachController() {
-        let appHomeRouting = main.build(withListener: interactor)
-        
-        attachChild(appHomeRouting)
-        
-        viewController.replaceScreen(viewController: NavigationControllerable(root:  appHomeRouting.viewControllable))
-    }
-    
-    
+   
     private let main: MainBuildable
     
     init(
@@ -39,5 +30,13 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
         
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
+    }
+    
+    func attachController() {
+        let appHomeRouting = main.build(withListener: interactor)
+        
+        attachChild(appHomeRouting)
+        
+        viewController.replaceScreen(viewController: NavigationControllerable(root: appHomeRouting.viewControllable))
     }
 }

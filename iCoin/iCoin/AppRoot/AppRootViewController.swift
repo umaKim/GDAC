@@ -15,6 +15,9 @@ protocol AppRootPresentableListener: AnyObject {
 }
 
 final class AppRootViewController: UIViewController, AppRootPresentable, AppRootViewControllable {
+   
+    weak var listener: AppRootPresentableListener?
+    
     func replaceScreen(viewController: ViewControllable) {
         viewController.uiviewController.willMove(toParent: self)
         addChild(viewController.uiviewController)
@@ -26,12 +29,5 @@ final class AppRootViewController: UIViewController, AppRootPresentable, AppRoot
             viewController.uiviewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             viewController.uiviewController.view.topAnchor.constraint(equalTo: view.topAnchor)
         ])
-    }
-    
-
-    weak var listener: AppRootPresentableListener?
-    
-    func setViewControllers(_ viewControllers: [ViewControllable]) {
-        
     }
 }

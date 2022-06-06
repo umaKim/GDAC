@@ -36,7 +36,6 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
-//        router?.attachControllers()
         router?.attachController()
     }
 
