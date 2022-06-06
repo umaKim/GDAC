@@ -42,9 +42,9 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
         return MainRouter(
             interactor: interactor,
             viewController: viewController,
-            watchList: watchlist,
-            opinions: opinions,
-            news: news
+            watchListBuildable: watchlist,
+            opinionsBuildable: opinions,
+            newsBuildable: news
         )
     }
 }

@@ -5,6 +5,7 @@
 //  Created by 김윤석 on 2022/06/05.
 //
 
+import FloatingPanel
 import ModernRIBs
 import UIKit
 
@@ -16,9 +17,9 @@ protocol MainPresentableListener: AnyObject {
 
 final class MainViewController: UIViewController, MainPresentable, MainViewControllable {
    
-    private var watchListView: UIView?
-    private var opinionsView: UIView?
-    private var newsView: UIView?
+    private var watchListView: ViewControllable?
+    private var opinionsView: ViewControllable?
+    private var newsView: ViewControllable?
     
     weak var listener: MainPresentableListener?
     
@@ -37,22 +38,27 @@ final class MainViewController: UIViewController, MainPresentable, MainViewContr
         super.viewDidLoad()
         
         setUpNavigationView()
+        setupFloatingPanel()
     }
-    
-    func setViews(
-        watchlist: ViewControllable,
-        opinions: ViewControllable,
-        news: ViewControllable
-    ) {
-        watchListView   = watchlist.uiviewController.view
-        opinionsView    = opinions.uiviewController.view
-        newsView        = news.uiviewController.view
+}
+
+extension MainViewController: FloatingPanelControllerDelegate {
+    private func setupFloatingPanel() {
+        let panel = FloatingPanelController(delegate: self)
+        panel.set(contentViewController: newsView?.uiviewController)
+        panel.addPanel(toParent: self)
+        guard let newsVC = newsView?.uiviewController as? NewsViewController else {return }
+        panel.track(scrollView: newsVC.tableView)
+        
+        let appearance = SurfaceAppearance()
+        appearance.backgroundColor = .systemBackground
+        appearance.cornerRadius = 10
+        panel.surfaceView.appearance = appearance
     }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        contentView.menuTabBar.scrollIndicator(to: scrollView.contentOffset)
-    }
-    
+}
+
+//MARK: - Set up Views
+extension MainViewController {
     private func setUpNavigationView() {
         let titleView = UIView(frame: CGRect(x: 0, y: 0,
                                              width: navigationController?.navigationBar.width ?? 0,
@@ -69,6 +75,27 @@ final class MainViewController: UIViewController, MainPresentable, MainViewContr
         
         navigationController?.navigationBar.backgroundColor = .black
     }
+    
+    func setWatchlist(_ view: ViewControllable) {
+        watchListView = view
+    }
+    
+    func setOpinion(_ view: ViewControllable) {
+        opinionsView = view
+    }
+    
+    func setNews(_ view: ViewControllable) {
+        newsView = view
+    }
+}
+
+//MARK: - ScrollView
+extension MainViewController {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        contentView.menuTabBar.scrollIndicator(to: scrollView.contentOffset)
+    }
+    
 }
 
 extension MainViewController: UICollectionViewDataSource {
@@ -82,22 +109,22 @@ extension MainViewController: UICollectionViewDataSource {
             guard
                 let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: WatchlistCell.identifier,
-                for: indexPath) as? WatchlistCell
-//                  let watchListView = watchListView
+                for: indexPath) as? WatchlistCell,
+                  let watchListView = watchListView
             else { return UICollectionViewCell() }
             
-//            cell.configure(with: watchListView)
+            cell.configure(with: watchListView.uiviewController.view)
             return cell
             
         case 1:
             guard
                 let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: OpinionsCell.identifier,
-                for: indexPath) as? OpinionsCell
-//                let opinionsView = opinionsView
+                for: indexPath) as? OpinionsCell,
+                let opinionsView = opinionsView
             else { return UICollectionViewCell() }
             
-//            cell.configure(with: opinionsView)
+            cell.configure(with: opinionsView.uiviewController.view)
             return cell
             
         default:

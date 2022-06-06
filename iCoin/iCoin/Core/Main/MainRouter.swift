@@ -15,39 +15,61 @@ protocol MainInteractable: Interactable, WatchlistListener, OpinionsListener, Ne
 
 protocol MainViewControllable: ViewControllable {
     // TODO: Declare methods the router invokes to manipulate the view hierarchy.
-//    func setViews(viewControllerable: ViewControllable...)
-    
-    func setViews(watchlist: ViewControllable, opinions: ViewControllable, news: ViewControllable)
+    func setWatchlist(_ view: ViewControllable)
+    func setOpinion(_ view: ViewControllable)
+    func setNews(_ view: ViewControllable)
 }
 
 final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, MainRouting {
     
     private let watchList: WatchlistBuildable
+    private var watchListRouting: Routing?
+    
     private let opinions: OpinionsBuildable
+    private var opinionsRouting: Routing?
+    
     private let news: NewsBuildable
+    private var newsRouting: Routing?
     
     init(
         interactor: MainInteractable,
         viewController: MainViewControllable,
-        watchList: WatchlistBuildable,
-        opinions: OpinionsBuildable,
-        news: NewsBuildable
+        watchListBuildable: WatchlistBuildable,
+        opinionsBuildable: OpinionsBuildable,
+        newsBuildable: NewsBuildable
     ) {
-        self.watchList = watchList
-        self.opinions = opinions
-        self.news = news
+        self.watchList = watchListBuildable
+        self.opinions = opinionsBuildable
+        self.news = newsBuildable
         
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
     
-    func attachControllers() {
-//        let watchlistRouting = watchList.build(withListener: interactor)
-//        let opinionsRouting = opinions.build(withListener: interactor)
-//        let newsRouting = news.build(withListener: interactor)
-//
-//        viewController.setViews(watchlist: watchlistRouting.viewControllable,
-//                                opinions: opinionsRouting.viewControllable,
-//                                news: newsRouting.viewControllable)
+    func attachWatchlist() {
+        if watchListRouting != nil { return }
+        let router = watchList.build(withListener: interactor)
+        let watchlist = router.viewControllable
+        viewController.setWatchlist(watchlist)
+        watchListRouting = router
+        attachChild(router)
+    }
+    
+    func attachOpinion() {
+        if opinionsRouting != nil { return }
+        let router = opinions.build(withListener: interactor)
+        let opinion = router.viewControllable
+        viewController.setOpinion(opinion)
+        opinionsRouting = router
+        attachChild(router)
+    }
+    
+    func attachNews() {
+        if newsRouting != nil {return }
+        let router = news.build(withListener: interactor)
+        let news = router.viewControllable
+        viewController.setNews(news)
+        newsRouting = router
+        attachChild(router)
     }
 }

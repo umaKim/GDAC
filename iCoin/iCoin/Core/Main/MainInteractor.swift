@@ -9,7 +9,9 @@ import ModernRIBs
 
 protocol MainRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-    func attachControllers()
+    func attachWatchlist()
+    func attachOpinion()
+    func attachNews()
 }
 
 protocol MainPresentable: Presentable {
@@ -22,9 +24,6 @@ protocol MainListener: AnyObject {
 }
 
 final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
-    func didTap() {
-        
-    }
     
     weak var router: MainRouting?
     weak var listener: MainListener?
@@ -39,7 +38,9 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
-        router?.attachControllers()
+        router?.attachWatchlist()
+        router?.attachOpinion()
+        router?.attachNews()
     }
 
     override func willResignActive() {
