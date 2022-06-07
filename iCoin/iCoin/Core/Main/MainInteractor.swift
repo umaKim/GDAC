@@ -17,6 +17,7 @@ protocol MainRouting: ViewableRouting {
 protocol MainPresentable: Presentable {
     var listener: MainPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func openNews(of url: String)
 }
 
 protocol MainListener: AnyObject {
@@ -24,7 +25,7 @@ protocol MainListener: AnyObject {
 }
 
 final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
-    
+   
     weak var router: MainRouting?
     weak var listener: MainListener?
 
@@ -46,5 +47,9 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func openNews(of url: String) {
+        presenter.openNews(of: url)
     }
 }

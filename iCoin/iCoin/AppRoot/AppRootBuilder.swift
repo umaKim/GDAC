@@ -14,6 +14,7 @@ protocol AppRootDependency: Dependency {
 }
 
 final class AppRootComponent: Component<AppRootDependency>, MainDependency {
+    
 
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }

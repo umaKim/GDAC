@@ -5,6 +5,7 @@
 //  Created by 김윤석 on 2022/06/05.
 //
 
+import SafariServices
 import FloatingPanel
 import ModernRIBs
 import UIKit
@@ -17,6 +18,10 @@ protocol MainPresentableListener: AnyObject {
 
 final class MainViewController: UIViewController, MainPresentable, MainViewControllable {
    
+    func openNews(of url: String) {
+        print(url)
+    }
+    
     private var watchListView: ViewControllable?
     private var opinionsView: ViewControllable?
     private var newsView: ViewControllable?
@@ -64,7 +69,7 @@ extension MainViewController {
                                              width: navigationController?.navigationBar.width ?? 0,
                                              height: navigationController?.navigationBar.height ?? 25))
         let label   = UILabel(frame: CGRect(x: 10, y: 0, width: titleView.width, height: titleView.height))
-        label.text  = "iFinance"
+        label.text  = "iCrypto"
         label.font  = .systemFont(ofSize: 30, weight: .medium)
         label.textColor = .white
         titleView.addSubview(label)
