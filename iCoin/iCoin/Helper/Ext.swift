@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - Add Subview
+// MARK: - UIView
 
 extension UIView {
     /// Adds multiple subviews
@@ -51,5 +51,20 @@ extension UIView {
     /// Bottom edge of view
     var bottom: CGFloat {
         top + height
+    }
+}
+
+//MARK: - Decodable
+
+extension Decodable {
+    
+    static func decode(with decoder: JSONDecoder = JSONDecoder(), from data: Data) throws -> Self? {
+        do {
+            let newdata = try decoder.decode(Self.self, from: data)
+            return newdata
+        } catch {
+            print("decodable model error", error.localizedDescription)
+            return nil
+        }
     }
 }
