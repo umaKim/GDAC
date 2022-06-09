@@ -17,4 +17,5 @@ struct NewsData: Codable {
     let url: String
     let source: String
     let body: String
+    let published_on: TimeInterval
 }
