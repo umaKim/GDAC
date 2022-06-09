@@ -16,7 +16,7 @@ protocol NewsRouting: ViewableRouting {
 protocol NewsPresentable: Presentable {
     var listener: NewsPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
-    func update(with stories: [NewsStory])
+    func update(with stories: [NewsData])
 }
 
 protocol NewsListener: AnyObject {
@@ -24,47 +24,64 @@ protocol NewsListener: AnyObject {
     func openNews(of url: String)
 }
 
+protocol NewsInteractorDependency {
+    var newsRepository: NewsRepository { get }
+}
+
 final class NewsInteractor: PresentableInteractor<NewsPresentable>, NewsInteractable, NewsPresentableListener {
-   
+    
     weak var router: NewsRouting?
     weak var listener: NewsListener?
     
-    private(set) lazy var stories = [NewsStory]()
-
+    private var stories = [NewsData]()
+    
+    private let dependency: NewsInteractorDependency
+    
+    private var cancellables: Set<AnyCancellable>
+    
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: NewsPresentable) {
+    init(
+        presenter: NewsPresentable,
+        dependency: NewsInteractorDependency
+    ) {
+        self.dependency = dependency
+        self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
-     
+        
     }
-
+    
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
         
         fetchNews()
     }
-
+    
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
     }
     
     private func fetchNews() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            for index in 0..<20 {
-                self.stories.append(.init(category: "",
-                                     datetime: 0,
-                                     headline: "",
-                                     image: "",
-                                     related: "",
-                                     source: "",
-                                     summary: "",
-                                     url: "\(index)"))
+        dependency
+            .newsRepository
+            .fetchNews(of: "")
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    print("finished")
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            } receiveValue: {[weak self] response in
+                self?.stories = response.Data
+                self?.presenter.update(with: response.Data)
             }
-            self.presenter.update(with: self.stories)
-        }
+            .store(in: &cancellables)
     }
     
     func didTap(indexPath: IndexPath) {

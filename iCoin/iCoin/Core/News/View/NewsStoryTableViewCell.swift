@@ -23,11 +23,11 @@ final class NewsStoryTableViewCell: UITableViewCell {
         let dateString: String
         let imageUrl: URL?
         
-        init(model: NewsStory) {
+        init(model: NewsData) {
             self.source = model.source
-            self.headline = model.headline
-            self.dateString = .string(from: model.datetime)
-            self.imageUrl = URL(string: model.image)
+            self.headline = model.title
+            self.dateString = .string(from: model.published_on)
+            self.imageUrl = URL(string: model.imageurl)
         }
     }
     

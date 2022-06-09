@@ -19,7 +19,7 @@ protocol NewsPresentableListener: AnyObject {
 
 final class NewsViewController: UIViewController, NewsPresentable, NewsViewControllable {
     
-    private var stories: [NewsStory]?
+    private var stories: [NewsData]?
     
     weak var listener: NewsPresentableListener?
     
@@ -39,7 +39,7 @@ final class NewsViewController: UIViewController, NewsPresentable, NewsViewContr
         setTV()
     }
     
-    func update(with data: [NewsStory]) {
+    func update(with data: [NewsData]) {
         self.stories = data
         tableView.reloadData()
     }
@@ -67,7 +67,6 @@ extension NewsViewController: UITableViewDataSource {
             let stories = stories
         else { return UITableViewCell()}
         cell.configure(with: .init(model: stories[indexPath.row]))
-        
         return cell
     }
 }
@@ -80,7 +79,6 @@ extension NewsViewController: UITableViewDelegate {
         ) as? NewsHeaderView
         else { return nil }
         header.configure(with: .init( title: "Top News", shouldShowAddButton: false))
-
         return header
     }
 
@@ -93,7 +91,6 @@ extension NewsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        viewModel.didSelectNews(at: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
         listener?.didTap(indexPath: indexPath)
     }
