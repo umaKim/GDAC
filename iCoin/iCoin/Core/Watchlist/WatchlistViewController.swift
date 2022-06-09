@@ -54,18 +54,13 @@ final class WatchlistViewController: UIViewController, WatchlistPresentable, Wat
     private func bind() {
         dataSource?
             .actionPublisher
-            .sink(receiveValue: { action in
+            .sink(receiveValue: {[weak self] action in
                 switch action {
                 case .deleteAt(let index):
-                    print(index)
-                    self.listener?.removeItem(at: index)
+                    self?.listener?.removeItem(at: index)
                 }
             })
             .store(in: &cancellables)
-    }
-    
-    func reloadData() {
-        updateSections()
     }
     
     func setTableEdittingMode() {
@@ -73,14 +68,15 @@ final class WatchlistViewController: UIViewController, WatchlistPresentable, Wat
                                          animated: true)
     }
     
-    private func updateSections() {
-        listener?.updateSections(completion: {stocks in
-            var snapshot = Snapshot()
-            snapshot.appendSections([.main])
-            snapshot.appendItems(stocks)
-            dataSource?.apply(snapshot, animatingDifferences: true)
-            dataSource?.defaultRowAnimation = .left
-        })
+    func reloadData(
+        with data: [WatchlistItemModel],
+        animation: UITableView.RowAnimation)
+    {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(data)
+        dataSource?.apply(snapshot, animatingDifferences: true)
+        dataSource?.defaultRowAnimation = animation
     }
     
     private func setTableViewEditingMode() {
@@ -95,8 +91,12 @@ extension WatchlistViewController {
         contentView.tableView.delegate = self
         dataSource = .init(tableView: contentView.tableView,
                            cellProvider: { ( tableView, indexPath, item) -> UITableViewCell? in
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: WatchlistItemCell.identifier, for: indexPath) as? WatchlistItemCell else {return nil}
-//            cell.configure(with: item)
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: WatchlistItemCell.identifier,
+                                                         for: indexPath) as? WatchlistItemCell
+            else {return nil}
+            cell.configure(with: item)
+            
             return cell
         })
     }
