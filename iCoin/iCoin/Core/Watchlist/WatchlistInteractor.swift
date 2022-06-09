@@ -8,6 +8,7 @@
 import Combine
 import ModernRIBs
 import Foundation
+import UIKit.UITableView
 
 protocol WatchlistRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -18,7 +19,7 @@ protocol WatchlistPresentable: Presentable {
     
     var listener: WatchlistPresentableListener? { get set }
     
-    func reloadData()
+    func reloadData(with data: [WatchlistItemModel], animation: UITableView.RowAnimation)
     func setTableEdittingMode()
 }
 
@@ -65,8 +66,8 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
         super.didBecomeActive()
         // TODO: Implement business logic here.
         
-        presenter.reloadData()
-        presenter.setTableEdittingMode()
+//        presenter.reloadData()
+//        presenter.setTableEdittingMode()
         
         fetchFromNetwork(symbols: symbols)
     }
@@ -88,22 +89,30 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     
     private func myWatchlistItemMapper(receivedDatum: [Datum]) {
         receivedDatum.forEach { data in
-            if watchlistItemModels.contains(where: { "\($0.symbol)" == data.s }) {
+            //if watchlistItemModels already has the Symbol
+            if watchlistItemModels.contains(where: {
+                $0.companyName.uppercased() == data.s
+            }) {
+                
                 for (index, model) in self.watchlistItemModels.enumerated() {
-                    if "BINANCE:\(model.symbol.uppercased())USDT" == data.s {
+                    if model.companyName.uppercased() == data.s {
                         self.watchlistItemModels[index].price = "\(data.p)"
                     }
                 }
             } else {
-                watchlistItemModels.append(.init(symbol: data.s,
-                                                 companyName: data.s,
-                                                 price: "\(data.p)",
-                                                 changeColor: .red,
-                                                 changePercentage: "0.5"))
+                self.symbols.forEach { symbol in
+                    if "BINANCE:\(symbol.uppercased())USDT" == data.s {
+                        self.watchlistItemModels.append(.init(symbol: symbol,
+                                                         companyName: data.s,
+                                                         price: "\(data.p)",
+                                                         changeColor: .red,
+                                                         changePercentage: "0.5"))
+                    }
+                }
             }
         }
         
-        self.presenter.reloadData()
+        self.presenter.reloadData(with: watchlistItemModels, animation: .none)
     }
 }
 
