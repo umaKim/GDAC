@@ -6,14 +6,18 @@
 //
 
 import ModernRIBs
+import Combine
 
 protocol WatchlistDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
+    
+    var watchlistRepository: WatchlistRepository { get }
 }
 
-final class WatchlistComponent: Component<WatchlistDependency> {
-
+final class WatchlistComponent: Component<WatchlistDependency>, WatchlistInteractorDependency {
+    var watchlistRepository: WatchlistRepository { dependency.watchlistRepository }
+    
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
 
@@ -32,7 +36,8 @@ final class WatchlistBuilder: Builder<WatchlistDependency>, WatchlistBuildable {
     func build(withListener listener: WatchlistListener) -> WatchlistRouting {
         let component = WatchlistComponent(dependency: dependency)
         let viewController = WatchlistViewController()
-        let interactor = WatchlistInteractor(presenter: viewController)
+        let interactor = WatchlistInteractor(presenter: viewController,
+                                             dependency: component)
         interactor.listener = listener
         return WatchlistRouter(interactor: interactor, viewController: viewController)
     }
