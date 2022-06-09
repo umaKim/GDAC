@@ -15,22 +15,27 @@ protocol NetworkProtocol {
 }
 
 final class NetworkManager: NetworkProtocol, UrlConfigurable {
-    fileprivate enum NewsConstants {
+    private enum NewsConstants {
         static let apiKey = "508858945962b1d801891796a6d67f8076873f9996b13b48e5eb63030be21ec4"
-        static let newsBaseUrl = "https://min-api.cryptocompare.com/data/news/feeds/?api_key="
+        static let newsBaseUrl = "https://min-api.cryptocompare.com/data/v2/news/"
+//                                "https://min-api.cryptocompare.com/data/v2/news/"
+    }
+    
+    ///Perform News api call
+    ///return AnyPublisher containing NewsDataResponse
+    func fetchNews(of symbol: String = "") -> AnyPublisher<NewsDataResponse, Error> {
+        let url = url(for: NewsConstants.newsBaseUrl, with: [
+            "lang": "EN",
+            "api_key": NewsConstants.apiKey
+        ])
+        print(url)
+        return request(url: url, expecting: NewsDataResponse.self)
     }
     
     /// API Errors
     private enum APIError: Error {
         case noDataReturned
         case invalidUrl
-    }
-    
-    ///Perform News api call
-    ///return AnyPublisher containing NewsDataResponse
-    func fetchNews(of symbol: String = "") -> AnyPublisher<NewsDataResponse, Error> {
-        let url = url(for: NewsConstants.newsBaseUrl, with: ["api_key": NewsConstants.apiKey])
-        return request(url: url, expecting: NewsDataResponse.self)
     }
     
     /// Perform api call
