@@ -8,14 +8,12 @@ import Combine
 import Foundation
 
 protocol WatchlistRepository {
-//    var dataPublisher: AnyPublisher<[Datum], Never> { get }
     func fetch(symbols: [String]) -> AnyPublisher<[Datum], Never>
+    func stopFetch()
+    func resume()
 }
 
 final class WatchlistRepositoryImp: WatchlistRepository {
-    
-//    lazy var dataPublisher: AnyPublisher<[Datum], Never> = dataStreamSubject.eraseToAnyPublisher()
-//    private var dataStreamSubject = PassthroughSubject<[Datum], Never>()
     
     private let websocket: WebSocketProtocol
     
@@ -33,6 +31,13 @@ final class WatchlistRepositoryImp: WatchlistRepository {
         return websocket
             .dataPublisher
             .eraseToAnyPublisher()
-            
+    }
+    
+    func stopFetch() {
+        websocket.disconnect()
+    }
+    
+    func resume() {
+        websocket.resume()
     }
 }
