@@ -9,7 +9,7 @@ import UIKit
 struct WatchlistItemModel: Hashable {
     let symbol: String
     let companyName: String
-    let price: String // formatted
+    var price: String // formatted
     let changeColor: UIColor // red or green
     let changePercentage: String // formatted
 //    let chartViewModel: StockChartModel //StockChartView.ViewModel
