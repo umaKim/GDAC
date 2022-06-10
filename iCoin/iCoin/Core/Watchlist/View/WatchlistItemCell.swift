@@ -37,6 +37,7 @@ final class WatchlistItemCell: UITableViewCell {
         label.textColor = .white
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.cornerRadius = 6
         return label
     }()
     
@@ -78,6 +79,21 @@ final class WatchlistItemCell: UITableViewCell {
         changeLabel.text = viewModel.changePercentage
         changeLabel.backgroundColor = viewModel.changeColor
 //        miniChartView.configure(with: viewModel.chartViewModel)
+        
+        animateLabelBackgroundColor(viewModel.changeColor)
+    }
+    
+    private func animateLabelBackgroundColor(_ color: UIColor) {
+        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseInOut]) {
+            self.priceLabel.layer.backgroundColor = color.cgColor
+            
+        } completion: { _ in
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseInOut]) {
+                self.priceLabel.layer.backgroundColor = UIColor.clear.cgColor
+            } completion: { _ in
+                
+            }
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -107,11 +123,11 @@ extension WatchlistItemCell {
     }
     
     private func configurePriceLabels() {
-        
-        let labelStackView = UIStackView(arrangedSubviews: [priceLabel, changeLabel])
-        labelStackView.distribution = .equalSpacing
-        labelStackView.spacing = 6
-        labelStackView.axis = .vertical
+        let labelStackView          = UIStackView(arrangedSubviews: [priceLabel, changeLabel])
+        labelStackView.distribution = .fill
+        labelStackView.alignment    = .trailing
+        labelStackView.spacing      = 6
+        labelStackView.axis         = .vertical
         labelStackView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(labelStackView)
@@ -119,7 +135,7 @@ extension WatchlistItemCell {
         NSLayoutConstraint.activate([
             labelStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             labelStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            labelStackView.widthAnchor.constraint(equalToConstant: frame.width/4.5)
+            changeLabel.widthAnchor.constraint(equalToConstant: frame.width / 5)
         ])
     }
 }
