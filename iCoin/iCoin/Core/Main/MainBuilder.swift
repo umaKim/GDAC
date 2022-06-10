@@ -11,13 +11,18 @@ import ModernRIBs
 protocol MainDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
+    
 }
 
-
 final class MainComponent: Component<MainDependency>,
+                           MainInteractorDependency,
                             WatchlistDependency,
                             OpinionsDependency,
                            NewsDependency {
+    
+    
+    lazy var edittinButtonDidTap: AnyPublisher<Bool, Never> = edittingButtonDidTapSubject.eraseToAnyPublisher()
+    var edittingButtonDidTapSubject: PassthroughSubject<Bool, Never> = PassthroughSubject<Bool, Never>()
     
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
     
@@ -50,9 +55,11 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
     func build(withListener listener: MainListener) -> MainRouting {
         let component = MainComponent(dependency: dependency,
                                       watchlistRepository: WatchlistRepositoryImp(websocket: WebSocketManager()),
-                                      newsRepository: NewsRepositoryImp())
+                                      newsRepository: NewsRepositoryImp(network: NetworkManager()))
         let viewController = MainViewController()
-        let interactor = MainInteractor(presenter: viewController)
+        let interactor = MainInteractor(presenter: viewController,
+                                        dependency: component)
+        
         interactor.listener = listener
         
         let watchlist = WatchlistBuilder(dependency: component)

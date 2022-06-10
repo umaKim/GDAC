@@ -8,18 +8,22 @@
 import SafariServices
 import FloatingPanel
 import ModernRIBs
+import Combine
 import UIKit
 
 protocol MainPresentableListener: AnyObject {
     // TODO: Declare properties and methods that the view controller can invoke to perform
     // business logic, such as signIn(). This protocol is implemented by the corresponding
     // interactor class.
+    func edittingButtonDidTap()
 }
 
 final class MainViewController: UIViewController, MainPresentable, MainViewControllable {
-   
+    
     func openNews(of url: String) {
-        print(url)
+        guard let url = URL(string: url) else {return }
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true)
     }
     
     private var watchListView: ViewControllable?
@@ -29,6 +33,8 @@ final class MainViewController: UIViewController, MainPresentable, MainViewContr
     weak var listener: MainPresentableListener?
     
     private let contentView = MainView()
+    
+    private var cancellables: Set<AnyCancellable> = []
     
     override func loadView() {
         super.loadView()
@@ -44,6 +50,24 @@ final class MainViewController: UIViewController, MainPresentable, MainViewContr
         
         setUpNavigationView()
         setupFloatingPanel()
+        
+        bind()
+    }
+    
+    private func bind() {
+        contentView
+            .actionPublisher
+            .sink { action in
+                switch action {
+                case .didTapEditting:
+                    self.listener?.edittingButtonDidTap()
+                case .searchButtonDidTap:
+                    print("searchButtonDidTap")
+                case .writingOpinionDidTap:
+                    print("writingOpinionDidTap")
+                }
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -113,9 +137,9 @@ extension MainViewController: UICollectionViewDataSource {
         case 0:
             guard
                 let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: WatchlistCell.identifier,
-                for: indexPath) as? WatchlistCell,
-                  let watchListView = watchListView
+                    withReuseIdentifier: WatchlistCell.identifier,
+                    for: indexPath) as? WatchlistCell,
+                let watchListView = watchListView
             else { return UICollectionViewCell() }
             
             cell.configure(with: watchListView.uiviewController.view)
@@ -124,8 +148,8 @@ extension MainViewController: UICollectionViewDataSource {
         case 1:
             guard
                 let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: OpinionsCell.identifier,
-                for: indexPath) as? OpinionsCell,
+                    withReuseIdentifier: OpinionsCell.identifier,
+                    for: indexPath) as? OpinionsCell,
                 let opinionsView = opinionsView
             else { return UICollectionViewCell() }
             

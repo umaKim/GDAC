@@ -25,10 +25,12 @@ protocol WatchlistPresentable: Presentable {
 
 protocol WatchlistListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    //    func didTapEdittingButton()
 }
 
 protocol WatchlistInteractorDependency {
     var watchlistRepository: WatchlistRepository { get }
+    var edittingButtonDidTap: AnyPublisher<Bool, Never> { get }
 }
 
 final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, WatchlistInteractable  {
@@ -41,9 +43,10 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     private var watchlistQuoteMap: [String: Quote] = [:]
     private(set) var watchlistItemModels: [WatchlistItemModel] = []
     
-    private let symbols: [String] = [
+    private var symbols: [String] = [
         "BTC",
-        "ETH"
+        "ETH",
+        "XRP"
     ]
     
     private let dependency: WatchlistInteractorDependency
@@ -65,10 +68,8 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
-        
-//        presenter.reloadData()
-//        presenter.setTableEdittingMode()
-        
+
+        bind()
         fetchFromNetwork(symbols: symbols)
     }
     
@@ -77,10 +78,20 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
         // TODO: Pause any business logic.
     }
     
-    func fetchFromNetwork(symbols: [String]) {
+    private func bind() {
+        dependency
+            .edittingButtonDidTap
+            .sink {[weak self] didTap in
+                self?.presenter.setTableEdittingMode()
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func fetchFromNetwork(symbols: [String]) {
         dependency
             .watchlistRepository
             .fetch(symbols: symbols)
+            .receive(on: RunLoop.main)
             .sink { [weak self] datum in
                 self?.myWatchlistItemMapper(receivedDatum: datum)
             }
@@ -93,7 +104,6 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
             if watchlistItemModels.contains(where: {
                 $0.companyName.uppercased() == data.s
             }) {
-                
                 for (index, model) in self.watchlistItemModels.enumerated() {
                     if model.companyName.uppercased() == data.s {
                         self.watchlistItemModels[index].price = "\(data.p)"
@@ -103,27 +113,39 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
                 self.symbols.forEach { symbol in
                     if "BINANCE:\(symbol.uppercased())USDT" == data.s {
                         self.watchlistItemModels.append(.init(symbol: symbol,
-                                                         companyName: data.s,
-                                                         price: "\(data.p)",
-                                                         changeColor: .red,
-                                                         changePercentage: "0.5"))
+                                                              companyName: data.s,
+                                                              price: "\(data.p)",
+                                                              changeColor: .red,
+                                                              changePercentage: "0.5"))
                     }
                 }
             }
         }
-        
-        self.presenter.reloadData(with: watchlistItemModels, animation: .none)
+        self.presenter.reloadData(with: self.watchlistItemModels, animation: .none)
     }
 }
 
 extension WatchlistInteractor: WatchlistPresentableListener {
+    func turnOnSocket() {
+        dependency.watchlistRepository.resume()
+        fetchFromNetwork(symbols: symbols)
+    }
+    
+    func turnOffSocket() {
+        dependency.watchlistRepository.stopFetch()
+    }
+    
     func removeItem(at indexPath: IndexPath) {
         //Delete Item from Persistance
         //Delete Item from model (watchlistItemModels)
+       
+        let deletingSymbol = watchlistItemModels[indexPath.row].symbol
+        symbols.removeAll { $0 == deletingSymbol }
+        watchlistItemModels.remove(at: indexPath.row)
     }
     
     func didTap(indexPath: IndexPath) {
-        
+        print(indexPath.row)
     }
     
     func updateSections(completion: ([WatchlistItemModel]) -> Void) {

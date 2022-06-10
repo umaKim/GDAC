@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import Combine
 
 protocol MainRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -24,16 +25,32 @@ protocol MainListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
+protocol MainInteractorDependency {
+    var watchlistRepository: WatchlistRepository { get }
+    var edittingButtonDidTapSubject: PassthroughSubject<Bool, Never> { get }
+}
+
 final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
-   
+    func edittingButtonDidTap() {
+        dependency.edittingButtonDidTapSubject.send(true)
+    }
+    
     weak var router: MainRouting?
     weak var listener: MainListener?
 
+    private let dependency: MainInteractorDependency
+    
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: MainPresentable) {
+    init(
+        presenter: MainPresentable,
+        dependency: MainInteractorDependency
+    ) {
+        self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
+        
+        
     }
 
     override func didBecomeActive() {
