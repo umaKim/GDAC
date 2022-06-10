@@ -14,6 +14,8 @@ protocol WatchlistPresentableListener: AnyObject {
     func didTap(indexPath: IndexPath)
     func updateSections(completion: ([WatchlistItemModel]) -> Void)
     func removeItem(at indexPath: IndexPath)
+    func turnOffSocket()
+    func turnOnSocket()
 }
 
 enum Section: CaseIterable {
@@ -66,12 +68,17 @@ final class WatchlistViewController: UIViewController, WatchlistPresentable, Wat
     func setTableEdittingMode() {
         contentView.tableView.setEditing(!contentView.tableView.isEditing,
                                          animated: true)
+        if contentView.tableView.isEditing {
+            listener?.turnOffSocket()
+        } else {
+            listener?.turnOnSocket()
+        }
     }
     
     func reloadData(
         with data: [WatchlistItemModel],
-        animation: UITableView.RowAnimation)
-    {
+        animation: UITableView.RowAnimation
+    ) {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(data)
@@ -94,9 +101,8 @@ extension WatchlistViewController {
             guard
                 let cell = tableView.dequeueReusableCell(withIdentifier: WatchlistItemCell.identifier,
                                                          for: indexPath) as? WatchlistItemCell
-            else {return nil}
+            else { return nil }
             cell.configure(with: item)
-            
             return cell
         })
     }

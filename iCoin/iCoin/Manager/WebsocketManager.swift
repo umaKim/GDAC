@@ -9,11 +9,14 @@ import Foundation
 
 protocol WebSocketProtocol {
     var dataPublisher: PassthroughSubject<[Datum], Never> { get set }
-    func webSocket (symbols: [String])
+    func webSocket(symbols: [String])
     func receiveMessage()
+    func disconnect()
+    func resume()
 }
 
 final class WebSocketManager : WebSocketProtocol, UrlConfigurable {
+    
     
     fileprivate enum CryptoConstants {
         static let apiKey = "c3c6me2ad3iefuuilms0"
@@ -25,13 +28,20 @@ final class WebSocketManager : WebSocketProtocol, UrlConfigurable {
     var dataPublisher = PassthroughSubject<[Datum], Never>()
     
     init() {
+        resume()
+    }
+    
+    func resume() {
         guard
             let url = url(for: CryptoConstants.baseUrl, with: ["token" : CryptoConstants.apiKey])
         else {
             print("unable to url")
             return }
-        
         webSocketTask = URLSession(configuration: .default).webSocketTask(with: url)
+    }
+    
+    func disconnect() {
+        webSocketTask?.cancel(with: .goingAway, reason: nil)
     }
     
     /// Setup Websocket with specific input values
