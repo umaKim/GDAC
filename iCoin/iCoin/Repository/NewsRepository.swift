@@ -5,12 +5,22 @@
 //  Created by 김윤석 on 2022/06/07.
 //
 
-import Foundation
+import Combine
 
 protocol NewsRepository {
-    
+    func fetchNews(of symbol: String) -> AnyPublisher<NewsDataResponse, Error>
 }
 
 final class NewsRepositoryImp: NewsRepository {
     
+    private let network: NetworkProtocol
+    
+    init(network: NetworkProtocol) {
+        self.network = network
+        
+    }
+    
+    func fetchNews(of symbol: String) -> AnyPublisher<NewsDataResponse, Error> {
+        network.fetchNews(of: symbol)
+    }
 }
