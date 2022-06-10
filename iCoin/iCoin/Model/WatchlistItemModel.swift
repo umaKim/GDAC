@@ -10,7 +10,7 @@ struct WatchlistItemModel: Hashable {
     let symbol: String
     let companyName: String
     var price: String // formatted
-    let changeColor: UIColor // red or green
+    var changeColor: UIColor // red or green
     let changePercentage: String // formatted
 //    let chartViewModel: StockChartModel //StockChartView.ViewModel
 }

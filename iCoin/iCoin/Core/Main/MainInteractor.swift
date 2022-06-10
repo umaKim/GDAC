@@ -27,12 +27,12 @@ protocol MainListener: AnyObject {
 
 protocol MainInteractorDependency {
     var watchlistRepository: WatchlistRepository { get }
-    var edittingButtonDidTapSubject: PassthroughSubject<Bool, Never> { get }
+    var edittingButtonDidTapSubject: PassthroughSubject<Void, Never> { get }
 }
 
 final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
     func edittingButtonDidTap() {
-        dependency.edittingButtonDidTapSubject.send(true)
+        dependency.edittingButtonDidTapSubject.send()
     }
     
     weak var router: MainRouting?

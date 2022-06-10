@@ -30,7 +30,7 @@ protocol WatchlistListener: AnyObject {
 
 protocol WatchlistInteractorDependency {
     var watchlistRepository: WatchlistRepository { get }
-    var edittingButtonDidTap: AnyPublisher<Bool, Never> { get }
+    var edittingButtonDidTap: AnyPublisher<Void, Never> { get }
 }
 
 final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, WatchlistInteractable  {
@@ -87,6 +87,11 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
             .store(in: &cancellables)
     }
     
+    typealias Symbol = String
+    typealias Price = Double
+    
+    private var currentPrice: [Symbol: Price] = [:]
+    
     private func fetchFromNetwork(symbols: [String]) {
         dependency
             .watchlistRepository
@@ -106,22 +111,40 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
             }) {
                 for (index, model) in self.watchlistItemModels.enumerated() {
                     if model.companyName.uppercased() == data.s {
-                        self.watchlistItemModels[index].price = "\(data.p)"
+                        self.watchlistItemModels[index].price = "$\(data.p)"
+                        self.watchlistItemModels[index].changeColor = changeColorComparing(data)
+                        
                     }
                 }
             } else {
+            // if WatchlistItemModels are empty
                 self.symbols.forEach { symbol in
                     if "BINANCE:\(symbol.uppercased())USDT" == data.s {
                         self.watchlistItemModels.append(.init(symbol: symbol,
                                                               companyName: data.s,
-                                                              price: "\(data.p)",
-                                                              changeColor: .red,
+                                                              price: "$\(data.p)",
+                                                              changeColor: .clear,
                                                               changePercentage: "0.5"))
                     }
                 }
             }
+            
+            self.currentPrice[data.s] = data.p
         }
         self.presenter.reloadData(with: self.watchlistItemModels, animation: .none)
+    }
+    
+    private func changeColorComparing(_ data: Datum) -> UIColor {
+//        currentPrice[data.s] ?? 0 < data.p ? .systemGreen : .systemRed
+//        guard let currentPrice = currentPrice else {return .clear}
+        
+        if currentPrice[data.s] ?? 0 < data.p {
+            return .systemGreen
+        } else if currentPrice[data.s] ?? 0 > data.p {
+            return .systemRed
+        }
+        
+        return .clear
     }
 }
 

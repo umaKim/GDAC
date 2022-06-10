@@ -13,12 +13,12 @@ protocol WatchlistDependency: Dependency {
     // created by this RIB.
     
     var watchlistRepository: WatchlistRepository { get }
-    var edittinButtonDidTap: AnyPublisher<Bool, Never> { get }
+    var edittinButtonDidTap: AnyPublisher<Void, Never> { get }
 }
 
 final class WatchlistComponent: Component<WatchlistDependency>, WatchlistInteractorDependency {
     var watchlistRepository: WatchlistRepository { dependency.watchlistRepository }
-    var edittingButtonDidTap: AnyPublisher<Bool, Never> {dependency.edittinButtonDidTap}
+    var edittingButtonDidTap: AnyPublisher<Void, Never> {dependency.edittinButtonDidTap}
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
 

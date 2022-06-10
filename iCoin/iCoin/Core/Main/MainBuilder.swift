@@ -21,8 +21,8 @@ final class MainComponent: Component<MainDependency>,
                            NewsDependency {
     
     
-    lazy var edittinButtonDidTap: AnyPublisher<Bool, Never> = edittingButtonDidTapSubject.eraseToAnyPublisher()
-    var edittingButtonDidTapSubject: PassthroughSubject<Bool, Never> = PassthroughSubject<Bool, Never>()
+    lazy var edittinButtonDidTap: AnyPublisher<Void, Never> = edittingButtonDidTapSubject.eraseToAnyPublisher()
+    var edittingButtonDidTapSubject: PassthroughSubject<Void, Never> = PassthroughSubject<Void, Never>()
     
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
     
@@ -54,7 +54,8 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
 
     func build(withListener listener: MainListener) -> MainRouting {
         let component = MainComponent(dependency: dependency,
-                                      watchlistRepository: WatchlistRepositoryImp(websocket: WebSocketManager()),
+                                      watchlistRepository: WatchlistRepositoryImp(websocket: WebSocketManager(),
+                                                                                  network: NetworkManager()),
                                       newsRepository: NewsRepositoryImp(network: NetworkManager()))
         let viewController = MainViewController()
         let interactor = MainInteractor(presenter: viewController,

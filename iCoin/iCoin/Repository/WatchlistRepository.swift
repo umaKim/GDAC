@@ -9,18 +9,27 @@ import Foundation
 
 protocol WatchlistRepository {
     func fetch(symbols: [String]) -> AnyPublisher<[Datum], Never>
+    func fetchCryptoCandle(of symbol: String) -> AnyPublisher<CryptoCandle, Error>
     func stopFetch()
     func resume()
 }
 
 final class WatchlistRepositoryImp: WatchlistRepository {
+    func fetchCryptoCandle(of symbol: String) -> AnyPublisher<CryptoCandle, Error> {
+        return network.fetchCryptoCandle(of: symbol).eraseToAnyPublisher()
+    }
     
     private let websocket: WebSocketProtocol
+    private let network: NetworkProtocol
     
     private var cancellables: Set<AnyCancellable>
     
-    init(websocket: WebSocketProtocol) {
+    init(
+        websocket: WebSocketProtocol,
+        network: NetworkProtocol
+    ) {
         self.websocket = websocket
+        self.network = network
         self.cancellables = .init()
     }
     
