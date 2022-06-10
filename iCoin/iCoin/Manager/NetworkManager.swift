@@ -12,13 +12,35 @@ import Foundation
 
 protocol NetworkProtocol {
     func fetchNews(of symbol: String) -> AnyPublisher<NewsDataResponse, Error>
+    func fetchCryptoCandle(of symbol: String) -> AnyPublisher<CryptoCandle, Error>
 }
 
+struct CryptoCandle: Codable {
+      let c: [Double]?
+      let h: [Double]?
+      let l: [Double]?
+      let o: [Double]?
+      let t: [TimeInterval]?
+}
+
+//"/crypto/candle?symbol=BINANCE:BTCUSDT&resolution=D&from=1572651390&to=1575243390"
+
 final class NetworkManager: NetworkProtocol, UrlConfigurable {
+    
     private enum NewsConstants {
         static let apiKey = "508858945962b1d801891796a6d67f8076873f9996b13b48e5eb63030be21ec4"
         static let newsBaseUrl = "https://min-api.cryptocompare.com/data/v2/news/"
 //                                "https://min-api.cryptocompare.com/data/v2/news/"
+    }
+    
+    private enum CryptoCandleConstants {
+        static let apiKey = "c3c6me2ad3iefuuilms0"
+        static let cryptoCandleBaseUrl = "/crypto/candle"
+    }
+    
+    private enum FinnHubApi {
+        static let baseUrl = "https://finnhub.io/api/v1"
+        static let day: TimeInterval = 3600 * 24
     }
     
     ///Perform News api call
@@ -28,8 +50,24 @@ final class NetworkManager: NetworkProtocol, UrlConfigurable {
             "lang": "EN",
             "api_key": NewsConstants.apiKey
         ])
-        print(url)
         return request(url: url, expecting: NewsDataResponse.self)
+    }
+    
+    ///Perfom CryptoCandle API call
+    ///return AnyPublisher cointaining CryptoCandle
+    func fetchCryptoCandle(of symbol: String) -> AnyPublisher<CryptoCandle, Error> {
+        let today = Date().addingTimeInterval(-(FinnHubApi.day))
+        let prior = today.addingTimeInterval(-(FinnHubApi.day * 7))
+        
+        let url = url(for: FinnHubApi.baseUrl + CryptoCandleConstants.cryptoCandleBaseUrl,
+                      queryParams: [
+                        "symbol": "BINANCE:BTCUSDT",
+                        "resolution": "D",
+                        "from": "\(Int(today.timeIntervalSince1970))",
+                        "to": "\(Int(prior.timeIntervalSince1970))"
+                      ],
+                      with: ["token": CryptoCandleConstants.apiKey])
+        return request(url: url, expecting: CryptoCandle.self)
     }
     
     /// API Errors
