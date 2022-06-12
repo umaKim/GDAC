@@ -16,9 +16,10 @@ protocol MainDependency: Dependency {
 
 final class MainComponent: Component<MainDependency>,
                            MainInteractorDependency,
-                            WatchlistDependency,
-                            OpinionsDependency,
-                           NewsDependency {
+                           WatchlistDependency,
+                           OpinionsDependency,
+                           NewsDependency,
+                           SearchDependency {
     
     
     lazy var edittinButtonDidTap: AnyPublisher<Void, Never> = edittingButtonDidTapSubject.eraseToAnyPublisher()
@@ -47,11 +48,11 @@ protocol MainBuildable: Buildable {
 }
 
 final class MainBuilder: Builder<MainDependency>, MainBuildable {
-
+    
     override init(dependency: MainDependency) {
         super.init(dependency: dependency)
     }
-
+    
     func build(withListener listener: MainListener) -> MainRouting {
         let component = MainComponent(dependency: dependency,
                                       watchlistRepository: WatchlistRepositoryImp(websocket: WebSocketManager(),
@@ -66,13 +67,14 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
         let watchlist = WatchlistBuilder(dependency: component)
         let opinions = OpinionsBuilder(dependency: component)
         let news = NewsBuilder(dependency: component)
-       
+        let search = SearchBuilder(dependency: component)
+        
         return MainRouter(
             interactor: interactor,
             viewController: viewController,
             watchListBuildable: watchlist,
             opinionsBuildable: opinions,
-            newsBuildable: news
+            newsBuildable: news,
         )
     }
 }
