@@ -26,6 +26,16 @@
 		3513803F284F5CE50082D813 /* UrlConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513803E284F5CE50082D813 /* UrlConfigurable.swift */; };
 		35138042284F62640082D813 /* WatchlistRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35138041284F62640082D813 /* WatchlistRepository.swift */; };
 		35138044284F62740082D813 /* NewsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35138043284F62740082D813 /* NewsRepository.swift */; };
+		3513804A2855CF630082D813 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380462855CF620082D813 /* SearchRouter.swift */; };
+		3513804B2855CF630082D813 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380472855CF620082D813 /* SearchViewController.swift */; };
+		3513804C2855CF630082D813 /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380482855CF620082D813 /* SearchBuilder.swift */; };
+		3513804D2855CF630082D813 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380492855CF620082D813 /* SearchInteractor.swift */; };
+		351380582855D4DF0082D813 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380572855D4DF0082D813 /* UIViewController+Utils.swift */; };
+		3513805A2855DFBE0082D813 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380592855DFBE0082D813 /* SearchView.swift */; };
+		3513805C2855DFD40082D813 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513805B2855DFD40082D813 /* SearchCell.swift */; };
+		3513805E2855DFEB0082D813 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513805D2855DFEB0082D813 /* SearchResponse.swift */; };
+		351380612855E19B0082D813 /* CryptoCandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380602855E19B0082D813 /* CryptoCandle.swift */; };
+		351380632855E44B0082D813 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380622855E44B0082D813 /* SearchRepository.swift */; };
 		357DCC86284BBBD200AA7570 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCC85284BBBD200AA7570 /* AppDelegate.swift */; };
 		357DCC88284BBBD300AA7570 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCC87284BBBD300AA7570 /* SceneDelegate.swift */; };
 		357DCC8F284BBBD400AA7570 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 357DCC8E284BBBD400AA7570 /* Assets.xcassets */; };
@@ -79,6 +89,16 @@
 		3513803E284F5CE50082D813 /* UrlConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlConfigurable.swift; sourceTree = "<group>"; };
 		35138041284F62640082D813 /* WatchlistRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistRepository.swift; sourceTree = "<group>"; };
 		35138043284F62740082D813 /* NewsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRepository.swift; sourceTree = "<group>"; };
+		351380462855CF620082D813 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
+		351380472855CF620082D813 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		351380482855CF620082D813 /* SearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBuilder.swift; sourceTree = "<group>"; };
+		351380492855CF620082D813 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
+		351380572855D4DF0082D813 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
+		351380592855DFBE0082D813 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		3513805B2855DFD40082D813 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		3513805D2855DFEB0082D813 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
+		351380602855E19B0082D813 /* CryptoCandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCandle.swift; sourceTree = "<group>"; };
+		351380622855E44B0082D813 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
 		357DCC82284BBBD200AA7570 /* iCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		357DCC85284BBBD200AA7570 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		357DCC87284BBBD300AA7570 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +157,7 @@
 				35138018284D0C480082D813 /* WatchlistItemModel.swift */,
 				35138021284D19180082D813 /* Quote.swift */,
 				35138023284D192A0082D813 /* CandleStick.swift */,
+				351380602855E19B0082D813 /* CryptoCandle.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -163,6 +184,7 @@
 			children = (
 				357DCCB2284BDA4700AA7570 /* RIBs+Utils.swift */,
 				357DCCBF284BE6CE00AA7570 /* Ext.swift */,
+				351380572855D4DF0082D813 /* UIViewController+Utils.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -174,6 +196,7 @@
 				357DCCC3284BEB8D00AA7570 /* Watchlist */,
 				357DCCC4284BEB9800AA7570 /* Opinions */,
 				357DCCC5284BEBA000AA7570 /* News */,
+				3513804E2855CF680082D813 /* Search */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -211,8 +234,40 @@
 			children = (
 				35138041284F62640082D813 /* WatchlistRepository.swift */,
 				35138043284F62740082D813 /* NewsRepository.swift */,
+				351380622855E44B0082D813 /* SearchRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		351380452851F3D10082D813 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				357DCCDE284BF09100AA7570 /* WatchlistCell.swift */,
+				357DCCE0284BF0AB00AA7570 /* OpinionsCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3513804E2855CF680082D813 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				351380482855CF620082D813 /* SearchBuilder.swift */,
+				351380462855CF620082D813 /* SearchRouter.swift */,
+				351380492855CF620082D813 /* SearchInteractor.swift */,
+				351380472855CF620082D813 /* SearchViewController.swift */,
+				3513805D2855DFEB0082D813 /* SearchResponse.swift */,
+				3513805F2855E11A0082D813 /* View */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		3513805F2855E11A0082D813 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				351380592855DFBE0082D813 /* SearchView.swift */,
+				3513805B2855DFD40082D813 /* SearchCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		357DCC79284BBBD200AA7570 = {
@@ -287,8 +342,7 @@
 			children = (
 				357DCCB4284BE5C900AA7570 /* MainView.swift */,
 				357DCCBD284BE6A500AA7570 /* MenuBarView.swift */,
-				357DCCDE284BF09100AA7570 /* WatchlistCell.swift */,
-				357DCCE0284BF0AB00AA7570 /* OpinionsCell.swift */,
+				351380452851F3D10082D813 /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -296,8 +350,8 @@
 		357DCCC3284BEB8D00AA7570 /* Watchlist */ = {
 			isa = PBXGroup;
 			children = (
-				357DCCC6284BEBCC00AA7570 /* WatchlistRouter.swift */,
 				357DCCC8284BEBCC00AA7570 /* WatchlistBuilder.swift */,
+				357DCCC6284BEBCC00AA7570 /* WatchlistRouter.swift */,
 				357DCCC9284BEBCC00AA7570 /* WatchlistInteractor.swift */,
 				357DCCC7284BEBCC00AA7570 /* WatchlistViewController.swift */,
 				3513801F284D17F90082D813 /* TableViewDiffableDataSource.swift */,
@@ -412,12 +466,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				357DCCDC284BEBF000AA7570 /* NewsBuilder.swift in Sources */,
+				3513804A2855CF630082D813 /* SearchRouter.swift in Sources */,
+				351380582855D4DF0082D813 /* UIViewController+Utils.swift in Sources */,
 				357DCCA7284BBCCA00AA7570 /* AppRootBuilder.swift in Sources */,
 				3513802C284EECFA0082D813 /* NewsHeaderView.swift in Sources */,
 				35138035284F30350082D813 /* NetworkManager.swift in Sources */,
 				35138020284D17F90082D813 /* TableViewDiffableDataSource.swift in Sources */,
 				357DCCDA284BEBF000AA7570 /* NewsRouter.swift in Sources */,
+				3513805E2855DFEB0082D813 /* SearchResponse.swift in Sources */,
+				3513805A2855DFBE0082D813 /* SearchView.swift in Sources */,
 				35138042284F62640082D813 /* WatchlistRepository.swift in Sources */,
+				351380612855E19B0082D813 /* CryptoCandle.swift in Sources */,
 				357DCCBE284BE6A500AA7570 /* MenuBarView.swift in Sources */,
 				35138024284D192A0082D813 /* CandleStick.swift in Sources */,
 				357DCCDB284BEBF000AA7570 /* NewsViewController.swift in Sources */,
@@ -436,13 +495,17 @@
 				35138032284EF38D0082D813 /* NewsStoryTableViewCell.swift in Sources */,
 				3513803B284F5A470082D813 /* NewsData.swift in Sources */,
 				357DCCD2284BEBE000AA7570 /* OpinionsRouter.swift in Sources */,
+				3513805C2855DFD40082D813 /* SearchCell.swift in Sources */,
 				35138027284E47380082D813 /* MenuBarButton.swift in Sources */,
 				357DCCA8284BBCCA00AA7570 /* AppRootInteractor.swift in Sources */,
 				35138017284D034B0082D813 /* WatchlistItemCell.swift in Sources */,
 				357DCCD5284BEBE000AA7570 /* OpinionsInteractor.swift in Sources */,
 				357DCCDD284BEBF000AA7570 /* NewsInteractor.swift in Sources */,
+				3513804C2855CF630082D813 /* SearchBuilder.swift in Sources */,
 				357DCCE1284BF0AB00AA7570 /* OpinionsCell.swift in Sources */,
 				357DCC88284BBBD300AA7570 /* SceneDelegate.swift in Sources */,
+				351380632855E44B0082D813 /* SearchRepository.swift in Sources */,
+				3513804D2855CF630082D813 /* SearchInteractor.swift in Sources */,
 				357DCCB0284BD7F600AA7570 /* MainBuilder.swift in Sources */,
 				357DCCA6284BBCCA00AA7570 /* AppRootViewController.swift in Sources */,
 				357DCCA5284BBCCA00AA7570 /* AppRootRouter.swift in Sources */,
@@ -452,6 +515,7 @@
 				357DCCDF284BF09100AA7570 /* WatchlistCell.swift in Sources */,
 				357DCCB3284BDA4700AA7570 /* RIBs+Utils.swift in Sources */,
 				35138022284D19180082D813 /* Quote.swift in Sources */,
+				3513804B2855CF630082D813 /* SearchViewController.swift in Sources */,
 				357DCCCB284BEBCC00AA7570 /* WatchlistViewController.swift in Sources */,
 				357DCCC2284BE73700AA7570 /* BaseView.swift in Sources */,
 				357DCCAF284BD7F600AA7570 /* MainViewController.swift in Sources */,
