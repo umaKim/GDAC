@@ -14,33 +14,31 @@ protocol WatchlistNetworkable {
     func fetchCryptoCandle(of symbol: String) -> AnyPublisher<CryptoCandle, Error>
 }
 
-protocol NewsNetWork {
+protocol NewsNetWorkable {
     func fetchNews(of symbol: String) -> AnyPublisher<NewsDataResponse, Error>
 }
 
-protocol SearchNetwork {
+protocol SearchNetworkable {
     func fetchSymbols() -> AnyPublisher<[SearchResult], Error>
 }
 
-final class NetworkManager: WatchlistNetworkable, NewsNetWork, SearchNetwork, UrlConfigurable {
+final class NetworkManager: WatchlistNetworkable, NewsNetWorkable, SearchNetworkable, UrlConfigurable {
     
     private enum NewsConstants {
         static let apiKey = "508858945962b1d801891796a6d67f8076873f9996b13b48e5eb63030be21ec4"
         static let newsBaseUrl = "https://min-api.cryptocompare.com/data/v2/news/"
-//                                "https://min-api.cryptocompare.com/data/v2/news/"
     }
     
     private enum CryptoCandleConstants {
-        static let apiKey = "c3c6me2ad3iefuuilms0"
-        static let cryptoCandleBaseUrl = "/crypto/candle"
+        static let url = "/crypto/candle"
     }
     
     private enum SearchConstants {
-        static let apiKey = "c3c6me2ad3iefuuilms0"
         static let url = "/crypto/symbol"
     }
     
     private enum FinnHubApi {
+        static let apiKey = "c3c6me2ad3iefuuilms0"
         static let baseUrl = "https://finnhub.io/api/v1"
         static let day: TimeInterval = 3600 * 24
     }
@@ -50,7 +48,7 @@ final class NetworkManager: WatchlistNetworkable, NewsNetWork, SearchNetwork, Ur
         
         let url = url(for: FinnHubApi.baseUrl + SearchConstants.url,
                       queryParams: ["exchange":"binance"],
-                      with: ["token": SearchConstants.apiKey])
+                      with: ["token": FinnHubApi.apiKey])
         return request(url: url, expecting: [SearchResult].self)
     }
     
@@ -70,14 +68,14 @@ final class NetworkManager: WatchlistNetworkable, NewsNetWork, SearchNetwork, Ur
         let today = Date().addingTimeInterval(-(FinnHubApi.day))
         let prior = today.addingTimeInterval(-(FinnHubApi.day * 7))
         
-        let url = url(for: FinnHubApi.baseUrl + CryptoCandleConstants.cryptoCandleBaseUrl,
+        let url = url(for: FinnHubApi.baseUrl + CryptoCandleConstants.url,
                       queryParams: [
                         "symbol": "BINANCE:BTCUSDT",
                         "resolution": "D",
                         "from": "\(Int(today.timeIntervalSince1970))",
                         "to": "\(Int(prior.timeIntervalSince1970))"
                       ],
-                      with: ["token": CryptoCandleConstants.apiKey])
+                      with: ["token": FinnHubApi.apiKey])
         return request(url: url, expecting: CryptoCandle.self)
     }
     

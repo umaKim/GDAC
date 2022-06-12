@@ -75,6 +75,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
             watchListBuildable: watchlist,
             opinionsBuildable: opinions,
             newsBuildable: news,
+            searchBuildable: search
         )
     }
 }

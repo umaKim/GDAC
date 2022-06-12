@@ -13,9 +13,9 @@ protocol NewsRepository {
 
 final class NewsRepositoryImp: NewsRepository {
     
-    private let network: NewsNetWork
+    private let network: NewsNetWorkable
     
-    init(network: NewsNetWork) {
+    init(network: NewsNetWorkable) {
         self.network = network
         
     }

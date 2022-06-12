@@ -13,9 +13,9 @@ protocol SearchRepository {
 
 final class SearchRepositoryImp: SearchRepository {
     
-    private let network: SearchNetwork
+    private let network: SearchNetworkable
     
-    init(network: SearchNetwork) {
+    init(network: SearchNetworkable) {
         self.network = network
         
     }
