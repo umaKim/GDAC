@@ -43,6 +43,7 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     private var watchlistQuoteMap: [String: Quote] = [:]
     private(set) var watchlistItemModels: [WatchlistItemModel] = []
     
+    //TODO: This should be fetched from Persistance
     private var symbols: [String] = [
         "BTC",
         "ETH",

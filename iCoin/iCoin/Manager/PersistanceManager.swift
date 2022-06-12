@@ -24,6 +24,12 @@ final class PersistanceImpl: PersistanceService {
         static let watchListKey = "watchlist"
     }
     
+    private func tickerConverter(text: String) -> String {
+        let index = text.range(of: "/")
+        guard let lb = index?.lowerBound else { return "" }
+        return text
+    }
+    
     // MARK: - Public
     
     /// Get usr watch list

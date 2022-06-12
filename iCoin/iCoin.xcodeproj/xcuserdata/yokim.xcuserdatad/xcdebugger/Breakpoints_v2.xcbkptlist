@@ -542,8 +542,8 @@
             filePath = "iCoin/Core/Search/SearchInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "init(presenter:dependency:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -577,22 +577,6 @@
             startingLineNumber = "122"
             endingLineNumber = "122"
             landmarkName = "request(url:expecting:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2735351D-EA37-430E-AB44-F2463F22EE01"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iCoin/Core/Search/SearchInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "didTap(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

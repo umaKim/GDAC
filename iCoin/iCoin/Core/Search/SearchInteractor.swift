@@ -29,11 +29,7 @@ protocol SearchInteractorDependency {
 }
 
 final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchInteractable, SearchPresentableListener {
-    func didTap(_ indexPath: IndexPath) {
-        print(filteredItems[indexPath.row])
-    }
-    
-    
+   
     weak var router: SearchRouting?
     weak var listener: SearchListener?
     
@@ -94,5 +90,9 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
     func search(text: String) {
         filteredItems = text.isEmpty ? originalItems : originalItems.filter({$0.symbol.lowercased().contains(text.lowercased())})
         presenter.reloadData(with: filteredItems, animation: .middle)
+    }
+    
+    func didTap(_ indexPath: IndexPath) {
+        print(filteredItems[indexPath.row])
     }
 }
