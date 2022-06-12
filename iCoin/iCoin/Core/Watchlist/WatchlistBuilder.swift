@@ -40,6 +40,7 @@ final class WatchlistBuilder: Builder<WatchlistDependency>, WatchlistBuildable {
         let interactor = WatchlistInteractor(presenter: viewController,
                                              dependency: component)
         interactor.listener = listener
-        return WatchlistRouter(interactor: interactor, viewController: viewController)
+        return WatchlistRouter(interactor: interactor,
+                               viewController: viewController)
     }
 }

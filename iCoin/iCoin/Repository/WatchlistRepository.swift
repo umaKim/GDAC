@@ -20,13 +20,13 @@ final class WatchlistRepositoryImp: WatchlistRepository {
     }
     
     private let websocket: WebSocketProtocol
-    private let network: NetworkProtocol
+    private let network: WatchlistNetworkable
     
     private var cancellables: Set<AnyCancellable>
     
     init(
         websocket: WebSocketProtocol,
-        network: NetworkProtocol
+        network: WatchlistNetworkable
     ) {
         self.websocket = websocket
         self.network = network
