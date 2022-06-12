@@ -36,6 +36,10 @@
 		3513805E2855DFEB0082D813 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513805D2855DFEB0082D813 /* SearchResponse.swift */; };
 		351380612855E19B0082D813 /* CryptoCandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380602855E19B0082D813 /* CryptoCandle.swift */; };
 		351380632855E44B0082D813 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380622855E44B0082D813 /* SearchRepository.swift */; };
+		3513806928561A740082D813 /* CryptoDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513806528561A740082D813 /* CryptoDetailRouter.swift */; };
+		3513806A28561A740082D813 /* CryptoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513806628561A740082D813 /* CryptoDetailViewController.swift */; };
+		3513806B28561A740082D813 /* CryptoDetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513806728561A740082D813 /* CryptoDetailBuilder.swift */; };
+		3513806C28561A740082D813 /* CryptoDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513806828561A740082D813 /* CryptoDetailInteractor.swift */; };
 		357DCC86284BBBD200AA7570 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCC85284BBBD200AA7570 /* AppDelegate.swift */; };
 		357DCC88284BBBD300AA7570 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCC87284BBBD300AA7570 /* SceneDelegate.swift */; };
 		357DCC8F284BBBD400AA7570 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 357DCC8E284BBBD400AA7570 /* Assets.xcassets */; };
@@ -99,6 +103,10 @@
 		3513805D2855DFEB0082D813 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		351380602855E19B0082D813 /* CryptoCandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCandle.swift; sourceTree = "<group>"; };
 		351380622855E44B0082D813 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
+		3513806528561A740082D813 /* CryptoDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailRouter.swift; sourceTree = "<group>"; };
+		3513806628561A740082D813 /* CryptoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailViewController.swift; sourceTree = "<group>"; };
+		3513806728561A740082D813 /* CryptoDetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailBuilder.swift; sourceTree = "<group>"; };
+		3513806828561A740082D813 /* CryptoDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailInteractor.swift; sourceTree = "<group>"; };
 		357DCC82284BBBD200AA7570 /* iCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		357DCC85284BBBD200AA7570 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		357DCC87284BBBD300AA7570 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +200,7 @@
 		3513801E284D15840082D813 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				3513806428561A570082D813 /* CryptoDetail */,
 				357DCCA9284BD6A500AA7570 /* Main */,
 				357DCCC3284BEB8D00AA7570 /* Watchlist */,
 				357DCCC4284BEB9800AA7570 /* Opinions */,
@@ -268,6 +277,17 @@
 				3513805B2855DFD40082D813 /* SearchCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3513806428561A570082D813 /* CryptoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3513806528561A740082D813 /* CryptoDetailRouter.swift */,
+				3513806628561A740082D813 /* CryptoDetailViewController.swift */,
+				3513806728561A740082D813 /* CryptoDetailBuilder.swift */,
+				3513806828561A740082D813 /* CryptoDetailInteractor.swift */,
+			);
+			path = CryptoDetail;
 			sourceTree = "<group>";
 		};
 		357DCC79284BBBD200AA7570 = {
@@ -490,10 +510,13 @@
 				357DCC86284BBBD200AA7570 /* AppDelegate.swift in Sources */,
 				357DCCD3284BEBE000AA7570 /* OpinionsViewController.swift in Sources */,
 				35138037284F303B0082D813 /* PersistanceManager.swift in Sources */,
+				3513806928561A740082D813 /* CryptoDetailRouter.swift in Sources */,
+				3513806B28561A740082D813 /* CryptoDetailBuilder.swift in Sources */,
 				35138015284D019E0082D813 /* WatchlistView.swift in Sources */,
 				357DCCB1284BD7F600AA7570 /* MainInteractor.swift in Sources */,
 				35138032284EF38D0082D813 /* NewsStoryTableViewCell.swift in Sources */,
 				3513803B284F5A470082D813 /* NewsData.swift in Sources */,
+				3513806A28561A740082D813 /* CryptoDetailViewController.swift in Sources */,
 				357DCCD2284BEBE000AA7570 /* OpinionsRouter.swift in Sources */,
 				3513805C2855DFD40082D813 /* SearchCell.swift in Sources */,
 				35138027284E47380082D813 /* MenuBarButton.swift in Sources */,
@@ -516,6 +539,7 @@
 				357DCCB3284BDA4700AA7570 /* RIBs+Utils.swift in Sources */,
 				35138022284D19180082D813 /* Quote.swift in Sources */,
 				3513804B2855CF630082D813 /* SearchViewController.swift in Sources */,
+				3513806C28561A740082D813 /* CryptoDetailInteractor.swift in Sources */,
 				357DCCCB284BEBCC00AA7570 /* WatchlistViewController.swift in Sources */,
 				357DCCC2284BE73700AA7570 /* BaseView.swift in Sources */,
 				357DCCAF284BD7F600AA7570 /* MainViewController.swift in Sources */,
