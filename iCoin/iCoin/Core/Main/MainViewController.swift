@@ -16,6 +16,7 @@ protocol MainPresentableListener: AnyObject {
     // business logic, such as signIn(). This protocol is implemented by the corresponding
     // interactor class.
     func edittingButtonDidTap()
+    func searchButtonDidTap()
 }
 
 final class MainViewController: UIViewController, MainPresentable, MainViewControllable {
@@ -62,7 +63,7 @@ final class MainViewController: UIViewController, MainPresentable, MainViewContr
                 case .didTapEditting:
                     self.listener?.edittingButtonDidTap()
                 case .searchButtonDidTap:
-                    print("searchButtonDidTap")
+                    self.listener?.searchButtonDidTap()
                 case .writingOpinionDidTap:
                     print("writingOpinionDidTap")
                 }

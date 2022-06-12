@@ -8,7 +8,11 @@
 import ModernRIBs
 import UIKit
 
-protocol MainInteractable: Interactable, WatchlistListener, OpinionsListener, NewsListener {
+protocol MainInteractable: Interactable,
+                           WatchlistListener,
+                           OpinionsListener,
+                           NewsListener,
+                           SearchListener {
     var router: MainRouting? { get set }
     var listener: MainListener? { get set }
 }
@@ -22,6 +26,7 @@ protocol MainViewControllable: ViewControllable {
 
 final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, MainRouting {
     
+    
     private let watchList: WatchlistBuildable
     private var watchListRouting: Routing?
     
@@ -31,16 +36,21 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
     private let news: NewsBuildable
     private var newsRouting: Routing?
     
+    private let search: SearchBuildable
+    private var searchRouting: Routing?
+    
     init(
         interactor: MainInteractable,
         viewController: MainViewControllable,
         watchListBuildable: WatchlistBuildable,
         opinionsBuildable: OpinionsBuildable,
-        newsBuildable: NewsBuildable
+        newsBuildable: NewsBuildable,
+        searchBuildable: SearchBuildable
     ) {
         self.watchList = watchListBuildable
         self.opinions = opinionsBuildable
         self.news = newsBuildable
+        self.search = searchBuildable
         
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
@@ -71,5 +81,21 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
         viewController.setNews(news)
         newsRouting = router
         attachChild(router)
+    }
+    
+    func attachSearch() {
+        if searchRouting != nil {return}
+        let router = search.build(withListener: interactor)
+        let search = router.viewControllable
+        viewControllable.pushViewController(search, animated: true)
+        searchRouting = router
+        attachChild(router)
+    }
+    
+    func detachSearch() {
+        guard let router = searchRouting else {return }
+        viewControllable.popViewController(animated: true)
+        detachChild(router)
+        searchRouting = nil
     }
 }

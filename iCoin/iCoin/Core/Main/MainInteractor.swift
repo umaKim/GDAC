@@ -13,6 +13,8 @@ protocol MainRouting: ViewableRouting {
     func attachWatchlist()
     func attachOpinion()
     func attachNews()
+    func attachSearch()
+    func detachSearch()
 }
 
 protocol MainPresentable: Presentable {
@@ -28,12 +30,10 @@ protocol MainListener: AnyObject {
 protocol MainInteractorDependency {
     var watchlistRepository: WatchlistRepository { get }
     var edittingButtonDidTapSubject: PassthroughSubject<Void, Never> { get }
+//    var searchButtonDidTapSubject
 }
 
 final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
-    func edittingButtonDidTap() {
-        dependency.edittingButtonDidTapSubject.send()
-    }
     
     weak var router: MainRouting?
     weak var listener: MainListener?
@@ -49,8 +49,6 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
         self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
-        
-        
     }
 
     override func didBecomeActive() {
@@ -66,7 +64,19 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
         // TODO: Pause any business logic.
     }
     
+    func edittingButtonDidTap() {
+        dependency.edittingButtonDidTapSubject.send()
+    }
+    
     func openNews(of url: String) {
         presenter.openNews(of: url)
+    }
+    
+    func searchDidTapBackButton() {
+        router?.detachSearch()
+    }
+    
+    func searchButtonDidTap() {
+        router?.attachSearch()
     }
 }
