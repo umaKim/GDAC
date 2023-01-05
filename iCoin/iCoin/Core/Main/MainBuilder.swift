@@ -11,7 +11,6 @@ import ModernRIBs
 protocol MainDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
-    
 }
 
 final class MainComponent: Component<MainDependency>,
@@ -21,9 +20,11 @@ final class MainComponent: Component<MainDependency>,
                            NewsDependency,
                            SearchDependency {
     
-    
     lazy var edittinButtonDidTap: AnyPublisher<Void, Never> = edittingButtonDidTapSubject.eraseToAnyPublisher()
     var edittingButtonDidTapSubject: PassthroughSubject<Void, Never> = PassthroughSubject<Void, Never>()
+    
+    lazy var mainViewLifeCycleDidChange: AnyPublisher<MainViewLifeCycle, Never> = mainViewLifeCycleDidChangeSubject.eraseToAnyPublisher()
+    var mainViewLifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> = PassthroughSubject<MainViewLifeCycle, Never>()
     
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
     
@@ -54,13 +55,20 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
     }
     
     func build(withListener listener: MainListener) -> MainRouting {
-        let component = MainComponent(dependency: dependency,
-                                      watchlistRepository: WatchlistRepositoryImp(websocket: WebSocketManager(),
-                                                                                  network: NetworkManager()),
-                                      newsRepository: NewsRepositoryImp(network: NetworkManager()))
+        let component = MainComponent(
+            dependency: dependency,
+            watchlistRepository:
+                WatchlistRepositoryImp(
+                    websocket: StarScreamSocket(),
+                    network: NetworkManager()
+                ),
+            newsRepository: NewsRepositoryImp(network: NetworkManager())
+        )
         let viewController = MainViewController()
-        let interactor = MainInteractor(presenter: viewController,
-                                        dependency: component)
+        let interactor = MainInteractor(
+            presenter: viewController,
+            dependency: component
+        )
         
         interactor.listener = listener
         

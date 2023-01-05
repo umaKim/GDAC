@@ -7,7 +7,6 @@
 
 import Combine
 import ModernRIBs
-import Foundation
 import UIKit.UITableView
 
 protocol WatchlistRouting: ViewableRouting {
@@ -31,6 +30,7 @@ protocol WatchlistListener: AnyObject {
 protocol WatchlistInteractorDependency {
     var watchlistRepository: WatchlistRepository { get }
     var edittingButtonDidTap: AnyPublisher<Void, Never> { get }
+    var mainViewLifeCycleDidChange: AnyPublisher<MainViewLifeCycle, Never> { get }
 }
 
 final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, WatchlistInteractable  {
@@ -38,12 +38,14 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     weak var router: WatchlistRouting?
     weak var listener: WatchlistListener?
     
+    weak var mainInteractorListener: MainListener?
+    
     //MARK: - Model
     private var watchlistChartMap: [String: [CandleStick]] = [:]
     private var watchlistQuoteMap: [String: Quote] = [:]
     private(set) var watchlistItemModels: [WatchlistItemModel] = []
     
-    //TODO: This should be fetched from Persistance
+    //TODO: This should be fetched from Network
     private var symbols: [String] = [
         "BTC",
         "ETH",
@@ -71,7 +73,6 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
         // TODO: Implement business logic here.
 
         bind()
-        fetchFromNetwork(symbols: symbols)
     }
     
     override func willResignActive() {
@@ -86,6 +87,24 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
                 self?.presenter.setTableEdittingMode()
             }
             .store(in: &cancellables)
+        
+        dependency
+            .mainViewLifeCycleDidChange
+            .sink {[weak self] cycle in
+                guard let self = self else {return }
+                print("mainViewLifeCycleDidChange")
+                switch cycle {
+                case .viewDidAppear:
+                    print("mainViewLifeCycleDidChange viewDidAppear")
+                    self.fetchFromNetwork(symbols: self.symbols)
+                    break
+                    
+                case .viewDidDisappear:
+                    print("mainViewLifeCycleDidChange viewDidDisappear")
+                    self.stopFetch()
+                }
+            }
+            .store(in: &cancellables)
     }
     
     typealias Symbol = String
@@ -93,7 +112,7 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     
     private var currentPrice: [Symbol: Price] = [:]
     
-    private func fetchFromNetwork(symbols: [String]) {
+    private func fetchFromNetwork(symbols: [Symbol]) {
         dependency
             .watchlistRepository
             .fetch(symbols: symbols)
@@ -102,6 +121,10 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
                 self?.myWatchlistItemMapper(receivedDatum: datum)
             }
             .store(in: &cancellables)
+    }
+    
+    private func stopFetch() {
+        dependency.watchlistRepository.stopFetch()
     }
     
     private func myWatchlistItemMapper(receivedDatum: [Datum]) {
@@ -114,7 +137,6 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
                     if model.companyName.uppercased() == data.s {
                         self.watchlistItemModels[index].price = "$\(data.p)"
                         self.watchlistItemModels[index].changeColor = changeColorComparing(data)
-                        
                     }
                 }
             } else {

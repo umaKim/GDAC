@@ -44,6 +44,18 @@ final class WatchlistViewController: UIViewController, WatchlistPresentable, Wat
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print("WatchlistViewController viewDidAppear")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        print("WatchlistViewController viewDidDisappear")
+    }
+    
     override func loadView() {
         super.loadView()
         
@@ -66,8 +78,10 @@ final class WatchlistViewController: UIViewController, WatchlistPresentable, Wat
     }
     
     func setTableEdittingMode() {
-        contentView.tableView.setEditing(!contentView.tableView.isEditing,
-                                         animated: true)
+        contentView.tableView.setEditing(
+            !contentView.tableView.isEditing,
+            animated: true
+        )
         if contentView.tableView.isEditing {
             listener?.turnOffSocket()
         } else {
@@ -87,8 +101,10 @@ final class WatchlistViewController: UIViewController, WatchlistPresentable, Wat
     }
     
     private func setTableViewEditingMode() {
-        contentView.tableView.setEditing(!contentView.tableView.isEditing,
-                                         animated: true)
+        contentView.tableView.setEditing(
+            !contentView.tableView.isEditing,
+            animated: true
+        )
     }
 }
 
@@ -96,15 +112,18 @@ final class WatchlistViewController: UIViewController, WatchlistPresentable, Wat
 extension WatchlistViewController {
     private func configureTableViewDataSource() {
         contentView.tableView.delegate = self
-        dataSource = .init(tableView: contentView.tableView,
-                           cellProvider: { ( tableView, indexPath, item) -> UITableViewCell? in
-            guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: WatchlistItemCell.identifier,
-                                                         for: indexPath) as? WatchlistItemCell
-            else { return nil }
-            cell.configure(with: item)
-            return cell
-        })
+        dataSource = .init(
+            tableView: contentView.tableView,
+            cellProvider: { (tableView, indexPath, item) -> UITableViewCell? in
+                guard
+                    let cell = tableView.dequeueReusableCell(
+                        withIdentifier: WatchlistItemCell.identifier,
+                        for: indexPath
+                    ) as? WatchlistItemCell
+                else { return nil }
+                cell.configure(with: item)
+                return cell
+            })
     }
 }
 

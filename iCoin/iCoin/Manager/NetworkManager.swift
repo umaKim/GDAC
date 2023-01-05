@@ -105,8 +105,6 @@ final class NetworkManager: WatchlistNetworkable, NewsNetWorkable, SearchNetwork
                     return
                 }
                 
-                print(String(data: data, encoding: .utf8))
-                
                 do {
                     let result = try JSONDecoder().decode(expecting, from: data)
                     promise(.success(result))
