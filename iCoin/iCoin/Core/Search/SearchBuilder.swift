@@ -12,14 +12,14 @@ protocol SearchDependency: Dependency {
     // created by this RIB.
 }
 
-final class SearchComponent: Component<SearchDependency>, SearchInteractorDependency {
+final class SearchComponent: Component<SearchDependency>, SearchInteractorDependency, CoinDetailDependency {
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
     
-    let searchRepository: SearchRepository
+    let searchRepository: SymbolsRepository
     
     init (
         dependency: SearchDependency,
-        searchRepository: SearchRepository
+        searchRepository: SymbolsRepository
     ) {
         self.searchRepository = searchRepository
         super.init(dependency: dependency)
@@ -39,13 +39,23 @@ final class SearchBuilder: Builder<SearchDependency>, SearchBuildable {
     }
 
     func build(withListener listener: SearchListener) -> SearchRouting {
-        let component = SearchComponent(dependency: dependency,
-                                        searchRepository: SearchRepositoryImp(network: NetworkManager()))
+        let component = SearchComponent(
+            dependency: dependency,
+            searchRepository: SymbolsRepositoryImp(network: NetworkManager())
+        )
         let viewController = SearchViewController()
-        let interactor = SearchInteractor(presenter: viewController,
-                                          dependency: component)
+        let interactor = SearchInteractor(
+            presenter: viewController,
+            dependency: component
+        )
         interactor.listener = listener
-        return SearchRouter(interactor: interactor,
-                            viewController: viewController)
+        
+        let coinDetail = CoinDetailBuilder(dependency: component)
+        
+        return SearchRouter(
+            interactor: interactor,
+            viewController: viewController,
+            coinDetail: coinDetail
+        )
     }
 }

@@ -37,7 +37,7 @@ final class NewsHeaderView: UITableViewHeaderFooterView {
     private let label: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 28)
-        label.textColor = .white
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -83,13 +83,20 @@ final class NewsHeaderView: UITableViewHeaderFooterView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        label.frame = CGRect(x: 14, y: 0, width: contentView.width - 28, height: contentView.height)
+        label.frame = CGRect(
+            x: 14,
+            y: 0,
+            width: contentView.width - 28,
+            height: contentView.height
+        )
         
         addToWatchListButton.sizeToFit()
-        addToWatchListButton.frame = CGRect( x: width - addToWatchListButton.width - 16,
-                                             y: (height - addToWatchListButton.height)/2,
-                                             width: addToWatchListButton.width + 8,
-                                             height: addToWatchListButton.height)
+        addToWatchListButton.frame = CGRect(
+            x: width - addToWatchListButton.width - 16,
+            y: (height - addToWatchListButton.height)/2,
+            width: addToWatchListButton.width + 8,
+            height: addToWatchListButton.height
+        )
     }
     
     override func prepareForReuse() {
