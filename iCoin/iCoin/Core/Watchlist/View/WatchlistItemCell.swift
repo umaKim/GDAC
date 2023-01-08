@@ -19,6 +19,7 @@ final class WatchlistItemCell: UITableViewCell {
     private let symbolLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.textColor = .gdacBlue
         return label
     }()
     
@@ -34,22 +35,10 @@ final class WatchlistItemCell: UITableViewCell {
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15, weight: .semibold)
-        label.textColor = .white
+        label.textColor = .label
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.layer.cornerRadius = 6
-        return label
-    }()
-    
-    /// Change Label
-    private let changeLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 15, weight: .regular)
-        label.textColor = .white
-        label.textAlignment = .right
         label.layer.cornerRadius = 3
-        label.layer.masksToBounds = true
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -66,33 +55,38 @@ final class WatchlistItemCell: UITableViewCell {
         symbolLabel.text = nil
         nameLabel.text = nil
         priceLabel.text = nil
-        changeLabel.text = nil
-//        miniChartView.reset()
     }
+    
+    private var model: WatchlistItemModel?
     
     /// Configure view
-    /// - Parameter viewModel: View ViewModel
-    public func configure(with viewModel: WatchlistItemModel) {
-        symbolLabel.text = viewModel.symbol
-        nameLabel.text = viewModel.companyName
-        priceLabel.text = viewModel.price
-        changeLabel.text = viewModel.changePercentage
-        changeLabel.backgroundColor = viewModel.changeColor
-//        miniChartView.configure(with: viewModel.chartViewModel)
+    /// - Parameter model: WatchlistItemModel
+    public func configure(with model: WatchlistItemModel) {
+        self.model = model
+        guard
+            let newPrice = Double(model.price),
+            let oldPrice = Double(oldPriceKeeper)
+        else { return }
         
-        animateLabelBackgroundColor(viewModel.changeColor)
+        let chnageColor: UIColor = oldPrice < newPrice ? .gdacRed : .gdacBlue
+        animateLabelBackgroundColor(chnageColor)
+        symbolLabel.text = self.model?.symbol
+        nameLabel.text =  self.model?.companyName
+        priceLabel.text = "$\(self.model?.price ?? "0")"
+        oldPriceKeeper = self.model?.price ?? "0"
     }
     
+    private var oldPriceKeeper: String = "0"
+    
     private func animateLabelBackgroundColor(_ color: UIColor) {
-        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseInOut]) {
-            self.priceLabel.layer.backgroundColor = color.cgColor
-            
-        } completion: { _ in
-            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseInOut]) {
-                self.priceLabel.layer.backgroundColor = UIColor.clear.cgColor
-            } completion: { _ in
-                
-            }
+        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveLinear]) { [weak self] in
+            self?.priceLabel.layer.backgroundColor = color.cgColor
+            self?.priceLabel.textColor = .white
+        } completion: {[weak self] _ in
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveLinear]) {
+                self?.priceLabel.layer.backgroundColor = UIColor.clear.cgColor
+                self?.priceLabel.textColor = .gdacGray
+            } completion: { _ in }
         }
     }
 
@@ -104,38 +98,36 @@ final class WatchlistItemCell: UITableViewCell {
 //MARK: - setup UI
 extension WatchlistItemCell {
     private func setupUI() {
+        contentView.backgroundColor = .systemBackground
         configureTitleLabels()
         configurePriceLabels()
-//        configureChart()
     }
     
     private func configureTitleLabels() {
-        let labelStackView = UIStackView(arrangedSubviews: [symbolLabel, nameLabel])
+        let labelStackView          = UIStackView(arrangedSubviews: [symbolLabel, nameLabel])
         labelStackView.distribution = .equalSpacing
-        labelStackView.spacing = 6
-        labelStackView.axis = .vertical
-        labelStackView.frame = .init(x: 20,
-                                     y:(WatchlistItemCell.preferredHeight - frame.height) / 2,
-                                     width: frame.width/2.2,
-                                     height: frame.height)
-
+        labelStackView.spacing      = 6
+        labelStackView.axis         = .vertical
+        labelStackView.frame        = .init(
+            x: 20,
+            y:(WatchlistItemCell.preferredHeight - frame.height) / 2,
+            width: frame.width/2.2,
+            height: frame.height
+        )
         contentView.addSubview(labelStackView)
     }
     
     private func configurePriceLabels() {
-        let labelStackView          = UIStackView(arrangedSubviews: [priceLabel, changeLabel])
+        let labelStackView          = UIStackView(arrangedSubviews: [priceLabel])
         labelStackView.distribution = .fill
         labelStackView.alignment    = .trailing
         labelStackView.spacing      = 6
         labelStackView.axis         = .vertical
         labelStackView.translatesAutoresizingMaskIntoConstraints = false
-        
         contentView.addSubview(labelStackView)
-        
         NSLayoutConstraint.activate([
             labelStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            labelStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            changeLabel.widthAnchor.constraint(equalToConstant: frame.width / 5)
+            labelStackView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }
