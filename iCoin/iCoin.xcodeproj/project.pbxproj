@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3502026B296B1EBA00CEB6B1 /* PostContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3502026A296B1EBA00CEB6B1 /* PostContent.swift */; };
+		3502026D296B1F0100CEB6B1 /* OpinionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3502026C296B1F0100CEB6B1 /* OpinionsView.swift */; };
+		3502026F296B1F2200CEB6B1 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3502026E296B1F2200CEB6B1 /* CommentTableViewCell.swift */; };
+		350F69122965BADF001F37D3 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 350F69112965BADF001F37D3 /* Starscream */; };
+		350F691A29688671001F37D3 /* CoinDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350F691629688671001F37D3 /* CoinDetailRouter.swift */; };
+		350F691B29688671001F37D3 /* CoinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350F691729688671001F37D3 /* CoinDetailViewController.swift */; };
+		350F691C29688671001F37D3 /* CoinDetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350F691829688671001F37D3 /* CoinDetailBuilder.swift */; };
+		350F691D29688671001F37D3 /* CoinDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350F691929688671001F37D3 /* CoinDetailInteractor.swift */; };
+		350F691F29698B21001F37D3 /* PersistanceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350F691E29698B21001F37D3 /* PersistanceRepository.swift */; };
+		350F69242969E9CC001F37D3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 350F69232969E9CC001F37D3 /* FirebaseAnalytics */; };
+		350F69262969E9CC001F37D3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 350F69252969E9CC001F37D3 /* FirebaseAuth */; };
+		350F69282969E9CC001F37D3 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 350F69272969E9CC001F37D3 /* FirebaseAuthCombine-Community */; };
+		350F692A2969E9CC001F37D3 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 350F69292969E9CC001F37D3 /* FirebaseDatabase */; };
+		350F692C2969E9CC001F37D3 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 350F692B2969E9CC001F37D3 /* FirebaseDatabaseSwift */; };
+		350F692E2969E9CC001F37D3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 350F692D2969E9CC001F37D3 /* FirebaseFirestore */; };
+		350F69302969E9CC001F37D3 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 350F692F2969E9CC001F37D3 /* FirebaseFirestoreCombine-Community */; };
+		350F69322969EB2A001F37D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 350F69312969EB2A001F37D3 /* GoogleService-Info.plist */; };
+		350F69342969ED56001F37D3 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350F69332969ED56001F37D3 /* FirebaseManager.swift */; };
+		350F69362969EDA5001F37D3 /* FirebaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350F69352969EDA5001F37D3 /* FirebaseRepository.swift */; };
 		35138015284D019E0082D813 /* WatchlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35138014284D019E0082D813 /* WatchlistView.swift */; };
 		35138017284D034B0082D813 /* WatchlistItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35138016284D034B0082D813 /* WatchlistItemCell.swift */; };
 		35138019284D0C480082D813 /* WatchlistItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35138018284D0C480082D813 /* WatchlistItemModel.swift */; };
@@ -14,7 +33,6 @@
 		35138022284D19180082D813 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35138021284D19180082D813 /* Quote.swift */; };
 		35138024284D192A0082D813 /* CandleStick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35138023284D192A0082D813 /* CandleStick.swift */; };
 		35138027284E47380082D813 /* MenuBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35138026284E47380082D813 /* MenuBarButton.swift */; };
-		3513802A284E54EC0082D813 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 35138029284E54EC0082D813 /* FloatingPanel */; };
 		3513802C284EECFA0082D813 /* NewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513802B284EECFA0082D813 /* NewsHeaderView.swift */; };
 		3513802F284EED270082D813 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 3513802E284EED270082D813 /* SDWebImage */; };
 		35138032284EF38D0082D813 /* NewsStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35138031284EF38D0082D813 /* NewsStoryTableViewCell.swift */; };
@@ -24,7 +42,7 @@
 		3513803B284F5A470082D813 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513803A284F5A470082D813 /* NewsData.swift */; };
 		3513803D284F5ACE0082D813 /* WebsocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513803C284F5ACE0082D813 /* WebsocketManager.swift */; };
 		3513803F284F5CE50082D813 /* UrlConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513803E284F5CE50082D813 /* UrlConfigurable.swift */; };
-		35138042284F62640082D813 /* WatchlistRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35138041284F62640082D813 /* WatchlistRepository.swift */; };
+		35138042284F62640082D813 /* WebsocketRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35138041284F62640082D813 /* WebsocketRepository.swift */; };
 		35138044284F62740082D813 /* NewsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35138043284F62740082D813 /* NewsRepository.swift */; };
 		3513804A2855CF630082D813 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380462855CF620082D813 /* SearchRouter.swift */; };
 		3513804B2855CF630082D813 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380472855CF620082D813 /* SearchViewController.swift */; };
@@ -35,7 +53,7 @@
 		3513805C2855DFD40082D813 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513805B2855DFD40082D813 /* SearchCell.swift */; };
 		3513805E2855DFEB0082D813 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513805D2855DFEB0082D813 /* SearchResponse.swift */; };
 		351380612855E19B0082D813 /* CryptoCandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380602855E19B0082D813 /* CryptoCandle.swift */; };
-		351380632855E44B0082D813 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380622855E44B0082D813 /* SearchRepository.swift */; };
+		351380632855E44B0082D813 /* SymbolsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351380622855E44B0082D813 /* SymbolsRepository.swift */; };
 		357DCC86284BBBD200AA7570 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCC85284BBBD200AA7570 /* AppDelegate.swift */; };
 		357DCC88284BBBD300AA7570 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCC87284BBBD300AA7570 /* SceneDelegate.swift */; };
 		357DCC8F284BBBD400AA7570 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 357DCC8E284BBBD400AA7570 /* Assets.xcassets */; };
@@ -67,11 +85,29 @@
 		357DCCDB284BEBF000AA7570 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCCD7284BEBF000AA7570 /* NewsViewController.swift */; };
 		357DCCDC284BEBF000AA7570 /* NewsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCCD8284BEBF000AA7570 /* NewsBuilder.swift */; };
 		357DCCDD284BEBF000AA7570 /* NewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCCD9284BEBF000AA7570 /* NewsInteractor.swift */; };
-		357DCCDF284BF09100AA7570 /* WatchlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCCDE284BF09100AA7570 /* WatchlistCell.swift */; };
-		357DCCE1284BF0AB00AA7570 /* OpinionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCCE0284BF0AB00AA7570 /* OpinionsCell.swift */; };
+		357DCCDF284BF09100AA7570 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCCDE284BF09100AA7570 /* MainViewCell.swift */; };
+		35C9716F28FC0AAD00079B03 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 35C9716E28FC0AAD00079B03 /* FloatingPanel */; };
+		35D2AD772929E9B900E9F9B3 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD762929E9B900E9F9B3 /* RootTabBarController.swift */; };
+		35D2AD792929EA3600E9F9B3 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD782929EA3600E9F9B3 /* AppRootView.swift */; };
+		35D2AD7F2929F99C00E9F9B3 /* MyWatchListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD7B2929F99C00E9F9B3 /* MyWatchListRouter.swift */; };
+		35D2AD802929F99C00E9F9B3 /* MyWatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD7C2929F99C00E9F9B3 /* MyWatchListViewController.swift */; };
+		35D2AD812929F99C00E9F9B3 /* MyWatchListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD7D2929F99C00E9F9B3 /* MyWatchListBuilder.swift */; };
+		35D2AD822929F99C00E9F9B3 /* MyWatchListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD7E2929F99C00E9F9B3 /* MyWatchListInteractor.swift */; };
+		35D2AD8C292A04D900E9F9B3 /* MyWatchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD8B292A04D900E9F9B3 /* MyWatchListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3502026A296B1EBA00CEB6B1 /* PostContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostContent.swift; sourceTree = "<group>"; };
+		3502026C296B1F0100CEB6B1 /* OpinionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpinionsView.swift; sourceTree = "<group>"; };
+		3502026E296B1F2200CEB6B1 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		350F691629688671001F37D3 /* CoinDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailRouter.swift; sourceTree = "<group>"; };
+		350F691729688671001F37D3 /* CoinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewController.swift; sourceTree = "<group>"; };
+		350F691829688671001F37D3 /* CoinDetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailBuilder.swift; sourceTree = "<group>"; };
+		350F691929688671001F37D3 /* CoinDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailInteractor.swift; sourceTree = "<group>"; };
+		350F691E29698B21001F37D3 /* PersistanceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceRepository.swift; sourceTree = "<group>"; };
+		350F69312969EB2A001F37D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		350F69332969ED56001F37D3 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		350F69352969EDA5001F37D3 /* FirebaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRepository.swift; sourceTree = "<group>"; };
 		35138014284D019E0082D813 /* WatchlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistView.swift; sourceTree = "<group>"; };
 		35138016284D034B0082D813 /* WatchlistItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistItemCell.swift; sourceTree = "<group>"; };
 		35138018284D0C480082D813 /* WatchlistItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistItemModel.swift; sourceTree = "<group>"; };
@@ -87,7 +123,7 @@
 		3513803A284F5A470082D813 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
 		3513803C284F5ACE0082D813 /* WebsocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsocketManager.swift; sourceTree = "<group>"; };
 		3513803E284F5CE50082D813 /* UrlConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlConfigurable.swift; sourceTree = "<group>"; };
-		35138041284F62640082D813 /* WatchlistRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistRepository.swift; sourceTree = "<group>"; };
+		35138041284F62640082D813 /* WebsocketRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsocketRepository.swift; sourceTree = "<group>"; };
 		35138043284F62740082D813 /* NewsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRepository.swift; sourceTree = "<group>"; };
 		351380462855CF620082D813 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		351380472855CF620082D813 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +134,7 @@
 		3513805B2855DFD40082D813 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		3513805D2855DFEB0082D813 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		351380602855E19B0082D813 /* CryptoCandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCandle.swift; sourceTree = "<group>"; };
-		351380622855E44B0082D813 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
+		351380622855E44B0082D813 /* SymbolsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsRepository.swift; sourceTree = "<group>"; };
 		357DCC82284BBBD200AA7570 /* iCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		357DCC85284BBBD200AA7570 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		357DCC87284BBBD300AA7570 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,8 +166,14 @@
 		357DCCD7284BEBF000AA7570 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		357DCCD8284BEBF000AA7570 /* NewsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsBuilder.swift; sourceTree = "<group>"; };
 		357DCCD9284BEBF000AA7570 /* NewsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInteractor.swift; sourceTree = "<group>"; };
-		357DCCDE284BF09100AA7570 /* WatchlistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCell.swift; sourceTree = "<group>"; };
-		357DCCE0284BF0AB00AA7570 /* OpinionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpinionsCell.swift; sourceTree = "<group>"; };
+		357DCCDE284BF09100AA7570 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
+		35D2AD762929E9B900E9F9B3 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
+		35D2AD782929EA3600E9F9B3 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
+		35D2AD7B2929F99C00E9F9B3 /* MyWatchListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchListRouter.swift; sourceTree = "<group>"; };
+		35D2AD7C2929F99C00E9F9B3 /* MyWatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchListViewController.swift; sourceTree = "<group>"; };
+		35D2AD7D2929F99C00E9F9B3 /* MyWatchListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchListBuilder.swift; sourceTree = "<group>"; };
+		35D2AD7E2929F99C00E9F9B3 /* MyWatchListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchListInteractor.swift; sourceTree = "<group>"; };
+		35D2AD8B292A04D900E9F9B3 /* MyWatchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,16 +181,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3513802A284E54EC0082D813 /* FloatingPanel in Frameworks */,
+				350F692C2969E9CC001F37D3 /* FirebaseDatabaseSwift in Frameworks */,
 				357DCCBC284BE64F00AA7570 /* CombineCocoa in Frameworks */,
+				35C9716F28FC0AAD00079B03 /* FloatingPanel in Frameworks */,
+				350F69242969E9CC001F37D3 /* FirebaseAnalytics in Frameworks */,
 				3513802F284EED270082D813 /* SDWebImage in Frameworks */,
+				350F69122965BADF001F37D3 /* Starscream in Frameworks */,
+				350F69262969E9CC001F37D3 /* FirebaseAuth in Frameworks */,
+				350F692A2969E9CC001F37D3 /* FirebaseDatabase in Frameworks */,
 				357DCCB9284BE64200AA7570 /* ModernRIBs in Frameworks */,
+				350F69302969E9CC001F37D3 /* FirebaseFirestoreCombine-Community in Frameworks */,
+				350F692E2969E9CC001F37D3 /* FirebaseFirestore in Frameworks */,
+				350F69282969E9CC001F37D3 /* FirebaseAuthCombine-Community in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35020270296B1F3B00CEB6B1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3502026C296B1F0100CEB6B1 /* OpinionsView.swift */,
+				3502026E296B1F2200CEB6B1 /* CommentTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		350F69152968864E001F37D3 /* CoinDetail */ = {
+			isa = PBXGroup;
+			children = (
+				350F691829688671001F37D3 /* CoinDetailBuilder.swift */,
+				350F691629688671001F37D3 /* CoinDetailRouter.swift */,
+				350F691929688671001F37D3 /* CoinDetailInteractor.swift */,
+				350F691729688671001F37D3 /* CoinDetailViewController.swift */,
+			);
+			path = CoinDetail;
+			sourceTree = "<group>";
+		};
 		3513801A284D14590082D813 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +228,7 @@
 				35138021284D19180082D813 /* Quote.swift */,
 				35138023284D192A0082D813 /* CandleStick.swift */,
 				351380602855E19B0082D813 /* CryptoCandle.swift */,
+				3502026A296B1EBA00CEB6B1 /* PostContent.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -195,8 +266,10 @@
 				357DCCA9284BD6A500AA7570 /* Main */,
 				357DCCC3284BEB8D00AA7570 /* Watchlist */,
 				357DCCC4284BEB9800AA7570 /* Opinions */,
+				35D2AD7A2929F5C700E9F9B3 /* MyWatchList */,
 				357DCCC5284BEBA000AA7570 /* News */,
 				3513804E2855CF680082D813 /* Search */,
+				350F69152968864E001F37D3 /* CoinDetail */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -223,6 +296,7 @@
 			children = (
 				3513803E284F5CE50082D813 /* UrlConfigurable.swift */,
 				35138034284F30350082D813 /* NetworkManager.swift */,
+				350F69332969ED56001F37D3 /* FirebaseManager.swift */,
 				3513803C284F5ACE0082D813 /* WebsocketManager.swift */,
 				35138036284F303B0082D813 /* PersistanceManager.swift */,
 			);
@@ -232,9 +306,11 @@
 		35138040284F62590082D813 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				35138041284F62640082D813 /* WatchlistRepository.swift */,
+				35138041284F62640082D813 /* WebsocketRepository.swift */,
+				350F691E29698B21001F37D3 /* PersistanceRepository.swift */,
 				35138043284F62740082D813 /* NewsRepository.swift */,
-				351380622855E44B0082D813 /* SearchRepository.swift */,
+				351380622855E44B0082D813 /* SymbolsRepository.swift */,
+				350F69352969EDA5001F37D3 /* FirebaseRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -242,8 +318,7 @@
 		351380452851F3D10082D813 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				357DCCDE284BF09100AA7570 /* WatchlistCell.swift */,
-				357DCCE0284BF0AB00AA7570 /* OpinionsCell.swift */,
+				357DCCDE284BF09100AA7570 /* MainViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -289,6 +364,7 @@
 		357DCC84284BBBD200AA7570 /* iCoin */ = {
 			isa = PBXGroup;
 			children = (
+				350F69312969EB2A001F37D3 /* GoogleService-Info.plist */,
 				35138040284F62590082D813 /* Repository */,
 				35138033284F30280082D813 /* Manager */,
 				35138025284E472E0082D813 /* GlobalViews */,
@@ -320,7 +396,9 @@
 				357DCCA3284BBCCA00AA7570 /* AppRootBuilder.swift */,
 				357DCCA1284BBCCA00AA7570 /* AppRootRouter.swift */,
 				357DCCA4284BBCCA00AA7570 /* AppRootInteractor.swift */,
+				35D2AD762929E9B900E9F9B3 /* RootTabBarController.swift */,
 				357DCCA2284BBCCA00AA7570 /* AppRootViewController.swift */,
+				35D2AD782929EA3600E9F9B3 /* AppRootView.swift */,
 			);
 			path = AppRoot;
 			sourceTree = "<group>";
@@ -363,10 +441,11 @@
 		357DCCC4284BEB9800AA7570 /* Opinions */ = {
 			isa = PBXGroup;
 			children = (
-				357DCCCE284BEBE000AA7570 /* OpinionsRouter.swift */,
-				357DCCCF284BEBE000AA7570 /* OpinionsViewController.swift */,
 				357DCCD0284BEBE000AA7570 /* OpinionsBuilder.swift */,
+				357DCCCE284BEBE000AA7570 /* OpinionsRouter.swift */,
 				357DCCD1284BEBE000AA7570 /* OpinionsInteractor.swift */,
+				357DCCCF284BEBE000AA7570 /* OpinionsViewController.swift */,
+				35020270296B1F3B00CEB6B1 /* View */,
 			);
 			path = Opinions;
 			sourceTree = "<group>";
@@ -381,6 +460,18 @@
 				35138030284EED5E0082D813 /* View */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		35D2AD7A2929F5C700E9F9B3 /* MyWatchList */ = {
+			isa = PBXGroup;
+			children = (
+				35D2AD7D2929F99C00E9F9B3 /* MyWatchListBuilder.swift */,
+				35D2AD7B2929F99C00E9F9B3 /* MyWatchListRouter.swift */,
+				35D2AD7E2929F99C00E9F9B3 /* MyWatchListInteractor.swift */,
+				35D2AD7C2929F99C00E9F9B3 /* MyWatchListViewController.swift */,
+				35D2AD8B292A04D900E9F9B3 /* MyWatchListView.swift */,
+			);
+			path = MyWatchList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,8 +493,16 @@
 			packageProductDependencies = (
 				357DCCB8284BE64200AA7570 /* ModernRIBs */,
 				357DCCBB284BE64F00AA7570 /* CombineCocoa */,
-				35138029284E54EC0082D813 /* FloatingPanel */,
 				3513802E284EED270082D813 /* SDWebImage */,
+				35C9716E28FC0AAD00079B03 /* FloatingPanel */,
+				350F69112965BADF001F37D3 /* Starscream */,
+				350F69232969E9CC001F37D3 /* FirebaseAnalytics */,
+				350F69252969E9CC001F37D3 /* FirebaseAuth */,
+				350F69272969E9CC001F37D3 /* FirebaseAuthCombine-Community */,
+				350F69292969E9CC001F37D3 /* FirebaseDatabase */,
+				350F692B2969E9CC001F37D3 /* FirebaseDatabaseSwift */,
+				350F692D2969E9CC001F37D3 /* FirebaseFirestore */,
+				350F692F2969E9CC001F37D3 /* FirebaseFirestoreCombine-Community */,
 			);
 			productName = iCoin;
 			productReference = 357DCC82284BBBD200AA7570 /* iCoin.app */;
@@ -436,8 +535,10 @@
 			packageReferences = (
 				357DCCB7284BE64200AA7570 /* XCRemoteSwiftPackageReference "ModernRIBs" */,
 				357DCCBA284BE64F00AA7570 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
-				35138028284E54EC0082D813 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 				3513802D284EED270082D813 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				35C9716D28FC0AAD00079B03 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+				350F69102965BADF001F37D3 /* XCRemoteSwiftPackageReference "Starscream" */,
+				350F69222969E9CC001F37D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 357DCC83284BBBD200AA7570 /* Products */;
 			projectDirPath = "";
@@ -455,6 +556,7 @@
 			files = (
 				357DCC92284BBBD400AA7570 /* LaunchScreen.storyboard in Resources */,
 				357DCC8F284BBBD400AA7570 /* Assets.xcassets in Resources */,
+				350F69322969EB2A001F37D3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,16 +577,23 @@
 				357DCCDA284BEBF000AA7570 /* NewsRouter.swift in Sources */,
 				3513805E2855DFEB0082D813 /* SearchResponse.swift in Sources */,
 				3513805A2855DFBE0082D813 /* SearchView.swift in Sources */,
-				35138042284F62640082D813 /* WatchlistRepository.swift in Sources */,
+				35138042284F62640082D813 /* WebsocketRepository.swift in Sources */,
 				351380612855E19B0082D813 /* CryptoCandle.swift in Sources */,
 				357DCCBE284BE6A500AA7570 /* MenuBarView.swift in Sources */,
 				35138024284D192A0082D813 /* CandleStick.swift in Sources */,
+				350F691A29688671001F37D3 /* CoinDetailRouter.swift in Sources */,
 				357DCCDB284BEBF000AA7570 /* NewsViewController.swift in Sources */,
+				350F69342969ED56001F37D3 /* FirebaseManager.swift in Sources */,
 				357DCCB5284BE5C900AA7570 /* MainView.swift in Sources */,
+				35D2AD8C292A04D900E9F9B3 /* MyWatchListView.swift in Sources */,
 				35138039284F59D70082D813 /* WebSocketData.swift in Sources */,
 				35138019284D0C480082D813 /* WatchlistItemModel.swift in Sources */,
+				3502026D296B1F0100CEB6B1 /* OpinionsView.swift in Sources */,
+				350F691B29688671001F37D3 /* CoinDetailViewController.swift in Sources */,
 				3513803F284F5CE50082D813 /* UrlConfigurable.swift in Sources */,
 				357DCCAE284BD7F600AA7570 /* MainRouter.swift in Sources */,
+				350F691F29698B21001F37D3 /* PersistanceRepository.swift in Sources */,
+				35D2AD812929F99C00E9F9B3 /* MyWatchListBuilder.swift in Sources */,
 				357DCCCA284BEBCC00AA7570 /* WatchlistRouter.swift in Sources */,
 				35138044284F62740082D813 /* NewsRepository.swift in Sources */,
 				357DCC86284BBBD200AA7570 /* AppDelegate.swift in Sources */,
@@ -493,7 +602,9 @@
 				35138015284D019E0082D813 /* WatchlistView.swift in Sources */,
 				357DCCB1284BD7F600AA7570 /* MainInteractor.swift in Sources */,
 				35138032284EF38D0082D813 /* NewsStoryTableViewCell.swift in Sources */,
+				35D2AD772929E9B900E9F9B3 /* RootTabBarController.swift in Sources */,
 				3513803B284F5A470082D813 /* NewsData.swift in Sources */,
+				35D2AD802929F99C00E9F9B3 /* MyWatchListViewController.swift in Sources */,
 				357DCCD2284BEBE000AA7570 /* OpinionsRouter.swift in Sources */,
 				3513805C2855DFD40082D813 /* SearchCell.swift in Sources */,
 				35138027284E47380082D813 /* MenuBarButton.swift in Sources */,
@@ -501,23 +612,30 @@
 				35138017284D034B0082D813 /* WatchlistItemCell.swift in Sources */,
 				357DCCD5284BEBE000AA7570 /* OpinionsInteractor.swift in Sources */,
 				357DCCDD284BEBF000AA7570 /* NewsInteractor.swift in Sources */,
+				350F691C29688671001F37D3 /* CoinDetailBuilder.swift in Sources */,
 				3513804C2855CF630082D813 /* SearchBuilder.swift in Sources */,
-				357DCCE1284BF0AB00AA7570 /* OpinionsCell.swift in Sources */,
+				35D2AD7F2929F99C00E9F9B3 /* MyWatchListRouter.swift in Sources */,
+				350F69362969EDA5001F37D3 /* FirebaseRepository.swift in Sources */,
 				357DCC88284BBBD300AA7570 /* SceneDelegate.swift in Sources */,
-				351380632855E44B0082D813 /* SearchRepository.swift in Sources */,
+				351380632855E44B0082D813 /* SymbolsRepository.swift in Sources */,
 				3513804D2855CF630082D813 /* SearchInteractor.swift in Sources */,
 				357DCCB0284BD7F600AA7570 /* MainBuilder.swift in Sources */,
 				357DCCA6284BBCCA00AA7570 /* AppRootViewController.swift in Sources */,
 				357DCCA5284BBCCA00AA7570 /* AppRootRouter.swift in Sources */,
+				35D2AD822929F99C00E9F9B3 /* MyWatchListInteractor.swift in Sources */,
 				357DCCD4284BEBE000AA7570 /* OpinionsBuilder.swift in Sources */,
 				357DCCCD284BEBCC00AA7570 /* WatchlistInteractor.swift in Sources */,
 				3513803D284F5ACE0082D813 /* WebsocketManager.swift in Sources */,
-				357DCCDF284BF09100AA7570 /* WatchlistCell.swift in Sources */,
+				357DCCDF284BF09100AA7570 /* MainViewCell.swift in Sources */,
 				357DCCB3284BDA4700AA7570 /* RIBs+Utils.swift in Sources */,
 				35138022284D19180082D813 /* Quote.swift in Sources */,
 				3513804B2855CF630082D813 /* SearchViewController.swift in Sources */,
+				35D2AD792929EA3600E9F9B3 /* AppRootView.swift in Sources */,
 				357DCCCB284BEBCC00AA7570 /* WatchlistViewController.swift in Sources */,
 				357DCCC2284BE73700AA7570 /* BaseView.swift in Sources */,
+				3502026B296B1EBA00CEB6B1 /* PostContent.swift in Sources */,
+				3502026F296B1F2200CEB6B1 /* CommentTableViewCell.swift in Sources */,
+				350F691D29688671001F37D3 /* CoinDetailInteractor.swift in Sources */,
 				357DCCAF284BD7F600AA7570 /* MainViewController.swift in Sources */,
 				357DCCC0284BE6CE00AA7570 /* Ext.swift in Sources */,
 				357DCCCC284BEBCC00AA7570 /* WatchlistBuilder.swift in Sources */,
@@ -730,12 +848,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		35138028284E54EC0082D813 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+		350F69102965BADF001F37D3 /* XCRemoteSwiftPackageReference "Starscream" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/scenee/FloatingPanel.git";
+			repositoryURL = "https://github.com/daltoniam/Starscream.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				branch = master;
+				kind = branch;
+			};
+		};
+		350F69222969E9CC001F37D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 		3513802D284EED270082D813 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
@@ -762,13 +888,56 @@
 				kind = branch;
 			};
 		};
+		35C9716D28FC0AAD00079B03 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scenee/FloatingPanel.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		35138029284E54EC0082D813 /* FloatingPanel */ = {
+		350F69112965BADF001F37D3 /* Starscream */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 35138028284E54EC0082D813 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
-			productName = FloatingPanel;
+			package = 350F69102965BADF001F37D3 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
+		350F69232969E9CC001F37D3 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 350F69222969E9CC001F37D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		350F69252969E9CC001F37D3 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 350F69222969E9CC001F37D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		350F69272969E9CC001F37D3 /* FirebaseAuthCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 350F69222969E9CC001F37D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAuthCombine-Community";
+		};
+		350F69292969E9CC001F37D3 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 350F69222969E9CC001F37D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		350F692B2969E9CC001F37D3 /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 350F69222969E9CC001F37D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		350F692D2969E9CC001F37D3 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 350F69222969E9CC001F37D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		350F692F2969E9CC001F37D3 /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 350F69222969E9CC001F37D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
 		};
 		3513802E284EED270082D813 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -784,6 +953,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 357DCCBA284BE64F00AA7570 /* XCRemoteSwiftPackageReference "CombineCocoa" */;
 			productName = CombineCocoa;
+		};
+		35C9716E28FC0AAD00079B03 /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35C9716D28FC0AAD00079B03 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
