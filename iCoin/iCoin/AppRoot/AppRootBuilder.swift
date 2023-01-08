@@ -13,8 +13,7 @@ protocol AppRootDependency: Dependency {
     // created by this RIB.
 }
 
-final class AppRootComponent: Component<AppRootDependency>, MainDependency {
-
+final class AppRootComponent: Component<AppRootDependency>, MainDependency, MyWatchListDependency {
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
 
@@ -32,15 +31,18 @@ final class AppRootBuilder: Builder<AppRootDependency>, AppRootBuildable {
     
     func build() -> LaunchRouting {
         let component = AppRootComponent(dependency: dependency)
-        let viewController = AppRootViewController()
+//        let viewController = AppRootViewController()
+        let viewController = RootTabBarController()
         let interactor = AppRootInteractor(presenter: viewController)
         
         let main = MainBuilder(dependency: component)
+        let myWatchList = MyWatchListBuilder(dependency: component)
         
         let router = AppRootRouter(
             interactor: interactor,
             viewController: viewController,
-            main: main
+            main: main,
+            myWatchList: myWatchList
         )
         
         return router
