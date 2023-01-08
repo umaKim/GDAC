@@ -17,7 +17,6 @@ final class NewsRepositoryImp: NewsRepository {
     
     init(network: NewsNetWorkable) {
         self.network = network
-        
     }
     
     func fetchNews(of symbol: String) -> AnyPublisher<NewsDataResponse, Error> {
