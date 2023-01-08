@@ -49,13 +49,11 @@ final class NewsInteractor: PresentableInteractor<NewsPresentable>, NewsInteract
         self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
-        
     }
     
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
-        
         fetchNews()
     }
     

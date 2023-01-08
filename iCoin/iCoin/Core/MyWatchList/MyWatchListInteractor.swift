@@ -37,20 +37,12 @@ final class MyWatchListInteractor: PresentableInteractor<MyWatchListPresentable>
     weak var listener: MyWatchListListener?
     
     //MARK: - Model
-    private var watchlistChartMap: [String: [CandleStick]] = [:]
-    private var watchlistQuoteMap: [String: Quote] = [:]
     private(set) var watchlistItemModels: [WatchlistItemModel] = []
     
     typealias Symbol = String
-    typealias Price = Double
-    
-    private var currentPrice: [Symbol: Price] = [:]
     
     //TODO: This should be fetched from Persistance
-    private var symbols: [String] = [
-//        "BTC",
-//        "ETH",
-//        "XRP"
+    private var symbols: [Symbol] = [
     ]
     
     private let dependency: MyWatchListInteractorDependency
@@ -109,7 +101,6 @@ final class MyWatchListInteractor: PresentableInteractor<MyWatchListPresentable>
                 for (index, model) in self.watchlistItemModels.enumerated() {
                     if model.companyName.uppercased() == data.s {
                         self.watchlistItemModels[index].price = "$\(data.p)"
-                        self.watchlistItemModels[index].changeColor = changeColorComparing(data)
                     }
                 }
             } else {
@@ -126,24 +117,11 @@ final class MyWatchListInteractor: PresentableInteractor<MyWatchListPresentable>
                     }
                 }
             }
-            self.currentPrice[data.s] = data.p
         }
-        self.presenter.reloadData(
-            with: self.watchlistItemModels,
+        presenter.reloadData(
+            with: watchlistItemModels,
             animation: .none
         )
-    }
-    
-    private func changeColorComparing(_ data: Datum) -> UIColor {
-//        currentPrice[data.s] ?? 0 < data.p ? .systemGreen : .systemRed
-//        guard let currentPrice = currentPrice else {return .clear}
-        
-        if currentPrice[data.s] ?? 0 < data.p {
-            return .systemGreen
-        } else if currentPrice[data.s] ?? 0 > data.p {
-            return .systemRed
-        }
-        return .clear
     }
 }
 
