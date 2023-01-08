@@ -19,7 +19,7 @@ final class MainComponent: Component<MainDependency>,
                            WatchlistDependency,
                            OpinionsDependency,
                            NewsDependency,
-                           SearchDependency {
+                           SearchDependency,
                            CoinDetailDependency {
     
     lazy var edittinButtonDidTap: AnyPublisher<Void, Never> = edittingButtonDidTapSubject.eraseToAnyPublisher()
@@ -94,7 +94,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
             watchListBuildable: watchlist,
             opinionsBuildable: opinions,
             newsBuildable: news,
-            searchBuildable: search
+            searchBuildable: search,
             coinDetailBuildable: coinDetail
         )
     }

@@ -12,7 +12,7 @@ protocol MainInteractable: Interactable,
                            WatchlistListener,
                            OpinionsListener,
                            NewsListener,
-                           SearchListener {
+                           SearchListener,
                            CoinDetailListener {
     var router: MainRouting? { get set }
     var listener: MainListener? { get set }
@@ -49,7 +49,7 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
         watchListBuildable: WatchlistBuildable,
         opinionsBuildable: OpinionsBuildable,
         newsBuildable: NewsBuildable,
-        searchBuildable: SearchBuildable
+        searchBuildable: SearchBuildable,
         coinDetailBuildable: CoinDetailBuildable
     ) {
         self.watchList = watchListBuildable
