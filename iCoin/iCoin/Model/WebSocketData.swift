@@ -8,14 +8,10 @@
 import Foundation
 
 struct WebSocketData : Decodable {
-    
     let data: [Datum]
-    
 }
 
 struct Datum : Decodable, Hashable  {
-    
     let p: Double
     var s: String
-
 }
