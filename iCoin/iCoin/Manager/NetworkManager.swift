@@ -18,11 +18,11 @@ protocol NewsNetWorkable {
     func fetchNews(of symbol: String) -> AnyPublisher<NewsDataResponse, Error>
 }
 
-protocol SearchNetworkable {
-    func fetchSymbols() -> AnyPublisher<[SearchResult], Error>
+protocol SymbolsNetworkable {
+    func fetchSymbols() -> AnyPublisher<[SymbolResult], Error>
 }
 
-final class NetworkManager: WatchlistNetworkable, NewsNetWorkable, SearchNetworkable, UrlConfigurable {
+final class NetworkManager: WatchlistNetworkable, NewsNetWorkable, SymbolsNetworkable, UrlConfigurable {
     
     private enum NewsConstants {
         static let apiKey = "508858945962b1d801891796a6d67f8076873f9996b13b48e5eb63030be21ec4"
@@ -33,7 +33,7 @@ final class NetworkManager: WatchlistNetworkable, NewsNetWorkable, SearchNetwork
         static let url = "/crypto/candle"
     }
     
-    private enum SearchConstants {
+    private enum SymbolConstants {
         static let url = "/crypto/symbol"
     }
     
@@ -44,21 +44,24 @@ final class NetworkManager: WatchlistNetworkable, NewsNetWorkable, SearchNetwork
     }
     
     ///Perform search
-    func fetchSymbols() -> AnyPublisher<[SearchResult], Error> {
-        
-        let url = url(for: FinnHubApi.baseUrl + SearchConstants.url,
-                      queryParams: ["exchange":"binance"],
-                      with: ["token": FinnHubApi.apiKey])
-        return request(url: url, expecting: [SearchResult].self)
+    func fetchSymbols() -> AnyPublisher<[SymbolResult], Error> {
+        let url = url(
+            for: FinnHubApi.baseUrl + SymbolConstants.url,
+            queryParams: ["exchange":"binance"],
+            with: ["token": FinnHubApi.apiKey]
+        )
+        return request(url: url, expecting: [SymbolResult].self)
     }
     
     ///Perform News api call
     ///return AnyPublisher containing NewsDataResponse
     func fetchNews(of symbol: String = "") -> AnyPublisher<NewsDataResponse, Error> {
-        let url = url(for: NewsConstants.newsBaseUrl, with: [
-            "lang": "EN",
-            "api_key": NewsConstants.apiKey
-        ])
+        let url = url(
+            for: NewsConstants.newsBaseUrl,
+            with: [
+                "lang": "EN",
+                "api_key": NewsConstants.apiKey
+            ])
         return request(url: url, expecting: NewsDataResponse.self)
     }
     
@@ -68,14 +71,16 @@ final class NetworkManager: WatchlistNetworkable, NewsNetWorkable, SearchNetwork
         let today = Date().addingTimeInterval(-(FinnHubApi.day))
         let prior = today.addingTimeInterval(-(FinnHubApi.day * 7))
         
-        let url = url(for: FinnHubApi.baseUrl + CryptoCandleConstants.url,
-                      queryParams: [
-                        "symbol": "BINANCE:BTCUSDT",
-                        "resolution": "D",
-                        "from": "\(Int(today.timeIntervalSince1970))",
-                        "to": "\(Int(prior.timeIntervalSince1970))"
-                      ],
-                      with: ["token": FinnHubApi.apiKey])
+        let url = url(
+            for: FinnHubApi.baseUrl + CryptoCandleConstants.url,
+            queryParams: [
+                "symbol": "BINANCE:BTCUSDT",
+                "resolution": "D",
+                "from": "\(Int(today.timeIntervalSince1970))",
+                "to": "\(Int(prior.timeIntervalSince1970))"
+            ],
+            with: ["token": FinnHubApi.apiKey]
+        )
         return request(url: url, expecting: CryptoCandle.self)
     }
     
@@ -93,7 +98,7 @@ final class NetworkManager: WatchlistNetworkable, NewsNetWorkable, SearchNetwork
     private func request<T: Codable>(url: URL?, expecting: T.Type) -> AnyPublisher<T, Error> {
         Future { promise in
             guard let url = url else { return
-                promise(.failure( APIError.invalidUrl))}
+                promise(.failure(APIError.invalidUrl))}
             
             URLSession.shared.dataTask(with: url) { data, _, error in
                 guard let data = data, error == nil else {

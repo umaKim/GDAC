@@ -28,7 +28,8 @@ extension UIViewController {
                 withConfiguration: UIImage.SymbolConfiguration(pointSize: 18, weight: .semibold)),
             style: .plain,
             target: target,
-            action: action)
+            action: action
+        )
         bt.tintColor = tintColor
         navigationItem.leftBarButtonItem = bt
     }
