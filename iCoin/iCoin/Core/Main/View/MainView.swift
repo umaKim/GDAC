@@ -11,7 +11,7 @@ import UIKit.UICollectionView
 import Combine
 
 enum MainViewAction {
-    case didTapEditting
+//    case didTapEditting
     case searchButtonDidTap
     case writingOpinionDidTap
 }
@@ -29,8 +29,7 @@ final class MainView: BaseView {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.register(WatchlistCell.self, forCellWithReuseIdentifier: WatchlistCell.identifier)
-        cv.register(OpinionsCell.self, forCellWithReuseIdentifier: OpinionsCell.identifier)
+        cv.register(MainViewCell.self, forCellWithReuseIdentifier: MainViewCell.identifier)
         cv.isPagingEnabled = true
         cv.showsHorizontalScrollIndicator = false
         cv.translatesAutoresizingMaskIntoConstraints = false
@@ -43,16 +42,17 @@ final class MainView: BaseView {
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupUI()
         bind()
     }
     
     private func scroll(to item: MenuTabBarButtonType) {
         let indexPath = IndexPath(item: item.rawValue, section: 0)
-        self.collectionView.scrollToItem(at: indexPath,
-                                          at: [],
-                                          animated: true)
+        self.collectionView.scrollToItem(
+            at: indexPath,
+            at: [],
+            animated: true
+        )
     }
     
     required init?(coder: NSCoder) {
@@ -72,9 +72,9 @@ extension MainView {
                 case .didTapOpinions:
                     self?.scroll(to: .opinions)
                     
-                case .didTapEditting:
-                    self?.actionSubject.send(.didTapEditting)
-                    self?.scroll(to: .myList)
+//                case .didTapEditting:
+//                    self?.actionSubject.send(.didTapEditting)
+//                    self?.scroll(to: .myList)
                 }
             }
             .store(in: &cancellables)
@@ -90,9 +90,11 @@ extension MainView {
             .tapPublisher
             .sink { [weak self] _ in
                 self?.actionSubject.send(.writingOpinionDidTap)
-                self?.collectionView.scrollToItem(at: IndexPath(item: 1, section: 0),
-                                                  at: [],
-                                                  animated: true)
+                self?.collectionView.scrollToItem(
+                    at: IndexPath(item: 1, section: 0),
+                    at: [],
+                    animated: true)
+                
             }
             .store(in: &cancellables)
     }
@@ -101,8 +103,8 @@ extension MainView {
 //MARK: - Set up UI
 extension MainView {
     private func setupUI() {
-        searchButton.tintColor        = .white
-        writeOpinionsButton.tintColor = .white
+        searchButton.tintColor        = .gdacBlue
+        writeOpinionsButton.tintColor = .gdacBlue
         
         addSubviews(menuTabBar, collectionView)
         
