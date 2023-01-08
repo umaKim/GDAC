@@ -37,10 +37,10 @@ protocol MainInteractorDependency {
 }
 
 final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
-    
+   
     weak var router: MainRouting?
     weak var listener: MainListener?
-
+    
     private let dependency: MainInteractorDependency
     
     // TODO: Add additional dependencies to constructor. Do not perform any logic
