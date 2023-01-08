@@ -74,7 +74,7 @@ final class WatchlistItemCell: UITableViewCell {
         }
         
         symbolLabel.text = self.model?.symbol
-        nameLabel.text =  self.model?.companyName
+        nameLabel.text =  self.model?.companyName.replacingOccurrences(of: "BINANCE:", with: "")
         priceLabel.text = "$\(self.model?.price ?? "0")"
         oldPriceKeeper = self.model?.price ?? "0"
     }
