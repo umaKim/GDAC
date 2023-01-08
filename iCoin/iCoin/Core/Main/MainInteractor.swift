@@ -15,6 +15,9 @@ protocol MainRouting: ViewableRouting {
     func attachNews()
     func attachSearch()
     func detachSearch()
+    
+    func attachCoinDetail()
+    func detachCoinDetail()
 }
 
 protocol MainPresentable: Presentable {

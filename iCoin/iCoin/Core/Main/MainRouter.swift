@@ -13,6 +13,7 @@ protocol MainInteractable: Interactable,
                            OpinionsListener,
                            NewsListener,
                            SearchListener {
+                           CoinDetailListener {
     var router: MainRouting? { get set }
     var listener: MainListener? { get set }
 }
@@ -39,6 +40,9 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
     private let search: SearchBuildable
     private var searchRouting: Routing?
     
+    private let coinDetail: CoinDetailBuildable
+    private var coinDetailRouting: Routing?
+    
     init(
         interactor: MainInteractable,
         viewController: MainViewControllable,
@@ -46,11 +50,13 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
         opinionsBuildable: OpinionsBuildable,
         newsBuildable: NewsBuildable,
         searchBuildable: SearchBuildable
+        coinDetailBuildable: CoinDetailBuildable
     ) {
         self.watchList = watchListBuildable
         self.opinions = opinionsBuildable
         self.news = newsBuildable
         self.search = searchBuildable
+        self.coinDetail = coinDetailBuildable
         
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
@@ -75,7 +81,7 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
     }
     
     func attachNews() {
-        if newsRouting != nil {return }
+        if newsRouting != nil { return }
         let router = news.build(withListener: interactor)
         let news = router.viewControllable
         viewController.setNews(news)
@@ -84,7 +90,7 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
     }
     
     func attachSearch() {
-        if searchRouting != nil {return}
+        if searchRouting != nil { return }
         let router = search.build(withListener: interactor)
         let search = router.viewControllable
         viewControllable.pushViewController(search, animated: true)
@@ -93,9 +99,25 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
     }
     
     func detachSearch() {
-        guard let router = searchRouting else {return }
+        guard let router = searchRouting else { return }
         viewControllable.popViewController(animated: true)
         detachChild(router)
         searchRouting = nil
+    }
+    
+    func attachCoinDetail() {
+        if coinDetailRouting != nil { return }
+        let router = coinDetail.build(withListener: interactor)
+        let coinDetail = router.viewControllable
+        viewControllable.pushViewController(coinDetail, animated: true)
+        coinDetailRouting = router
+        attachChild(router)
+    }
+    
+    func detachCoinDetail() {
+        guard let router = coinDetailRouting else { return }
+        viewControllable.popViewController(animated: true)
+        detachChild(router)
+        coinDetailRouting = nil
     }
 }

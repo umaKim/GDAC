@@ -20,6 +20,7 @@ final class MainComponent: Component<MainDependency>,
                            OpinionsDependency,
                            NewsDependency,
                            SearchDependency {
+                           CoinDetailDependency {
     
     lazy var edittinButtonDidTap: AnyPublisher<Void, Never> = edittingButtonDidTapSubject.eraseToAnyPublisher()
     var edittingButtonDidTapSubject: PassthroughSubject<Void, Never> = PassthroughSubject<Void, Never>()
@@ -85,6 +86,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
         let opinions = OpinionsBuilder(dependency: component)
         let news = NewsBuilder(dependency: component)
         let search = SearchBuilder(dependency: component)
+        let coinDetail = CoinDetailBuilder(dependency: component)
         
         return MainRouter(
             interactor: interactor,
@@ -93,6 +95,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
             opinionsBuildable: opinions,
             newsBuildable: news,
             searchBuildable: search
+            coinDetailBuildable: coinDetail
         )
     }
 }
