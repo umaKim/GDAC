@@ -7,9 +7,7 @@
 
 import Foundation
 
-protocol UrlConfigurable {
-    
-}
+protocol UrlConfigurable { }
 
 extension UrlConfigurable {
     /// Try to create url for endpoint
