@@ -173,25 +173,25 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
 
 extension WatchlistInteractor: WatchlistPresentableListener {
     func turnOnSocket() {
-        dependency.watchlistRepository.resume()
-        fetchFromNetwork(symbols: symbols)
+        dependency.watchlistRepository.connect()
+        fetchFromNetwork(symbols: self.displaySymbols)
     }
     
     func turnOffSocket() {
-        dependency.watchlistRepository.stopFetch()
+        dependency.watchlistRepository.disconnect()
     }
     
     func removeItem(at indexPath: IndexPath) {
         //Delete Item from Persistance
         //Delete Item from model (watchlistItemModels)
-       
+        
         let deletingSymbol = watchlistItemModels[indexPath.row].symbol
-        symbols.removeAll { $0 == deletingSymbol }
+        symbols.removeAll { $0.displaySymbol == deletingSymbol }
         watchlistItemModels.remove(at: indexPath.row)
     }
     
-    func didTap(indexPath: IndexPath) {
-        print(indexPath.row)
+    func didTap() {
+        listener?.watchlistDidTap()
     }
     
     func updateSections(completion: ([WatchlistItemModel]) -> Void) {
