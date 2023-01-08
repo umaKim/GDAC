@@ -17,18 +17,19 @@ enum MenuTabBarButtonType: Int {
 enum MenuBarButtonAction {
     case didTapMyList
     case didTapOpinions
-    case didTapEditting
+    //    case didTapEditting
 }
 
 final class MenuBarView: UIView {
-    //MARK: - UI Objects
-    private let myListButton: MenuBarButton = MenuBarButton(title: "My List")
+    // MARK: - UI Objects
+    private let myListButton: MenuBarButton = MenuBarButton(title: "Coin")
     private let opinionsButton: MenuBarButton = MenuBarButton(title: "Opinions")
-    private let settingButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "slider.horizontal.3"), for: .normal)
-        button.tintColor = .white
-        return button
+    private let separator: UIView = {
+        let uv = UIView()
+        uv.backgroundColor = .systemGray
+        uv.layer.opacity = 0.5
+        uv.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        return uv
     }()
     
     //MARK: - Combine
@@ -50,7 +51,7 @@ final class MenuBarView: UIView {
     }
 }
 
-//MARK: - Bind
+// MARK: - Bind
 extension MenuBarView {
     private func bind() {
         myListButton
@@ -66,41 +67,10 @@ extension MenuBarView {
                 self?.actionSubject.send(.didTapOpinions)
             }
             .store(in: &cancellable)
-        
-        settingButton
-            .tapPublisher
-            .sink { [weak self] _ in
-                self?.actionSubject.send(.didTapEditting)
-            }
-            .store(in: &cancellable)
     }
 }
 
-//MARK: - Setup UI
-extension MenuBarView {
-    private func setupUI() {
-        setAlpha(for: myListButton)
-        
-        let horizontalPadding: CGFloat = 16
-        let buttonSpace: CGFloat = 36
-        
-        addSubviews(myListButton, opinionsButton, settingButton)
-//        addSubviews(settingButton)
-        
-        NSLayoutConstraint.activate([
-            myListButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            myListButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: horizontalPadding),
-
-            opinionsButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            opinionsButton.leadingAnchor.constraint(equalTo: myListButton.trailingAnchor, constant: buttonSpace),
-            
-            settingButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            settingButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -horizontalPadding)
-        ])
-    }
-}
-
-//MARK: - Button Actions
+// MARK: - Button Actions
 extension MenuBarView {
     func selectItem(at index: Int) {
         animateIndicator(to: index)
@@ -113,27 +83,51 @@ extension MenuBarView {
     }
     
     private func setAlpha(for button: UIButton) {
-        self.myListButton.alpha = 0.5
-        self.opinionsButton.alpha = 0.5
-        button.alpha = 1.0
+        myListButton.setTitleColor(.gdacLightGray, for: .normal)
+        opinionsButton.setTitleColor(.gdacLightGray, for: .normal)
+        button.setTitleColor(.gdacBlue, for: .normal)
     }
     
     private func animateIndicator(to index: Int) {
-        
         var button: UIButton
-        
         switch index {
         case 0:
             button = myListButton
-            break
         case 1:
             button = opinionsButton
-            break
         default:
             button = myListButton
-            break
         }
-        
         setAlpha(for: button)
+    }
+}
+
+// MARK: - Setup UI
+extension MenuBarView {
+    private func setupUI() {
+        setAlpha(for: myListButton)
+        
+        backgroundColor = .systemBackground
+        
+        let horizontalPadding: CGFloat = 16
+        let buttonSpace: CGFloat = 36
+        
+        addSubviews(
+            myListButton,
+            opinionsButton,
+            separator
+        )
+        
+        NSLayoutConstraint.activate([
+            myListButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            myListButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: horizontalPadding),
+            
+            opinionsButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            opinionsButton.leadingAnchor.constraint(equalTo: myListButton.trailingAnchor, constant: buttonSpace),
+            
+            separator.leadingAnchor.constraint(equalTo: leadingAnchor),
+            separator.trailingAnchor.constraint(equalTo: trailingAnchor),
+            separator.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
     }
 }
