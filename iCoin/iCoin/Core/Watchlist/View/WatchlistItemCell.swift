@@ -68,8 +68,11 @@ final class WatchlistItemCell: UITableViewCell {
             let oldPrice = Double(oldPriceKeeper)
         else { return }
         
-        let chnageColor: UIColor = oldPrice < newPrice ? .gdacRed : .gdacBlue
-        animateLabelBackgroundColor(chnageColor)
+        if newPrice != oldPrice {
+            let chnageColor: UIColor = oldPrice < newPrice ? .gdacRed : .gdacBlue
+            animateLabelBackgroundColor(chnageColor)
+        }
+        
         symbolLabel.text = self.model?.symbol
         nameLabel.text =  self.model?.companyName
         priceLabel.text = "$\(self.model?.price ?? "0")"
