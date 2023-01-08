@@ -12,13 +12,15 @@ protocol WatchlistDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
     
-    var watchlistRepository: WatchlistRepository { get }
+    var watchlistRepository: WebsocketRepository { get }
+    var symbolsRepository: SymbolsRepository { get }
     var edittinButtonDidTap: AnyPublisher<Void, Never> { get }
     var mainViewLifeCycleDidChange: AnyPublisher<MainViewLifeCycle, Never> { get }
 }
 
 final class WatchlistComponent: Component<WatchlistDependency>, WatchlistInteractorDependency {
-    var watchlistRepository: WatchlistRepository { dependency.watchlistRepository }
+    var symbolsRepository: SymbolsRepository { dependency.symbolsRepository }
+    var watchlistRepository: WebsocketRepository { dependency.watchlistRepository }
     var edittingButtonDidTap: AnyPublisher<Void, Never> { dependency.edittinButtonDidTap }
     var mainViewLifeCycleDidChange: AnyPublisher<MainViewLifeCycle, Never> { dependency.mainViewLifeCycleDidChange }
     

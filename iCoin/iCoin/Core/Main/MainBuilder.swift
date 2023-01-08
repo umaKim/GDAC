@@ -28,16 +28,22 @@ final class MainComponent: Component<MainDependency>,
     
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
     
-    let watchlistRepository: WatchlistRepository
+    let watchlistRepository: WebsocketRepository
     let newsRepository: NewsRepository
+    let symbolsRepository: SymbolsRepository
+    let firebaseRepository: FirebaseRepository
     
     init(
         dependency: MainDependency,
-        watchlistRepository: WatchlistRepository,
-        newsRepository: NewsRepository
+        watchlistRepository: WebsocketRepository,
+        newsRepository: NewsRepository,
+        symbolsRepository: SymbolsRepository,
+        firebaseRepository: FirebaseRepository
     ) {
         self.watchlistRepository = watchlistRepository
         self.newsRepository = newsRepository
+        self.symbolsRepository = symbolsRepository
+        self.firebaseRepository = firebaseRepository
         super.init(dependency: dependency)
     }
 }
@@ -58,11 +64,13 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
         let component = MainComponent(
             dependency: dependency,
             watchlistRepository:
-                WatchlistRepositoryImp(
-                    websocket: StarScreamSocket(),
+                WebsocketRepositoryImp(
+                    websocket: StarScreamWebSocket(),
                     network: NetworkManager()
                 ),
-            newsRepository: NewsRepositoryImp(network: NetworkManager())
+            newsRepository: NewsRepositoryImp(network: NetworkManager()),
+            symbolsRepository: SymbolsRepositoryImp(network: NetworkManager()),
+            firebaseRepository: FirebaseRepositoryImp(firebase: FirebaseManager())
         )
         let viewController = MainViewController()
         let interactor = MainInteractor(

@@ -28,7 +28,7 @@ protocol MainListener: AnyObject {
 }
 
 protocol MainInteractorDependency {
-    var watchlistRepository: WatchlistRepository { get }
+    var watchlistRepository: WebsocketRepository { get }
     var edittingButtonDidTapSubject: PassthroughSubject<Void, Never> { get }
 //    var searchButtonDidTapSubject
 }
