@@ -61,7 +61,6 @@ final class SearchViewController: UIViewController, SearchPresentable, SearchVie
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
         listener?.search(text: searchText)
     }
 }
@@ -74,11 +73,13 @@ extension SearchViewController {
         dataSource = DataSource(
             tableView: contentView.tableView,
             cellProvider: { (tableView, indexPath, searchResult) -> UITableViewCell? in
-                guard let cell = tableView.dequeueReusableCell(
-                    withIdentifier: SearchCell.identifier,
-                    for: indexPath) as? SearchCell else { return nil }
+                guard
+                    let cell = tableView.dequeueReusableCell(
+                        withIdentifier: SearchCell.identifier,
+                        for: indexPath) as? SearchCell
+                else { return nil }
                 cell.textLabel?.text = searchResult.displaySymbol
-                cell.detailTextLabel?.text = searchResult.description
+                cell.detailTextLabel?.text = searchResult.description.replacingOccurrences(of: "Binance", with: "")
                 return cell
             })
     }
