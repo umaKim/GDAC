@@ -8,15 +8,19 @@
 import UIKit.UITableView
 
 final class WatchlistView: BaseView {
-    //MARK: - UI Object
+    // MARK: - UI Object
     private(set) lazy var tableView: UITableView = {
-        let tv = UITableView()
-        tv.register(WatchlistItemCell.self,
-                    forCellReuseIdentifier: WatchlistItemCell.identifier)
-        return tv
+        let tableView = UITableView()
+        tableView.register(
+            WatchlistItemCell.self,
+            forCellReuseIdentifier: WatchlistItemCell.identifier
+        )
+        tableView.backgroundColor = .systemBackground
+        tableView.contentInset = .init(top: 0, left: 0, bottom: 100, right: 0)
+        return tableView
     }()
     
-    //MARK: - Init
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -27,7 +31,7 @@ final class WatchlistView: BaseView {
     }
 }
 
-//MARK: - setup UI
+// MARK: - setup UI
 extension WatchlistView {
     private func setupUI() {
         addSubviews(tableView)
