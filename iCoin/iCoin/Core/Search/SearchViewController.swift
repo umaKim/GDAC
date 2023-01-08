@@ -42,7 +42,7 @@ final class SearchViewController: UIViewController, SearchPresentable, SearchVie
         super.viewDidLoad()
         
         title = "Search"
-        setupNavigationItem(with: .back, tintColor: .white, target: self, action: #selector(backButtonDidTap))
+        setupNavigationItem(with: .back, tintColor: .label, target: self, action: #selector(backButtonDidTap))
         
         configureDataSource()
         setupSearchBar()
