@@ -14,7 +14,7 @@ protocol PersistanceService {
     func removeFromWatchlist(symbol: String)
 }
 
-final class PersistanceImpl: PersistanceService {
+final class PersistanceManager: PersistanceService {
     /// Reference to user defaults
     private let userDefaults: UserDefaults = .standard
     
@@ -24,20 +24,20 @@ final class PersistanceImpl: PersistanceService {
         static let watchListKey = "watchlist"
     }
     
-    private func tickerConverter(text: String) -> String {
-        let index = text.range(of: "/")
-        guard let lb = index?.lowerBound else { return "" }
-        return text
-    }
+//    private func tickerConverter(text: String) -> String {
+//        let index = text.range(of: "/")
+//        guard let lb = index?.lowerBound else { return "" }
+//        return text
+//    }
     
     // MARK: - Public
     
     /// Get usr watch list
     public var watchlist: [String] {
-        if !hasOnboarded {
-            userDefaults.set(true, forKey: Constants.onboardedKey)
-            setUpDefaults()
-        }
+//        if !hasOnboarded {
+//            userDefaults.set(true, forKey: Constants.onboardedKey)
+//            setUpDefaults()
+//        }
         return userDefaults.stringArray(forKey: Constants.watchListKey) ?? []
     }
     
@@ -53,7 +53,6 @@ final class PersistanceImpl: PersistanceService {
     ///   - symbol: Symbol to add
     ///   - companyName: Company name for symbol being added
     public func addToWatchlist(symbol: String) {
-        
         if !watchlistContains(symbol: symbol) {
             var current = watchlist
             current.append(symbol)
@@ -77,9 +76,9 @@ final class PersistanceImpl: PersistanceService {
     // MARK: - Private
     
     /// Check if user has been onboarded
-    private var hasOnboarded: Bool {
-        return userDefaults.bool(forKey: Constants.onboardedKey)
-    }
+//    private var hasOnboarded: Bool {
+//        return userDefaults.bool(forKey: Constants.onboardedKey)
+//    }
     
     typealias Symbol = String
     typealias CompanyName = String
@@ -89,7 +88,6 @@ final class PersistanceImpl: PersistanceService {
         let map: [Symbol: CompanyName] = [
             "BTC": "Apple Inc",
             "ETH": "Microsoft Corporation",
-            
         ]
         
         let symbols = map.keys.map { $0 }
