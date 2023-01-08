@@ -32,11 +32,7 @@ final class NewsViewController: UIViewController, NewsPresentable, NewsViewContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-        
-        setTV()
+        configureTableView()
     }
     
     func update(with data: [NewsData]) {
@@ -44,7 +40,10 @@ final class NewsViewController: UIViewController, NewsPresentable, NewsViewContr
         tableView.reloadData()
     }
     
-    private func setTV() {
+    private func configureTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        
         view.addSubviews(tableView)
         
         NSLayoutConstraint.activate([
@@ -65,7 +64,7 @@ extension NewsViewController: UITableViewDataSource {
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: NewsStoryTableViewCell.identfier, for: indexPath) as? NewsStoryTableViewCell,
             let stories = stories
-        else { return UITableViewCell()}
+        else { return UITableViewCell() }
         cell.configure(with: .init(model: stories[indexPath.row]))
         return cell
     }
@@ -78,7 +77,7 @@ extension NewsViewController: UITableViewDelegate {
             withIdentifier: NewsHeaderView.identifier
         ) as? NewsHeaderView
         else { return nil }
-        header.configure(with: .init( title: "Top News", shouldShowAddButton: false))
+        header.configure(with: .init(title: "Top Crypto News", shouldShowAddButton: false))
         return header
     }
 
