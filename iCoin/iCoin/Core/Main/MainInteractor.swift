@@ -33,7 +33,7 @@ protocol MainListener: AnyObject {
 protocol MainInteractorDependency {
     var watchlistRepository: WebsocketRepository { get }
     var edittingButtonDidTapSubject: PassthroughSubject<Void, Never> { get }
-//    var searchButtonDidTapSubject
+    var mainViewLifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> { get }
 }
 
 final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
@@ -65,6 +65,14 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func viewDidAppear() {
+        dependency.mainViewLifeCycleDidChangeSubject.send(.viewDidAppear)
+    }
+
+    func viewDidDisappear() {
+        dependency.mainViewLifeCycleDidChangeSubject.send(.viewDidDisappear)
     }
     
     func edittingButtonDidTap() {
