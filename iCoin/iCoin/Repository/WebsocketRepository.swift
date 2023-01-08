@@ -7,18 +7,15 @@
 import Combine
 import Foundation
 
-protocol WatchlistRepository {
+protocol WebsocketRepository {
     func fetch(symbols: [String]) -> AnyPublisher<[Datum], Never>
     func fetchCryptoCandle(of symbol: String) -> AnyPublisher<CryptoCandle, Error>
-    func stopFetch()
-    func resume()
+    func disconnect()
+    func connect()
 }
 
-final class WatchlistRepositoryImp: WatchlistRepository {
-    func fetchCryptoCandle(of symbol: String) -> AnyPublisher<CryptoCandle, Error> {
-        return network.fetchCryptoCandle(of: symbol).eraseToAnyPublisher()
-    }
-    
+final class WebsocketRepositoryImp: WebsocketRepository {
+   
     private let websocket: WebSocketProtocol
     private let network: WatchlistNetworkable
     
@@ -34,19 +31,24 @@ final class WatchlistRepositoryImp: WatchlistRepository {
     }
     
     func fetch(symbols: [String]) -> AnyPublisher<[Datum], Never> {
+//        websocket.resume()
         websocket.webSocket(symbols: symbols)
-        websocket.receiveMessage()
+//        websocket.receiveMessage()
         
         return websocket
             .dataPublisher
             .eraseToAnyPublisher()
     }
     
-    func stopFetch() {
+    func disconnect() {
         websocket.disconnect()
     }
     
-    func resume() {
-        websocket.resume()
+    func connect() {
+        websocket.connect()
+    }
+    
+    func fetchCryptoCandle(of symbol: String) -> AnyPublisher<CryptoCandle, Error> {
+        return network.fetchCryptoCandle(of: symbol).eraseToAnyPublisher()
     }
 }
