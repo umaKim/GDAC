@@ -9,11 +9,11 @@ import Foundation
 
 /// API response for search
 struct SearchResponse: Codable {
-    let result: [SearchResult]
+    let result: [SymbolResult]
 }
 
 /// A single search result
-struct SearchResult: Codable, Hashable {
+struct SymbolResult: Codable, Hashable {
     let description: String
     let displaySymbol: String
     let symbol: String

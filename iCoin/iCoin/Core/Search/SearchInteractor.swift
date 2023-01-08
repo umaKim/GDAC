@@ -16,7 +16,7 @@ protocol SearchRouting: ViewableRouting {
 protocol SearchPresentable: Presentable {
     var listener: SearchPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
-    func reloadData(with data: [SearchResult], animation: UITableView.RowAnimation)
+    func reloadData(with data: [SymbolResult], animation: UITableView.RowAnimation)
 }
 
 protocol SearchListener: AnyObject {
@@ -25,11 +25,11 @@ protocol SearchListener: AnyObject {
 }
 
 protocol SearchInteractorDependency {
-    var searchRepository: SearchRepository { get }
+    var searchRepository: SymbolsRepository { get }
 }
 
 final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchInteractable, SearchPresentableListener {
-   
+    
     weak var router: SearchRouting?
     weak var listener: SearchListener?
     
@@ -37,8 +37,8 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
     
     private var cancellables: Set<AnyCancellable>
     
-    private var filteredItems: [SearchResult] = []
-    private var originalItems: [SearchResult] = []
+    private var filteredItems: [SymbolResult] = []
+    private var originalItems: [SymbolResult] = []
     
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
@@ -51,26 +51,7 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
         super.init(presenter: presenter)
         presenter.listener = self
         
-        dependency
-            .searchRepository
-            .fetchSymbols()
-            .receive(on: RunLoop.main)
-            .map({ result in
-                return result.filter({$0.symbol.lowercased().contains("usdt")})
-            })
-            .sink {[weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    print(error.localizedDescription)
-                case .finished:
-                    self?.presenter.reloadData(with: self?.filteredItems ?? [],
-                                              animation: .left)
-                }
-            } receiveValue: {[weak self] response in
-                self?.originalItems = response
-                self?.filteredItems = response
-            }
-            .store(in: &cancellables)
+        fetchSymbols()
     }
     
     override func didBecomeActive() {
@@ -94,5 +75,30 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
     
     func didTap(_ indexPath: IndexPath) {
         print(filteredItems[indexPath.row])
+    private func fetchSymbols() {
+        dependency
+            .searchRepository
+            .fetchSymbols()
+            .receive(on: RunLoop.main)
+            .map({ result in
+                return result.filter({
+                    print($0)
+                    return $0.symbol.lowercased().contains("usdt")})
+            })
+            .sink {[weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .finished:
+                    self?.presenter.reloadData(
+                        with: self?.filteredItems ?? [],
+                        animation: .left
+                    )
+                }
+            } receiveValue: {[weak self] response in
+                self?.originalItems = response
+                self?.filteredItems = response
+            }
+            .store(in: &cancellables)
     }
 }
