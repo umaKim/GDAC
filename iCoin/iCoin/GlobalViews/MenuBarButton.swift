@@ -12,7 +12,7 @@ final class MenuBarButton: UIButton {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         setTitle(title, for: .normal)
-        titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        titleLabel?.font = .boldSystemFont(ofSize: 20)
         titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
