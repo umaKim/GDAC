@@ -9,6 +9,30 @@ import Combine
 import ModernRIBs
 import UIKit.UITableView
 
+enum StaticSymbols {
+    static let symbols: [SymbolResult] = [
+        .init(description: "Binance BTCUSDT", displaySymbol: "BTC", symbol: "BTCUSDT"),
+        .init(description: "Binance ETHUSDT", displaySymbol: "ETH", symbol: "ETHUSDT"),
+        .init(description: "Binance USDCUSDT", displaySymbol: "USDC", symbol: "USDCUSDT"),
+        .init(description: "Binance BNBUSDT", displaySymbol: "BNB", symbol: "BNBUSDT"),
+        .init(description: "Binance XRPUSDT", displaySymbol: "XRP", symbol: "XRPUSDT"),
+        .init(description: "Binance BUSDUSDT", displaySymbol: "BUSD", symbol: "BUSDUSDT"),
+        .init(description: "Binance ADAUSDT", displaySymbol: "ADA", symbol: "ADAUSDT"),
+        .init(description: "Binance MATICUSDT", displaySymbol: "MATIC", symbol: "MATICUSDT"),
+        .init(description: "Binance DAIUSDT", displaySymbol: "DAI", symbol: "DAIUSDT"),
+        .init(description: "Binance LTCUSDT", displaySymbol: "LTC", symbol: "LTCUSDT"),
+        .init(description: "Binance DOTUSDT", displaySymbol: "DOT", symbol: "DOTUSDT"),
+        .init(description: "Binance SOLUSDT", displaySymbol: "SOL", symbol: "SOLUSDT"),
+        .init(description: "Binance TRXUSDT", displaySymbol: "TRX", symbol: "TRXUSDT"),
+        .init(description: "Binance UNIUSDT", displaySymbol: "UNI", symbol: "UNIUSDT"),
+        .init(description: "Binance AVAXUSDT", displaySymbol: "AVAX", symbol: "AVAXUSDT"),
+        .init(description: "Binance LINKUSDT", displaySymbol: "LINK", symbol: "LINKUSDT"),
+        .init(description: "Binance ATOMUSDT", displaySymbol: "ATOM", symbol: "ATOMUSDT"),
+        .init(description: "Binance XMRUSDT", displaySymbol: "XMR", symbol: "XMRUSDT"),
+        .init(description: "Binance ETCUSDT", displaySymbol: "ETC", symbol: "ETCUSDT"),
+    ]
+}
+
 protocol WatchlistRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
@@ -25,10 +49,12 @@ protocol WatchlistPresentable: Presentable {
 protocol WatchlistListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
     //    func didTapEdittingButton()
+    func watchlistDidTap()
 }
 
 protocol WatchlistInteractorDependency {
-    var watchlistRepository: WatchlistRepository { get }
+    var watchlistRepository: WebsocketRepository { get }
+    var symbolsRepository: SymbolsRepository { get }
     var edittingButtonDidTap: AnyPublisher<Void, Never> { get }
     var mainViewLifeCycleDidChange: AnyPublisher<MainViewLifeCycle, Never> { get }
 }
@@ -41,16 +67,14 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     weak var mainInteractorListener: MainListener?
     
     //MARK: - Model
-    private var watchlistChartMap: [String: [CandleStick]] = [:]
-    private var watchlistQuoteMap: [String: Quote] = [:]
-    private(set) var watchlistItemModels: [WatchlistItemModel] = []
+    private var watchlistItemModels: [WatchlistItemModel] = []
     
     //TODO: This should be fetched from Network
-    private var symbols: [String] = [
-        "BTC",
-        "ETH",
-        "XRP"
-    ]
+    private var symbols: [SymbolResult] = StaticSymbols.symbols
+    
+    private var displaySymbols: [Symbol] {
+        self.symbols.map({$0.displaySymbol})
+    }
     
     private let dependency: WatchlistInteractorDependency
     
@@ -71,13 +95,44 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
-
         bind()
     }
     
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    private func fetchSymbols() {
+        dependency
+            .symbolsRepository
+            .fetchSymbols()
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    print("finished")
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            } receiveValue: {[weak self] symbols in
+                guard let self = self else { return }
+                self.receivedSymbolsMapper(symbols)
+                self.fetchFromNetwork(symbols: self.displaySymbols)
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func receivedSymbolsMapper(_ symbols: [SymbolResult]) {
+        self.symbols = symbols.filter {
+            $0.displaySymbol.localizedStandardContains("/USDT")
+        }.map({
+            var newDisplaySymbol = $0.displaySymbol
+            if let dotRange = newDisplaySymbol.range(of: "/") {
+                newDisplaySymbol.removeSubrange(dotRange.lowerBound..<newDisplaySymbol.endIndex)
+            }
+            return .init(description: $0.description, displaySymbol: newDisplaySymbol, symbol: $0.symbol)
+        })
     }
     
     private func bind() {
@@ -91,83 +146,82 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
         dependency
             .mainViewLifeCycleDidChange
             .sink {[weak self] cycle in
-                guard let self = self else {return }
+                guard let self = self else { return }
                 print("mainViewLifeCycleDidChange")
                 switch cycle {
                 case .viewDidAppear:
                     print("mainViewLifeCycleDidChange viewDidAppear")
-                    self.fetchFromNetwork(symbols: self.symbols)
-                    break
+                    
+                    if self.symbols.isEmpty {
+                        self.fetchSymbols()
+                    } else {
+                        self.fetchFromNetwork(symbols: self.displaySymbols)
+                    }
                     
                 case .viewDidDisappear:
                     print("mainViewLifeCycleDidChange viewDidDisappear")
-                    self.stopFetch()
+                    self.disconnectWebSocket()
                 }
             }
             .store(in: &cancellables)
     }
     
     typealias Symbol = String
-    typealias Price = Double
-    
-    private var currentPrice: [Symbol: Price] = [:]
     
     private func fetchFromNetwork(symbols: [Symbol]) {
+        self.connectWebSocket()
         dependency
             .watchlistRepository
             .fetch(symbols: symbols)
             .receive(on: RunLoop.main)
-            .sink { [weak self] datum in
-                self?.myWatchlistItemMapper(receivedDatum: datum)
-            }
+            .sink(receiveValue: myWatchlistItemMapper)
             .store(in: &cancellables)
     }
     
-    private func stopFetch() {
-        dependency.watchlistRepository.stopFetch()
+    private func connectWebSocket() {
+        dependency
+            .watchlistRepository
+            .connect()
+    }
+    
+    private func disconnectWebSocket() {
+        dependency
+            .watchlistRepository
+            .disconnect()
     }
     
     private func myWatchlistItemMapper(receivedDatum: [Datum]) {
-        receivedDatum.forEach { data in
-            //if watchlistItemModels already has the Symbol
-            if watchlistItemModels.contains(where: {
-                $0.companyName.uppercased() == data.s
-            }) {
-                for (index, model) in self.watchlistItemModels.enumerated() {
-                    if model.companyName.uppercased() == data.s {
-                        self.watchlistItemModels[index].price = "$\(data.p)"
-                        self.watchlistItemModels[index].changeColor = changeColorComparing(data)
+        receivedDatum
+            .forEach {[weak self] data in
+                guard let self = self else { return }
+                //if watchlistItemModels already has the Symbol
+                if watchlistItemModels.contains(where: {
+                    $0.companyName.uppercased() == data.s
+                }) {
+                    for (index, model) in self.watchlistItemModels.enumerated() {
+                        if model.companyName.uppercased() == data.s {
+                            self.watchlistItemModels[index].price = "\(data.p)"
+                        }
                     }
-                }
-            } else {
-            // if WatchlistItemModels are empty
-                self.symbols.forEach { symbol in
-                    if "BINANCE:\(symbol.uppercased())USDT" == data.s {
-                        self.watchlistItemModels.append(.init(symbol: symbol,
-                                                              companyName: data.s,
-                                                              price: "$\(data.p)",
-                                                              changeColor: .clear,
-                                                              changePercentage: "0.5"))
+                } else {
+                    // if WatchlistItemModels are empty
+                    self.symbols.forEach { symbol in
+                        if "BINANCE:\(symbol.displaySymbol.uppercased())USDT" == data.s {
+                            self.watchlistItemModels.append(.init(
+                                symbol: symbol.displaySymbol,
+                                companyName: data.s,
+                                price: "\(data.p)",
+                                changeColor: .clear,
+                                changePercentage: ""
+                            ))
+                        }
                     }
                 }
             }
-            
-            self.currentPrice[data.s] = data.p
-        }
-        self.presenter.reloadData(with: self.watchlistItemModels, animation: .none)
-    }
-    
-    private func changeColorComparing(_ data: Datum) -> UIColor {
-//        currentPrice[data.s] ?? 0 < data.p ? .systemGreen : .systemRed
-//        guard let currentPrice = currentPrice else {return .clear}
-        
-        if currentPrice[data.s] ?? 0 < data.p {
-            return .systemGreen
-        } else if currentPrice[data.s] ?? 0 > data.p {
-            return .systemRed
-        }
-        
-        return .clear
+        presenter.reloadData(
+            with: watchlistItemModels,
+            animation: .none
+        )
     }
 }
 
