@@ -90,18 +90,14 @@ extension MainViewController: FloatingPanelControllerDelegate {
 //MARK: - Set up Views
 extension MainViewController {
     private func setUpNavigationView() {
-        let titleView = UIView(frame: CGRect(x: 0, y: 0,
-                                             width: navigationController?.navigationBar.width ?? 0,
-                                             height: navigationController?.navigationBar.height ?? 25))
-        let label   = UILabel(frame: CGRect(x: 10, y: 0, width: titleView.width, height: titleView.height))
-        label.text  = "iCrypto"
-        label.font  = .systemFont(ofSize: 30, weight: .medium)
-        label.textColor = .white
-        titleView.addSubview(label)
-        navigationItem.titleView = titleView
-        
-        navigationItem.rightBarButtonItems = [contentView.writeOpinionsButton,
-                                              contentView.searchButton]
+        let logoImage = UIImage.init(named: "gdacLogo")
+        let logoImageView = UIImageView.init(image: logoImage)
+        let imageItem = UIBarButtonItem.init(customView: logoImageView)
+        NSLayoutConstraint.activate([
+            logoImageView.widthAnchor.constraint(equalToConstant: 100),
+            logoImageView.heightAnchor.constraint(equalToConstant:  navigationController?.navigationBar.height ?? 25)
+        ])
+        navigationItem.leftBarButtonItems =  [imageItem]
         
         navigationController?.navigationBar.backgroundColor = .black
     }
