@@ -20,10 +20,16 @@ protocol OpinionsListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
+protocol OpinionInteractorDependency {
+    var firebaseRepository: FirebaseRepository { get }
+}
+
 final class OpinionsInteractor: PresentableInteractor<OpinionsPresentable>, OpinionsInteractable, OpinionsPresentableListener {
 
     weak var router: OpinionsRouting?
     weak var listener: OpinionsListener?
+    
+    private let dependency: OpinionInteractorDependency
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.

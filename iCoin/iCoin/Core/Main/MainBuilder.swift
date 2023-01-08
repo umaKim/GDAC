@@ -15,6 +15,7 @@ protocol MainDependency: Dependency {
 
 final class MainComponent: Component<MainDependency>,
                            MainInteractorDependency,
+                           OpinionInteractorDependency,
                            WatchlistDependency,
                            OpinionsDependency,
                            NewsDependency,
