@@ -22,7 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let launchRouter = AppRootBuilder(dependency: AppComponent()).build()
         self.launchRouter = launchRouter
-        window?.overrideUserInterfaceStyle = .dark
         self.launchRouter?.launch(from: window!)
     }
 
