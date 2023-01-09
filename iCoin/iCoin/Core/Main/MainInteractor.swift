@@ -83,6 +83,10 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
         presenter.openNews(of: url)
     }
     
+    func searchButtonDidTap() {
+        router?.attachSearch()
+    }
+    
     func searchDidTapBackButton() {
         router?.detachSearch()
     }
