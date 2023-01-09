@@ -87,7 +87,11 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
         router?.detachSearch()
     }
     
-    func searchButtonDidTap() {
-        router?.attachSearch()
+    func watchlistDidTap() {
+        router?.attachCoinDetail()
+    }
+    
+    func coinDetailDidTapBackButton() {
+        router?.detachCoinDetail()
     }
 }

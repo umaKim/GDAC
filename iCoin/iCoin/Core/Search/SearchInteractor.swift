@@ -11,6 +11,8 @@ import Combine
 
 protocol SearchRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func attachCoinDetail()
+    func detachCoinDetail()
 }
 
 protocol SearchPresentable: Presentable {
@@ -70,11 +72,20 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
     
     func search(text: String) {
         filteredItems = text.isEmpty ? originalItems : originalItems.filter({$0.symbol.lowercased().contains(text.lowercased())})
-        presenter.reloadData(with: filteredItems, animation: .middle)
+        presenter.reloadData(
+            with: filteredItems,
+            animation: .middle
+        )
     }
     
     func didTap(_ indexPath: IndexPath) {
-        print(filteredItems[indexPath.row])
+        router?.attachCoinDetail()
+    }
+    
+    func coinDetailDidTapBackButton() {
+        router?.detachCoinDetail()
+    }
+    
     private func fetchSymbols() {
         dependency
             .searchRepository
