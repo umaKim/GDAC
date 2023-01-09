@@ -11,7 +11,7 @@ import UIKit
 
 protocol WatchlistPresentableListener: AnyObject {
     // TODO: Declare properties and methods that the view controller can invoke to perform
-    func didTap(indexPath: IndexPath)
+    func didTap()
     func updateSections(completion: ([WatchlistItemModel]) -> Void)
     func removeItem(at indexPath: IndexPath)
     func turnOffSocket()
@@ -108,7 +108,7 @@ final class WatchlistViewController: UIViewController, WatchlistPresentable, Wat
     }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 extension WatchlistViewController {
     private func configureTableViewDataSource() {
         contentView.tableView.delegate = self
@@ -127,10 +127,11 @@ extension WatchlistViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension WatchlistViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        listener?.didTap(indexPath: indexPath)
+        listener?.didTap()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
