@@ -8,7 +8,7 @@ import UIKit
 
 struct WatchlistItemModel: Hashable {
     let symbol: String
-    let companyName: String
+    let detailName: String
     var price: String // formatted
     var changeColor: UIColor // red or green
     let changePercentage: String // formatted
