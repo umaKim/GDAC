@@ -96,10 +96,10 @@ final class MyWatchListInteractor: PresentableInteractor<MyWatchListPresentable>
             guard let self = self else { return }
             //if watchlistItemModels already has the Symbol
             if watchlistItemModels.contains(where: {
-                $0.companyName.uppercased() == data.s
+                $0.detailName.uppercased() == data.s
             }) {
                 for (index, model) in self.watchlistItemModels.enumerated() {
-                    if model.companyName.uppercased() == data.s {
+                    if model.detailName.uppercased() == data.s {
                         self.watchlistItemModels[index].price = "$\(data.p)"
                     }
                 }
@@ -109,7 +109,7 @@ final class MyWatchListInteractor: PresentableInteractor<MyWatchListPresentable>
                     if "BINANCE:\(symbol.uppercased())USDT" == data.s {
                         self?.watchlistItemModels.append(.init(
                             symbol: symbol,
-                            companyName: data.s,
+                            detailName: data.s,
                             price: "$\(data.p)",
                             changeColor: .clear,
                             changePercentage: ""
