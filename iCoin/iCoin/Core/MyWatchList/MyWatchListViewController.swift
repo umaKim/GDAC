@@ -102,7 +102,7 @@ final class MyWatchListViewController: UIViewController, MyWatchListPresentable,
 extension MyWatchListViewController: TabBarItemSettable {
     private func setupTabBarItem() {
         setupTabBarItem(
-            title: "My List",
+            title: "Portfolio",
             image: UIImage(systemName: "star"),
             selectedImage: UIImage(systemName: "star.fill")
         )
