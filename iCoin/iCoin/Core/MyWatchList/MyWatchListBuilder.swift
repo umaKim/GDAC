@@ -16,6 +16,9 @@ final class MyWatchListComponent: Component<MyWatchListDependency>,
                                   MyWatchListInteractorDependency,
                                   CoinDetailDependency {
     
+    lazy var symbol: AnyPublisher<SymbolResult, Never> = symbolSubject.eraseToAnyPublisher()
+    var symbolSubject = PassthroughSubject<SymbolResult, Never>()
+    
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
     
     let watchlistRepository: WebsocketRepository

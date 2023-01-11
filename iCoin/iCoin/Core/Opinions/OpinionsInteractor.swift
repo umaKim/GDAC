@@ -70,5 +70,7 @@ final class OpinionsInteractor: PresentableInteractor<OpinionsPresentable>, Opin
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+        cancellalbles.forEach({$0.cancel()})
+        cancellalbles.removeAll()
     }
 }

@@ -16,7 +16,7 @@ protocol MainRouting: ViewableRouting {
     func attachSearch()
     func detachSearch()
     
-    func attachCoinDetail()
+    func attachCoinDetail(with symbol: SymbolResult)
     func detachCoinDetail()
 }
 
@@ -31,13 +31,14 @@ protocol MainListener: AnyObject {
 }
 
 protocol MainInteractorDependency {
+    var symbolSubject: PassthroughSubject<SymbolResult, Never> { get }
     var watchlistRepository: WebsocketRepository { get }
     var edittingButtonDidTapSubject: PassthroughSubject<Void, Never> { get }
     var mainViewLifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> { get }
 }
 
 final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
-   
+    
     weak var router: MainRouting?
     weak var listener: MainListener?
     
@@ -91,8 +92,9 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
         router?.detachSearch()
     }
     
-    func watchlistDidTap() {
-        router?.attachCoinDetail()
+    func watchlistDidTap(_ symbol: SymbolResult) {
+        router?.attachCoinDetail(with: symbol)
+        dependency.symbolSubject.send(symbol)
     }
     
     func coinDetailDidTapBackButton() {

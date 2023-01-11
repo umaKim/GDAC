@@ -33,6 +33,9 @@ final class CoinDetailViewController: UIViewController, CoinDetailPresentable, C
     }
     
     private var contentView = UIView()
+    func update(symbol: SymbolResult) {
+        label.text = symbol.symbol
+    }
 }
 
 extension CoinDetailViewController {

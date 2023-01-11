@@ -22,6 +22,9 @@ final class MainComponent: Component<MainDependency>,
                            SearchDependency,
                            CoinDetailDependency {
     
+    lazy var symbol: AnyPublisher<SymbolResult, Never> = symbolSubject.eraseToAnyPublisher()
+    var symbolSubject: PassthroughSubject<SymbolResult, Never> = PassthroughSubject<SymbolResult, Never>()
+    
     lazy var edittinButtonDidTap: AnyPublisher<Void, Never> = edittingButtonDidTapSubject.eraseToAnyPublisher()
     var edittingButtonDidTapSubject: PassthroughSubject<Void, Never> = PassthroughSubject<Void, Never>()
     

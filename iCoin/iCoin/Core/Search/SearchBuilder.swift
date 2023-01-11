@@ -4,7 +4,7 @@
 //
 //  Created by 김윤석 on 2022/06/12.
 //
-
+import Combine
 import ModernRIBs
 
 protocol SearchDependency: Dependency {
@@ -13,7 +13,10 @@ protocol SearchDependency: Dependency {
 }
 
 final class SearchComponent: Component<SearchDependency>, SearchInteractorDependency, CoinDetailDependency {
+    
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    lazy var symbol: AnyPublisher<SymbolResult, Never> = symbolSubject.eraseToAnyPublisher()
+    var symbolSubject: PassthroughSubject<SymbolResult, Never> = PassthroughSubject<SymbolResult, Never>()
     
     let searchRepository: SymbolsRepository
     

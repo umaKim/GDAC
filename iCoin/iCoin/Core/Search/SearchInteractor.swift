@@ -28,6 +28,7 @@ protocol SearchListener: AnyObject {
 
 protocol SearchInteractorDependency {
     var searchRepository: SymbolsRepository { get }
+    var symbolSubject: PassthroughSubject<SymbolResult, Never> { get }
 }
 
 final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchInteractable, SearchPresentableListener {
@@ -80,6 +81,7 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
     
     func didTap(_ indexPath: IndexPath) {
         router?.attachCoinDetail()
+        dependency.symbolSubject.send(filteredItems[indexPath.row])
     }
     
     func coinDetailDidTapBackButton() {
@@ -93,7 +95,6 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
             .receive(on: RunLoop.main)
             .map({ result in
                 return result.filter({
-                    print($0)
                     return $0.symbol.lowercased().contains("usdt")})
             })
             .sink {[weak self] completion in

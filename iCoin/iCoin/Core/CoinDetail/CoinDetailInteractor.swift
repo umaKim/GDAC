@@ -4,7 +4,7 @@
 //
 //  Created by 김윤석 on 2023/01/07.
 //
-
+import Combine
 import ModernRIBs
 
 protocol CoinDetailRouting: ViewableRouting {
@@ -14,6 +14,8 @@ protocol CoinDetailRouting: ViewableRouting {
 protocol CoinDetailPresentable: Presentable {
     var listener: CoinDetailPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
+    
+    func update(symbol: SymbolResult)
 }
 
 protocol CoinDetailListener: AnyObject {
@@ -22,7 +24,7 @@ protocol CoinDetailListener: AnyObject {
 }
 
 protocol CoinDetailInteractorDependency {
-    
+    var symbol: AnyPublisher<SymbolResult, Never> { get }
 }
 
 final class CoinDetailInteractor: PresentableInteractor<CoinDetailPresentable>, CoinDetailInteractable, CoinDetailPresentableListener {
@@ -30,24 +32,40 @@ final class CoinDetailInteractor: PresentableInteractor<CoinDetailPresentable>, 
     weak var router: CoinDetailRouting?
     weak var listener: CoinDetailListener?
 
+    private let dependency: CoinDetailInteractorDependency
+    private var cancellables: Set<AnyCancellable>
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     init(
         presenter: CoinDetailPresentable,
         dependency: CoinDetailInteractorDependency
     ) {
+        self.dependency = dependency
+        self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
     }
+    
+    private var symbol: SymbolResult?
 
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
+        
+        dependency
+            .symbol
+            .sink {[weak self] symbol in
+                self?.symbol = symbol
+                self?.presenter.update(symbol: symbol)
+            }
+            .store(in: &cancellables)
     }
 
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+        cancellables.forEach({$0.cancel()})
+        cancellables.removeAll()
     }
     
     func didTapBackButton() {
