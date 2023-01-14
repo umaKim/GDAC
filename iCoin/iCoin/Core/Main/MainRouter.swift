@@ -109,6 +109,7 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
         if coinDetailRouting != nil { return }
         let router = coinDetail.build(withListener: interactor)
         let coinDetail = router.viewControllable
+        router.viewControllable.hidesBottomBarWhenPushed = true
         viewControllable.pushViewController(coinDetail, animated: true)
         coinDetailRouting = router
         attachChild(router)
