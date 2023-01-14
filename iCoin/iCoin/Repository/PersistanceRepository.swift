@@ -8,7 +8,7 @@
 import Foundation
 
 protocol PersistanceRepository {
-    func fetch() -> [String]
+    func fetch() -> [SymbolResult]
     func save()
     func remove()
 }
@@ -21,12 +21,11 @@ class PersistanceRepositoryImp: PersistanceRepository {
         self.persistance = persistance
     }
     
-    func fetch() -> [String] {
+    func fetch() -> [SymbolResult] {
         persistance.watchlist
     }
     
     func save() {
-        
     }
     
     func remove() {
