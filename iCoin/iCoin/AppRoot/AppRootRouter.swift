@@ -7,7 +7,7 @@
 
 import ModernRIBs
 
-protocol AppRootInteractable: Interactable, MainListener, MyWatchListListener {
+protocol AppRootInteractable: Interactable, MainListener, PortfolioListener {
     var router: AppRootRouting? { get set }
     var listener: AppRootListener? { get set }
 }
@@ -19,16 +19,16 @@ protocol AppRootViewControllable: ViewControllable {
 
 final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControllable>, AppRootRouting {
     private let main: MainBuildable
-    private let myWatchList: MyWatchListBuildable
+    private let portfolio: PortfolioBuildable
     
     init(
         interactor: AppRootInteractor,
         viewController: AppRootViewControllable,
         main: MainBuildable,
-        myWatchList: MyWatchListBuildable
+        portfolio: PortfolioBuildable
     ) {
         self.main = main
-        self.myWatchList = myWatchList
+        self.portfolio = portfolio
         
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
@@ -36,14 +36,14 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
     
     func attachController() {
         let appHomeRouting = main.build(withListener: interactor)
-        let myWatchListRouting = myWatchList.build(withListener: interactor)
+//        let portfolio = portfolio.build(withListener: interactor)
         
         attachChild(appHomeRouting)
-        attachChild(myWatchListRouting)
+//        attachChild(portfolio)
         
         let viewControllers = [
             NavigationControllerable(root: appHomeRouting.viewControllable),
-            NavigationControllerable(root: myWatchListRouting.viewControllable)
+//            NavigationControllerable(root: portfolio.viewControllable)
         ]
         viewController.setViewControllers(viewControllers)
     }
