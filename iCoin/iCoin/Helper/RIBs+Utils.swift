@@ -17,7 +17,11 @@ final class NavigationControllerable: ViewControllable {
 }
 
 extension ViewControllable {
-  
+    var hidesBottomBarWhenPushed: Bool {
+        get { self.uiviewController.hidesBottomBarWhenPushed }
+        set { self.uiviewController.hidesBottomBarWhenPushed = newValue }
+    }
+    
   func present(_ viewControllable: ViewControllable, animated: Bool, completion: (() -> Void)?) {
     self.uiviewController.present(viewControllable.uiviewController, animated: true, completion: completion)
   }
