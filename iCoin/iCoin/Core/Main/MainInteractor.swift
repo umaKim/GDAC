@@ -16,7 +16,7 @@ protocol MainRouting: ViewableRouting {
     func attachSearch()
     func detachSearch()
     
-    func attachCoinDetail(with symbol: SymbolResult)
+    func attachCoinDetail()
     func detachCoinDetail()
 }
 
@@ -93,7 +93,7 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     }
     
     func watchlistDidTap(_ symbol: SymbolResult) {
-        router?.attachCoinDetail(with: symbol)
+        router?.attachCoinDetail()
         dependency.symbolSubject.send(symbol)
     }
     
