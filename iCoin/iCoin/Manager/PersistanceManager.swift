@@ -24,12 +24,6 @@ final class PersistanceManager: PersistanceService {
         static let watchListKey = "watchlist"
     }
     
-//    private func tickerConverter(text: String) -> String {
-//        let index = text.range(of: "/")
-//        guard let lb = index?.lowerBound else { return "" }
-//        return text
-//    }
-    
     // MARK: - Public
     
     /// Get usr watch list
@@ -71,11 +65,6 @@ final class PersistanceManager: PersistanceService {
     }
     
     // MARK: - Private
-    
-    /// Check if user has been onboarded
-//    private var hasOnboarded: Bool {
-//        return userDefaults.bool(forKey: Constants.onboardedKey)
-//    }
     
     typealias Symbol = String
     typealias CompanyName = String
