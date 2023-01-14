@@ -11,7 +11,7 @@ import UIKit
 
 protocol WatchlistPresentableListener: AnyObject {
     // TODO: Declare properties and methods that the view controller can invoke to perform
-    func didTap()
+    func didTap(_ index: Int)
     func updateSections(completion: ([WatchlistItemModel]) -> Void)
     func removeItem(at indexPath: IndexPath)
     func turnOffSocket()
@@ -42,18 +42,6 @@ final class WatchlistViewController: UIViewController, WatchlistPresentable, Wat
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        print("WatchlistViewController viewDidAppear")
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        print("WatchlistViewController viewDidDisappear")
     }
     
     override func loadView() {
@@ -131,7 +119,7 @@ extension WatchlistViewController {
 extension WatchlistViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        listener?.didTap()
+        listener?.didTap(indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -49,7 +49,7 @@ protocol WatchlistPresentable: Presentable {
 protocol WatchlistListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
     //    func didTapEdittingButton()
-    func watchlistDidTap()
+    func watchlistDidTap(_ symbol: SymbolResult)
 }
 
 protocol WatchlistInteractorDependency {
@@ -244,8 +244,8 @@ extension WatchlistInteractor: WatchlistPresentableListener {
         watchlistItemModels.remove(at: indexPath.row)
     }
     
-    func didTap() {
-        listener?.watchlistDidTap()
+    func didTap(_ index: Int) {
+        listener?.watchlistDidTap(StaticSymbols.symbols[index])
     }
     
     func updateSections(completion: ([WatchlistItemModel]) -> Void) {
