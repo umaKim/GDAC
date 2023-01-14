@@ -13,6 +13,7 @@ protocol MainRouting: ViewableRouting {
     func attachWatchlist()
     func attachOpinion()
     func attachNews()
+    
     func attachSearch()
     func detachSearch()
     
@@ -57,7 +58,6 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
         router?.attachWatchlist()
         router?.attachOpinion()
         router?.attachNews()
@@ -65,7 +65,6 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func viewDidAppear() {
