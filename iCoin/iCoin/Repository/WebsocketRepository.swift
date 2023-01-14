@@ -49,6 +49,6 @@ final class WebsocketRepositoryImp: WebsocketRepository {
     }
     
     func fetchCryptoCandle(of symbol: String) -> AnyPublisher<CryptoCandle, Error> {
-        return network.fetchCryptoCandle(of: symbol).eraseToAnyPublisher()
+        network.fetchCryptoCandle(of: symbol).eraseToAnyPublisher()
     }
 }
