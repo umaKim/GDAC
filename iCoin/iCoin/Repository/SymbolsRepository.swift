@@ -53,6 +53,21 @@ final class SymbolsConstantRepositoryImp: SymbolsRepository {
         ]
     }
 }
+
+final class SymbolsLocalRepositoryImp: SymbolsRepository {
+    private let persistence: PersistanceService
+    
+    init(persistence: PersistanceService) {
+        self.persistence = persistence
+    }
+    
+    private let subject = PassthroughSubject<[SymbolResult], Error>()
+    
+    func fetchSymbols() -> AnyPublisher<[SymbolResult], Error> {
+        Future<[SymbolResult], Error> { promise in
+            promise(.success(self.persistence.watchlist))
+        }
+        .eraseToAnyPublisher()
     }
 }
 
