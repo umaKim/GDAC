@@ -21,7 +21,12 @@ enum DissmissButtonType {
 }
 
 extension UIViewController {
-    func setupNavigationItem(with buttonType: DissmissButtonType, tintColor: UIColor = .tintColor, target: Any?, action: Selector?) {
+    func setupNavigationItem(
+        with buttonType: DissmissButtonType,
+        tintColor: UIColor = .tintColor,
+        target: Any?,
+        action: Selector?
+    ) {
         let bt = UIBarButtonItem(
             image: UIImage(
                 systemName: buttonType.iconSystemName,
