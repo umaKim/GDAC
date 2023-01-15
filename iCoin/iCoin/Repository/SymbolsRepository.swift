@@ -20,7 +20,10 @@ final class SymbolsRepositoryImp: SymbolsRepository {
     }
     
     func fetchSymbols() -> AnyPublisher<[SymbolResult], Error> {
-        return network.fetchSymbols()
+        network.fetchSymbols()
+    }
+}
+
 final class SymbolsConstantRepositoryImp: SymbolsRepository {
     func fetchSymbols() -> AnyPublisher<[SymbolResult], Error> {
         Future { promise in
