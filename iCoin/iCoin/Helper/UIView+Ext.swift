@@ -53,26 +53,3 @@ extension UIView {
         top + height
     }
 }
-
-// MARK: - Decodable
-
-extension Decodable {
-    static func decode(with decoder: JSONDecoder = JSONDecoder(), from data: Data) throws -> Self? {
-        do {
-            let newdata = try decoder.decode(Self.self, from: data)
-            return newdata
-        } catch {
-            return nil
-        }
-    }
-}
-
-// MARK: - Color
-
-extension UIColor {
-    static let gdacGray = UIColor(red: 90/255, green: 96/255, blue: 111/255, alpha: 1)
-    static let gdacLightGray = UIColor(red: 147/255, green: 157/255, blue: 172/255, alpha: 1)
-    static let gdacDarkNavy = UIColor(red: 12/255, green: 36/255, blue: 80/255, alpha: 1)
-    static let gdacBlue = UIColor(red: 39/255, green: 75/255, blue: 156/255, alpha: 1)
-    static let gdacRed = UIColor(red: 208/255, green: 53/255, blue: 61/255, alpha: 1)
-}
