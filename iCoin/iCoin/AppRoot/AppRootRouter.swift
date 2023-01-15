@@ -36,14 +36,14 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
     
     func attachController() {
         let appHomeRouting = main.build(withListener: interactor)
-//        let portfolio = portfolio.build(withListener: interactor)
+        let portfolio = portfolio.build(withListener: interactor)
         
         attachChild(appHomeRouting)
-//        attachChild(portfolio)
+        attachChild(portfolio)
         
         let viewControllers = [
             NavigationControllerable(root: appHomeRouting.viewControllable),
-//            NavigationControllerable(root: portfolio.viewControllable)
+            NavigationControllerable(root: portfolio.viewControllable)
         ]
         viewController.setViewControllers(viewControllers)
     }
