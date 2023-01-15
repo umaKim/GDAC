@@ -9,6 +9,17 @@ import Foundation
 
 // MARK: - Decodable
 
+extension Decodable {
+    static func decode(with decoder: JSONDecoder = JSONDecoder(), from data: Data) throws -> Self? {
+        do {
+            let newdata = try decoder.decode(Self.self, from: data)
+            return newdata
+        } catch {
+            return nil
+        }
+    }
+}
+
 protocol ObjectSavable {
     func setObject<Object>(_ object: Object, forKey: String) throws where Object: Encodable
     func getObject<Object>(forKey: String, castTo type: Object.Type) throws -> Object where Object: Decodable
