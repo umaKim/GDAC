@@ -8,17 +8,22 @@ import Combine
 import ModernRIBs
 
 protocol CoinDetailDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
-    
     var symbol: AnyPublisher<SymbolResult, Never> { get }
 }
 
 final class CoinDetailComponent: Component<CoinDetailDependency>, CoinDetailInteractorDependency {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
     
     var symbol: AnyPublisher<SymbolResult, Never> { dependency.symbol }
+    
+    let coinDetailRepository: CoinDetailRepository
+    
+    init(
+        dependency: CoinDetailDependency,
+        coinDetailRepository: CoinDetailRepository
+    ) {
+        self.coinDetailRepository = coinDetailRepository
+        super.init(dependency: dependency)
+    }
 }
 
 // MARK: - Builder
@@ -34,7 +39,10 @@ final class CoinDetailBuilder: Builder<CoinDetailDependency>, CoinDetailBuildabl
     }
 
     func build(withListener listener: CoinDetailListener) -> CoinDetailRouting {
-        let component = CoinDetailComponent(dependency: dependency)
+        let component = CoinDetailComponent(
+            dependency: dependency,
+            coinDetailRepository: CoinDetailRepositoryImp(PersistanceManager())
+        )
         let viewController = CoinDetailViewController()
         let interactor = CoinDetailInteractor(
             presenter: viewController,

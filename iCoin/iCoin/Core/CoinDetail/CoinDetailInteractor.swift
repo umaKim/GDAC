@@ -24,6 +24,7 @@ protocol CoinDetailListener: AnyObject {
 }
 
 protocol CoinDetailInteractorDependency {
+    var coinDetailRepository: CoinDetailRepository { get }
     var symbol: AnyPublisher<SymbolResult, Never> { get }
 }
 
