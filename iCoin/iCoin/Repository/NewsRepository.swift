@@ -11,7 +11,7 @@ protocol NewsRepository {
     func fetchNews(of symbol: String) -> AnyPublisher<NewsDataResponse, Error>
 }
 
-final class NewsRepositoryImp: NewsRepository {
+struct NewsRepositoryImp: NewsRepository {
     
     private let network: NewsNetWorkable
     
