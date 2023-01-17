@@ -45,6 +45,8 @@ final class CoinDetailViewController: UIViewController, CoinDetailPresentable, C
     private var contentView = UIView()
     func update(symbol: SymbolResult) {
         label.text = symbol.symbol
+    func doesSymbolInPersistance(_ exist: Bool) {
+        favoriteButton.image = .init(systemName: exist ? "star.fill" : "star")
     }
 }
 
