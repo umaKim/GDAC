@@ -15,7 +15,7 @@ final class OpinionsView: BaseView {
             CommentTableViewCell.self,
             forCellReuseIdentifier: CommentTableViewCell.identifier
         )
-        tableView.rowHeight = CommentTableViewCell.prefferedHeight
+        tableView.contentInset = .init(top: 0, left: 0, bottom: 100, right: 0)
         return tableView
     }()
     
