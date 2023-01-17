@@ -17,6 +17,9 @@ protocol MainRouting: ViewableRouting {
     func attachSearch()
     func detachSearch()
     
+    func attachWritingOpinion()
+    func detachWritingOpinion()
+    
     func attachCoinDetail()
     func detachCoinDetail()
 }
@@ -38,12 +41,14 @@ protocol MainInteractorDependency {
     var mainViewLifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> { get }
 }
 
-final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
-    
+final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener, AdaptivePresentationControllerDelegate {
+   
     weak var router: MainRouting?
     weak var listener: MainListener?
     
     private let dependency: MainInteractorDependency
+    
+    let presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy
     
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
@@ -52,8 +57,10 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
         dependency: MainInteractorDependency
     ) {
         self.dependency = dependency
+        self.presentationDelegateProxy = AdaptivePresentationControllerDelegateProxy()
         super.init(presenter: presenter)
         presenter.listener = self
+        presentationDelegateProxy.delegate = self
     }
 
     override func didBecomeActive() {
@@ -89,6 +96,18 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     
     func searchDidTapBackButton() {
         router?.detachSearch()
+    }
+    
+    func writingOpinionButtonDidTap() {
+        router?.attachWritingOpinion()
+    }
+    
+    func writingOpinionDidTapDismiss() {
+        router?.detachWritingOpinion()
+    }
+    
+    func presentationControllerDidDismiss() {
+        router?.detachWritingOpinion()
     }
     
     func watchlistDidTap(_ symbol: SymbolResult) {
