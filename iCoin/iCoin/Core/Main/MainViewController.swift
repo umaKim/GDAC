@@ -25,6 +25,7 @@ extension TabBarItemSettable where Self: UIViewController {
 
 protocol MainPresentableListener: AnyObject {
     func searchButtonDidTap()
+    func writingOpinionButtonDidTap()
     
     func viewDidAppear()
     func viewDidDisappear()
@@ -78,12 +79,13 @@ final class MainViewController: UIViewController, MainPresentable, MainViewContr
     private func bind() {
         contentView
             .actionPublisher
-            .sink { action in
+            .sink {[weak self] action in
+                guard let self = self else {return }
                 switch action {
                 case .searchButtonDidTap:
                     self.listener?.searchButtonDidTap()
                 case .writingOpinionDidTap:
-                    print("writingOpinionDidTap")
+                    self.listener?.writingOpinionButtonDidTap()
                 }
             }
             .store(in: &cancellables)

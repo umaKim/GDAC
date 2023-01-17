@@ -20,6 +20,7 @@ final class MainComponent: Component<MainDependency>,
                            OpinionsDependency,
                            NewsDependency,
                            SearchDependency,
+                           WritingOpinionDependency,
                            CoinDetailDependency {
     
     lazy var symbol: AnyPublisher<SymbolResult, Never> = symbolSubject.eraseToAnyPublisher()
@@ -37,6 +38,7 @@ final class MainComponent: Component<MainDependency>,
     let newsRepository: NewsRepository
     let symbolsRepository: SymbolsRepository
     let firebaseRepository: FirebaseRepository
+    let writingOpinionRepository: WritingOpinionRepository
     
     init(
         dependency: MainDependency,
@@ -49,6 +51,7 @@ final class MainComponent: Component<MainDependency>,
         self.newsRepository = newsRepository
         self.symbolsRepository = symbolsRepository
         self.firebaseRepository = firebaseRepository
+        self.writingOpinionRepository = writingOpinionRepository
         super.init(dependency: dependency)
     }
 }
@@ -76,6 +79,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
             newsRepository: NewsRepositoryImp(network: NetworkManager()),
             symbolsRepository: SymbolsRepositoryImp(network: NetworkManager()),
             firebaseRepository: FirebaseRepositoryImp(firebase: FirebaseManager())
+            writingOpinionRepository: WritingOpinionRepositoryImp(firebase: FirebaseManager())
         )
         let viewController = MainViewController()
         let interactor = MainInteractor(
@@ -89,6 +93,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
         let opinions = OpinionsBuilder(dependency: component)
         let news = NewsBuilder(dependency: component)
         let search = SearchBuilder(dependency: component)
+        let writingOpinion = WritingOpinionBuilder(dependency: component)
         let coinDetail = CoinDetailBuilder(dependency: component)
         
         return MainRouter(
@@ -98,6 +103,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
             opinionsBuildable: opinions,
             newsBuildable: news,
             searchBuildable: search,
+            writingOpinionBuildable: writingOpinion,
             coinDetailBuildable: coinDetail
         )
     }
