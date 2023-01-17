@@ -58,6 +58,7 @@ final class WatchlistItemCell: UITableViewCell {
     }
     
     private var model: WatchlistItemModel?
+    private var oldPriceKeeper: String = "0"
     
     /// Configure view
     /// - Parameter model: WatchlistItemModel
@@ -74,12 +75,10 @@ final class WatchlistItemCell: UITableViewCell {
         }
         
         symbolLabel.text = self.model?.symbol
-        nameLabel.text =  self.model?.companyName.replacingOccurrences(of: "BINANCE:", with: "")
+        nameLabel.text =  "\(self.model?.symbol ?? "")/USDT"
         priceLabel.text = "$\(self.model?.price ?? "0")"
         oldPriceKeeper = self.model?.price ?? "0"
     }
-    
-    private var oldPriceKeeper: String = "0"
     
     private func animateLabelBackgroundColor(_ color: UIColor) {
         UIView.animate(withDuration: 0.5, delay: 0, options: [.curveLinear]) { [weak self] in
