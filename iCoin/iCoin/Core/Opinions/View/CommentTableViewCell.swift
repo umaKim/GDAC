@@ -10,12 +10,11 @@ import UIKit.UITableViewCell
 final class CommentTableViewCell: UITableViewCell {
     
     static let identifier = "CommentTableViewCell"
-    static let prefferedHeight: CGFloat = 200
     
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .semibold)
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.minimumScaleFactor = 0.5
         return label
     }()
     
@@ -23,7 +22,6 @@ final class CommentTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .light)
         label.textColor = .label
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -31,7 +29,6 @@ final class CommentTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .light)
         label.textColor = .label
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -39,7 +36,6 @@ final class CommentTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18, weight: .regular)
         label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -48,7 +44,6 @@ final class CommentTableViewCell: UITableViewCell {
         button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
         button.addTarget(self, action: #selector(optionButtonDidTap), for: .touchUpInside)
         button.tintColor = .lightGray
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -56,7 +51,6 @@ final class CommentTableViewCell: UITableViewCell {
         let uv = UIView()
         uv.alpha = 0.5
         uv.backgroundColor = .systemGray
-        uv.translatesAutoresizingMaskIntoConstraints = false
         return uv
     }()
     
@@ -102,7 +96,6 @@ extension CommentTableViewCell {
         userInfoStackView.alignment = .leading
         userInfoStackView.distribution = .equalSpacing
         userInfoStackView.spacing = 12
-        userInfoStackView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubviews(titleLabel, optionButton, userInfoStackView, bodyLabel, cellSeparator)
         
@@ -110,7 +103,7 @@ extension CommentTableViewCell {
         
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             titleLabel.heightAnchor.constraint(equalToConstant: 30),
             
