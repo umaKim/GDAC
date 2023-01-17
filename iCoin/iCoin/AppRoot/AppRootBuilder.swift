@@ -13,7 +13,8 @@ protocol AppRootDependency: Dependency {
     // created by this RIB.
 }
 
-final class AppRootComponent: Component<AppRootDependency>, MainDependency, MyWatchListDependency {
+final class AppRootComponent: Component<AppRootDependency>, MainDependency, PortfolioDependency {
+    
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
 
@@ -36,13 +37,13 @@ final class AppRootBuilder: Builder<AppRootDependency>, AppRootBuildable {
         let interactor = AppRootInteractor(presenter: viewController)
         
         let main = MainBuilder(dependency: component)
-        let myWatchList = MyWatchListBuilder(dependency: component)
+        let protfolio = PortfolioBuilder(dependency: component)
         
         let router = AppRootRouter(
             interactor: interactor,
             viewController: viewController,
             main: main,
-            myWatchList: myWatchList
+            portfolio: protfolio
         )
         
         return router
