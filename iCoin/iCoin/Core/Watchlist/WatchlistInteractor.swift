@@ -31,6 +31,7 @@ protocol WatchlistInteractorDependency {
     var symbolsRepository: SymbolsRepository { get }
     var edittingButtonDidTap: AnyPublisher<Void, Never> { get }
     var mainViewLifeCycleDidChange: AnyPublisher<MainViewLifeCycle, Never> { get }
+    var lifeCycleDidChangePublisher: AnyPublisher<MainViewLifeCycle, Never> { get }
 }
 
 final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, WatchlistInteractable  {
@@ -111,29 +112,19 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     
     private func bind() {
         dependency
-            .edittingButtonDidTap
-            .sink {[weak self] didTap in
-                self?.presenter.setTableEdittingMode()
-            }
-            .store(in: &cancellables)
-        
-        dependency
-            .mainViewLifeCycleDidChange
+            .lifeCycleDidChangePublisher
             .sink {[weak self] cycle in
                 guard let self = self else { return }
-                print("mainViewLifeCycleDidChange")
                 switch cycle {
                 case .viewDidAppear:
-                    print("mainViewLifeCycleDidChange viewDidAppear")
-                    
                     if self.symbols.isEmpty {
                         self.fetchSymbols()
                     } else {
                         self.fetchFromNetwork(symbols: self.displaySymbols)
                     }
-                    
                 case .viewDidDisappear:
-                    print("mainViewLifeCycleDidChange viewDidDisappear")
+                    self.symbols.removeAll()
+                    self.watchlistItemModels.removeAll()
                     self.disconnectWebSocket()
                 }
             }
