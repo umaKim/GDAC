@@ -25,7 +25,7 @@ protocol OpinionsListener: AnyObject {
 }
 
 protocol OpinionInteractorDependency {
-    var firebaseRepository: FirebaseRepository { get }
+    var opinionRepository: OpinionRepository { get }
 }
 
 final class OpinionsInteractor: PresentableInteractor<OpinionsPresentable>, OpinionsInteractable, OpinionsPresentableListener {
@@ -39,8 +39,6 @@ final class OpinionsInteractor: PresentableInteractor<OpinionsPresentable>, Opin
     
     private var cancellalbles: Set<AnyCancellable>
     
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
     init(
         presenter: OpinionsPresentable,
         dependency: OpinionInteractorDependency
@@ -53,18 +51,14 @@ final class OpinionsInteractor: PresentableInteractor<OpinionsPresentable>, Opin
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
         dependency
-            .firebaseRepository
-            .fetchOpinions()
-            .receive(on: RunLoop.main)
-            .sink {[weak self] content in
+            .opinionRepository
+            .fetchOpinions {[weak self] postcontent in
                 guard let self = self else { return }
-                self.opinions.append(content)
+                self.opinions.append(postcontent)
                 self.opinions.sort(by: {$0.date > $1.date})
                 self.presenter.opinions(with: self.opinions)
             }
-            .store(in: &cancellalbles)
     }
 
     override func willResignActive() {
