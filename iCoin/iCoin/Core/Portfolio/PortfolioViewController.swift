@@ -40,6 +40,11 @@ final class PortfolioViewController: UIViewController, PortfolioPresentable, Por
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Portfolio"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         listener?.viewDidAppear()
     }
     
@@ -48,8 +53,15 @@ final class PortfolioViewController: UIViewController, PortfolioPresentable, Por
         listener?.viewDidDisappear()
     }
     
-    func setMyWatchList(_ viewControllerable: ViewControllable) {
-        
+    func setWatchlist(_ viewControllerable: ViewControllable) {
+        guard let watchlistView = viewControllerable.uiviewController.view else { return }
+        view.addSubviews(watchlistView)
+        NSLayoutConstraint.activate([
+            watchlistView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            watchlistView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            watchlistView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            watchlistView.topAnchor.constraint(equalTo: view.topAnchor)
+        ])
     }
 }
 
