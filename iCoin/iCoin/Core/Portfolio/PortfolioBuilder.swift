@@ -13,9 +13,11 @@ protocol PortfolioDependency: Dependency {
 }
 
 final class PortfolioComponent: Component<PortfolioDependency>,
-                                MyWatchListDependency,
+                                WatchlistDependency,
                                 PortfolioInteractorDependency,
                                 CoinDetailDependency {
+                                    
+    let watchlistRepository: WatchlistRepository
     
     lazy var portfolioViewLifeCycleDidChangePublisher = portfolioViewLifeCycleDidChangeSubject.eraseToAnyPublisher()
     var portfolioViewLifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> = PassthroughSubject<MainViewLifeCycle, Never>()
@@ -23,14 +25,11 @@ final class PortfolioComponent: Component<PortfolioDependency>,
     lazy var symbol: AnyPublisher<SymbolResult, Never> = symbolSubject.eraseToAnyPublisher()
     var symbolSubject: PassthroughSubject<SymbolResult, Never> = PassthroughSubject<SymbolResult, Never>()
 
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
-    let myWatchlistRepository: WebsocketRepository
-    
     init(
         dependency: PortfolioDependency,
-        myWatchlistRepository: WebsocketRepository
+        watchlistRepository: WatchlistRepository
     ) {
-        self.myWatchlistRepository = myWatchlistRepository
+        self.watchlistRepository = watchlistRepository
         super.init(dependency: dependency)
     }
 }
@@ -63,13 +62,13 @@ final class PortfolioBuilder: Builder<PortfolioDependency>, PortfolioBuildable {
         
         interactor.listener = listener
         
-        let myWatchList = MyWatchListBuilder(dependency: component)
+        let watchlist = WatchlistBuilder(dependency: component)
         let coinDetail = CoinDetailBuilder(dependency: component)
         
         return PortfolioRouter(
             interactor: interactor,
             viewController: viewController,
-            myWatchList: myWatchList,
+            watchlist: watchlist,
             coinDetail: coinDetail
         )
     }

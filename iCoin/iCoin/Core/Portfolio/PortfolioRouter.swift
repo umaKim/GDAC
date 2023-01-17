@@ -8,7 +8,7 @@
 import ModernRIBs
 
 protocol PortfolioInteractable: Interactable,
-                                MyWatchListListener,
+                                WatchlistListener,
                                 CoinDetailListener {
     var router: PortfolioRouting? { get set }
     var listener: PortfolioListener? { get set }
@@ -16,13 +16,13 @@ protocol PortfolioInteractable: Interactable,
 
 protocol PortfolioViewControllable: ViewControllable {
     // TODO: Declare methods the router invokes to manipulate the view hierarchy.
-    func setMyWatchList(_ viewControllerable: ViewControllable)
+    func setWatchlist(_ viewControllerable: ViewControllable)
 }
 
 final class PortfolioRouter: ViewableRouter<PortfolioInteractable, PortfolioViewControllable>, PortfolioRouting {
     
-    private let myWatchList: MyWatchListBuildable
-    private var myWatchListRouting: Routing?
+    private let watchList: WatchlistBuildable
+    private var watchListRouting: Routing?
     
     private let coinDetail: CoinDetailBuildable
     private var coinDetailRouting: Routing?
@@ -31,22 +31,22 @@ final class PortfolioRouter: ViewableRouter<PortfolioInteractable, PortfolioView
     init(
         interactor: PortfolioInteractable,
         viewController: PortfolioViewControllable,
-        myWatchList: MyWatchListBuildable,
+        watchlist: WatchlistBuildable,
         coinDetail: CoinDetailBuildable
     ) {
-        self.myWatchList = myWatchList
+        self.watchList = watchlist
         self.coinDetail = coinDetail
         
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
     
-    func attachMyWatchList() {
-        if myWatchListRouting != nil { return }
-        let router = myWatchList.build(withListener: interactor)
-        let myWatchlist = router.viewControllable
-        viewController.setMyWatchList(myWatchlist)
-        myWatchListRouting = router
+    func attachWatchlist() {
+        if watchListRouting != nil { return }
+        let router = watchList.build(withListener: interactor)
+        let watchlist = router.viewControllable
+        viewController.setWatchlist(watchlist)
+        watchListRouting = router
         attachChild(router)
     }
     

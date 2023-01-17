@@ -9,7 +9,7 @@ import ModernRIBs
 
 protocol PortfolioRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-    func attachMyWatchList()
+    func attachWatchlist()
     
     func attachCoinDetail()
     func detachCoinDetail()
@@ -50,8 +50,7 @@ final class PortfolioInteractor: PresentableInteractor<PortfolioPresentable>, Po
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
-        router?.attachMyWatchList()
+        router?.attachWatchlist()
     }
 
     override func willResignActive() {
@@ -67,7 +66,7 @@ final class PortfolioInteractor: PresentableInteractor<PortfolioPresentable>, Po
         dependency.portfolioViewLifeCycleDidChangeSubject.send(.viewDidDisappear)
     }
     
-    func myWatchlistDidTap(_ symbol: SymbolResult) {
+    func watchlistDidTap(_ symbol: SymbolResult) {
         router?.attachCoinDetail()
         dependency.symbolSubject.send(symbol)
     }
