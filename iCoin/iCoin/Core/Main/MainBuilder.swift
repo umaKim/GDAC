@@ -29,21 +29,17 @@ final class MainComponent: Component<MainDependency>,
     lazy var lifeCycleDidChangePublisher: AnyPublisher<MainViewLifeCycle, Never> = lifeCycleDidChangeSubject.eraseToAnyPublisher()
     var lifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> = PassthroughSubject<MainViewLifeCycle, Never>()
     
-    lazy var mainViewLifeCycleDidChange: AnyPublisher<MainViewLifeCycle, Never> = mainViewLifeCycleDidChangeSubject.eraseToAnyPublisher()
-    var mainViewLifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> = PassthroughSubject<MainViewLifeCycle, Never>()
-    
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
-    
-    let watchlistRepository: WebsocketRepository
+    let watchlistRepository: WatchlistRepository
     let newsRepository: NewsRepository
     let opinionRepository: OpinionRepository
     let writingOpinionRepository: WritingOpinionRepository
     
     init(
         dependency: MainDependency,
-        watchlistRepository: WebsocketRepository,
+        watchlistRepository: WatchlistRepository,
         newsRepository: NewsRepository,
         opinionRepository: OpinionRepository,
+        writingOpinionRepository: WritingOpinionRepository
     ) {
         self.watchlistRepository = watchlistRepository
         self.newsRepository = newsRepository
@@ -68,11 +64,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
     func build(withListener listener: MainListener) -> MainRouting {
         let component = MainComponent(
             dependency: dependency,
-            watchlistRepository:
-                WebsocketRepositoryImp(
-                    websocket: StarScreamWebSocket(),
-                    network: NetworkManager()
-                ),
+            watchlistRepository: WatchlistRepositoryImp(websocket: StarScreamWebSocket()),
             newsRepository: NewsRepositoryImp(network: NetworkManager()),
             opinionRepository: OpinionRepositoryImp(firebase: FirebaseManager()),
             writingOpinionRepository: WritingOpinionRepositoryImp(firebase: FirebaseManager())

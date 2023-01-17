@@ -49,10 +49,11 @@ final class PortfolioBuilder: Builder<PortfolioDependency>, PortfolioBuildable {
     func build(withListener listener: PortfolioListener) -> PortfolioRouting {
         let component = PortfolioComponent(
             dependency: dependency,
-            myWatchlistRepository: WebsocketRepositoryImp(
-                websocket: StarScreamWebSocket(),
-                network: NetworkManager()
-            )
+            watchlistRepository:
+                PortfolioWatchlistRepositoryImp(
+                    websocket: StarScreamWebSocket(),
+                    persistance: PersistanceManager()
+                )
         )
         let viewController = PortfolioViewController()
         let interactor = PortfolioInteractor(
