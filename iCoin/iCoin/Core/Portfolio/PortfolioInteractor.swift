@@ -26,11 +26,10 @@ protocol PortfolioListener: AnyObject {
 
 protocol PortfolioInteractorDependency {
     var symbolSubject: PassthroughSubject<SymbolResult, Never> { get }
-    var portfolioViewLifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> { get }
+    var lifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> { get }
 }
 
 final class PortfolioInteractor: PresentableInteractor<PortfolioPresentable>, PortfolioInteractable, PortfolioPresentableListener {
-    
     
     weak var router: PortfolioRouting?
     weak var listener: PortfolioListener?
@@ -55,15 +54,14 @@ final class PortfolioInteractor: PresentableInteractor<PortfolioPresentable>, Po
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func viewDidAppear() {
-        dependency.portfolioViewLifeCycleDidChangeSubject.send(.viewDidAppear)
+        dependency.lifeCycleDidChangeSubject.send(.viewDidAppear)
     }
     
     func viewDidDisappear() {
-        dependency.portfolioViewLifeCycleDidChangeSubject.send(.viewDidDisappear)
+        dependency.lifeCycleDidChangeSubject.send(.viewDidDisappear)
     }
     
     func watchlistDidTap(_ symbol: SymbolResult) {

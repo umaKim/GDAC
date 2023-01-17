@@ -19,8 +19,8 @@ final class PortfolioComponent: Component<PortfolioDependency>,
                                     
     let watchlistRepository: WatchlistRepository
     
-    lazy var portfolioViewLifeCycleDidChangePublisher = portfolioViewLifeCycleDidChangeSubject.eraseToAnyPublisher()
-    var portfolioViewLifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> = PassthroughSubject<MainViewLifeCycle, Never>()
+    lazy var lifeCycleDidChangePublisher = lifeCycleDidChangeSubject.eraseToAnyPublisher()
+    var lifeCycleDidChangeSubject = PassthroughSubject<MainViewLifeCycle, Never>()
     
     lazy var symbol: AnyPublisher<SymbolResult, Never> = symbolSubject.eraseToAnyPublisher()
     var symbolSubject: PassthroughSubject<SymbolResult, Never> = PassthroughSubject<SymbolResult, Never>()

@@ -36,9 +36,8 @@ protocol MainListener: AnyObject {
 
 protocol MainInteractorDependency {
     var symbolSubject: PassthroughSubject<SymbolResult, Never> { get }
-    var watchlistRepository: WebsocketRepository { get }
-    var edittingButtonDidTapSubject: PassthroughSubject<Void, Never> { get }
-    var mainViewLifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> { get }
+//    var watchlistRepository: WatchlistRepository { get }
+    var lifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> { get }
 }
 
 final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener, AdaptivePresentationControllerDelegate {
@@ -75,15 +74,11 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     }
     
     func viewDidAppear() {
-        dependency.mainViewLifeCycleDidChangeSubject.send(.viewDidAppear)
+        dependency.lifeCycleDidChangeSubject.send(.viewDidAppear)
     }
 
     func viewDidDisappear() {
-        dependency.mainViewLifeCycleDidChangeSubject.send(.viewDidDisappear)
-    }
-    
-    func edittingButtonDidTap() {
-        dependency.edittingButtonDidTapSubject.send()
+        dependency.lifeCycleDidChangeSubject.send(.viewDidDisappear)
     }
     
     func openNews(of url: String) {
