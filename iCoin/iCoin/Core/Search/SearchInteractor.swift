@@ -27,7 +27,7 @@ protocol SearchListener: AnyObject {
 }
 
 protocol SearchInteractorDependency {
-    var searchRepository: SymbolsRepository { get }
+    var searchRepository: SearchRepository { get }
     var symbolSubject: PassthroughSubject<SymbolResult, Never> { get }
 }
 

@@ -18,11 +18,11 @@ final class SearchComponent: Component<SearchDependency>, SearchInteractorDepend
     lazy var symbol: AnyPublisher<SymbolResult, Never> = symbolSubject.eraseToAnyPublisher()
     var symbolSubject: PassthroughSubject<SymbolResult, Never> = PassthroughSubject<SymbolResult, Never>()
     
-    let searchRepository: SymbolsRepository
+    let searchRepository: SearchRepository
     
     init (
         dependency: SearchDependency,
-        searchRepository: SymbolsRepository
+        searchRepository: SearchRepository
     ) {
         self.searchRepository = searchRepository
         super.init(dependency: dependency)
@@ -44,7 +44,7 @@ final class SearchBuilder: Builder<SearchDependency>, SearchBuildable {
     func build(withListener listener: SearchListener) -> SearchRouting {
         let component = SearchComponent(
             dependency: dependency,
-            searchRepository: SymbolsRepositoryImp(network: NetworkManager())
+            searchRepository: SearchRepositoryImp(network: NetworkManager())
         )
         let viewController = SearchViewController()
         let interactor = SearchInteractor(
