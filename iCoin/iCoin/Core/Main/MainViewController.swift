@@ -24,10 +24,6 @@ extension TabBarItemSettable where Self: UIViewController {
 }
 
 protocol MainPresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
-    func edittingButtonDidTap()
     func searchButtonDidTap()
     
     func viewDidAppear()
@@ -71,15 +67,11 @@ final class MainViewController: UIViewController, MainPresentable, MainViewContr
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        print("MainViewController viewDidAppear")
         listener?.viewDidAppear()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
-        print("MainViewController viewDidDisappear")
         listener?.viewDidDisappear()
     }
     
@@ -88,8 +80,6 @@ final class MainViewController: UIViewController, MainPresentable, MainViewContr
             .actionPublisher
             .sink { action in
                 switch action {
-//                case .didTapEditting:
-//                    self.listener?.edittingButtonDidTap()
                 case .searchButtonDidTap:
                     self.listener?.searchButtonDidTap()
                 case .writingOpinionDidTap:

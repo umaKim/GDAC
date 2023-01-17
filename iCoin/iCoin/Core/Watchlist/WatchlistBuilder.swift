@@ -13,13 +13,10 @@ protocol WatchlistDependency: Dependency {
     // created by this RIB.
     
     var watchlistRepository: WatchlistRepository { get }
-//    var symbolsRepository: SymbolsRepository { get }
     var lifeCycleDidChangePublisher: AnyPublisher<MainViewLifeCycle, Never> { get }
 }
 
 final class WatchlistComponent: Component<WatchlistDependency>, WatchlistInteractorDependency {
-//    var symbolsRepository: SymbolsRepository { dependency.symbolsRepository }
-//    var watchlistRepository: WebsocketRepository { dependency.watchlistRepository }
     var watchlistRepository: WatchlistRepository { dependency.watchlistRepository }
     var lifeCycleDidChangePublisher: AnyPublisher<MainViewLifeCycle, Never> { dependency.lifeCycleDidChangePublisher }
 }

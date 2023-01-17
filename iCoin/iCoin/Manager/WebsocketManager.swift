@@ -117,10 +117,6 @@ class StarScreamWebSocket: WebSocketProtocol, UrlConfigurable {
     
     private var symbols: [String] = []
     
-//    func receiveMessage() {
-//
-//    }
-    
     init() {
 //        configure()
     }

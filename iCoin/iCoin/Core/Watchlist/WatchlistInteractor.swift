@@ -9,30 +9,6 @@ import Combine
 import ModernRIBs
 import UIKit.UITableView
 
-enum StaticSymbols {
-    static let symbols: [SymbolResult] = [
-        .init(description: "Binance BTCUSDT", displaySymbol: "BTC", symbol: "BTCUSDT"),
-        .init(description: "Binance ETHUSDT", displaySymbol: "ETH", symbol: "ETHUSDT"),
-        .init(description: "Binance USDCUSDT", displaySymbol: "USDC", symbol: "USDCUSDT"),
-        .init(description: "Binance BNBUSDT", displaySymbol: "BNB", symbol: "BNBUSDT"),
-        .init(description: "Binance XRPUSDT", displaySymbol: "XRP", symbol: "XRPUSDT"),
-        .init(description: "Binance BUSDUSDT", displaySymbol: "BUSD", symbol: "BUSDUSDT"),
-        .init(description: "Binance ADAUSDT", displaySymbol: "ADA", symbol: "ADAUSDT"),
-        .init(description: "Binance MATICUSDT", displaySymbol: "MATIC", symbol: "MATICUSDT"),
-        .init(description: "Binance DAIUSDT", displaySymbol: "DAI", symbol: "DAIUSDT"),
-        .init(description: "Binance LTCUSDT", displaySymbol: "LTC", symbol: "LTCUSDT"),
-        .init(description: "Binance DOTUSDT", displaySymbol: "DOT", symbol: "DOTUSDT"),
-        .init(description: "Binance SOLUSDT", displaySymbol: "SOL", symbol: "SOLUSDT"),
-        .init(description: "Binance TRXUSDT", displaySymbol: "TRX", symbol: "TRXUSDT"),
-        .init(description: "Binance UNIUSDT", displaySymbol: "UNI", symbol: "UNIUSDT"),
-        .init(description: "Binance AVAXUSDT", displaySymbol: "AVAX", symbol: "AVAXUSDT"),
-        .init(description: "Binance LINKUSDT", displaySymbol: "LINK", symbol: "LINKUSDT"),
-        .init(description: "Binance ATOMUSDT", displaySymbol: "ATOM", symbol: "ATOMUSDT"),
-        .init(description: "Binance XMRUSDT", displaySymbol: "XMR", symbol: "XMRUSDT"),
-        .init(description: "Binance ETCUSDT", displaySymbol: "ETC", symbol: "ETCUSDT"),
-    ]
-}
-
 protocol WatchlistRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
@@ -47,8 +23,6 @@ protocol WatchlistPresentable: Presentable {
 }
 
 protocol WatchlistListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
-    //    func didTapEdittingButton()
     func watchlistDidTap(_ symbol: SymbolResult)
 }
 
