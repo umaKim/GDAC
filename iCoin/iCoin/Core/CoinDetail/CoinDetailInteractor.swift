@@ -16,6 +16,7 @@ protocol CoinDetailPresentable: Presentable {
     // TODO: Declare methods the interactor can invoke the presenter to present data.
     
     func update(symbol: SymbolResult)
+    func doesSymbolInPersistance(_ exist: Bool)
 }
 
 protocol CoinDetailListener: AnyObject {
