@@ -27,10 +27,7 @@ protocol WatchlistListener: AnyObject {
 }
 
 protocol WatchlistInteractorDependency {
-    var watchlistRepository: WebsocketRepository { get }
-    var symbolsRepository: SymbolsRepository { get }
-    var edittingButtonDidTap: AnyPublisher<Void, Never> { get }
-    var mainViewLifeCycleDidChange: AnyPublisher<MainViewLifeCycle, Never> { get }
+    var watchlistRepository: WatchlistRepository { get }
     var lifeCycleDidChangePublisher: AnyPublisher<MainViewLifeCycle, Never> { get }
 }
 
@@ -45,7 +42,7 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     private var watchlistItemModels: [WatchlistItemModel] = []
     
     //TODO: This should be fetched from Network
-    private var symbols: [SymbolResult] = StaticSymbols.symbols
+    private var symbols: [SymbolResult] = []
     
     private var displaySymbols: [Symbol] {
         self.symbols.map({$0.displaySymbol})
@@ -70,17 +67,28 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
+        symbols.forEach({
+            watchlistItemModels.append(.init(
+                symbol: $0.displaySymbol,
+                detailName: "BINANCE:\($0.displaySymbol)",
+                price: "0",
+                changeColor: .clear,
+                changePercentage: ""
+            ))
+        })
         bind()
     }
     
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+        cancellables.forEach({$0.cancel()})
+        cancellables.removeAll()
     }
     
     private func fetchSymbols() {
         dependency
-            .symbolsRepository
+            .watchlistRepository
             .fetchSymbols()
             .sink { completion in
                 switch completion {
@@ -106,7 +114,22 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
             if let dotRange = newDisplaySymbol.range(of: "/") {
                 newDisplaySymbol.removeSubrange(dotRange.lowerBound..<newDisplaySymbol.endIndex)
             }
-            return .init(description: $0.description, displaySymbol: newDisplaySymbol, symbol: $0.symbol)
+            return .init(
+                description: $0.description,
+                displaySymbol: newDisplaySymbol,
+                symbol: $0.symbol
+            )
+        })
+        
+        self.symbols.forEach({[weak self] symbol in
+            guard let self = self else { return }
+            self.watchlistItemModels.append(.init(
+                symbol: symbol.displaySymbol,
+                detailName: "BINANCE:\(symbol.symbol.uppercased())",
+                price: "0",
+                changeColor: .clear,
+                changePercentage: ""
+            ))
         })
     }
     
@@ -134,7 +157,7 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     typealias Symbol = String
     
     private func fetchFromNetwork(symbols: [Symbol]) {
-        self.connectWebSocket()
+        connectWebSocket()
         dependency
             .watchlistRepository
             .fetch(symbols: symbols)
@@ -159,22 +182,23 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
         receivedDatum
             .forEach {[weak self] data in
                 guard let self = self else { return }
+                
                 //if watchlistItemModels already has the Symbol
                 if watchlistItemModels.contains(where: {
-                    $0.companyName.uppercased() == data.s
+                    $0.detailName.uppercased() == data.s
                 }) {
                     for (index, model) in self.watchlistItemModels.enumerated() {
-                        if model.companyName.uppercased() == data.s {
+                        if model.detailName.uppercased() == data.s {
                             self.watchlistItemModels[index].price = "\(data.p)"
                         }
                     }
                 } else {
                     // if WatchlistItemModels are empty
                     self.symbols.forEach { symbol in
-                        if "BINANCE:\(symbol.displaySymbol.uppercased())USDT" == data.s {
+                        if "BINANCE:\(symbol.symbol.uppercased())" == data.s {
                             self.watchlistItemModels.append(.init(
                                 symbol: symbol.displaySymbol,
-                                companyName: data.s,
+                                detailName: data.s,
                                 price: "\(data.p)",
                                 changeColor: .clear,
                                 changePercentage: ""
@@ -210,7 +234,12 @@ extension WatchlistInteractor: WatchlistPresentableListener {
     }
     
     func didTap(_ index: Int) {
-        listener?.watchlistDidTap(StaticSymbols.symbols[index])
+        let symbol = SymbolResult(
+            description: symbols[index].description,
+            displaySymbol: "\(symbols[index].displaySymbol)/USDT",
+            symbol: symbols[index].symbol
+        )
+        listener?.watchlistDidTap(symbol)
     }
     
     func updateSections(completion: ([WatchlistItemModel]) -> Void) {
