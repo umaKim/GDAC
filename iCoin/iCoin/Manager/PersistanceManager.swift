@@ -4,7 +4,7 @@
 //
 //  Created by 김윤석 on 2022/06/07.
 //
-
+import Combine
 import Foundation
 
 protocol PersistanceService {
@@ -28,8 +28,12 @@ final class PersistanceManager: PersistanceService {
     
     /// Get usr watch list
     public var watchlist: [SymbolResult] {
-        guard let array = userDefaults.array(forKey: Constants.watchListKey) as? [SymbolResult] else { return [] }
-        return array
+        do {
+            let symbolResults = try userDefaults.getObject(forKey: Constants.watchListKey, castTo: [SymbolResult].self)
+            return symbolResults
+        } catch {
+            return []
+        }
     }
     
     /// Check if watch list contains item
@@ -47,7 +51,11 @@ final class PersistanceManager: PersistanceService {
         if !watchlistContains(symbol: symbol) {
             var current = watchlist
             current.append(symbol)
-            userDefaults.set(current, forKey: Constants.watchListKey)
+            do {
+                try userDefaults.setObject(current, forKey: Constants.watchListKey)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     
@@ -56,27 +64,14 @@ final class PersistanceManager: PersistanceService {
     public func removeFromWatchlist(symbol: SymbolResult) {
         var newList = [SymbolResult]()
         
-        userDefaults.set(nil, forKey: Constants.watchListKey)
         for item in watchlist where item != symbol {
             newList.append(item)
         }
         
-        userDefaults.set(newList, forKey: Constants.watchListKey)
-    }
-    
-    // MARK: - Private
-    
-    typealias Symbol = String
-    typealias CompanyName = String
-    
-    /// Set up default watch list items
-    private func setUpDefaults() {
-        let map: [Symbol: CompanyName] = [
-            "BTC": "Apple Inc",
-            "ETH": "Microsoft Corporation",
-        ]
-        
-        let symbols = map.keys.map { $0 }
-        userDefaults.set(symbols, forKey: Constants.watchListKey)
+        do {
+            try userDefaults.setObject(newList, forKey: Constants.watchListKey)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
