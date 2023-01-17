@@ -10,13 +10,13 @@ import ModernRIBs
 protocol OpinionsDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
-    var firebaseRepository: FirebaseRepository { get }
+    var opinionRepository: OpinionRepository { get }
 }
 
 final class OpinionsComponent: Component<OpinionsDependency>, OpinionInteractorDependency {
 
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
-    var firebaseRepository: FirebaseRepository { dependency.firebaseRepository }
+    var opinionRepository: OpinionRepository { dependency.opinionRepository }
 }
 
 // MARK: - Builder

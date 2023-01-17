@@ -36,21 +36,18 @@ final class MainComponent: Component<MainDependency>,
     
     let watchlistRepository: WebsocketRepository
     let newsRepository: NewsRepository
-    let symbolsRepository: SymbolsRepository
-    let firebaseRepository: FirebaseRepository
+    let opinionRepository: OpinionRepository
     let writingOpinionRepository: WritingOpinionRepository
     
     init(
         dependency: MainDependency,
         watchlistRepository: WebsocketRepository,
         newsRepository: NewsRepository,
-        symbolsRepository: SymbolsRepository,
-        firebaseRepository: FirebaseRepository
+        opinionRepository: OpinionRepository,
     ) {
         self.watchlistRepository = watchlistRepository
         self.newsRepository = newsRepository
-        self.symbolsRepository = symbolsRepository
-        self.firebaseRepository = firebaseRepository
+        self.opinionRepository = opinionRepository
         self.writingOpinionRepository = writingOpinionRepository
         super.init(dependency: dependency)
     }
@@ -77,8 +74,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
                     network: NetworkManager()
                 ),
             newsRepository: NewsRepositoryImp(network: NetworkManager()),
-            symbolsRepository: SymbolsRepositoryImp(network: NetworkManager()),
-            firebaseRepository: FirebaseRepositoryImp(firebase: FirebaseManager())
+            opinionRepository: OpinionRepositoryImp(firebase: FirebaseManager()),
             writingOpinionRepository: WritingOpinionRepositoryImp(firebase: FirebaseManager())
         )
         let viewController = MainViewController()
