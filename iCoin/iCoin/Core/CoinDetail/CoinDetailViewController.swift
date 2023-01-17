@@ -13,6 +13,7 @@ protocol CoinDetailPresentableListener: AnyObject {
     // business logic, such as signIn(). This protocol is implemented by the corresponding
     // interactor class.
     func didTapBackButton()
+    func didTapFavoriteButton()
 }
 
 final class CoinDetailViewController: UIViewController, CoinDetailPresentable, CoinDetailViewControllable {
@@ -20,11 +21,20 @@ final class CoinDetailViewController: UIViewController, CoinDetailPresentable, C
     weak var listener: CoinDetailPresentableListener?
     
     var scrollView = UIScrollView()
+    private lazy var favoriteButton = UIBarButtonItem(
+        image: .init(systemName: ""),
+        style: .done,
+        target: self,
+        action: #selector(favoriteButtonDidTap)
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationItem(with: .back, tintColor: .label, target: self, action: #selector(backButtonDidTap))
+    @objc
+    private func favoriteButtonDidTap() {
+        listener?.didTapFavoriteButton()
     }
     
     @objc
@@ -43,5 +53,7 @@ extension CoinDetailViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(UIView())
+        favoriteButton.tintColor = .gdacBlue
+        navigationItem.rightBarButtonItems = [favoriteButton]
     }
 }

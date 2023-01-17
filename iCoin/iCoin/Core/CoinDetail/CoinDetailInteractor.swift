@@ -29,7 +29,7 @@ protocol CoinDetailInteractorDependency {
 }
 
 final class CoinDetailInteractor: PresentableInteractor<CoinDetailPresentable>, CoinDetailInteractable, CoinDetailPresentableListener {
-
+    
     weak var router: CoinDetailRouting?
     weak var listener: CoinDetailListener?
 
@@ -58,8 +58,17 @@ final class CoinDetailInteractor: PresentableInteractor<CoinDetailPresentable>, 
             .sink {[weak self] symbol in
                 self?.symbol = symbol
                 self?.presenter.update(symbol: symbol)
+                self?.checkIsFavorite(symbol: symbol)
             }
             .store(in: &cancellables)
+        
+        #warning("check the symbol exist in PersistanceManager")
+        #warning("if it exists then change the color of the favorite button")
+    }
+    
+    private func checkIsFavorite(symbol: SymbolResult) {
+        let symbolExist = dependency.coinDetailRepository.contains(symbol)
+        presenter.doesSymbolInPersistance(symbolExist)
     }
 
     override func willResignActive() {
@@ -71,5 +80,18 @@ final class CoinDetailInteractor: PresentableInteractor<CoinDetailPresentable>, 
     
     func didTapBackButton() {
         listener?.coinDetailDidTapBackButton()
+    }
+    
+    func didTapFavoriteButton() {
+        guard let symbol = self.symbol else { return }
+        let symbolExist = dependency.coinDetailRepository.contains(symbol)
+        
+        if symbolExist {
+            dependency.coinDetailRepository.remove(symbol)
+        } else {
+            dependency.coinDetailRepository.save(symbol)
+        }
+        
+        presenter.doesSymbolInPersistance(!symbolExist)
     }
 }
