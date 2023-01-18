@@ -117,10 +117,6 @@ class StarScreamWebSocket: WebSocketProtocol, UrlConfigurable {
     
     private var symbols: [String] = []
     
-    init() {
-//        configure()
-    }
-    
     func connect() {
         configure()
         socket?.connect()
@@ -170,7 +166,6 @@ extension StarScreamWebSocket: WebSocketDelegate {
             print("websocket is disconnected: \(reason) with code: \(code)")
             
         case .text(let text):
-            print("Received text: \(text)")
             if let data: Data = text.data(using: .utf8) {
                 if let tickData = try? WebSocketData.decode(from: data)?.data {
                     self.dataPublisher.send(tickData)
@@ -190,7 +185,6 @@ extension StarScreamWebSocket: WebSocketDelegate {
             print("cancelled")
             break
         case .error(let error):
-            print("error \(error?.localizedDescription)")
             break
         }
     }
