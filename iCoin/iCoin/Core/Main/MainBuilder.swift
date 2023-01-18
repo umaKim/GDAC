@@ -23,8 +23,8 @@ final class MainComponent: Component<MainDependency>,
                            WritingOpinionDependency,
                            CoinDetailDependency {
     
-    lazy var symbol: AnyPublisher<SymbolResult, Never> = symbolSubject.eraseToAnyPublisher()
-    var symbolSubject: PassthroughSubject<SymbolResult, Never> = PassthroughSubject<SymbolResult, Never>()
+    lazy var symbol: AnyPublisher<CoinCapAsset, Never> = symbolSubject.eraseToAnyPublisher()
+    var symbolSubject: PassthroughSubject<CoinCapAsset, Never> = PassthroughSubject<CoinCapAsset, Never>()
     
     lazy var lifeCycleDidChangePublisher: AnyPublisher<MainViewLifeCycle, Never> = lifeCycleDidChangeSubject.eraseToAnyPublisher()
     var lifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> = PassthroughSubject<MainViewLifeCycle, Never>()

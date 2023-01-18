@@ -22,8 +22,8 @@ final class PortfolioComponent: Component<PortfolioDependency>,
     lazy var lifeCycleDidChangePublisher = lifeCycleDidChangeSubject.eraseToAnyPublisher()
     var lifeCycleDidChangeSubject = PassthroughSubject<MainViewLifeCycle, Never>()
     
-    lazy var symbol: AnyPublisher<SymbolResult, Never> = symbolSubject.eraseToAnyPublisher()
-    var symbolSubject: PassthroughSubject<SymbolResult, Never> = PassthroughSubject<SymbolResult, Never>()
+    lazy var symbol: AnyPublisher<CoinCapAsset, Never> = symbolSubject.eraseToAnyPublisher()
+    var symbolSubject: PassthroughSubject<CoinCapAsset, Never> = PassthroughSubject<CoinCapAsset, Never>()
 
     init(
         dependency: PortfolioDependency,

@@ -35,7 +35,7 @@ protocol MainListener: AnyObject {
 }
 
 protocol MainInteractorDependency {
-    var symbolSubject: PassthroughSubject<SymbolResult, Never> { get }
+    var symbolSubject: PassthroughSubject<CoinCapAsset, Never> { get }
 //    var watchlistRepository: WatchlistRepository { get }
     var lifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> { get }
 }
@@ -105,7 +105,7 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
         router?.detachWritingOpinion()
     }
     
-    func watchlistDidTap(_ symbol: SymbolResult) {
+    func watchlistDidTap(_ symbol: CoinCapAsset) {
         router?.attachCoinDetail()
         dependency.symbolSubject.send(symbol)
     }
