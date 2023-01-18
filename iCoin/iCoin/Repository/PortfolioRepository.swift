@@ -8,7 +8,7 @@ import Combine
 import Foundation
 
 protocol PortfolioRepository {
-    func fetchSymbols() -> AnyPublisher<[SymbolResult], Error>
+    func fetchSymbols() -> AnyPublisher<[CoinCapAsset], Error>
 }
 
 struct PortfolioRepositoryImp: PortfolioRepository {
@@ -18,10 +18,10 @@ struct PortfolioRepositoryImp: PortfolioRepository {
         self.persistence = persistence
     }
     
-    private let subject = PassthroughSubject<[SymbolResult], Error>()
+    private let subject = PassthroughSubject<[CoinCapAsset], Error>()
     
-    func fetchSymbols() -> AnyPublisher<[SymbolResult], Error> {
-        Future<[SymbolResult], Error> { promise in
+    func fetchSymbols() -> AnyPublisher<[CoinCapAsset], Error> {
+        Future<[CoinCapAsset], Error> { promise in
             promise(.success(self.persistence.watchlist))
         }
         .eraseToAnyPublisher()

@@ -8,17 +8,17 @@ import Combine
 import Foundation
 
 protocol SearchRepository {
-    func fetchSymbols() -> AnyPublisher<[SymbolResult], Error>
+    func fetchSymbols() -> AnyPublisher<CoinCapAssetResponse, Error>
 }
 
 struct SearchRepositoryImp: SearchRepository {
-    private let network: SymbolsNetworkable
+    private let network: CoinCapAssetNetworkable
     
-    init(network: SymbolsNetworkable) {
+    init(network: CoinCapAssetNetworkable) {
         self.network = network
     }
     
-    func fetchSymbols() -> AnyPublisher<[SymbolResult], Error> {
-        network.fetchSymbols()
+    func fetchSymbols() -> AnyPublisher<CoinCapAssetResponse, Error> {
+        network.fetchCoinCapAssets()
     }
 }
