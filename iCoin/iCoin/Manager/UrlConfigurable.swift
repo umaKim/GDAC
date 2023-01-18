@@ -15,7 +15,7 @@ extension UrlConfigurable {
     ///   - endpoint: Endpoint to create for
     ///   - queryParams: Additional query arguments
     /// - Returns: Optional URL
-    func url(for baseUrl: String, queryParams: [String: String] = [:], with apiKey: [String : String]) -> URL? {
+    func url(for baseUrl: String, queryParams: [String: String] = [:], with apiKey: [String : String] = [:]) -> URL? {
         var urlString = baseUrl
         
         var queryItems = [URLQueryItem]()
@@ -25,8 +25,9 @@ extension UrlConfigurable {
         }
         
         // Add token
-        queryItems.append(.init(name: "\(apiKey.keys.first ?? "")", value: "\(apiKey.values.first ?? "")"))
-        
+        if !apiKey.isEmpty {
+            queryItems.append(.init(name: "\(apiKey.keys.first ?? "")", value: "\(apiKey.values.first ?? "")"))
+        }
         // Convert queri items to suffix string
         urlString += "?" + queryItems.map { "\($0.name)=\($0.value ?? "")" }.joined(separator: "&")
         
