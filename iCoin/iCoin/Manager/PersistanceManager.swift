@@ -8,10 +8,10 @@ import Combine
 import Foundation
 
 protocol PersistanceService {
-    var watchlist: [SymbolResult] { get }
-    func watchlistContains(symbol: SymbolResult) -> Bool
-    func addToWatchlist(symbol: SymbolResult)
-    func removeFromWatchlist(symbol: SymbolResult)
+    var watchlist: [CoinCapAsset] { get }
+    func watchlistContains(symbol: CoinCapAsset) -> Bool
+    func addToWatchlist(symbol: CoinCapAsset)
+    func removeFromWatchlist(symbol: CoinCapAsset)
 }
 
 final class PersistanceManager: PersistanceService {
@@ -27,7 +27,7 @@ final class PersistanceManager: PersistanceService {
     // MARK: - Public
     
     /// Get usr watch list
-    public var watchlist: [SymbolResult] {
+    public var watchlist: [CoinCapAsset] {
         do {
             let symbolResults = try userDefaults.getObject(forKey: Constants.watchListKey, castTo: [SymbolResult].self)
             return symbolResults
@@ -39,7 +39,7 @@ final class PersistanceManager: PersistanceService {
     /// Check if watch list contains item
     /// - Parameter symbol: Symbol to check
     /// - Returns: Boolean
-    public func watchlistContains(symbol: SymbolResult) -> Bool {
+    public func watchlistContains(symbol: CoinCapAsset) -> Bool {
         watchlist.contains(symbol)
     }
     
@@ -47,7 +47,7 @@ final class PersistanceManager: PersistanceService {
     /// - Parameters:
     ///   - symbol: Symbol to add
     ///   - companyName: Company name for symbol being added
-    public func addToWatchlist(symbol: SymbolResult) {
+    public func addToWatchlist(symbol: CoinCapAsset) {
         if !watchlistContains(symbol: symbol) {
             var current = watchlist
             current.append(symbol)
@@ -61,8 +61,8 @@ final class PersistanceManager: PersistanceService {
     
     /// Remove item from watchlist
     /// - Parameter symbol: Symbol to remove
-    public func removeFromWatchlist(symbol: SymbolResult) {
-        var newList = [SymbolResult]()
+    public func removeFromWatchlist(symbol: CoinCapAsset) {
+        var newList = [CoinCapAsset]()
         
         for item in watchlist where item != symbol {
             newList.append(item)

@@ -23,7 +23,7 @@ protocol WatchlistPresentable: Presentable {
 }
 
 protocol WatchlistListener: AnyObject {
-    func watchlistDidTap(_ symbol: SymbolResult)
+    func watchlistDidTap(_ symbol: CoinCapAsset)
 }
 
 protocol WatchlistInteractorDependency {
@@ -41,8 +41,7 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     //MARK: - Model
     private var watchlistItemModels: [WatchlistItemModel] = []
     
-    //TODO: This should be fetched from Network
-    private var symbols: [SymbolResult] = []
+    private var symbols: [CoinCapAsset] = []
     
     private var displaySymbols: [Symbol] {
         self.symbols.map({$0.displaySymbol})

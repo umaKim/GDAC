@@ -19,8 +19,8 @@ protocol SearchPresentableListener: AnyObject {
 
 final class SearchViewController: UIViewController, SearchPresentable, SearchViewControllable {
 
-    private typealias DataSource = UITableViewDiffableDataSource<Section, SymbolResult>
-    private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, SymbolResult>
+    private typealias DataSource = UITableViewDiffableDataSource<Section, CoinCapAsset>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, CoinCapAsset>
     
     private var dataSource: DataSource?
     
@@ -85,7 +85,7 @@ extension SearchViewController {
     }
     
     func reloadData(
-        with data: [SymbolResult],
+        with data: [CoinCapAsset],
         animation: UITableView.RowAnimation
     ) {
         var snapshot = Snapshot()

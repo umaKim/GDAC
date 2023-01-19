@@ -15,8 +15,8 @@ protocol SearchDependency: Dependency {
 final class SearchComponent: Component<SearchDependency>, SearchInteractorDependency, CoinDetailDependency {
     
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
-    lazy var symbol: AnyPublisher<SymbolResult, Never> = symbolSubject.eraseToAnyPublisher()
-    var symbolSubject: PassthroughSubject<SymbolResult, Never> = PassthroughSubject<SymbolResult, Never>()
+    lazy var symbol: AnyPublisher<CoinCapAsset, Never> = symbolSubject.eraseToAnyPublisher()
+    var symbolSubject: PassthroughSubject<CoinCapAsset, Never> = PassthroughSubject<CoinCapAsset, Never>()
     
     let searchRepository: SearchRepository
     

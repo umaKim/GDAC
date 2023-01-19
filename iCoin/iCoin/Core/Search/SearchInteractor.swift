@@ -18,7 +18,7 @@ protocol SearchRouting: ViewableRouting {
 protocol SearchPresentable: Presentable {
     var listener: SearchPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
-    func reloadData(with data: [SymbolResult], animation: UITableView.RowAnimation)
+    func reloadData(with data: [CoinCapAsset], animation: UITableView.RowAnimation)
 }
 
 protocol SearchListener: AnyObject {
@@ -28,7 +28,7 @@ protocol SearchListener: AnyObject {
 
 protocol SearchInteractorDependency {
     var searchRepository: SearchRepository { get }
-    var symbolSubject: PassthroughSubject<SymbolResult, Never> { get }
+    var symbolSubject: PassthroughSubject<CoinCapAsset, Never> { get }
 }
 
 final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchInteractable, SearchPresentableListener {
@@ -40,8 +40,8 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
     
     private var cancellables: Set<AnyCancellable>
     
-    private var filteredItems: [SymbolResult] = []
-    private var originalItems: [SymbolResult] = []
+    private var filteredItems: [CoinCapAsset] = []
+    private var originalItems: [CoinCapAsset] = []
     
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.

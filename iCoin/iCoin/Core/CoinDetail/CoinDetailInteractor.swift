@@ -15,7 +15,9 @@ protocol CoinDetailPresentable: Presentable {
     var listener: CoinDetailPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
     
-    func update(symbol: SymbolResult)
+    func update(symbol: CoinCapAsset)
+    func update(_ coinLabelData: CoinLabelData)
+    func update(_ coinDetailMetaViewData: CoinDetailMetaViewData)
     func doesSymbolInPersistance(_ exist: Bool)
 }
 
@@ -26,7 +28,7 @@ protocol CoinDetailListener: AnyObject {
 
 protocol CoinDetailInteractorDependency {
     var coinDetailRepository: CoinDetailRepository { get }
-    var symbol: AnyPublisher<SymbolResult, Never> { get }
+    var symbol: AnyPublisher<CoinCapAsset, Never> { get }
 }
 
 final class CoinDetailInteractor: PresentableInteractor<CoinDetailPresentable>, CoinDetailInteractable, CoinDetailPresentableListener {
@@ -48,7 +50,7 @@ final class CoinDetailInteractor: PresentableInteractor<CoinDetailPresentable>, 
         presenter.listener = self
     }
     
-    private var symbol: SymbolResult?
+    private var symbol: CoinCapAsset?
 
     override func didBecomeActive() {
         super.didBecomeActive()

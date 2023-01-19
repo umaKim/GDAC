@@ -12,7 +12,7 @@ protocol WatchlistRepository {
     func fetch(symbols: [String]) -> AnyPublisher<[Datum], Never>
     func disconnect()
     func connect()
-    func fetchSymbols() -> AnyPublisher<[SymbolResult], Error>
+    func fetchSymbols() -> AnyPublisher<CoinCapAssetResponse, Error>
 }
 
 struct WatchlistRepositoryImp: WatchlistRepository {
@@ -38,11 +38,8 @@ struct WatchlistRepositoryImp: WatchlistRepository {
         websocket.connect()
     }
     
-    func fetchSymbols() -> AnyPublisher<[SymbolResult], Error> {
-        Future { promise in
-            promise(.success(StaticSymbols.symbols))
-        }
-        .eraseToAnyPublisher()
+    func fetchSymbols() -> AnyPublisher<CoinCapAssetResponse, Error> {
+        network.fetchCoinCapAssets()
     }
     
     enum StaticSymbols {
@@ -96,10 +93,11 @@ struct PortfolioWatchlistRepositoryImp: WatchlistRepository {
         websocket.connect()
     }
     
-    func fetchSymbols() -> AnyPublisher<[SymbolResult], Error> {
-        Future<[SymbolResult], Error> { promise in
-            promise(.success(self.persistance.watchlist))
+    func fetchSymbols() -> AnyPublisher<CoinCapAssetResponse, Error> {
+        Future<CoinCapAssetResponse, Error> { promise in
+            promise(.success(CoinCapAssetResponse(data: self.persistance.watchlist)))
         }
         .eraseToAnyPublisher()
     }
+    
 }

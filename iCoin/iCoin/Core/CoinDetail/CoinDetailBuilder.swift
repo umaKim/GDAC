@@ -8,12 +8,12 @@ import Combine
 import ModernRIBs
 
 protocol CoinDetailDependency: Dependency {
-    var symbol: AnyPublisher<SymbolResult, Never> { get }
+    var symbol: AnyPublisher<CoinCapAsset, Never> { get }
 }
 
 final class CoinDetailComponent: Component<CoinDetailDependency>, CoinDetailInteractorDependency {
     
-    var symbol: AnyPublisher<SymbolResult, Never> { dependency.symbol }
+    var symbol: AnyPublisher<CoinCapAsset, Never> { dependency.symbol }
     
     let coinDetailRepository: CoinDetailRepository
     
