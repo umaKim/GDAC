@@ -145,6 +145,15 @@
       }
     },
     {
+      "identity" : "stock-charts",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/denniscmartin/stock-charts.git",
+      "state" : {
+        "revision" : "5a374cada5703ae6da1e11f1b28afed2cc96984c",
+        "version" : "1.2.9"
+      }
+    },
+    {
       "identity" : "swift-protobuf",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",
