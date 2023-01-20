@@ -25,7 +25,7 @@ protocol PortfolioListener: AnyObject {
 }
 
 protocol PortfolioInteractorDependency {
-    var symbolSubject: PassthroughSubject<SymbolResult, Never> { get }
+    var symbolSubject: PassthroughSubject<CoinCapAsset, Never> { get }
     var lifeCycleDidChangeSubject: PassthroughSubject<ViewControllerLifeCycle, Never> { get }
 }
 
@@ -64,7 +64,7 @@ final class PortfolioInteractor: PresentableInteractor<PortfolioPresentable>, Po
         dependency.lifeCycleDidChangeSubject.send(.viewDidDisappear)
     }
     
-    func watchlistDidTap(_ symbol: SymbolResult) {
+    func watchlistDidTap(_ symbol: CoinCapAsset) {
         router?.attachCoinDetail()
         dependency.symbolSubject.send(symbol)
     }
