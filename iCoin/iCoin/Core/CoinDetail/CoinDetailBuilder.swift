@@ -41,7 +41,11 @@ final class CoinDetailBuilder: Builder<CoinDetailDependency>, CoinDetailBuildabl
     func build(withListener listener: CoinDetailListener) -> CoinDetailRouting {
         let component = CoinDetailComponent(
             dependency: dependency,
-            coinDetailRepository: CoinDetailRepositoryImp(PersistanceManager())
+            coinDetailRepository: CoinDetailRepositoryImp(
+                PersistanceManager(),
+                StarScreamWebSocket(),
+                NetworkManager()
+            )
         )
         let viewController = CoinDetailViewController()
         let interactor = CoinDetailInteractor(

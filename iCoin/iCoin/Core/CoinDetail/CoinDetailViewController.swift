@@ -18,18 +18,10 @@ protocol CoinDetailPresentableListener: AnyObject {
 }
 
 final class CoinDetailViewController: UIViewController, CoinDetailPresentable, CoinDetailViewControllable {
-    
+   
+   
     weak var listener: CoinDetailPresentableListener?
-    
-    private lazy var favoriteButton = UIBarButtonItem(
-        image: .init(systemName: ""),
-        style: .done,
-        target: self,
-        action: #selector(favoriteButtonDidTap)
-    )
-    
-    var contentScrollView = UIScrollView()
-    
+    private let contentView = CoinDetailView()
     private var cancellables: Set<AnyCancellable>
     
     init() {
@@ -41,75 +33,56 @@ final class CoinDetailViewController: UIViewController, CoinDetailPresentable, C
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        super.loadView()
+        view = contentView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationItem(
-            with: .back,
-            tintColor: .label,
-            target: self,
-            action: #selector(backButtonDidTap)
-        )
         
-        setupUI()
+        navigationItem.leftBarButtonItems = [contentView.backButton]
+        navigationItem.rightBarButtonItems = [contentView.favoriteButton]
+        
+        bind()
     }
     
-    @objc
-    private func favoriteButtonDidTap() {
-        listener?.didTapFavoriteButton()
+    private func bind() {
+        contentView
+            .actionPublisher
+            .sink {[weak self] action in
+                guard let self = self else { return }
+                switch action {
+                case .backButton:
+                    self.listener?.didTapBackButton()
+                case .favoriteButton:
+                    self.listener?.didTapFavoriteButton()
+                }
+            }
+            .store(in: &cancellables)
     }
     
-    @objc
-    private func backButtonDidTap() {
-        listener?.didTapBackButton()
+    func update(symbol: CoinCapAsset) {
+        contentView.update(symbol: symbol)
     }
     
-    private var contentView = UIView()
+    func update(_ coinLabelData: CoinLabelData) {
+        contentView.update(coinLabelData)
+    }
     
-    private lazy var label: UILabel = UILabel()
+    func update(_ coinPriceData: CoinPriceLabelData) {
+        contentView.update(coinPriceData)
+    }
     
-    func update(symbol: SymbolResult) {
-        label.numberOfLines = 5
-        label.text = "\(symbol.symbol)\n\(symbol.displaySymbol)\n\(symbol.description)"
+    func update(_ coinChartData: [Double]) {
+        contentView.update(coinChartData)
+    }
+    
+    func update(_ coinDetailMetaViewData: CoinDetailMetaViewData) {
+        contentView.update(coinDetailMetaViewData)
     }
     
     func doesSymbolInPersistance(_ exist: Bool) {
-        favoriteButton.image = .init(systemName: exist ? "star.fill" : "star")
-    }
-}
-
-extension CoinDetailViewController {
-    private func setupUI() {
-        
-        let chartView = UIHostingController(rootView: ChartView())
-        guard let chartView = chartView.view else { return }
-        
-        favoriteButton.tintColor = .gdacBlue
-        navigationItem.rightBarButtonItems = [favoriteButton]
-        
-        view.backgroundColor = .brown
-        view.addSubviews(contentScrollView)
-        contentScrollView.addSubviews(contentView)
-        contentView.addSubviews(label, chartView)
-        
-        label.textColor = .red
-        
-        NSLayoutConstraint.activate([
-            contentScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            contentScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            contentScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            contentScrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: contentScrollView.safeAreaLayoutGuide.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: contentScrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: contentScrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: contentScrollView.safeAreaLayoutGuide.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor),
-            
-            label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            
-            chartView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            chartView.topAnchor.constraint(equalTo: label.bottomAnchor)
-        ])
+        contentView.doesSymbolInPersistance(exist)
     }
 }
