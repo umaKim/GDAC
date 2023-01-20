@@ -18,11 +18,19 @@ protocol NewsNetWorkable {
     func fetchNews(of symbol: String) -> AnyPublisher<NewsDataResponse, Error>
 }
 
-protocol SymbolsNetworkable {
-    func fetchSymbols() -> AnyPublisher<[SymbolResult], Error>
+protocol CoinCapAssetNetworkable {
+    func fetchCoinCapAssets() -> AnyPublisher<CoinCapAssetResponse, Error>
 }
 
-final class NetworkManager: WatchlistNetworkable, NewsNetWorkable, SymbolsNetworkable, UrlConfigurable {
+protocol CoinCapMetaNetworkable {
+    func fetchMetaData(of symbol: String) -> AnyPublisher<CoinCapDetail, Error>
+}
+
+protocol CoinChartDataNetworkable {
+    func fetchCoinChart(of id: String, days: String) -> AnyPublisher<CoinChartData, Error>
+}
+
+final class NetworkManager: WatchlistNetworkable, NewsNetWorkable, CoinCapAssetNetworkable, CoinCapMetaNetworkable, UrlConfigurable {
     
     private enum NewsConstants {
         static let apiKey = "508858945962b1d801891796a6d67f8076873f9996b13b48e5eb63030be21ec4"
@@ -43,14 +51,34 @@ final class NetworkManager: WatchlistNetworkable, NewsNetWorkable, SymbolsNetwor
         static let day: TimeInterval = 3600 * 24
     }
     
-    ///Perform search
-    func fetchSymbols() -> AnyPublisher<[SymbolResult], Error> {
+    private enum CoinCapApi {
+        static let baseUrl = "https://api.coincap.io/v2/assets/"
+    }
+    
+    private enum CoinGeckoApi {
+        static let baseUrl = "https://api.coingecko.com/api/v3/coins/"
+    }
+    
+    ///Perform list of Assets registered on CoinCap
+    ///Return AnyPublisher cointaining CoinCapAssetResponse with Error
+    func fetchCoinCapAssets() -> AnyPublisher<CoinCapAssetResponse, Error> {
+        let url = url(for: CoinCapApi.baseUrl, with: ["limit": "100"])
+        return request(url: url, expecting: CoinCapAssetResponse.self)
+    }
+    
+    func fetchMetaData(of symbol: String) -> AnyPublisher<CoinCapDetail, Error> {
         let url = url(
-            for: FinnHubApi.baseUrl + SymbolConstants.url,
-            queryParams: ["exchange":"binance"],
-            with: ["token": FinnHubApi.apiKey]
+            for: "https://api.coingecko.com/api/v3/coins/" + symbol,
+            queryParams: [
+                "localization": "false",
+                "tickers" : "false",
+                "market_data" : "true",
+                "community_data" : "true",
+                "developer_data": "false",
+                "sparkline": "false"
+            ]
         )
-        return request(url: url, expecting: [SymbolResult].self)
+        return request(url: url, expecting: CoinCapDetail.self)
     }
     
     ///Perform News api call
@@ -89,7 +117,23 @@ final class NetworkManager: WatchlistNetworkable, NewsNetWorkable, SymbolsNetwor
         case noDataReturned
         case invalidUrl
     }
-    
+}
+
+extension NetworkManager: CoinChartDataNetworkable {
+    func fetchCoinChart(of id: String, days: String) -> AnyPublisher<CoinChartData, Error> {
+        let url = url(
+            for: CoinGeckoApi.baseUrl + id + "/market_chart",
+            queryParams: [
+                "vs_currency": "usd",
+                "days" : "1"
+            ]
+        )
+        return request(url: url, expecting: CoinChartData.self)
+    }
+}
+
+// MARK: - General Request
+extension NetworkManager {
     /// Perform api call
     /// - Parameters:
     ///   - url: URL to hit
