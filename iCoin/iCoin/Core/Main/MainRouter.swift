@@ -30,7 +30,6 @@ protocol MainViewControllable: ViewControllable {
 
 final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, MainRouting {
     
-    
     private let watchList: WatchlistBuildable
     private var watchListRouting: Routing?
     

@@ -64,7 +64,10 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
     func build(withListener listener: MainListener) -> MainRouting {
         let component = MainComponent(
             dependency: dependency,
-            watchlistRepository: WatchlistRepositoryImp(websocket: StarScreamWebSocket()),
+            watchlistRepository: WatchlistRepositoryImp(
+                websocket: StarScreamWebSocket(),
+                network: NetworkManager()
+            ),
             newsRepository: NewsRepositoryImp(network: NetworkManager()),
             opinionRepository: OpinionRepositoryImp(firebase: FirebaseManager()),
             writingOpinionRepository: WritingOpinionRepositoryImp(firebase: FirebaseManager())
