@@ -37,7 +37,7 @@ protocol MainListener: AnyObject {
 protocol MainInteractorDependency {
     var symbolSubject: PassthroughSubject<CoinCapAsset, Never> { get }
 //    var watchlistRepository: WatchlistRepository { get }
-    var lifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> { get }
+    var lifeCycleDidChangeSubject: PassthroughSubject<ViewControllerLifeCycle, Never> { get }
 }
 
 final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener, AdaptivePresentationControllerDelegate {

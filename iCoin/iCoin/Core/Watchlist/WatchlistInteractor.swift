@@ -28,7 +28,7 @@ protocol WatchlistListener: AnyObject {
 
 protocol WatchlistInteractorDependency {
     var watchlistRepository: WatchlistRepository { get }
-    var lifeCycleDidChangePublisher: AnyPublisher<MainViewLifeCycle, Never> { get }
+    var lifeCycleDidChangePublisher: AnyPublisher<ViewControllerLifeCycle, Never> { get }
 }
 
 final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, WatchlistInteractable  {
@@ -84,7 +84,28 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
         cancellables.forEach({$0.cancel()})
         cancellables.removeAll()
     }
-    
+}
+
+// MARK: - Bind
+extension WatchlistInteractor {
+    private func bind() {
+        dependency
+            .lifeCycleDidChangePublisher
+            .sink {[weak self] cycle in
+                guard let self = self else { return }
+                switch cycle {
+                case .viewDidAppear:
+                    print("watchlist viewdidappear")
+                    self.fetchSymbols()
+                case .viewDidDisappear:
+                    print("watchlist viewDidDisappear")
+                    self.disconnectWebSocket()
+                }
+            }
+            .store(in: &cancellables)
+    }
+}
+
     private func fetchSymbols() {
         dependency
             .watchlistRepository

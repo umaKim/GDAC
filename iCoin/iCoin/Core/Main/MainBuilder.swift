@@ -26,8 +26,8 @@ final class MainComponent: Component<MainDependency>,
     lazy var symbol: AnyPublisher<CoinCapAsset, Never> = symbolSubject.eraseToAnyPublisher()
     var symbolSubject: PassthroughSubject<CoinCapAsset, Never> = PassthroughSubject<CoinCapAsset, Never>()
     
-    lazy var lifeCycleDidChangePublisher: AnyPublisher<MainViewLifeCycle, Never> = lifeCycleDidChangeSubject.eraseToAnyPublisher()
-    var lifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> = PassthroughSubject<MainViewLifeCycle, Never>()
+    lazy var lifeCycleDidChangePublisher: AnyPublisher<ViewControllerLifeCycle, Never> = lifeCycleDidChangeSubject.eraseToAnyPublisher()
+    var lifeCycleDidChangeSubject: PassthroughSubject<ViewControllerLifeCycle, Never> = PassthroughSubject<ViewControllerLifeCycle, Never>()
     
     let watchlistRepository: WatchlistRepository
     let newsRepository: NewsRepository

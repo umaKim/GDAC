@@ -26,7 +26,7 @@ protocol PortfolioListener: AnyObject {
 
 protocol PortfolioInteractorDependency {
     var symbolSubject: PassthroughSubject<SymbolResult, Never> { get }
-    var lifeCycleDidChangeSubject: PassthroughSubject<MainViewLifeCycle, Never> { get }
+    var lifeCycleDidChangeSubject: PassthroughSubject<ViewControllerLifeCycle, Never> { get }
 }
 
 final class PortfolioInteractor: PresentableInteractor<PortfolioPresentable>, PortfolioInteractable, PortfolioPresentableListener {
