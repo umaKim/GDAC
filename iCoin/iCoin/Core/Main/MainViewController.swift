@@ -11,24 +11,12 @@ import ModernRIBs
 import Combine
 import UIKit
 
-enum MainViewLifeCycle {
-    case viewDidAppear
-    case viewDidDisappear
-}
-
-protocol TabBarItemSettable { }
-extension TabBarItemSettable where Self: UIViewController {
-    func setupTabBarItem(title: String, image: UIImage?, selectedImage: UIImage? = nil) {
-        tabBarItem = UITabBarItem(title: title, image: image, selectedImage: selectedImage)
-    }
-}
-
 protocol MainPresentableListener: AnyObject {
     func searchButtonDidTap()
     func writingOpinionButtonDidTap()
     
-    func viewDidAppear()
-    func viewDidDisappear()
+    func viewWillAppear()
+    func viewWillDisappear()
 }
 
 final class MainViewController: UIViewController, MainPresentable, MainViewControllable {
@@ -66,14 +54,14 @@ final class MainViewController: UIViewController, MainPresentable, MainViewContr
         bind()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        listener?.viewDidAppear()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        listener?.viewWillAppear()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        listener?.viewDidDisappear()
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        listener?.viewWillDisappear()
     }
     
     private func bind() {
@@ -98,6 +86,7 @@ final class MainViewController: UIViewController, MainPresentable, MainViewContr
     }
 }
 
+// MARK: - FloatingPanelControllerDelegate
 extension MainViewController: FloatingPanelControllerDelegate {
     private func setupFloatingPanel() {
         let panel = FloatingPanelController(delegate: self)
@@ -165,6 +154,7 @@ extension MainViewController {
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         cellableViews.count
@@ -182,6 +172,7 @@ extension MainViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,

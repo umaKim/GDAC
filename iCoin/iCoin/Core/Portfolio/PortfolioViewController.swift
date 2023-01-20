@@ -48,8 +48,8 @@ final class PortfolioViewController: UIViewController, PortfolioPresentable, Por
         listener?.viewDidAppear()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         listener?.viewDidDisappear()
     }
     

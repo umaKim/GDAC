@@ -35,9 +35,7 @@ final class PortfolioInteractor: PresentableInteractor<PortfolioPresentable>, Po
     weak var listener: PortfolioListener?
     
     private let dependency: PortfolioInteractorDependency
-
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
+    
     init(
         presenter: PortfolioPresentable,
         dependency: PortfolioInteractorDependency
@@ -55,15 +53,21 @@ final class PortfolioInteractor: PresentableInteractor<PortfolioPresentable>, Po
     override func willResignActive() {
         super.willResignActive()
     }
-    
+}
+
+// MARK: - Life Cycle
+extension PortfolioInteractor {
     func viewDidAppear() {
-        dependency.lifeCycleDidChangeSubject.send(.viewDidAppear)
+        dependency.lifeCycleDidChangeSubject.send(.viewWillAppear)
     }
     
     func viewDidDisappear() {
-        dependency.lifeCycleDidChangeSubject.send(.viewDidDisappear)
+        dependency.lifeCycleDidChangeSubject.send(.viewWillDisappear)
     }
-    
+}
+
+// MARK: - Interaction from child RIBs
+extension PortfolioInteractor {
     func watchlistDidTap(_ symbol: CoinCapAsset) {
         router?.attachCoinDetail()
         dependency.symbolSubject.send(symbol)
