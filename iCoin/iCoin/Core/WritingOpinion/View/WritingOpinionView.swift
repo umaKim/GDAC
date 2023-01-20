@@ -90,7 +90,6 @@ extension WritingView {
                 let data = PostContent(
                     id: self.writerIdTextField.text ?? "",
                     title: self.titleTextField.text ?? "",
-//                    date: Int(NSDate().timeIntervalSince1970),
                     date: Date(),
                     body: self.bodyTextView.text
                 )

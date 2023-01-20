@@ -50,19 +50,6 @@ final class WatchlistViewController: UIViewController, WatchlistPresentable, Wat
         view = contentView
         
         configureTableViewDataSource()
-        bind()
-    }
-    
-    private func bind() {
-        dataSource?
-            .actionPublisher
-            .sink(receiveValue: {[weak self] action in
-                switch action {
-                case .deleteAt(let index):
-                    self?.listener?.removeItem(at: index)
-                }
-            })
-            .store(in: &cancellables)
     }
     
     func setTableEdittingMode() {
@@ -86,13 +73,6 @@ final class WatchlistViewController: UIViewController, WatchlistPresentable, Wat
         snapshot.appendItems(data)
         dataSource?.apply(snapshot, animatingDifferences: true)
         dataSource?.defaultRowAnimation = animation
-    }
-    
-    private func setTableViewEditingMode() {
-        contentView.tableView.setEditing(
-            !contentView.tableView.isEditing,
-            animated: true
-        )
     }
 }
 

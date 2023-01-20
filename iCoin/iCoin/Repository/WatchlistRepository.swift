@@ -9,63 +9,50 @@ import Combine
 import Foundation
 
 protocol WatchlistRepository {
+    // MARK: - Socket
     func fetch(symbols: [String]) -> AnyPublisher<[Datum], Never>
     func disconnect()
     func connect()
+    
+    // MARK: - Network for fetching Asset list
     func fetchSymbols() -> AnyPublisher<CoinCapAssetResponse, Error>
 }
 
 struct WatchlistRepositoryImp: WatchlistRepository {
     private let websocket: WebSocketProtocol
+    private let network: CoinCapAssetNetworkable
     
-    init(websocket: WebSocketProtocol) {
+    init(
+        websocket: WebSocketProtocol,
+        network: CoinCapAssetNetworkable
+    ) {
         self.websocket = websocket
+        self.network = network
     }
     
     func fetch(symbols: [String]) -> AnyPublisher<[Datum], Never> {
-        websocket.webSocket(symbols: symbols)
+        websocket.set(symbols: symbols)
         
         return websocket
             .dataPublisher
             .eraseToAnyPublisher()
     }
     
-    func disconnect() {
-        websocket.disconnect()
-    }
-    
     func connect() {
         websocket.connect()
+    }
+    
+    func disconnect() {
+        websocket.disconnect()
     }
     
     func fetchSymbols() -> AnyPublisher<CoinCapAssetResponse, Error> {
         network.fetchCoinCapAssets()
     }
-    
-    enum StaticSymbols {
-        static let symbols: [SymbolResult] = [
-            .init(description: "Binance BTCUSDT", displaySymbol: "BTC/USDT", symbol: "BTCUSDT"),
-            .init(description: "Binance ETHUSDT", displaySymbol: "ETH/USDT", symbol: "ETHUSDT"),
-            .init(description: "Binance BNBUSDT", displaySymbol: "BNB/USDT", symbol: "BNBUSDT"),
-            .init(description: "Binance XRPUSDT", displaySymbol: "XRP/USDT", symbol: "XRPUSDT"),
-            .init(description: "Binance BUSDUSDT", displaySymbol: "BUSD/USDT", symbol: "BUSDUSDT"),
-            .init(description: "Binance ADAUSDT", displaySymbol: "ADA/USDT", symbol: "ADAUSDT"),
-            .init(description: "Binance MATICUSDT", displaySymbol: "MATIC/USDT", symbol: "MATICUSDT"),
-            .init(description: "Binance LTCUSDT", displaySymbol: "LTC/USDT", symbol: "LTCUSDT"),
-            .init(description: "Binance DOTUSDT", displaySymbol: "DOT/USDT", symbol: "DOTUSDT"),
-            .init(description: "Binance SOLUSDT", displaySymbol: "SOL/USDT", symbol: "SOLUSDT"),
-            .init(description: "Binance TRXUSDT", displaySymbol: "TRX/USDT", symbol: "TRXUSDT"),
-            .init(description: "Binance UNIUSDT", displaySymbol: "UNI/USDT", symbol: "UNIUSDT"),
-            .init(description: "Binance AVAXUSDT", displaySymbol: "AVAX/USDT", symbol: "AVAXUSDT"),
-            .init(description: "Binance LINKUSDT", displaySymbol: "LINK/USDT", symbol: "LINKUSDT"),
-            .init(description: "Binance ATOMUSDT", displaySymbol: "ATOM/USDT", symbol: "ATOMUSDT"),
-            .init(description: "Binance XMRUSDT", displaySymbol: "XMR/USDT", symbol: "XMRUSDT"),
-            .init(description: "Binance ETCUSDT", displaySymbol: "ETC/USDT", symbol: "ETCUSDT"),
-        ]
-    }
 }
 
 struct PortfolioWatchlistRepositoryImp: WatchlistRepository {
+    
     private let websocket: WebSocketProtocol
     private let persistance: PersistanceService
     
@@ -78,7 +65,7 @@ struct PortfolioWatchlistRepositoryImp: WatchlistRepository {
     }
     
     func fetch(symbols: [String]) -> AnyPublisher<[Datum], Never> {
-        websocket.webSocket(symbols: symbols)
+        websocket.set(symbols: symbols)
         
         return websocket
             .dataPublisher

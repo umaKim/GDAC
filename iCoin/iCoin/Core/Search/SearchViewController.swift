@@ -78,8 +78,8 @@ extension SearchViewController {
                         withIdentifier: SearchCell.identifier,
                         for: indexPath) as? SearchCell
                 else { return nil }
-                cell.textLabel?.text = searchResult.displaySymbol
-                cell.detailTextLabel?.text = searchResult.description.replacingOccurrences(of: "Binance", with: "")
+                cell.textLabel?.text = searchResult.name
+                cell.detailTextLabel?.text = searchResult.symbol
                 return cell
             })
     }

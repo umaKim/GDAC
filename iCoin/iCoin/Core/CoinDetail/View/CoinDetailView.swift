@@ -24,22 +24,12 @@ final class CoinDetailView: UIView {
         action: #selector(backButtonDidTap)
     )
     
-    @objc
-    private func backButtonDidTap() {
-        actionSubject.send(.backButton)
-    }
-    
     private(set) lazy var favoriteButton = UIBarButtonItem(
         image: .init(systemName: ""),
         style: .done,
         target: self,
         action: #selector(favoriteButtonDidTap)
     )
-    
-    @objc
-    private func favoriteButtonDidTap() {
-        actionSubject.send(.favoriteButton)
-    }
     
     private var contentScrollView = UIScrollView()
     private var contentView = UIView()
@@ -85,6 +75,20 @@ final class CoinDetailView: UIView {
     }
 }
 
+// MARK: - Button Actions
+extension CoinDetailView {
+    @objc
+    private func backButtonDidTap() {
+        actionSubject.send(.backButton)
+    }
+    
+    @objc
+    private func favoriteButtonDidTap() {
+        actionSubject.send(.favoriteButton)
+    }
+}
+
+// MARK: - Set up UI
 extension CoinDetailView {
     private func setupUI() {
         addSubviews(contentScrollView)
@@ -101,7 +105,7 @@ extension CoinDetailView {
             chartView,
             metaView
         )
-        let cvheight = ((UIScreen.main.bounds.width - 20) / 2) * 5
+        
         NSLayoutConstraint.activate([
             contentScrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             contentScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -128,10 +132,4 @@ extension CoinDetailView {
             metaView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
-}
-
-struct CoinLabelData {
-    let image: UIImage
-    let name: String
-    let symbol: String
 }

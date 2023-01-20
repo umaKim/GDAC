@@ -36,7 +36,6 @@ protocol MainListener: AnyObject {
 
 protocol MainInteractorDependency {
     var symbolSubject: PassthroughSubject<CoinCapAsset, Never> { get }
-//    var watchlistRepository: WatchlistRepository { get }
     var lifeCycleDidChangeSubject: PassthroughSubject<ViewControllerLifeCycle, Never> { get }
 }
 
@@ -49,8 +48,6 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     
     let presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy
     
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
     init(
         presenter: MainPresentable,
         dependency: MainInteractorDependency
@@ -72,19 +69,28 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     override func willResignActive() {
         super.willResignActive()
     }
-    
-    func viewDidAppear() {
-        dependency.lifeCycleDidChangeSubject.send(.viewDidAppear)
+}
+
+// MARK: - Life Cycle
+extension MainInteractor {
+    func viewWillAppear() {
+        dependency.lifeCycleDidChangeSubject.send(.viewWillAppear)
     }
 
-    func viewDidDisappear() {
-        dependency.lifeCycleDidChangeSubject.send(.viewDidDisappear)
+    func viewWillDisappear() {
+        dependency.lifeCycleDidChangeSubject.send(.viewWillDisappear)
     }
-    
+}
+
+// MARK: - News
+extension MainInteractor {
     func openNews(of url: String) {
         presenter.openNews(of: url)
     }
-    
+}
+
+// MARK: - Search
+extension MainInteractor {
     func searchButtonDidTap() {
         router?.attachSearch()
     }
@@ -92,7 +98,10 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     func searchDidTapBackButton() {
         router?.detachSearch()
     }
-    
+}
+
+// MARK: - Writing Opinion
+extension MainInteractor {
     func writingOpinionButtonDidTap() {
         router?.attachWritingOpinion()
     }
@@ -104,6 +113,10 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     func presentationControllerDidDismiss() {
         router?.detachWritingOpinion()
     }
+}
+
+// MARK: - CoinDetail
+extension MainInteractor {
     
     func watchlistDidTap(_ symbol: CoinCapAsset) {
         router?.attachCoinDetail()

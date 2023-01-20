@@ -11,7 +11,6 @@ import UIKit.UICollectionView
 import Combine
 
 enum MainViewAction {
-//    case didTapEditting
     case searchButtonDidTap
     case writingOpinionDidTap
 }
@@ -28,12 +27,12 @@ final class MainView: BaseView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.register(MainViewCell.self, forCellWithReuseIdentifier: MainViewCell.identifier)
-        cv.isPagingEnabled = true
-        cv.showsHorizontalScrollIndicator = false
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        return cv
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: MainViewCell.identifier)
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
     }()
     
     private(set) lazy var searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .done, target: nil, action: nil)
@@ -71,10 +70,6 @@ extension MainView {
                     
                 case .didTapOpinions:
                     self?.scroll(to: .opinions)
-                    
-//                case .didTapEditting:
-//                    self?.actionSubject.send(.didTapEditting)
-//                    self?.scroll(to: .myList)
                 }
             }
             .store(in: &cancellables)

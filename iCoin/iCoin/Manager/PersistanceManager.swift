@@ -29,7 +29,10 @@ final class PersistanceManager: PersistanceService {
     /// Get usr watch list
     public var watchlist: [CoinCapAsset] {
         do {
-            let symbolResults = try userDefaults.getObject(forKey: Constants.watchListKey, castTo: [SymbolResult].self)
+            let symbolResults = try userDefaults.getObject(
+                forKey: Constants.watchListKey,
+                castTo: [CoinCapAsset].self
+            )
             return symbolResults
         } catch {
             return []
