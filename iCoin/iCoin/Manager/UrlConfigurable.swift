@@ -31,8 +31,6 @@ extension UrlConfigurable {
         // Convert queri items to suffix string
         urlString += "?" + queryItems.map { "\($0.name)=\($0.value ?? "")" }.joined(separator: "&")
         
-        print(urlString)
-        
         return URL(string: urlString)
     }
 }
