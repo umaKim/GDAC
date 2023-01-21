@@ -10,10 +10,6 @@ import UIKit
 import Combine
 
 protocol NewsPresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
-    
     func didTap(indexPath: IndexPath)
 }
 
@@ -24,10 +20,10 @@ final class NewsViewController: UIViewController, NewsPresentable, NewsViewContr
     weak var listener: NewsPresentableListener?
     
     private(set) var tableView: UITableView = {
-        let tv = UITableView()
-        tv.register(NewsHeaderView.self, forHeaderFooterViewReuseIdentifier: NewsHeaderView.identifier)
-        tv.register(NewsStoryTableViewCell.self, forCellReuseIdentifier: NewsStoryTableViewCell.identfier)
-        return tv
+        let tableView = UITableView()
+        tableView.register(NewsHeaderView.self, forHeaderFooterViewReuseIdentifier: NewsHeaderView.identifier)
+        tableView.register(NewsStoryTableViewCell.self, forCellReuseIdentifier: NewsStoryTableViewCell.identfier)
+        return tableView
     }()
     
     override func viewDidLoad() {
@@ -39,22 +35,9 @@ final class NewsViewController: UIViewController, NewsPresentable, NewsViewContr
         self.stories = data
         tableView.reloadData()
     }
-    
-    private func configureTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        
-        view.addSubviews(tableView)
-        
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor)
-        ])
-    }
 }
 
+// MARK: - UITableViewDataSource
 extension NewsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stories?.count ?? 0
@@ -62,7 +45,10 @@ extension NewsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: NewsStoryTableViewCell.identfier, for: indexPath) as? NewsStoryTableViewCell,
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: NewsStoryTableViewCell.identfier,
+                for: indexPath
+            ) as? NewsStoryTableViewCell,
             let stories = stories
         else { return UITableViewCell() }
         cell.configure(with: .init(model: stories[indexPath.row]))
@@ -70,6 +56,7 @@ extension NewsViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension NewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard
@@ -77,7 +64,9 @@ extension NewsViewController: UITableViewDelegate {
             withIdentifier: NewsHeaderView.identifier
         ) as? NewsHeaderView
         else { return nil }
-        header.configure(with: .init(title: "Top Crypto News", shouldShowAddButton: false))
+        header.configure(with: .init(
+            title: "Top Crypto News"
+        ))
         return header
     }
 
@@ -92,5 +81,22 @@ extension NewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         listener?.didTap(indexPath: indexPath)
+    }
+}
+
+// MARK: - Set up UI
+extension NewsViewController {
+    private func configureTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        view.addSubviews(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor)
+        ])
     }
 }
