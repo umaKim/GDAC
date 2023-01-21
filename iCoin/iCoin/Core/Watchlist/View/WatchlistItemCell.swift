@@ -37,7 +37,16 @@ final class WatchlistItemCell: UITableViewCell {
         label.font = .systemFont(ofSize: 15, weight: .semibold)
         label.textColor = .label
         label.textAlignment = .right
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.cornerRadius = 3
+        return label
+    }()
+    
+    /// Price Label
+    private let changePercent: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 15, weight: .semibold)
+        label.textColor = .label
+        label.textAlignment = .right
         label.layer.cornerRadius = 3
         return label
     }()
@@ -46,7 +55,6 @@ final class WatchlistItemCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         contentView.clipsToBounds = true
-        
         setupUI()
     }
     
