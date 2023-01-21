@@ -64,20 +64,27 @@ final class WatchlistItemCell: UITableViewCell {
     /// - Parameter model: WatchlistItemModel
     public func configure(with model: WatchlistItemModel) {
         self.model = model
-        guard
-            let newPrice = Double(model.price),
-            let oldPrice = Double(oldPriceKeeper)
-        else { return }
+        
+        let newPrice = Double(model.price) ?? 0
+        let oldPrice = Double(oldPriceKeeper) ?? 0
         
         if newPrice != oldPrice {
             let chnageColor: UIColor = oldPrice < newPrice ? .gdacRed : .gdacBlue
             animateLabelBackgroundColor(chnageColor)
         }
         
-        symbolLabel.text = self.model?.symbol
-        nameLabel.text =  "\(self.model?.symbol ?? "")/USDT"
-        priceLabel.text = "$\(self.model?.price ?? "0")"
-        oldPriceKeeper = self.model?.price ?? "0"
+        let changePercentage = Double(model.changePercentage) ?? 0
+        if changePercentage > 0 {
+            self.changePercent.textColor = .gdacRed
+        } else {
+            self.changePercent.textColor = .gdacBlue
+        }
+        
+        symbolLabel.text = model.symbol
+        nameLabel.text =  "\(model.symbol)/USD"
+        priceLabel.text = "$\(model.price)"
+        changePercent.text = "\(model.changePercentage)%"
+        oldPriceKeeper = model.price
     }
     
     private func animateLabelBackgroundColor(_ color: UIColor) {
