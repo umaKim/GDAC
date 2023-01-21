@@ -117,25 +117,22 @@ extension WatchlistItemCell {
         labelStackView.distribution = .equalSpacing
         labelStackView.spacing      = 6
         labelStackView.axis         = .vertical
-        labelStackView.frame        = .init(
-            x: 20,
-            y:(WatchlistItemCell.preferredHeight - frame.height) / 2,
-            width: frame.width/2.2,
-            height: frame.height
-        )
-        contentView.addSubview(labelStackView)
+        contentView.addSubviews(labelStackView)
+        NSLayoutConstraint.activate([
+            labelStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            labelStackView.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
     }
     
     private func configurePriceLabels() {
-        let labelStackView          = UIStackView(arrangedSubviews: [priceLabel])
+        let labelStackView          = UIStackView(arrangedSubviews: [priceLabel, changePercent])
         labelStackView.distribution = .fill
         labelStackView.alignment    = .trailing
         labelStackView.spacing      = 6
         labelStackView.axis         = .vertical
-        labelStackView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(labelStackView)
+        contentView.addSubviews(labelStackView)
         NSLayoutConstraint.activate([
-            labelStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            labelStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             labelStackView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
