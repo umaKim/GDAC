@@ -72,7 +72,10 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
     }
     
     func search(text: String) {
-        filteredItems = text.isEmpty ? originalItems : originalItems.filter({$0.symbol.lowercased().contains(text.lowercased())})
+        filteredItems = text.isEmpty ? originalItems : originalItems.filter({
+            $0.name.lowercased().contains(text.lowercased()) ||
+            $0.symbol.lowercased().contains(text.lowercased())
+        })
         presenter.reloadData(
             with: filteredItems,
             animation: .middle
