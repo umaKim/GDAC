@@ -179,6 +179,9 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        CGSize(width: view.frame.width, height: collectionView.frame.height)
+        CGSize(
+            width: view.frame.width,
+            height: collectionView.frame.height
+        )
     }
 }
