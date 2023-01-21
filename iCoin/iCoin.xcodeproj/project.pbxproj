@@ -86,7 +86,6 @@
 		357DCCDC284BEBF000AA7570 /* NewsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCCD8284BEBF000AA7570 /* NewsBuilder.swift */; };
 		357DCCDD284BEBF000AA7570 /* NewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCCD9284BEBF000AA7570 /* NewsInteractor.swift */; };
 		357DCCDF284BF09100AA7570 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DCCDE284BF09100AA7570 /* MainViewCell.swift */; };
-		35C162392972C41B003FBA1B /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C162382972C41B003FBA1B /* PortfolioView.swift */; };
 		35C1623C29730F4F003FBA1B /* Decodable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1623B29730F4F003FBA1B /* Decodable+Ext.swift */; };
 		35C1623E29730F6A003FBA1B /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1623D29730F6A003FBA1B /* UIColor+Ext.swift */; };
 		35C1624429756BAF003FBA1B /* WritingOpinionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1624029756BAF003FBA1B /* WritingOpinionRouter.swift */; };
@@ -195,7 +194,6 @@
 		357DCCD8284BEBF000AA7570 /* NewsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsBuilder.swift; sourceTree = "<group>"; };
 		357DCCD9284BEBF000AA7570 /* NewsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInteractor.swift; sourceTree = "<group>"; };
 		357DCCDE284BF09100AA7570 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
-		35C162382972C41B003FBA1B /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		35C1623B29730F4F003FBA1B /* Decodable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Ext.swift"; sourceTree = "<group>"; };
 		35C1623D29730F6A003FBA1B /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		35C1624029756BAF003FBA1B /* WritingOpinionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingOpinionRouter.swift; sourceTree = "<group>"; };
@@ -416,7 +414,6 @@
 				356FF3F72971C51C003BD4E8 /* PortfolioRouter.swift */,
 				356FF3FA2971C51C003BD4E8 /* PortfolioInteractor.swift */,
 				356FF3F82971C51C003BD4E8 /* PortfolioViewController.swift */,
-				35C162382972C41B003FBA1B /* PortfolioView.swift */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -740,7 +737,6 @@
 				357DCC88284BBBD300AA7570 /* SceneDelegate.swift in Sources */,
 				35C1625C29759C50003FBA1B /* SearchRepository.swift in Sources */,
 				35C1625229758026003FBA1B /* CaptionTextView.swift in Sources */,
-				35C162392972C41B003FBA1B /* PortfolioView.swift in Sources */,
 				356FF3FE2971C51C003BD4E8 /* PortfolioInteractor.swift in Sources */,
 				356FF3FD2971C51C003BD4E8 /* PortfolioBuilder.swift in Sources */,
 				3513804D2855CF630082D813 /* SearchInteractor.swift in Sources */,
