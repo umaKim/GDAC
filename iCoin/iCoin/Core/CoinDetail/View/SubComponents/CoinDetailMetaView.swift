@@ -8,6 +8,13 @@
 import UIKit
 
 final class CoinDetailMetaView: UIView {
+    private lazy var aboutThisCoinLabel: UILabel = {
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 22)
+        label.text = "About This Crypto"
+        return label
+    }()
+    
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -64,11 +71,15 @@ final class CoinDetailMetaView: UIView {
 extension CoinDetailMetaView {
     private func setupLayout() {
         let cvheight = (((UIScreen.main.bounds.width - 20) / 2) * 5)/2
-        addSubviews(titleLabel, descriptionLabel, collectionView)
+        addSubviews(aboutThisCoinLabel, titleLabel, descriptionLabel, collectionView)
         NSLayoutConstraint.activate([
+            aboutThisCoinLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            aboutThisCoinLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            aboutThisCoinLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            descriptionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            descriptionLabel.topAnchor.constraint(equalTo: aboutThisCoinLabel.bottomAnchor, constant: 8),
             
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),

@@ -62,6 +62,14 @@ final class NewsInteractor: PresentableInteractor<NewsPresentable>, NewsInteract
         // TODO: Pause any business logic.
     }
     
+    
+    func didTap(indexPath: IndexPath) {
+        listener?.openNews(of: stories[indexPath.row].url)
+    }
+}
+
+// MARK: - Network
+extension NewsInteractor {
     private func fetchNews() {
         dependency
             .newsRepository
@@ -70,8 +78,7 @@ final class NewsInteractor: PresentableInteractor<NewsPresentable>, NewsInteract
             .sink { completion in
                 switch completion {
                 case .finished:
-                    print("finished")
-                    
+                    break
                 case .failure(let error):
                     print(error)
                 }
@@ -80,9 +87,5 @@ final class NewsInteractor: PresentableInteractor<NewsPresentable>, NewsInteract
                 self?.presenter.update(with: response.Data)
             }
             .store(in: &cancellables)
-    }
-    
-    func didTap(indexPath: IndexPath) {
-        listener?.openNews(of: stories[indexPath.row].url)
     }
 }
