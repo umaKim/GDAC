@@ -21,8 +21,6 @@ final class PortfolioViewController: UIViewController, PortfolioPresentable, Por
     
     weak var listener: PortfolioPresentableListener?
     
-    private let contentView = PortfolioView()
-    
     init() {
         super.init(nibName: nil, bundle: nil)
         setupTabBarItem()
@@ -30,12 +28,6 @@ final class PortfolioViewController: UIViewController, PortfolioPresentable, Por
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func loadView() {
-        super.loadView()
-        
-        view = contentView
     }
     
     override func viewDidLoad() {
