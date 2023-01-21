@@ -32,6 +32,7 @@ protocol WatchlistInteractorDependency {
 }
 
 final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, WatchlistInteractable  {
+    typealias Symbol = String
     
     weak var router: WatchlistRouting?
     weak var listener: WatchlistListener?
@@ -44,7 +45,7 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     private var symbols: [CoinCapAsset] = []
     
     private var displaySymbols: [Symbol] {
-        self.symbols.map({$0.displaySymbol})
+        self.symbols.map({ "\($0.symbol.uppercased())" })
     }
     
     private let dependency: WatchlistInteractorDependency
@@ -65,28 +66,17 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
-        symbols.forEach({
-            watchlistItemModels.append(.init(
-                symbol: $0.displaySymbol,
-                detailName: "BINANCE:\($0.displaySymbol)",
-                price: "0",
-                changeColor: .clear,
-                changePercentage: ""
-            ))
-        })
         bind()
     }
     
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
         cancellables.forEach({$0.cancel()})
         cancellables.removeAll()
     }
 }
 
-// MARK: - Bind
+// MARK: - Life Cycle
 extension WatchlistInteractor {
     private func bind() {
         dependency
@@ -94,11 +84,9 @@ extension WatchlistInteractor {
             .sink {[weak self] cycle in
                 guard let self = self else { return }
                 switch cycle {
-                case .viewDidAppear:
-                    print("watchlist viewdidappear")
+                case .viewWillAppear:
                     self.fetchSymbols()
-                case .viewDidDisappear:
-                    print("watchlist viewDidDisappear")
+                case .viewWillDisappear:
                     self.disconnectWebSocket()
                 }
             }
@@ -106,6 +94,8 @@ extension WatchlistInteractor {
     }
 }
 
+// MARK: - Network
+extension WatchlistInteractor {
     private func fetchSymbols() {
         dependency
             .watchlistRepository
@@ -113,68 +103,19 @@ extension WatchlistInteractor {
             .sink { completion in
                 switch completion {
                 case .finished:
-                    print("finished")
+                    print("finished fetchSymbols")
                     
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
-            } receiveValue: {[weak self] symbols in
+            } receiveValue: {[weak self] symbolResponse in
                 guard let self = self else { return }
-                self.receivedSymbolsMapper(symbols)
+                self.symbols = symbolResponse.data
+                self.initialSettingForWatchlistItemModels(with: symbolResponse.data)
                 self.fetchFromNetwork(symbols: self.displaySymbols)
             }
             .store(in: &cancellables)
     }
-    
-    private func receivedSymbolsMapper(_ symbols: [SymbolResult]) {
-        self.symbols = symbols.filter {
-            $0.displaySymbol.localizedStandardContains("/USDT")
-        }.map({
-            var newDisplaySymbol = $0.displaySymbol
-            if let dotRange = newDisplaySymbol.range(of: "/") {
-                newDisplaySymbol.removeSubrange(dotRange.lowerBound..<newDisplaySymbol.endIndex)
-            }
-            return .init(
-                description: $0.description,
-                displaySymbol: newDisplaySymbol,
-                symbol: $0.symbol
-            )
-        })
-        
-        self.symbols.forEach({[weak self] symbol in
-            guard let self = self else { return }
-            self.watchlistItemModels.append(.init(
-                symbol: symbol.displaySymbol,
-                detailName: "BINANCE:\(symbol.symbol.uppercased())",
-                price: "0",
-                changeColor: .clear,
-                changePercentage: ""
-            ))
-        })
-    }
-    
-    private func bind() {
-        dependency
-            .lifeCycleDidChangePublisher
-            .sink {[weak self] cycle in
-                guard let self = self else { return }
-                switch cycle {
-                case .viewDidAppear:
-                    if self.symbols.isEmpty {
-                        self.fetchSymbols()
-                    } else {
-                        self.fetchFromNetwork(symbols: self.displaySymbols)
-                    }
-                case .viewDidDisappear:
-                    self.symbols.removeAll()
-                    self.watchlistItemModels.removeAll()
-                    self.disconnectWebSocket()
-                }
-            }
-            .store(in: &cancellables)
-    }
-    
-    typealias Symbol = String
     
     private func fetchFromNetwork(symbols: [Symbol]) {
         connectWebSocket()
@@ -182,7 +123,15 @@ extension WatchlistInteractor {
             .watchlistRepository
             .fetch(symbols: symbols)
             .receive(on: RunLoop.main)
-            .sink(receiveValue: myWatchlistItemMapper)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("finished fetchFromNetwork")
+                }
+            }, receiveValue: {[weak self] datum in
+                guard let self = self else {return }
+                self.myWatchlistItemMapper(receivedDatum: datum)
+            })
             .store(in: &cancellables)
     }
     
@@ -198,39 +147,61 @@ extension WatchlistInteractor {
             .disconnect()
     }
     
+}
+
+// MARK: - For Presentable
+extension WatchlistInteractor {
+    private func reloadData() {
+        presenter.reloadData(
+            with: watchlistItemModels,
+            animation: .none
+        )
+    }
+}
+
+// MARK: - Data Mapper
+extension WatchlistInteractor {
+    private func initialSettingForWatchlistItemModels(with data: [CoinCapAsset]) {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else { return }
+            self.watchlistItemModels = data.map({.init(
+                symbol: $0.symbol,
+                detailName: $0.name,
+                price: $0.priceUsd.toDollarDecimal ?? "0",
+                changePercentage: $0.changePercent24Hr.toPercentDecimal ?? "0"
+            )})
+            self.reloadData()
+        }
+    }
+    
     private func myWatchlistItemMapper(receivedDatum: [Datum]) {
         receivedDatum
             .forEach {[weak self] data in
                 guard let self = self else { return }
-                
                 //if watchlistItemModels already has the Symbol
                 if watchlistItemModels.contains(where: {
-                    $0.detailName.uppercased() == data.s
+                    "BINANCE:\($0.symbol.uppercased())USDT" == data.s
                 }) {
                     for (index, model) in self.watchlistItemModels.enumerated() {
-                        if model.detailName.uppercased() == data.s {
+                        if "BINANCE:\(model.symbol.uppercased())USDT" == data.s {
                             self.watchlistItemModels[index].price = "\(data.p)"
                         }
                     }
                 } else {
                     // if WatchlistItemModels are empty
                     self.symbols.forEach { symbol in
-                        if "BINANCE:\(symbol.symbol.uppercased())" == data.s {
+                        if "BINANCE:\(symbol.symbol.uppercased())USDT" == data.s {
                             self.watchlistItemModels.append(.init(
-                                symbol: symbol.displaySymbol,
-                                detailName: data.s,
-                                price: "\(data.p)",
-                                changeColor: .clear,
-                                changePercentage: ""
+                                symbol: symbol.symbol,
+                                detailName: symbol.name,
+                                price: symbol.priceUsd,
+                                changePercentage: symbol.changePercent24Hr.toPercentDecimal ?? "0"
                             ))
                         }
                     }
                 }
             }
-        presenter.reloadData(
-            with: watchlistItemModels,
-            animation: .none
-        )
+        reloadData()
     }
 }
 
@@ -245,21 +216,13 @@ extension WatchlistInteractor: WatchlistPresentableListener {
     }
     
     func removeItem(at indexPath: IndexPath) {
-        //Delete Item from Persistance
-        //Delete Item from model (watchlistItemModels)
-        
         let deletingSymbol = watchlistItemModels[indexPath.row].symbol
-        symbols.removeAll { $0.displaySymbol == deletingSymbol }
+        symbols.removeAll { $0.symbol == deletingSymbol }
         watchlistItemModels.remove(at: indexPath.row)
     }
     
     func didTap(_ index: Int) {
-        let symbol = SymbolResult(
-            description: symbols[index].description,
-            displaySymbol: "\(symbols[index].displaySymbol)/USDT",
-            symbol: symbols[index].symbol
-        )
-        listener?.watchlistDidTap(symbol)
+        listener?.watchlistDidTap(symbols[index])
     }
     
     func updateSections(completion: ([WatchlistItemModel]) -> Void) {
