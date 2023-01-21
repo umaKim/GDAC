@@ -56,14 +56,16 @@ final class OpinionsInteractor: PresentableInteractor<OpinionsPresentable>, Opin
             .fetchOpinions {[weak self] postcontent in
                 guard let self = self else { return }
                 self.opinions.append(postcontent)
-                self.opinions.sort(by: {$0.date > $1.date})
-                self.presenter.opinions(with: self.opinions)
+                DispatchQueue.main.async {
+                    self.opinions.sort(by: {$0.date > $1.date})
+                    self.presenter.opinions(with: self.opinions)
+                    self.presenter.reloadData(with: self.opinions, animation: .fade)
+                }
             }
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
         cancellalbles.forEach({$0.cancel()})
         cancellalbles.removeAll()
     }
