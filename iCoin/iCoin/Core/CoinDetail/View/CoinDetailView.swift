@@ -119,13 +119,13 @@ extension CoinDetailView {
             
             coinLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             coinLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-
+            
             priceLabel.topAnchor.constraint(equalTo: coinLabel.bottomAnchor, constant: 8),
             priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-
+            
             chartView.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 8),
             chartView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-
+            
             metaView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 8),
             metaView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             metaView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),

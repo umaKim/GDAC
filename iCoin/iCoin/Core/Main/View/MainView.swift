@@ -21,6 +21,9 @@ final class MainView: BaseView {
     private let actionSubject = PassthroughSubject<MainViewAction, Never>()
     
     //MARK: - UI Objects
+    private(set) lazy var searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .done, target: nil, action: nil)
+    private(set) lazy var writeOpinionsButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .done, target: nil, action: nil)
+    
     private(set) lazy var menuTabBar = MenuBarView()
     
     private(set) lazy var collectionView: UICollectionView = {
@@ -31,12 +34,8 @@ final class MainView: BaseView {
         collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: MainViewCell.identifier)
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
-    
-    private(set) lazy var searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .done, target: nil, action: nil)
-    private(set) lazy var writeOpinionsButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .done, target: nil, action: nil)
     
     //MARK: - Init
     override init(frame: CGRect) {
