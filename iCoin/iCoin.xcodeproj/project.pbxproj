@@ -118,6 +118,9 @@
 		35C16282297B0694003FBA1B /* CoinDetailMetaViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C16281297B0694003FBA1B /* CoinDetailMetaViewData.swift */; };
 		35C16284297B088B003FBA1B /* CoinPriceLabelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C16283297B088B003FBA1B /* CoinPriceLabelData.swift */; };
 		35C16286297B0912003FBA1B /* CoinLabelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C16285297B0912003FBA1B /* CoinLabelData.swift */; };
+		35C16288297C5366003FBA1B /* DateFormatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C16287297C5366003FBA1B /* DateFormatter+Ext.swift */; };
+		35C1628A297C537A003FBA1B /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C16289297C537A003FBA1B /* NumberFormatter.swift */; };
+		35C1628C297C5395003FBA1B /* NewsStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1628B297C5395003FBA1B /* NewsStory.swift */; };
 		35C9716F28FC0AAD00079B03 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 35C9716E28FC0AAD00079B03 /* FloatingPanel */; };
 		35D2AD772929E9B900E9F9B3 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD762929E9B900E9F9B3 /* RootTabBarController.swift */; };
 		35D2AD792929EA3600E9F9B3 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD782929EA3600E9F9B3 /* AppRootView.swift */; };
@@ -225,6 +228,9 @@
 		35C16281297B0694003FBA1B /* CoinDetailMetaViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailMetaViewData.swift; sourceTree = "<group>"; };
 		35C16283297B088B003FBA1B /* CoinPriceLabelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPriceLabelData.swift; sourceTree = "<group>"; };
 		35C16285297B0912003FBA1B /* CoinLabelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinLabelData.swift; sourceTree = "<group>"; };
+		35C16287297C5366003FBA1B /* DateFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Ext.swift"; sourceTree = "<group>"; };
+		35C16289297C537A003FBA1B /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
+		35C1628B297C5395003FBA1B /* NewsStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStory.swift; sourceTree = "<group>"; };
 		35D2AD762929E9B900E9F9B3 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		35D2AD782929EA3600E9F9B3 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -291,6 +297,7 @@
 				35C1627D297A9C89003FBA1B /* CoinChartData.swift */,
 				35C16283297B088B003FBA1B /* CoinPriceLabelData.swift */,
 				35C16285297B0912003FBA1B /* CoinLabelData.swift */,
+				35C1628B297C5395003FBA1B /* NewsStory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -324,6 +331,8 @@
 				35C1624B29757D41003FBA1B /* UITextField+Ext.swift */,
 				35C162642976ADFF003FBA1B /* TabBarItemSettable.swift */,
 				35C162732977FB29003FBA1B /* String+Ext.swift */,
+				35C16287297C5366003FBA1B /* DateFormatter+Ext.swift */,
+				35C16289297C537A003FBA1B /* NumberFormatter.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -694,6 +703,7 @@
 				35C1623E29730F6A003FBA1B /* UIColor+Ext.swift in Sources */,
 				350F691A29688671001F37D3 /* CoinDetailRouter.swift in Sources */,
 				357DCCDB284BEBF000AA7570 /* NewsViewController.swift in Sources */,
+				35C1628A297C537A003FBA1B /* NumberFormatter.swift in Sources */,
 				350F69342969ED56001F37D3 /* FirebaseManager.swift in Sources */,
 				357DCCB5284BE5C900AA7570 /* MainView.swift in Sources */,
 				35138039284F59D70082D813 /* WebSocketData.swift in Sources */,
@@ -720,6 +730,7 @@
 				35138032284EF38D0082D813 /* NewsStoryTableViewCell.swift in Sources */,
 				35D2AD772929E9B900E9F9B3 /* RootTabBarController.swift in Sources */,
 				3513803B284F5A470082D813 /* NewsData.swift in Sources */,
+				35C16288297C5366003FBA1B /* DateFormatter+Ext.swift in Sources */,
 				35C1625A29759AF4003FBA1B /* WritingOpinionRepository.swift in Sources */,
 				35C1626029759F25003FBA1B /* PortfolioRepository.swift in Sources */,
 				357DCCD2284BEBE000AA7570 /* OpinionsRouter.swift in Sources */,
@@ -757,6 +768,7 @@
 				357DCCB3284BDA4700AA7570 /* RIBs+Utils.swift in Sources */,
 				35138022284D19180082D813 /* Quote.swift in Sources */,
 				35C16284297B088B003FBA1B /* CoinPriceLabelData.swift in Sources */,
+				35C1628C297C5395003FBA1B /* NewsStory.swift in Sources */,
 				3513804B2855CF630082D813 /* SearchViewController.swift in Sources */,
 				35C1625E29759D82003FBA1B /* CoinDetailRepository.swift in Sources */,
 				35D2AD792929EA3600E9F9B3 /* AppRootView.swift in Sources */,

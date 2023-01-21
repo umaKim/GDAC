@@ -71,34 +71,9 @@ final class NewsStoryTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .secondarySystemBackground
         backgroundColor = .secondarySystemBackground
-        //        addSubviews(sourceLabel, headlineLabel, dateLabel, storyImageView)
+        
         [sourceLabel, headlineLabel, dateLabel, storyImageView]
-            .forEach {
-                self.addSubview($0)
-            }
-        
-        //        let verticalStackView = UIStackView(arrangedSubviews: [headlineLabel, dateLabel])
-        //        verticalStackView.axis = .vertical
-        //        verticalStackView.spacing = 3
-        //        verticalStackView.alignment = .leading
-        //        verticalStackView.distribution = .fill
-        //
-        //        let horizontalStackView = UIStackView(arrangedSubviews: [verticalStackView, storyImageView])
-        //        horizontalStackView.axis = .horizontal
-        //        horizontalStackView.spacing = 3
-        //        horizontalStackView.alignment = .fill
-        //        horizontalStackView.distribution = .fill
-        
-        //        contentView.addSubviews(storyImageView)
-        //
-        //        NSLayoutConstraint.activate([
-        ////            verticalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-        ////            verticalStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-        //            storyImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-        //            storyImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-        //            storyImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-        //            storyImageView.widthAnchor.constraint(equalToConstant: contentView.height)
-        //        ])
+            .forEach { self.addSubview($0) }
     }
     
     required init?(coder: NSCoder) {
@@ -161,88 +136,4 @@ final class NewsStoryTableViewCell: UITableViewCell {
         // Manually set image
         //         storyImageView.setImage(with: viewModel.imageUrl)
     }
-}
-
-/// Represent news story
-struct NewsStory: Codable {
-    let category: String
-    let datetime: TimeInterval
-    let headline: String
-    let image: String
-    let related: String
-    let source: String
-    let summary: String
-    let url: String
-}
-
-// MARK: - String
-
-extension String {
-    /// Create string from time interval
-    /// - Parameter timeInterval: Timeinterval sinec 1970
-    /// - Returns: Formatted string
-    static func string(from timeInterval: TimeInterval) -> String {
-        let date = Date(timeIntervalSince1970: timeInterval)
-        return DateFormatter.prettyDateFormatter.string(from: date)
-    }
-
-    /// Percentage formatted string
-    /// - Parameter double: Double to format
-    /// - Returns: String in percent format
-    static func percentage(from double: Double) -> String {
-        let formatter = NumberFormatter.percentFormatter
-        return formatter.string(from: NSNumber(value: double / 100)) ?? "\(double)"
-    }
-
-    /// Format number to string
-    /// - Parameter number: Number to format
-    /// - Returns: Formatted string
-    static func formatted(number: Double) -> String {
-        let formatter = NumberFormatter.numberFormatter
-        return formatter.string(from: NSNumber(value: number)) ?? "\(number)"
-    }
-}
-
-// MARK: - DateFormatter
-
-extension DateFormatter {
-    static let newsDateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY-MM-dd"
-        return formatter
-    }()
-    
-    static let commentDateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        return formatter
-    }()
-
-    static let prettyDateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        return formatter
-    }()
-}
-
-// NumberFormatter
-
-extension NumberFormatter {
-    /// Formatter for percent style
-    static let percentFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.locale = .current
-        formatter.numberStyle = .percent
-        formatter.maximumFractionDigits = 2
-        return formatter
-    }()
-
-    /// Formatter for decimal style
-    static let numberFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.locale = .current
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 2
-        return formatter
-    }()
 }

@@ -68,3 +68,29 @@ extension String {
         return htmlToAttributedString?.string ?? ""
     }
 }
+
+extension String {
+    /// Create string from time interval
+    /// - Parameter timeInterval: Timeinterval sinec 1970
+    /// - Returns: Formatted string
+    static func string(from timeInterval: TimeInterval) -> String {
+        let date = Date(timeIntervalSince1970: timeInterval)
+        return DateFormatter.prettyDateFormatter.string(from: date)
+    }
+
+    /// Percentage formatted string
+    /// - Parameter double: Double to format
+    /// - Returns: String in percent format
+    static func percentage(from double: Double) -> String {
+        let formatter = NumberFormatter.percentFormatter
+        return formatter.string(from: NSNumber(value: double / 100)) ?? "\(double)"
+    }
+
+    /// Format number to string
+    /// - Parameter number: Number to format
+    /// - Returns: Formatted string
+    static func formatted(number: Double) -> String {
+        let formatter = NumberFormatter.numberFormatter
+        return formatter.string(from: NSNumber(value: number)) ?? "\(number)"
+    }
+}
