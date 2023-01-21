@@ -15,10 +15,10 @@ protocol CoinDetailPresentableListener: AnyObject {
     // interactor class.
     func didTapBackButton()
     func didTapFavoriteButton()
+    func selectedDays(_ days: String)
 }
 
 final class CoinDetailViewController: UIViewController, CoinDetailPresentable, CoinDetailViewControllable {
-   
    
     weak var listener: CoinDetailPresentableListener?
     private let contentView = CoinDetailView()
@@ -57,6 +57,8 @@ final class CoinDetailViewController: UIViewController, CoinDetailPresentable, C
                     self.listener?.didTapBackButton()
                 case .favoriteButton:
                     self.listener?.didTapFavoriteButton()
+                case .selectedDays(let days):
+                    self.listener?.selectedDays(days)
                 }
             }
             .store(in: &cancellables)

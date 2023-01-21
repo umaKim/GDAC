@@ -34,10 +34,20 @@ protocol CoinDetailInteractorDependency {
     var symbol: AnyPublisher<CoinCapAsset, Never> { get }
 }
 
-final class CoinDetailInteractor: PresentableInteractor<CoinDetailPresentable>, CoinDetailInteractable, CoinDetailPresentableListener {
-    
+final class CoinDetailInteractor: PresentableInteractor<CoinDetailPresentable>, CoinDetailInteractable {
+   
     weak var router: CoinDetailRouting?
     weak var listener: CoinDetailListener?
+    
+    private lazy var selectedCharData: [String: [Double]] = [
+        "1" : [],
+        "7" : [],
+        "14": [],
+        "30": [],
+        "365": []
+    ]
+    
+    private var symbol: CoinCapAsset?
 
     private let dependency: CoinDetailInteractorDependency
     private var cancellables: Set<AnyCancellable>
@@ -52,24 +62,58 @@ final class CoinDetailInteractor: PresentableInteractor<CoinDetailPresentable>, 
         presenter.listener = self
     }
     
-    private var symbol: CoinCapAsset?
-
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
-        
+        fetchSelectedSymbolStatus()
+    }
+    override func willResignActive() {
+        super.willResignActive()
+        // TODO: Pause any business logic.
+        cancellables.forEach({$0.cancel()})
+        cancellables.removeAll()
+    }
+}
+
+// MARK: - to Presentable
+extension CoinDetailInteractor {
+    private func checkIsFavorite(symbol: CoinCapAsset) {
+        let symbolExist = dependency.coinDetailRepository.contains(symbol)
+        presenter.doesSymbolInPersistance(symbolExist)
+    }
+}
+
+// MARK: - Network
+extension CoinDetailInteractor {
+    private func fetchSelectedSymbolStatus() {
         dependency
             .symbol
             .sink {[weak self] symbol in
                 self?.symbol = symbol
                 self?.checkIsFavorite(symbol: symbol)
-                self?.fetchChartData(of: symbol.id)
+                self?.fetchChartData(of: symbol.id, days: "\(1)")
                 self?.fetchMetatData(of: symbol.id)
             }
             .store(in: &cancellables)
-        
-        #warning("check the symbol exist in PersistanceManager")
-        #warning("if it exists then change the color of the favorite button")
+    }
+    
+    private func fetchChartData(of symbol: String, days: String) {
+        dependency
+            .coinDetailRepository
+            .fetchCoinChart(of: symbol, days: days)
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    print(error)
+                case .finished:
+                    print("finished")
+                }
+            } receiveValue: {[weak self] data in
+                guard let self = self else { return }
+                self.selectedCharData[days] = data.prices.map({$0[1]})
+                self.configureCoinChartData(with: data)
+            }
+            .store(in: &cancellables)
     }
     
     private func fetchMetatData(of symbol: String) {
@@ -83,41 +127,21 @@ final class CoinDetailInteractor: PresentableInteractor<CoinDetailPresentable>, 
                     print("finished")
                     
                 case .failure(let error):
-                    print("error")
+                    print(error)
                 }
             } receiveValue: {[weak self] coinData in
                 self?.configureData(with: coinData)
             }
             .store(in: &cancellables)
     }
-    
-    private func fetchChartData(of symbol: String) {
-        print(symbol)
-        dependency
-            .coinDetailRepository
-            .fetchCoinChart(of: symbol, days: "\(1)")
-            .sink { completion in
-                switch completion {
-                case .failure(let error):
-                    print(error)
-                case .finished:
-                    print("finished")
-                }
-            } receiveValue: { data in
-                self.configureCoinChartData(with: data)
-            }
-            .store(in: &cancellables)
-    }
-    
+}
+
+// MARK: - Data Mapper
+extension CoinDetailInteractor {
     private func configureData(with data: CoinCapDetail) {
         configureCoinLabelData(with: data)
         configureCoinPriceLabelData()
         configureCoinDetailMetaViewData(with: data)
-    }
-    
-    private func configureCoinChartData(with data: CoinChartData) {
-        let newData: [Double] = data.prices.map({ $0[1] })
-        presenter.update(newData)
     }
     
     private func configureCoinLabelData(with data: CoinCapDetail) {
@@ -158,18 +182,14 @@ final class CoinDetailInteractor: PresentableInteractor<CoinDetailPresentable>, 
         presenter.update(data)
     }
     
-    private func checkIsFavorite(symbol: CoinCapAsset) {
-        let symbolExist = dependency.coinDetailRepository.contains(symbol)
-        presenter.doesSymbolInPersistance(symbolExist)
+    private func configureCoinChartData(with data: CoinChartData) {
+        let newData: [Double] = data.prices.map({ $0[1] })
+        presenter.update(newData)
     }
+}
 
-    override func willResignActive() {
-        super.willResignActive()
-        // TODO: Pause any business logic.
-        cancellables.forEach({$0.cancel()})
-        cancellables.removeAll()
-    }
-    
+// MARK: - CoinDetailPresentableListener
+extension CoinDetailInteractor: CoinDetailPresentableListener {
     func didTapBackButton() {
         listener?.coinDetailDidTapBackButton()
     }
@@ -183,5 +203,15 @@ final class CoinDetailInteractor: PresentableInteractor<CoinDetailPresentable>, 
             dependency.coinDetailRepository.save(symbol)
         }
         presenter.doesSymbolInPersistance(!symbolExist)
+    }
+    
+    func selectedDays(_ days: String) {
+        if let selectedDay = selectedCharData[days],
+           selectedDay.isEmpty {
+            guard let symbol = symbol else { return }
+            fetchChartData(of: symbol.id, days: days)
+        } else {
+            presenter.update(selectedCharData[days] ?? [])
+        }
     }
 }

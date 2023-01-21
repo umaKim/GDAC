@@ -11,9 +11,10 @@ import UIKit
 enum CoinDetailViewAction {
     case backButton
     case favoriteButton
+    case selectedDays(String)
 }
 
-final class CoinDetailView: UIView {
+final class CoinDetailView: BaseView {
     private(set) lazy var actionPublisher = actionSubject.eraseToAnyPublisher()
     private let actionSubject = PassthroughSubject<CoinDetailViewAction, Never>()
     
@@ -41,8 +42,21 @@ final class CoinDetailView: UIView {
     private lazy var metaView = CoinDetailMetaView()
     init() {
         super.init(frame: .zero)
-        
+        bind()
         setupUI()
+    }
+    
+    private func bind() {
+        chartView
+            .actionPublisher
+            .sink {[weak self] action in
+                guard let self = self else { return }
+                switch action {
+                case .selectedDays(let days):
+                    self.actionSubject.send(.selectedDays(days))
+                }
+            }
+            .store(in: &cancellables)
     }
     
     func update(symbol: CoinCapAsset) {
