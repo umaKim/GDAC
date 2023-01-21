@@ -37,14 +37,14 @@ final class OpinionsViewController: UIViewController, OpinionsViewControllable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        reloadData(with: self.models, animation: .fade)
+        reloadData(with: models, animation: .fade)
     }
 }
 
 // MARK: - OpinionsPresentable
 extension OpinionsViewController: OpinionsPresentable {
     func opinions(with data: [PostContent]) {
-        self.models = data
+        models = data
     }
     
     func reloadData(
@@ -59,7 +59,7 @@ extension OpinionsViewController: OpinionsPresentable {
     }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 extension OpinionsViewController {
     private func configureTableViewDataSource() {
         contentView.tableView.delegate = self
