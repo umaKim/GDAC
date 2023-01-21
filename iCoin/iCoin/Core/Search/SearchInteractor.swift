@@ -93,24 +93,24 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
             .searchRepository
             .fetchSymbols()
             .receive(on: RunLoop.main)
-            .map({ result in
-                return result.filter({
-                    return $0.symbol.lowercased().contains("usdt")})
-            })
             .sink {[weak self] completion in
                 switch completion {
                 case .failure(let error):
                     print(error.localizedDescription)
                 case .finished:
-                    self?.presenter.reloadData(
-                        with: self?.filteredItems ?? [],
-                        animation: .left
-                    )
+                    self?.reloadData()
                 }
             } receiveValue: {[weak self] response in
-                self?.originalItems = response
-                self?.filteredItems = response
+                self?.originalItems = response.data
+                self?.filteredItems = response.data
             }
             .store(in: &cancellables)
+    }
+    
+    private func reloadData() {
+        presenter.reloadData(
+            with: filteredItems,
+            animation: .left
+        )
     }
 }
