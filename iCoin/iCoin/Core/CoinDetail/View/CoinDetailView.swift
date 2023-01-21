@@ -40,6 +40,7 @@ final class CoinDetailView: BaseView {
     private lazy var priceLabel = CoinPriceLabel()
     private lazy var chartView = CoinChartView()
     private lazy var metaView = CoinDetailMetaView()
+    
     init() {
         super.init(frame: .zero)
         bind()

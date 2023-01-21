@@ -66,6 +66,7 @@ final class CoinDetailInteractor: PresentableInteractor<CoinDetailPresentable>, 
         super.didBecomeActive()
         fetchSelectedSymbolStatus()
     }
+    
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
