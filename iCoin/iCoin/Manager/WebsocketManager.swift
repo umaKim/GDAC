@@ -182,14 +182,17 @@ extension StarScreamWebSocket: WebSocketDelegate {
         case .pong:
             break
         case .viabilityChanged:
+            print("viabilityChanged")
             break
         case .reconnectSuggested:
+            print("reconnectSuggested")
             break
         case .cancelled:
             print("cancelled")
-            break
+            connect()
+            
         case .error(let error):
-            print(error)
+            print(error?.localizedDescription)
             break
         }
     }
