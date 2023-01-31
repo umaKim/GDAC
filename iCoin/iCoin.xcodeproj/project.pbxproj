@@ -122,9 +122,42 @@
 		35C1628A297C537A003FBA1B /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C16289297C537A003FBA1B /* NumberFormatter.swift */; };
 		35C1628C297C5395003FBA1B /* NewsStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1628B297C5395003FBA1B /* NewsStory.swift */; };
 		35C9716F28FC0AAD00079B03 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 35C9716E28FC0AAD00079B03 /* FloatingPanel */; };
+		35CDA9E8298923AE003FC005 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35CDA9E7298923AE003FC005 /* WidgetKit.framework */; };
+		35CDA9EA298923AE003FC005 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35CDA9E9298923AE003FC005 /* SwiftUI.framework */; };
+		35CDA9ED298923AF003FC005 /* iCoin_WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDA9EC298923AF003FC005 /* iCoin_WidgetBundle.swift */; };
+		35CDA9EF298923AF003FC005 /* iCoin_WidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDA9EE298923AF003FC005 /* iCoin_WidgetLiveActivity.swift */; };
+		35CDA9F1298923AF003FC005 /* iCoin_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDA9F0298923AF003FC005 /* iCoin_Widget.swift */; };
+		35CDA9F4298923B0003FC005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35CDA9F3298923B0003FC005 /* Assets.xcassets */; };
+		35CDA9F6298923B0003FC005 /* iCoin_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 35CDA9F2298923AF003FC005 /* iCoin_Widget.intentdefinition */; };
+		35CDA9F7298923B0003FC005 /* iCoin_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 35CDA9F2298923AF003FC005 /* iCoin_Widget.intentdefinition */; };
+		35CDA9FA298923B0003FC005 /* iCoin-WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 35CDA9E5298923AE003FC005 /* iCoin-WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35D2AD772929E9B900E9F9B3 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD762929E9B900E9F9B3 /* RootTabBarController.swift */; };
 		35D2AD792929EA3600E9F9B3 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD782929EA3600E9F9B3 /* AppRootView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		35CDA9F8298923B0003FC005 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 357DCC7A284BBBD200AA7570 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35CDA9E4298923AE003FC005;
+			remoteInfo = "iCoin-WidgetExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		35CDA9FB298923B0003FC005 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				35CDA9FA298923B0003FC005 /* iCoin-WidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3502026A296B1EBA00CEB6B1 /* PostContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostContent.swift; sourceTree = "<group>"; };
@@ -231,6 +264,15 @@
 		35C16287297C5366003FBA1B /* DateFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Ext.swift"; sourceTree = "<group>"; };
 		35C16289297C537A003FBA1B /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		35C1628B297C5395003FBA1B /* NewsStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStory.swift; sourceTree = "<group>"; };
+		35CDA9E5298923AE003FC005 /* iCoin-WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "iCoin-WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35CDA9E7298923AE003FC005 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		35CDA9E9298923AE003FC005 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		35CDA9EC298923AF003FC005 /* iCoin_WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCoin_WidgetBundle.swift; sourceTree = "<group>"; };
+		35CDA9EE298923AF003FC005 /* iCoin_WidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCoin_WidgetLiveActivity.swift; sourceTree = "<group>"; };
+		35CDA9F0298923AF003FC005 /* iCoin_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCoin_Widget.swift; sourceTree = "<group>"; };
+		35CDA9F2298923AF003FC005 /* iCoin_Widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = iCoin_Widget.intentdefinition; sourceTree = "<group>"; };
+		35CDA9F3298923B0003FC005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		35CDA9F5298923B0003FC005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35D2AD762929E9B900E9F9B3 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		35D2AD782929EA3600E9F9B3 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -253,6 +295,15 @@
 				350F69302969E9CC001F37D3 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				350F692E2969E9CC001F37D3 /* FirebaseFirestore in Frameworks */,
 				350F69282969E9CC001F37D3 /* FirebaseAuthCombine-Community in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35CDA9E2298923AE003FC005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35CDA9EA298923AE003FC005 /* SwiftUI.framework in Frameworks */,
+				35CDA9E8298923AE003FC005 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +482,8 @@
 			isa = PBXGroup;
 			children = (
 				357DCC84284BBBD200AA7570 /* iCoin */,
+				35CDA9EB298923AE003FC005 /* iCoin-Widget */,
+				35CDA9E6298923AE003FC005 /* Frameworks */,
 				357DCC83284BBBD200AA7570 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -439,6 +492,7 @@
 			isa = PBXGroup;
 			children = (
 				357DCC82284BBBD200AA7570 /* iCoin.app */,
+				35CDA9E5298923AE003FC005 /* iCoin-WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -587,6 +641,28 @@
 			path = SubComponents;
 			sourceTree = "<group>";
 		};
+		35CDA9E6298923AE003FC005 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				35CDA9E7298923AE003FC005 /* WidgetKit.framework */,
+				35CDA9E9298923AE003FC005 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		35CDA9EB298923AE003FC005 /* iCoin-Widget */ = {
+			isa = PBXGroup;
+			children = (
+				35CDA9EC298923AF003FC005 /* iCoin_WidgetBundle.swift */,
+				35CDA9EE298923AF003FC005 /* iCoin_WidgetLiveActivity.swift */,
+				35CDA9F0298923AF003FC005 /* iCoin_Widget.swift */,
+				35CDA9F2298923AF003FC005 /* iCoin_Widget.intentdefinition */,
+				35CDA9F3298923B0003FC005 /* Assets.xcassets */,
+				35CDA9F5298923B0003FC005 /* Info.plist */,
+			);
+			path = "iCoin-Widget";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -597,10 +673,12 @@
 				357DCC7E284BBBD200AA7570 /* Sources */,
 				357DCC7F284BBBD200AA7570 /* Frameworks */,
 				357DCC80284BBBD200AA7570 /* Resources */,
+				35CDA9FB298923B0003FC005 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				35CDA9F9298923B0003FC005 /* PBXTargetDependency */,
 			);
 			name = iCoin;
 			packageProductDependencies = (
@@ -622,6 +700,23 @@
 			productReference = 357DCC82284BBBD200AA7570 /* iCoin.app */;
 			productType = "com.apple.product-type.application";
 		};
+		35CDA9E4298923AE003FC005 /* iCoin-WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35CDA9FE298923B0003FC005 /* Build configuration list for PBXNativeTarget "iCoin-WidgetExtension" */;
+			buildPhases = (
+				35CDA9E1298923AE003FC005 /* Sources */,
+				35CDA9E2298923AE003FC005 /* Frameworks */,
+				35CDA9E3298923AE003FC005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iCoin-WidgetExtension";
+			productName = "iCoin-WidgetExtension";
+			productReference = 35CDA9E5298923AE003FC005 /* iCoin-WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -629,11 +724,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					357DCC81284BBBD200AA7570 = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					35CDA9E4298923AE003FC005 = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
@@ -660,6 +758,7 @@
 			projectRoot = "";
 			targets = (
 				357DCC81284BBBD200AA7570 /* iCoin */,
+				35CDA9E4298923AE003FC005 /* iCoin-WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -672,6 +771,14 @@
 				357DCC92284BBBD400AA7570 /* LaunchScreen.storyboard in Resources */,
 				357DCC8F284BBBD400AA7570 /* Assets.xcassets in Resources */,
 				350F69322969EB2A001F37D3 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35CDA9E3298923AE003FC005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35CDA9F4298923B0003FC005 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,6 +796,7 @@
 				35C1624529756BAF003FBA1B /* WritingOpinionViewController.swift in Sources */,
 				351380582855D4DF0082D813 /* UIViewController+Utils.swift in Sources */,
 				35C1624729756BAF003FBA1B /* WritingOpinionInteractor.swift in Sources */,
+				35CDA9F7298923B0003FC005 /* iCoin_Widget.intentdefinition in Sources */,
 				357DCCA7284BBCCA00AA7570 /* AppRootBuilder.swift in Sources */,
 				3513802C284EECFA0082D813 /* NewsHeaderView.swift in Sources */,
 				35138035284F30350082D813 /* NetworkManager.swift in Sources */,
@@ -786,7 +894,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		35CDA9E1298923AE003FC005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35CDA9ED298923AF003FC005 /* iCoin_WidgetBundle.swift in Sources */,
+				35CDA9F1298923AF003FC005 /* iCoin_Widget.swift in Sources */,
+				35CDA9EF298923AF003FC005 /* iCoin_WidgetLiveActivity.swift in Sources */,
+				35CDA9F6298923B0003FC005 /* iCoin_Widget.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		35CDA9F9298923B0003FC005 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35CDA9E4298923AE003FC005 /* iCoin-WidgetExtension */;
+			targetProxy = 35CDA9F8298923B0003FC005 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		357DCC90284BBBD400AA7570 /* LaunchScreen.storyboard */ = {
@@ -917,6 +1044,7 @@
 		357DCC97284BBBD400AA7570 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -945,6 +1073,7 @@
 		357DCC98284BBBD400AA7570 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -970,6 +1099,64 @@
 			};
 			name = Release;
 		};
+		35CDA9FC298923B0003FC005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PHT5ZHW738;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iCoin-Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "iCoin-Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yokim.iCoin.iCoin-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		35CDA9FD298923B0003FC005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PHT5ZHW738;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iCoin-Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "iCoin-Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yokim.iCoin.iCoin-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -987,6 +1174,15 @@
 			buildConfigurations = (
 				357DCC97284BBBD400AA7570 /* Debug */,
 				357DCC98284BBBD400AA7570 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		35CDA9FE298923B0003FC005 /* Build configuration list for PBXNativeTarget "iCoin-WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35CDA9FC298923B0003FC005 /* Debug */,
+				35CDA9FD298923B0003FC005 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

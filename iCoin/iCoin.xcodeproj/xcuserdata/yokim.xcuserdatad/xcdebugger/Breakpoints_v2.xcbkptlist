@@ -14,8 +14,8 @@
             filePath = "iCoin/AppDelegate/SceneDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "scene(_:willConnectTo:options:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -208,7 +208,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "55"
                   endingLineNumber = "55"
-                  offsetFromSymbolStart = "231">
+                  offsetFromSymbolStart = "280">
                </Location>
                <Location
                   uuid = "AF15B99A-4DF7-4673-B84F-465F4EBBB571 - e9817467fd2f1c34"
@@ -223,7 +223,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
                   endingLineNumber = "56"
-                  offsetFromSymbolStart = "193">
+                  offsetFromSymbolStart = "220">
                </Location>
             </Locations>
          </BreakpointContent>
