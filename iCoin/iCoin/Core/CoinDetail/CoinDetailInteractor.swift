@@ -101,7 +101,7 @@ extension CoinDetailInteractor {
         dependency
             .coinDetailRepository
             .fetchCoinChart(of: symbol, days: days)
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
                 case .failure(let error):

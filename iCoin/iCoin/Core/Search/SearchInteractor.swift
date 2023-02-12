@@ -95,7 +95,7 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
         dependency
             .searchRepository
             .fetchSymbols()
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink {[weak self] completion in
                 switch completion {
                 case .failure(let error):

@@ -122,7 +122,7 @@ extension WatchlistInteractor {
         dependency
             .watchlistRepository
             .fetch(symbols: symbols)
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:

@@ -74,7 +74,7 @@ extension NewsInteractor {
         dependency
             .newsRepository
             .fetchNews(of: "")
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
                 case .finished:
