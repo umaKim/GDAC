@@ -24,6 +24,8 @@ protocol CoinCapMetaNetworkable {
 
 protocol CoinChartDataNetworkable {
     func fetchCoinChart(of id: String, days: String) -> AnyPublisher<CoinChartData, Error>
+    
+    func fetchCoinChartData(of id: String) -> AnyPublisher<ChartData, Error>
 }
 
 final class NetworkManager: UrlConfigurable {
@@ -113,6 +115,23 @@ extension NetworkManager: NewsNetWorkable {
 
 // MARK: - CoinChartDataNetworkable
 extension NetworkManager: CoinChartDataNetworkable {
+    func fetchCoinChartData(of id: String) -> AnyPublisher<ChartData, Error> {
+        let url = url(
+            for: FinnHubApi.baseUrl + "/crypto/candle",
+            queryParams: [
+                "symbol":"BINANCE:BTCUSDT",
+                "resolution":"D",
+                "from":"1572651390",
+                "to":"1575243390"
+            ],
+            with: [
+                "token": FinnHubApi.apiKey
+            ]
+        )
+        
+        return request(url: url, expecting: ChartData.self)
+    }
+    
     func fetchCoinChart(of id: String, days: String) -> AnyPublisher<CoinChartData, Error> {
         let url = url(
             for: CoinGeckoApi.baseUrl + id + "/market_chart",
