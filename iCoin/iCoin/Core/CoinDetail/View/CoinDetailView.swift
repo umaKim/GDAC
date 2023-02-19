@@ -4,6 +4,7 @@
 //
 //  Created by 김윤석 on 2023/01/17.
 //
+import Charts
 import SwiftUI
 import Combine
 import UIKit
@@ -40,6 +41,9 @@ final class CoinDetailView: BaseView {
     private lazy var priceLabel = CoinPriceLabel()
     private lazy var chartView = CoinChartView()
     private lazy var metaView = CoinDetailMetaView()
+    
+    private lazy var candleStickChartView: CandleStickChartView = CandleStickChartView()
+    private lazy var barChartView: BarChartView = BarChartView()
     
     init() {
         super.init(frame: .zero)
@@ -85,6 +89,54 @@ final class CoinDetailView: BaseView {
         favoriteButton.image = .init(systemName: exist ? "star.fill" : "star")
     }
     
+    func updateCandleStickChartView(with data: ChartData) {
+        var chartEntries = [CandleChartDataEntry]()
+        for index in data.t.indices {
+            let entry = CandleChartDataEntry(
+                x: Double(index),
+                shadowH: data.h[index] ,
+                shadowL: data.l[index] ,
+                open: data.o[index] ,
+                close: data.c[index]
+            )
+            chartEntries.append(entry)
+        }
+        let chartDataSet = CandleChartDataSet(entries: chartEntries)
+        chartDataSet.increasingColor = .systemRed
+        chartDataSet.decreasingColor = .systemBlue
+        chartDataSet.neutralColor = .systemRed
+        chartDataSet.increasingFilled = true
+        chartDataSet.shadowColorSameAsCandle = true
+        chartDataSet.drawValuesEnabled = false
+        let chartData = CandleChartData(dataSet: chartDataSet)
+        DispatchQueue.main.async {
+            self.candleStickChartView.data = chartData
+            self.candleStickChartView.fitScreen()
+        }
+    }
+    
+    func updateBarChartView(with data: ChartData) {
+        var chartEntries = [BarChartDataEntry]()
+        var chartColors = [UIColor]()
+        for index in data.v.indices {
+            let entry = BarChartDataEntry(x: Double(index), y: data.v[index])
+            chartEntries.append(entry)
+            
+            chartColors.append(data.o[index] > data.c[index] ? .systemBlue : .systemRed)
+        }
+        
+        let chartDataSet = BarChartDataSet(entries: chartEntries)
+        chartDataSet.colors = chartColors
+        chartDataSet.drawValuesEnabled = false
+        chartDataSet.highlightEnabled = false
+        
+        let chartData = BarChartData(dataSet: chartDataSet)
+        DispatchQueue.main.async {
+            self.barChartView.data = chartData
+            self.barChartView.fitScreen()
+        }
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -106,45 +158,44 @@ extension CoinDetailView {
 // MARK: - Set up UI
 extension CoinDetailView {
     private func setupUI() {
-        addSubviews(contentScrollView)
-        contentScrollView.addSubviews(contentView)
-        
-        backButton.tintColor = .gdacBlue
-        favoriteButton.tintColor = .gdacBlue
-        
-        backgroundColor = .systemBackground
-        
-        contentView.addSubviews(
-            coinLabel,
-            priceLabel,
-            chartView,
-            metaView
-        )
-        
+        setUpCandlestickChartView()
+        setUpBarChartView()
+        addSubviews(candleStickChartView, barChartView)
         NSLayoutConstraint.activate([
-            contentScrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            contentScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentScrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            contentScrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            contentView.topAnchor.constraint(equalTo: contentScrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: contentScrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: contentScrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: contentScrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor),
-            
-            coinLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            coinLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            
-            priceLabel.topAnchor.constraint(equalTo: coinLabel.bottomAnchor, constant: 8),
-            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            
-            chartView.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 8),
-            chartView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            
-            metaView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 8),
-            metaView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            metaView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            metaView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            candleStickChartView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            candleStickChartView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            candleStickChartView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            candleStickChartView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.55),
+            barChartView.topAnchor.constraint(equalTo: candleStickChartView.bottomAnchor),
+            barChartView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            barChartView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            barChartView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
+        
+    }
+    
+    private func setUpCandlestickChartView() {
+        candleStickChartView.xAxis.labelPosition = .bottom
+        candleStickChartView.leftAxis.enabled = false
+        candleStickChartView.xAxis.setLabelCount(4, force: false)
+        candleStickChartView.legend.enabled = false
+        candleStickChartView.pinchZoomEnabled = true
+        candleStickChartView.scaleXEnabled = true
+        candleStickChartView.scaleYEnabled = true
+        candleStickChartView.doubleTapToZoomEnabled = false
+    }
+    
+    private func setUpBarChartView() {
+        barChartView.legend.enabled = false
+        barChartView.xAxis.labelPosition = .bottom
+        barChartView.xAxis.setLabelCount(4, force: false)
+        barChartView.leftAxis.enabled = false
+        barChartView.pinchZoomEnabled = true
+        barChartView.scaleXEnabled = true
+        barChartView.scaleYEnabled = true
+        barChartView.doubleTapToZoomEnabled = false
+        barChartView.rightAxis.enabled = true
+        barChartView.rightAxis.axisMinimum = 0
+        barChartView.leftAxis.axisMinimum = 0
     }
 }
