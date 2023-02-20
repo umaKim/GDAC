@@ -131,6 +131,7 @@
 		35CDA9F6298923B0003FC005 /* iCoin_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 35CDA9F2298923AF003FC005 /* iCoin_Widget.intentdefinition */; };
 		35CDA9F7298923B0003FC005 /* iCoin_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 35CDA9F2298923AF003FC005 /* iCoin_Widget.intentdefinition */; };
 		35CDA9FA298923B0003FC005 /* iCoin-WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 35CDA9E5298923AE003FC005 /* iCoin-WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		35CDAA0429A1E835003FC005 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 35CDAA0329A1E835003FC005 /* Charts */; };
 		35D2AD772929E9B900E9F9B3 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD762929E9B900E9F9B3 /* RootTabBarController.swift */; };
 		35D2AD792929EA3600E9F9B3 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD782929EA3600E9F9B3 /* AppRootView.swift */; };
 /* End PBXBuildFile section */
@@ -291,6 +292,7 @@
 				350F69262969E9CC001F37D3 /* FirebaseAuth in Frameworks */,
 				350F692A2969E9CC001F37D3 /* FirebaseDatabase in Frameworks */,
 				35C1627C297A8F59003FBA1B /* StockCharts in Frameworks */,
+				35CDAA0429A1E835003FC005 /* Charts in Frameworks */,
 				357DCCB9284BE64200AA7570 /* ModernRIBs in Frameworks */,
 				350F69302969E9CC001F37D3 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				350F692E2969E9CC001F37D3 /* FirebaseFirestore in Frameworks */,
@@ -695,6 +697,7 @@
 				350F692D2969E9CC001F37D3 /* FirebaseFirestore */,
 				350F692F2969E9CC001F37D3 /* FirebaseFirestoreCombine-Community */,
 				35C1627B297A8F59003FBA1B /* StockCharts */,
+				35CDAA0329A1E835003FC005 /* Charts */,
 			);
 			productName = iCoin;
 			productReference = 357DCC82284BBBD200AA7570 /* iCoin.app */;
@@ -752,6 +755,7 @@
 				350F69102965BADF001F37D3 /* XCRemoteSwiftPackageReference "Starscream" */,
 				350F69222969E9CC001F37D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				35C1627A297A8F58003FBA1B /* XCRemoteSwiftPackageReference "stock-charts" */,
+				35CDAA0229A1E835003FC005 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 357DCC83284BBBD200AA7570 /* Products */;
 			projectDirPath = "";
@@ -1246,6 +1250,14 @@
 				kind = branch;
 			};
 		};
+		35CDAA0229A1E835003FC005 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1313,6 +1325,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 35C9716D28FC0AAD00079B03 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
 			productName = FloatingPanel;
+		};
+		35CDAA0329A1E835003FC005 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35CDAA0229A1E835003FC005 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
