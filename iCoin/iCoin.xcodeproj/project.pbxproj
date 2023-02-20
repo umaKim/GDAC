@@ -132,6 +132,7 @@
 		35CDA9F7298923B0003FC005 /* iCoin_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 35CDA9F2298923AF003FC005 /* iCoin_Widget.intentdefinition */; };
 		35CDA9FA298923B0003FC005 /* iCoin-WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 35CDA9E5298923AE003FC005 /* iCoin-WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35CDAA0429A1E835003FC005 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 35CDAA0329A1E835003FC005 /* Charts */; };
+		35CDAA0629A38A16003FC005 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDAA0529A38A16003FC005 /* ChartData.swift */; };
 		35D2AD772929E9B900E9F9B3 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD762929E9B900E9F9B3 /* RootTabBarController.swift */; };
 		35D2AD792929EA3600E9F9B3 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD782929EA3600E9F9B3 /* AppRootView.swift */; };
 /* End PBXBuildFile section */
@@ -274,6 +275,7 @@
 		35CDA9F2298923AF003FC005 /* iCoin_Widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = iCoin_Widget.intentdefinition; sourceTree = "<group>"; };
 		35CDA9F3298923B0003FC005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35CDA9F5298923B0003FC005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35CDAA0529A38A16003FC005 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		35D2AD762929E9B900E9F9B3 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		35D2AD782929EA3600E9F9B3 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -351,6 +353,7 @@
 				35C16283297B088B003FBA1B /* CoinPriceLabelData.swift */,
 				35C16285297B0912003FBA1B /* CoinLabelData.swift */,
 				35C1628B297C5395003FBA1B /* NewsStory.swift */,
+				35CDAA0529A38A16003FC005 /* ChartData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -797,6 +800,7 @@
 				3513804A2855CF630082D813 /* SearchRouter.swift in Sources */,
 				35C162742977FB29003FBA1B /* String+Ext.swift in Sources */,
 				35C16282297B0694003FBA1B /* CoinDetailMetaViewData.swift in Sources */,
+				35CDAA0629A38A16003FC005 /* ChartData.swift in Sources */,
 				35C1624529756BAF003FBA1B /* WritingOpinionViewController.swift in Sources */,
 				351380582855D4DF0082D813 /* UIViewController+Utils.swift in Sources */,
 				35C1624729756BAF003FBA1B /* WritingOpinionInteractor.swift in Sources */,
