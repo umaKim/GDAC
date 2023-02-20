@@ -157,7 +157,6 @@ extension StarScreamWebSocket: WebSocketDelegate {
     func didReceive(event: Starscream.WebSocketEvent, client: Starscream.WebSocketClient) {
         switch event {
         case .connected:
-            print("connect Websocket")
             DispatchQueue.global().async {[weak self] in
                 self?.symbols.forEach({ symbol in
                     let symbolForFinHub = "BINANCE:\(symbol)USDT"

@@ -52,8 +52,6 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     
     private var cancellables: Set<AnyCancellable>
     
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor
     init(
         presenter: WatchlistPresentable,
         dependency: WatchlistInteractorDependency
