@@ -91,13 +91,13 @@ final class CoinDetailView: BaseView {
     
     func updateCandleStickChartView(with data: ChartData) {
         var chartEntries = [CandleChartDataEntry]()
-        for index in data.t.indices {
+        for index in data.time.indices {
             let entry = CandleChartDataEntry(
                 x: Double(index),
-                shadowH: data.h[index] ,
-                shadowL: data.l[index] ,
-                open: data.o[index] ,
-                close: data.c[index]
+                shadowH: data.highPrice[index] ,
+                shadowL: data.lowPrice[index] ,
+                open: data.openPrice[index] ,
+                close: data.closePrice[index]
             )
             chartEntries.append(entry)
         }
@@ -118,11 +118,13 @@ final class CoinDetailView: BaseView {
     func updateBarChartView(with data: ChartData) {
         var chartEntries = [BarChartDataEntry]()
         var chartColors = [UIColor]()
-        for index in data.v.indices {
-            let entry = BarChartDataEntry(x: Double(index), y: data.v[index])
+        for index in data.volume.indices {
+            let entry = BarChartDataEntry(
+                x: Double(index),
+                y: data.volume[index]
+            )
             chartEntries.append(entry)
-            
-            chartColors.append(data.o[index] > data.c[index] ? .systemBlue : .systemRed)
+            chartColors.append(data.openPrice[index] > data.closePrice[index] ? .systemBlue : .systemRed)
         }
         
         let chartDataSet = BarChartDataSet(entries: chartEntries)

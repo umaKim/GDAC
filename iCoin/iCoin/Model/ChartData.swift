@@ -8,10 +8,19 @@
 import Foundation
 
 struct ChartData: Codable {
-    let c: [Double] // close price
-    let h: [Double] // high price
-    let l: [Double] // low price
-    let o: [Double] // open price
-    let t: [Double] // timestamp price
-    let v: [Double] // volume data
+    let closePrice: [Double]    // close price
+    let highPrice: [Double]     // high price
+    let lowPrice: [Double]      // low price
+    let openPrice: [Double]     // open price
+    let time: [Double]          // timestamp price
+    let volume: [Double]        // volume data
+    
+    enum CodingKeys: String, CodingKey {
+        case closePrice = "c"
+        case highPrice = "h"
+        case lowPrice = "l"
+        case openPrice = "o"
+        case time = "t"
+        case volume = "v"
+    }
 }
