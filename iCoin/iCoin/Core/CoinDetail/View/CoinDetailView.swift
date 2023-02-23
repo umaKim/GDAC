@@ -44,6 +44,7 @@ final class CoinDetailView: BaseView {
     
     private lazy var candleStickChartView: CandleStickChartView = CandleStickChartView()
     private lazy var barChartView: BarChartView = BarChartView()
+    private(set) lazy var collectionView = CellableCollectionView()
     
     init() {
         super.init(frame: .zero)

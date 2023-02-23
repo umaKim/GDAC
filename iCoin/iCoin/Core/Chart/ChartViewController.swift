@@ -15,7 +15,7 @@ protocol ChartPresentableListener: AnyObject {
 }
 
 final class ChartViewController: UIViewController, ChartPresentable, ChartViewControllable {
-
+   
     weak var listener: ChartPresentableListener?
     
     private let contentView = ChartView()
@@ -23,5 +23,13 @@ final class ChartViewController: UIViewController, ChartPresentable, ChartViewCo
     override func loadView() {
         super.loadView()
         view = contentView
+    }
+    
+    func updateCandleStickChartView(with data: ChartData) {
+        contentView.updateCandleStickChartView(with: data)
+    }
+    
+    func updateBarchartView(with data: ChartData) {
+        contentView.updateBarChartView(with: data)
     }
 }

@@ -14,8 +14,8 @@ final class ChartView: UIView {
     
     init() {
         super.init(frame: .zero)
-        
-        backgroundColor = .red
+        backgroundColor = .systemBackground
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -59,12 +59,10 @@ final class ChartView: UIView {
             chartEntries.append(entry)
             chartColors.append(data.openPrice[index] > data.closePrice[index] ? .systemBlue : .systemRed)
         }
-        
         let chartDataSet = BarChartDataSet(entries: chartEntries)
         chartDataSet.colors = chartColors
         chartDataSet.drawValuesEnabled = false
         chartDataSet.highlightEnabled = false
-        
         let chartData = BarChartData(dataSet: chartDataSet)
         DispatchQueue.main.async {
             self.barChartView.data = chartData
