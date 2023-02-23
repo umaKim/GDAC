@@ -12,12 +12,12 @@ import SwiftUI
 protocol CoinDetailPresentableListener: AnyObject {
     func didTapBackButton()
     func didTapFavoriteButton()
-    func selectedDays(_ days: String)
 }
 
 final class CoinDetailViewController: UIViewController, CoinDetailPresentable, CoinDetailViewControllable {
-   
+    
     weak var listener: CoinDetailPresentableListener?
+    private var cellableDataSource = CellableViewControllerDatasource()
     private let contentView = CoinDetailView()
     private var cancellables: Set<AnyCancellable>
     
@@ -33,6 +33,9 @@ final class CoinDetailViewController: UIViewController, CoinDetailPresentable, C
     override func loadView() {
         super.loadView()
         view = contentView
+        cellableDataSource.view = view
+        contentView.collectionView.dataSource = cellableDataSource
+        contentView.collectionView.delegate = cellableDataSource
     }
     
     override func viewDidLoad() {
@@ -54,15 +57,24 @@ final class CoinDetailViewController: UIViewController, CoinDetailPresentable, C
                     self.listener?.didTapBackButton()
                 case .favoriteButton:
                     self.listener?.didTapFavoriteButton()
-                case .selectedDays(let days):
-                    self.listener?.selectedDays(days)
+//                case .selectedDays(let days):
+//                    self.listener?.selectedDays(days)
                 }
+            }
+            .store(in: &cancellables)
+        
+        cellableDataSource
+            .contentsOffsetPublisher
+            .sink {[weak self] contentsOffset in
+                self?.contentView
+                    .menuBar
+                    .scrollIndicator(to: contentsOffset)
             }
             .store(in: &cancellables)
     }
     
     func update(symbol: CoinCapAsset) {
-        contentView.update(symbol: symbol)
+        navigationItem.title = symbol.name
     }
     
     func update(_ coinLabelData: CoinLabelData) {
@@ -73,15 +85,17 @@ final class CoinDetailViewController: UIViewController, CoinDetailPresentable, C
         contentView.update(coinPriceData)
     }
     
-    func update(_ coinChartData: [Double]) {
-        contentView.update(coinChartData)
-    }
-    
-    func update(_ coinDetailMetaViewData: CoinDetailMetaViewData) {
-        contentView.update(coinDetailMetaViewData)
-    }
-    
     func doesSymbolInPersistance(_ exist: Bool) {
         contentView.doesSymbolInPersistance(exist)
+    }
+}
+
+extension CoinDetailViewController {
+    func setChart(_ view: ModernRIBs.ViewControllable) {
+        cellableDataSource.appendCellableView(view)
+    }
+    
+    func setMeta(_ view: ModernRIBs.ViewControllable) {
+        cellableDataSource.appendCellableView(view)
     }
 }

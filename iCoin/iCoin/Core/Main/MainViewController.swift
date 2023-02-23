@@ -20,13 +20,10 @@ protocol MainPresentableListener: AnyObject {
 }
 
 final class MainViewController: UIViewController, MainPresentable, MainViewControllable {
-    private var cellableViews: [ViewControllable] = []
+    private var cellableDataSource = CellableViewControllerDatasource()
     private var newsView: ViewControllable?
-    
     weak var listener: MainPresentableListener?
-    
     private let contentView = MainView()
-    
     private var cancellables: Set<AnyCancellable>
     
     init() {
@@ -40,16 +37,14 @@ final class MainViewController: UIViewController, MainPresentable, MainViewContr
     
     override func loadView() {
         super.loadView()
-        
         view = contentView
-        
-        contentView.collectionView.dataSource   = self
-        contentView.collectionView.delegate     = self
+        cellableDataSource.view = view
+        contentView.collectionView.dataSource   = cellableDataSource
+        contentView.collectionView.delegate     = cellableDataSource
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupViews()
         bind()
     }
@@ -75,6 +70,15 @@ final class MainViewController: UIViewController, MainPresentable, MainViewContr
                 case .writingOpinionDidTap:
                     self.listener?.writingOpinionButtonDidTap()
                 }
+            }
+            .store(in: &cancellables)
+        
+        cellableDataSource
+            .contentsOffsetPublisher
+            .sink {[weak self] contentsOffset in
+                self?.contentView
+                    .menuTabBar
+                    .scrollIndicator(to: contentsOffset)
             }
             .store(in: &cancellables)
     }
@@ -127,7 +131,6 @@ extension MainViewController: TabBarItemSettable {
             logoImageView.heightAnchor.constraint(equalToConstant:  navigationController?.navigationBar.height ?? 25)
         ])
         navigationItem.leftBarButtonItems =  [imageItem]
-        
         navigationItem.rightBarButtonItems = [
             contentView.writeOpinionsButton,
             contentView.searchButton
@@ -135,53 +138,14 @@ extension MainViewController: TabBarItemSettable {
     }
     
     func setWatchlist(_ view: ViewControllable) {
-        cellableViews.append(view)
+        cellableDataSource.appendCellableView(view)
     }
     
     func setOpinion(_ view: ViewControllable) {
-        cellableViews.append(view)
+        cellableDataSource.appendCellableView(view)
     }
     
     func setNews(_ view: ViewControllable) {
         newsView = view
-    }
-}
-
-//MARK: - ScrollView
-extension MainViewController {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        contentView.menuTabBar.scrollIndicator(to: scrollView.contentOffset)
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-extension MainViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        cellableViews.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: MainViewCell.identifier,
-                for: indexPath
-            ) as? MainViewCell
-        else { return UICollectionViewCell() }
-        cell.configure(with: cellableViews[indexPath.item].uiviewController.view)
-        return cell
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension MainViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        CGSize(
-            width: view.frame.width,
-            height: collectionView.frame.height
-        )
     }
 }
