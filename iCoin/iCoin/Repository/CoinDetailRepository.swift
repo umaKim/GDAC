@@ -17,13 +17,11 @@ protocol CoinDetailRepository {
     func fetch(symbol: String)
     
     func fetchMetaData(of symbol: String) -> AnyPublisher<CoinCapDetail, Error>
-    func fetchCoinChart(of id: String, days: String) -> AnyPublisher<CoinChartData, Error>
 }
 
 typealias CoinDetailNetworkable = CoinChartDataNetworkable & CoinCapMetaNetworkable
 
 struct CoinDetailRepositoryImp: CoinDetailRepository {
-    
     private let persistance: PersistanceService
     private let websocket: WebSocketProtocol
     private let network: CoinDetailNetworkable
@@ -73,9 +71,5 @@ extension CoinDetailRepositoryImp {
 extension CoinDetailRepositoryImp {
     func fetchMetaData(of symbol: String) -> AnyPublisher<CoinCapDetail, Error> {
         network.fetchMetaData(of: symbol)
-    }
-    
-    func fetchCoinChart(of id: String, days: String) -> AnyPublisher<CoinChartData, Error> {
-        network.fetchCoinChart(of: id, days: days)
     }
 }
