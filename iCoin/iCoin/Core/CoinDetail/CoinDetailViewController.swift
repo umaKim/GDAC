@@ -95,6 +95,10 @@ extension CoinDetailViewController {
         cellableDataSource.appendCellableView(view)
     }
     
+    func setOrderBook(_ view: ViewControllable) {
+        cellableDataSource.appendCellableView(view)
+    }
+    
     func setMeta(_ view: ModernRIBs.ViewControllable) {
         cellableDataSource.appendCellableView(view)
     }

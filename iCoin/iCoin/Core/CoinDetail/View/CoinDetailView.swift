@@ -4,15 +4,14 @@
 //
 //  Created by 김윤석 on 2023/01/17.
 //
-import Charts
-import SwiftUI
+
 import Combine
 import UIKit
 
 enum CoinDetailViewAction {
     case backButton
     case favoriteButton
-    case selectedDays(String)
+//    case selectedDays(String)
 }
 
 final class CoinDetailView: BaseView {
@@ -33,17 +32,14 @@ final class CoinDetailView: BaseView {
         action: #selector(favoriteButtonDidTap)
     )
     
-    private var contentScrollView = UIScrollView()
-    private var contentView = UIView()
-    private lazy var label: UILabel = UILabel()
-    
     private lazy var coinLabel = CoinLabel()
     private lazy var priceLabel = CoinPriceLabel()
-    private lazy var chartView = CoinChartView()
-    private lazy var metaView = CoinDetailMetaView()
     
-    private lazy var candleStickChartView: CandleStickChartView = CandleStickChartView()
-    private lazy var barChartView: BarChartView = BarChartView()
+    private let chartButton: MenuBarButton = MenuBarButton(title: "Chart", font: 14)
+    private let orderBook: MenuBarButton = MenuBarButton(title: "OrderBook", font: 14)
+    private let metaButton: MenuBarButton = MenuBarButton(title: "About", font: 14)
+    
+    private(set) lazy var menuBar = MenuBarView2(buttons: [chartButton, orderBook, metaButton])
     private(set) lazy var collectionView = CellableCollectionView()
     
     init() {
@@ -53,21 +49,35 @@ final class CoinDetailView: BaseView {
     }
     
     private func bind() {
-        chartView
-            .actionPublisher
-            .sink {[weak self] action in
-                guard let self = self else { return }
-                switch action {
-                case .selectedDays(let days):
-                    self.actionSubject.send(.selectedDays(days))
-                }
+        chartButton
+            .tapPublisher
+            .sink {[weak self] _ in
+                self?.scroll(to: .myList)
+            }
+            .store(in: &cancellables)
+        
+        orderBook
+            .tapPublisher
+            .sink { _ in
+                self.scroll(to: .orderBook)
+            }
+            .store(in: &cancellables)
+        
+        metaButton
+            .tapPublisher
+            .sink {[weak self] _ in
+                self?.scroll(to: .opinions)
             }
             .store(in: &cancellables)
     }
     
-    func update(symbol: CoinCapAsset) {
-        label.numberOfLines = 5
-        label.text = "\(symbol.symbol)\n\(symbol.name)\n\(symbol.changePercent24Hr)"
+    private func scroll(to item: MenuTabBarButtonType) {
+        let indexPath = IndexPath(item: item.rawValue, section: 0)
+        self.collectionView.scrollToItem(
+            at: indexPath,
+            at: [],
+            animated: true
+        )
     }
     
     func update(_ coinLabelData: CoinLabelData) {
@@ -78,66 +88,8 @@ final class CoinDetailView: BaseView {
         self.priceLabel.configure(with: priceData)
     }
     
-    func update(_ coinChartData: [Double]) {
-        self.chartView.configure(with: coinChartData)
-    }
-    
-    func update(_ data: CoinDetailMetaViewData) {
-        self.metaView.configure(with: data)
-    }
-    
     func doesSymbolInPersistance(_ exist: Bool) {
         favoriteButton.image = .init(systemName: exist ? "star.fill" : "star")
-    }
-    
-    func updateCandleStickChartView(with data: ChartData) {
-        var chartEntries = [CandleChartDataEntry]()
-        for index in data.time.indices {
-            let entry = CandleChartDataEntry(
-                x: Double(index),
-                shadowH: data.highPrice[index] ,
-                shadowL: data.lowPrice[index] ,
-                open: data.openPrice[index] ,
-                close: data.closePrice[index]
-            )
-            chartEntries.append(entry)
-        }
-        let chartDataSet = CandleChartDataSet(entries: chartEntries)
-        chartDataSet.increasingColor = .systemRed
-        chartDataSet.decreasingColor = .systemBlue
-        chartDataSet.neutralColor = .systemRed
-        chartDataSet.increasingFilled = true
-        chartDataSet.shadowColorSameAsCandle = true
-        chartDataSet.drawValuesEnabled = false
-        let chartData = CandleChartData(dataSet: chartDataSet)
-        DispatchQueue.main.async {
-            self.candleStickChartView.data = chartData
-            self.candleStickChartView.fitScreen()
-        }
-    }
-    
-    func updateBarChartView(with data: ChartData) {
-        var chartEntries = [BarChartDataEntry]()
-        var chartColors = [UIColor]()
-        for index in data.volume.indices {
-            let entry = BarChartDataEntry(
-                x: Double(index),
-                y: data.volume[index]
-            )
-            chartEntries.append(entry)
-            chartColors.append(data.openPrice[index] > data.closePrice[index] ? .systemBlue : .systemRed)
-        }
-        
-        let chartDataSet = BarChartDataSet(entries: chartEntries)
-        chartDataSet.colors = chartColors
-        chartDataSet.drawValuesEnabled = false
-        chartDataSet.highlightEnabled = false
-        
-        let chartData = BarChartData(dataSet: chartDataSet)
-        DispatchQueue.main.async {
-            self.barChartView.data = chartData
-            self.barChartView.fitScreen()
-        }
     }
     
     required init?(coder: NSCoder) {
@@ -161,44 +113,42 @@ extension CoinDetailView {
 // MARK: - Set up UI
 extension CoinDetailView {
     private func setupUI() {
-        setUpCandlestickChartView()
-        setUpBarChartView()
-        addSubviews(candleStickChartView, barChartView)
+        backgroundColor = .systemBackground
+        let vStack = UIStackView(arrangedSubviews: [coinLabel, priceLabel])
+        vStack.axis = .vertical
+        vStack.alignment = .leading
+        vStack.distribution = .fill
+        addSubviews(vStack)
+        
         NSLayoutConstraint.activate([
-            candleStickChartView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            candleStickChartView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            candleStickChartView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            candleStickChartView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.55),
-            barChartView.topAnchor.constraint(equalTo: candleStickChartView.bottomAnchor),
-            barChartView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            barChartView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            barChartView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+            vStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            vStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            vStack.topAnchor.constraint(equalTo: topAnchor, constant: 8)
         ])
         
-    }
-    
-    private func setUpCandlestickChartView() {
-        candleStickChartView.xAxis.labelPosition = .bottom
-        candleStickChartView.leftAxis.enabled = false
-        candleStickChartView.xAxis.setLabelCount(4, force: false)
-        candleStickChartView.legend.enabled = false
-        candleStickChartView.pinchZoomEnabled = true
-        candleStickChartView.scaleXEnabled = true
-        candleStickChartView.scaleYEnabled = true
-        candleStickChartView.doubleTapToZoomEnabled = false
-    }
-    
-    private func setUpBarChartView() {
-        barChartView.legend.enabled = false
-        barChartView.xAxis.labelPosition = .bottom
-        barChartView.xAxis.setLabelCount(4, force: false)
-        barChartView.leftAxis.enabled = false
-        barChartView.pinchZoomEnabled = true
-        barChartView.scaleXEnabled = true
-        barChartView.scaleYEnabled = true
-        barChartView.doubleTapToZoomEnabled = false
-        barChartView.rightAxis.enabled = true
-        barChartView.rightAxis.axisMinimum = 0
-        barChartView.leftAxis.axisMinimum = 0
+        addSubviews(
+            menuBar,
+            collectionView
+        )
+        NSLayoutConstraint.activate([
+            menuBar.topAnchor.constraint(equalTo: vStack.bottomAnchor, constant: 8),
+            menuBar.leadingAnchor.constraint(equalTo: leadingAnchor),
+            menuBar.trailingAnchor.constraint(equalTo: trailingAnchor),
+            menuBar.heightAnchor.constraint(equalToConstant: 50),
+            
+            collectionView.topAnchor.constraint(equalTo: menuBar.bottomAnchor),
+            collectionView.leadingAnchor.constraint(
+                equalToSystemSpacingAfter: leadingAnchor,
+                multiplier: 0
+            ),
+            trailingAnchor.constraint(
+                equalToSystemSpacingAfter: collectionView.trailingAnchor,
+                multiplier: 0
+            ),
+            safeAreaLayoutGuide.bottomAnchor.constraint(
+                equalToSystemSpacingBelow: collectionView.bottomAnchor,
+                multiplier: 0
+            )
+        ])
     }
 }
