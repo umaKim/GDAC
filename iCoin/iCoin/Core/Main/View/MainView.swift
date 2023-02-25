@@ -23,19 +23,8 @@ final class MainView: BaseView {
     //MARK: - UI Objects
     private(set) lazy var searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .done, target: nil, action: nil)
     private(set) lazy var writeOpinionsButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .done, target: nil, action: nil)
-    
     private(set) lazy var menuTabBar = MenuBarView()
-    
-    private(set) lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: MainViewCell.identifier)
-        collectionView.isPagingEnabled = true
-        collectionView.showsHorizontalScrollIndicator = false
-        return collectionView
-    }()
+    private(set) lazy var collectionView = CellableCollectionView()
     
     //MARK: - Init
     override init(frame: CGRect) {
