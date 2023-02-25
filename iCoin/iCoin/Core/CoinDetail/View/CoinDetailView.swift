@@ -114,23 +114,24 @@ extension CoinDetailView {
 extension CoinDetailView {
     private func setupUI() {
         backgroundColor = .systemBackground
+        collectionView.isScrollEnabled = false
+        
         let vStack = UIStackView(arrangedSubviews: [coinLabel, priceLabel])
         vStack.axis = .vertical
         vStack.alignment = .leading
         vStack.distribution = .fill
-        addSubviews(vStack)
+        
+        addSubviews(
+            vStack,
+            menuBar,
+            collectionView
+        )
         
         NSLayoutConstraint.activate([
             vStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             vStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            vStack.topAnchor.constraint(equalTo: topAnchor, constant: 8)
-        ])
-        
-        addSubviews(
-            menuBar,
-            collectionView
-        )
-        NSLayoutConstraint.activate([
+            vStack.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            
             menuBar.topAnchor.constraint(equalTo: vStack.bottomAnchor, constant: 8),
             menuBar.leadingAnchor.constraint(equalTo: leadingAnchor),
             menuBar.trailingAnchor.constraint(equalTo: trailingAnchor),
