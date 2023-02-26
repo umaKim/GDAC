@@ -39,7 +39,7 @@ final class CoinDetailView: BaseView {
     private let orderBook: MenuBarButton = MenuBarButton(title: "OrderBook", font: 14)
     private let metaButton: MenuBarButton = MenuBarButton(title: "About", font: 14)
     
-    private(set) lazy var menuBar = MenuBarView2(buttons: [chartButton, orderBook, metaButton])
+    private(set) lazy var menuBar = MenuBarView(buttons: [chartButton, orderBook, metaButton])
     private(set) lazy var collectionView = CellableCollectionView()
     
     init() {
