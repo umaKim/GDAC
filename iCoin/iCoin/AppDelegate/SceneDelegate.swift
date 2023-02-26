@@ -4,6 +4,7 @@
 //
 //  Created by 김윤석 on 2022/06/05.
 //
+import WidgetKit
 import ModernRIBs
 import UIKit
 
@@ -19,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        
+        WidgetCenter.shared.reloadTimelines(ofKind: "iCoin_Widget")
         let launchRouter = AppRootBuilder(dependency: AppComponent()).build()
         self.launchRouter = launchRouter
         self.launchRouter?.launch(from: window!)

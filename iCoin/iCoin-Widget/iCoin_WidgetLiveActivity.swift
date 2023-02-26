@@ -55,23 +55,3 @@ struct iCoin_WidgetLiveActivity: Widget {
         }
     }
 }
-
-//struct iCoin_WidgetLiveActivity_Previews: PreviewProvider {
-//    static let attributes = iCoin_WidgetAttributes(name: "Me")
-//    static let contentState = iCoin_WidgetAttributes.ContentState(value: 3)
-//
-//    static var previews: some View {
-//        attributes
-//            .previewContext(contentState, viewKind: .dynamicIsland(.compact))
-//            .previewDisplayName("Island Compact")
-//        attributes
-//            .previewContext(contentState, viewKind: .dynamicIsland(.expanded))
-//            .previewDisplayName("Island Expanded")
-//        attributes
-//            .previewContext(contentState, viewKind: .dynamicIsland(.minimal))
-//            .previewDisplayName("Minimal")
-//        attributes
-//            .previewContext(contentState, viewKind: .content)
-//            .previewDisplayName("Notification")
-//    }
-//}

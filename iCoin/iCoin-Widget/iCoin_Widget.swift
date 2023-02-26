@@ -10,7 +10,8 @@ import SwiftUI
 import Intents
 
 //위젯 새로 고침을 결정할 객체
-struct Provider: IntentTimelineProvider {
+struct Provider:
+    IntentTimelineProvider {
     //아무런 데이터가 없을때 보여지는 위젯
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), configuration: ConfigurationIntent())
@@ -30,7 +31,7 @@ struct Provider: IntentTimelineProvider {
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
-        for hourOffset in 0 ..< 1 {
+        for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(
                 byAdding: .minute,
                 value: hourOffset,
@@ -39,11 +40,11 @@ struct Provider: IntentTimelineProvider {
             let entry = SimpleEntry(date: entryDate, configuration: configuration)
             entries.append(entry)
         }
-
-        TimelineReloadPolicy.atEnd // 이 
-        TimelineReloadPolicy.after(Date())
-        TimelineReloadPolicy.never
-        
+//        let refreshAfter = Calendar.current.date(
+//            byAdding: .minute,
+//            value: 1,
+//            to: currentDate
+//        )!
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
@@ -59,6 +60,7 @@ struct iCoin_WidgetEntryView : View {
 
     var body: some View {
         Text(entry.date, style: .time)
+            .foregroundColor(.red)
     }
 }
 
@@ -75,6 +77,15 @@ struct iCoin_Widget: Widget {
         }
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
+        
+//        StaticConfiguration(
+//            kind: kind,
+//            provider: Provider()
+//        ) { entry in
+//            iCoin_WidgetEntryView(entry: entry)
+//        }
+//        .configurationDisplayName("My Widget")
+//        .description("This is an example widget.")
     }
 }
 
