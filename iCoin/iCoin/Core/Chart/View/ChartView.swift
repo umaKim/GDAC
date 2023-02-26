@@ -45,9 +45,24 @@ final class ChartView: UIView {
         DispatchQueue.main.async {
             self.candleStickChartView.data = chartData
             self.candleStickChartView.fitScreen()
+            
+            if let openPrice = data.openPrice.last,
+               let closingPrice = data.closePrice.last {
+                self.candleStickChartView.zoomToCenter(scaleX: 80, scaleY: 20)
+                self.candleStickChartView.moveViewTo(
+                    xValue: Double(data.volume.count - 1),
+                    yValue: (openPrice + closingPrice) / 2,
+                    axis: .right
+                )
+            }
+            let dateFormatter = self.generateDateFormatter(by: .twentyFourHours)
+            self.candleStickChartView.xAxis.valueFormatter = IndexAxisValueFormatter(
+                values: data.time.map({ dateFormatter.string(from: Date(timeIntervalSince1970: $0)) })
+            )
         }
     }
     
+
     func updateBarChartView(with data: ChartData) {
         var chartEntries = [BarChartDataEntry]()
         var chartColors = [UIColor]()
@@ -67,6 +82,73 @@ final class ChartView: UIView {
         DispatchQueue.main.async {
             self.barChartView.data = chartData
             self.barChartView.fitScreen()
+            
+            if let volume = data.volume.last {
+                self.barChartView.zoomToCenter(scaleX: 80, scaleY: 20)
+                self.barChartView.moveViewTo(
+                    xValue: Double(data.volume.count - 1),
+                    yValue: volume,
+                    axis: .right
+                )
+            }
+            
+            let dateFormatter = self.generateDateFormatter(by: .twentyFourHours)
+            self.barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(
+                values: data.time.map({ dateFormatter.string(from: Date(timeIntervalSince1970: $0)) })
+            )
+        }
+    }
+    
+    private func generateDateFormatter(by chartInterval: ChartInterval) -> DateFormatter {
+        let dateFormatter = DateFormatter()
+        switch chartInterval {
+        case .oneMinute:
+            dateFormatter.dateFormat = "dd-HH:mm"
+        case .tenMinutes:
+            dateFormatter.dateFormat = "dd-HH:mm"
+        case .thirtyMinutes:
+            dateFormatter.dateFormat = "dd-HH:mm"
+        case .oneHour:
+            dateFormatter.dateFormat = "dd-HH:mm"
+        case .twentyFourHours:
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+        default:
+            dateFormatter.dateFormat = "dd-HH:mm"
+        }
+        
+        return dateFormatter
+    }
+    
+    enum ChartInterval: String {
+        case oneMinute = "1m"
+        case threeMinutes = "3m"
+        case fiveMinutes = "5m"
+        case tenMinutes = "10m"
+        case thirtyMinutes = "30m"
+        case oneHour = "1h"
+        case sixHours = "6h"
+        case twelveHours = "12h"
+        case twentyFourHours = "24h"
+        
+        var pathValue: String {
+            return self.rawValue
+        }
+        
+        init?(interval: String?) {
+            switch interval {
+            case "1분":
+                self = .oneMinute
+            case "10분":
+                self = .tenMinutes
+            case "30분":
+                self = .thirtyMinutes
+            case "1시간":
+                self = .oneHour
+            case "일":
+                self = .twentyFourHours
+            default:
+                return nil
+            }
         }
     }
 }
