@@ -43,7 +43,7 @@ final class PersistanceManager: PersistanceService {
     /// - Parameter symbol: Symbol to check
     /// - Returns: Boolean
     public func watchlistContains(symbol: CoinCapAsset) -> Bool {
-        watchlist.contains(symbol)
+        return watchlist.contains(where: { symbol.symbol == $0.symbol })
     }
     
     /// Add a symbol to watch list
