@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import CombineCocoa
 import UIKit.UICollectionView
 import Combine
 
@@ -23,7 +23,14 @@ final class MainView: BaseView {
     //MARK: - UI Objects
     private(set) lazy var searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .done, target: nil, action: nil)
     private(set) lazy var writeOpinionsButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .done, target: nil, action: nil)
-    private(set) lazy var menuTabBar = MenuBarView()
+    
+    private let chartButton: MenuBarButton = MenuBarButton(title: "Crypto", font: 20)
+    private let orderBook: MenuBarButton = MenuBarButton(title: "Opinions", font: 20)
+    
+    private(set) lazy var menuTabBar = MenuBarView(
+        buttons: [chartButton, orderBook],
+        alignment: .leading
+    )
     private(set) lazy var collectionView = CellableCollectionView()
     
     //MARK: - Init
@@ -49,35 +56,36 @@ final class MainView: BaseView {
 
 extension MainView {
     private func bind() {
-        menuTabBar
-            .actionPublisher
-            .sink {[weak self] action in
-                switch action {
-                case .didTapMyList:
-                    self?.scroll(to: .myList)
-                    
-                case .didTapOpinions:
-                    self?.scroll(to: .opinions)
-                }
+        chartButton
+            .tapPublisher
+            .sink {[weak self] _ in
+                self?.scroll(to: .myList)
+            }
+            .store(in: &cancellables)
+        
+        orderBook
+            .tapPublisher
+            .sink {[weak self] _ in
+                self?.scroll(to: .orderBook)
             }
             .store(in: &cancellables)
         
         searchButton
             .tapPublisher
-            .sink { [weak self] _ in
+            .sink {[weak self] _ in
                 self?.actionSubject.send(.searchButtonDidTap)
             }
             .store(in: &cancellables)
         
         writeOpinionsButton
             .tapPublisher
-            .sink { [weak self] _ in
+            .sink {[weak self] _ in
                 self?.actionSubject.send(.writingOpinionDidTap)
                 self?.collectionView.scrollToItem(
                     at: IndexPath(item: 1, section: 0),
                     at: [],
-                    animated: true)
-                
+                    animated: true
+                )
             }
             .store(in: &cancellables)
     }
@@ -86,6 +94,8 @@ extension MainView {
 //MARK: - Set up UI
 extension MainView {
     private func setupUI() {
+        backgroundColor = .systemBackground
+        
         searchButton.tintColor        = .gdacBlue
         writeOpinionsButton.tintColor = .gdacBlue
         
@@ -93,8 +103,8 @@ extension MainView {
         
         NSLayoutConstraint.activate([
             menuTabBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            menuTabBar.leadingAnchor.constraint(equalTo: leadingAnchor),
-            menuTabBar.trailingAnchor.constraint(equalTo: trailingAnchor),
+            menuTabBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            menuTabBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             menuTabBar.heightAnchor.constraint(equalToConstant: 50),
             
             collectionView.topAnchor.constraint(
