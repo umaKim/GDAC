@@ -19,6 +19,12 @@ protocol WatchlistDependency: Dependency {
 final class WatchlistComponent: Component<WatchlistDependency>, WatchlistInteractorDependency {
     var watchlistRepository: WatchlistRepository { dependency.watchlistRepository }
     var lifeCycleDidChangePublisher: AnyPublisher<ViewControllerLifeCycle, Never> { dependency.lifeCycleDidChangePublisher }
+    
+    override init(
+        dependency: WatchlistDependency
+    ) {
+        super.init(dependency: dependency)
+    }
 }
 
 // MARK: - Builder
@@ -32,7 +38,7 @@ final class WatchlistBuilder: Builder<WatchlistDependency>, WatchlistBuildable {
     override init(dependency: WatchlistDependency) {
         super.init(dependency: dependency)
     }
-
+    
     func build(withListener listener: WatchlistListener) -> WatchlistRouting {
         let component = WatchlistComponent(dependency: dependency)
         let viewController = WatchlistViewController()

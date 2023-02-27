@@ -117,7 +117,6 @@ extension MainInteractor {
 
 // MARK: - CoinDetail
 extension MainInteractor {
-    
     func watchlistDidTap(_ symbol: CoinCapAsset) {
         router?.attachCoinDetail()
         dependency.symbolSubject.send(symbol)

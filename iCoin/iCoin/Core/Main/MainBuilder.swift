@@ -15,7 +15,6 @@ protocol MainDependency: Dependency {
 
 final class MainComponent: Component<MainDependency>,
                            MainInteractorDependency,
-                           OpinionInteractorDependency,
                            WatchlistDependency,
                            OpinionsDependency,
                            NewsDependency,
@@ -30,21 +29,12 @@ final class MainComponent: Component<MainDependency>,
     var lifeCycleDidChangeSubject: PassthroughSubject<ViewControllerLifeCycle, Never> = PassthroughSubject<ViewControllerLifeCycle, Never>()
     
     let watchlistRepository: WatchlistRepository
-    let newsRepository: NewsRepository
-    let opinionRepository: OpinionRepository
-    let writingOpinionRepository: WritingOpinionRepository
     
     init(
         dependency: MainDependency,
-        watchlistRepository: WatchlistRepository,
-        newsRepository: NewsRepository,
-        opinionRepository: OpinionRepository,
-        writingOpinionRepository: WritingOpinionRepository
+        watchlistRepository: WatchlistRepository
     ) {
         self.watchlistRepository = watchlistRepository
-        self.newsRepository = newsRepository
-        self.opinionRepository = opinionRepository
-        self.writingOpinionRepository = writingOpinionRepository
         super.init(dependency: dependency)
     }
 }
@@ -67,10 +57,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
             watchlistRepository: WatchlistRepositoryImp(
                 websocket: StarScreamWebSocket(),
                 network: NetworkManager()
-            ),
-            newsRepository: NewsRepositoryImp(network: NetworkManager()),
-            opinionRepository: OpinionRepositoryImp(firebase: FirebaseManager()),
-            writingOpinionRepository: WritingOpinionRepositoryImp(firebase: FirebaseManager())
+            )
         )
         let viewController = MainViewController()
         let interactor = MainInteractor(
