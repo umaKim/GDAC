@@ -15,14 +15,17 @@ protocol CoinInformationPresentableListener: AnyObject {
 }
 
 final class CoinInformationViewController: UIViewController, CoinInformationPresentable, CoinInformationViewControllable {
-
+    
     weak var listener: CoinInformationPresentableListener?
     
     private let contentView = CoinInformationView()
     
     override func loadView() {
         super.loadView()
-        
         view = contentView
+    }
+    
+    func update(_ coinDetailMetaViewData: CoinDetailMetaViewData) {
+        contentView.update(coinDetailMetaViewData)
     }
 }
