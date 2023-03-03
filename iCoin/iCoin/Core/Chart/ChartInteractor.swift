@@ -78,20 +78,26 @@ extension ChartInteractor {
     private func fetchChartData(of symbol: String) {
         dependency
             .coinChartRepository
-            .fetchChartData(of: symbol)
+            .fetchCoinChartData(
+                of: symbol,
+                resolution: "D",
+                from: 1572651390,
+                to: Int(Date().timeIntervalSince1970)
+            )
             .receive(on: DispatchQueue.main)
             .sink { comple in
                 switch comple {
                 case .finished:
                     break
                 case .failure(let error):
-                    break
+                    print(error)
                 }
             } receiveValue: {[weak self] coinData in
                 self?.updateCandleStickChartView(with: coinData)
                 self?.updateBarChartView(with: coinData)
             }
             .store(in: &cancellables)
+
     }
     
     private func updateCandleStickChartView(with data: ChartData) {
