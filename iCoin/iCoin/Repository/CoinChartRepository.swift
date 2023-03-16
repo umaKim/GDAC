@@ -9,7 +9,12 @@ import Combine
 import Foundation
 
 protocol CoinChartRepository {
-    func fetchChartData(of id: String) -> AnyPublisher<ChartData, Error>
+    func fetchCoinChartData(
+        of id: String,
+        resolution: String,
+        from fromDate: Int,
+        to endDate: Int
+    ) -> AnyPublisher<ChartData, Error>
 }
 
 struct CoinChartRepositoryImp: CoinChartRepository {
@@ -18,7 +23,12 @@ struct CoinChartRepositoryImp: CoinChartRepository {
         self.network = network
     }
     
-    func fetchChartData(of id: String) -> AnyPublisher<ChartData, Error> {
-        network.fetchCoinChartData(of: id)
+    func fetchCoinChartData(
+        of id: String,
+        resolution: String,
+        from fromDate: Int,
+        to endDate: Int
+    ) -> AnyPublisher<ChartData, Error>  {
+        network.fetchCoinChartData(of: id, resolution: resolution, from: fromDate, to: endDate)
     }
 }
