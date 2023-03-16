@@ -25,7 +25,6 @@ protocol CoinDetailPresentable: Presentable {
     var listener: CoinDetailPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
     
-//    func update(price: Double)
     func update(symbol: CoinCapAsset)
     func update(_ coinLabelData: CoinLabelData)
     func update(_ coinPriceData: CoinPriceLabelData)
@@ -90,6 +89,8 @@ extension CoinDetailInteractor {
 
 // MARK: - Network
 extension CoinDetailInteractor {
+    
+    /// for receiving selected symbol from parents view
     private func fetchSelectedSymbolStatus() {
         dependency
             .symbol
@@ -98,11 +99,12 @@ extension CoinDetailInteractor {
                 self?.presenter.update(symbol: symbol)
                 self?.checkIsFavorite(symbol: symbol)
                 self?.fetchMetatData(of: symbol.id)
-                self?.fetchFromNetwork(symbols: [symbol.symbol])
+                self?.fetchFromSocket(symbols: [symbol.symbol])
             }
             .store(in: &cancellables)
     }
     
+    /// for fetching coin image and its price
     private func fetchMetatData(of symbol: String) {
         dependency
             .coinDetailRepository
@@ -122,7 +124,8 @@ extension CoinDetailInteractor {
             .store(in: &cancellables)
     }
     
-    private func fetchFromNetwork(symbols: [String]) {
+    /// for fetching real time price change
+    private func fetchFromSocket(symbols: [String]) {
         connectWebSocket()
         
         dependency
@@ -162,12 +165,6 @@ extension CoinDetailInteractor {
         dependency
             .coinDetailRepository
             .disconnect()
-    }
-}
-
-extension CoinDetailInteractor {
-    private func fetchWebsocket() {
-        dependency.coinDetailRepository.connect()
     }
 }
 
