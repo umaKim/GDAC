@@ -8,137 +8,70 @@ import Combine
 import Starscream
 import Foundation
 
-protocol WebSocketProtocol {
-    var dataPublisher: PassthroughSubject<[Datum], Never> { get set }
-    func set(symbols: [String])
-    func disconnect()
-    func connect()
+protocol StarScreamWebSocketDelegate: AnyObject {
+    func didReceive(_ text: String)
+    func connected()
+    func cancelled()
 }
 
-final class WebSocketManager: WebSocketProtocol, UrlConfigurable {
-    func set(symbols: [String]) {
-        self.symbols = symbols
-    }
-    
-    private var symbols: [String] = []
-    
-    func connect() {
-        guard
-            let url = url(for: CryptoConstants.baseUrl, with: ["token" : CryptoConstants.apiKey])
-        else {
-            print("unable to url")
-            return
-        }
-        webSocketTask = URLSession(configuration: .default).webSocketTask(with: url)
-        
-        webSocket(symbols: symbols)
-        receiveMessage()
-    }
-    
+protocol WebSocketProtocol {
+    func register(delegate: StarScreamWebSocketDelegate)
+    func write(_ text: String)
+    func connect(to wsRequestable: WebsocketRequestable)
+    func disconnect()
+}
 
+enum WebsocketRequestType: String {
+    case finnhub = "wss://ws.finnhub.io"
+}
+
+protocol WebsocketRequestable {
+    func urlMaker() -> URL
+}
+
+struct FinnHubSocket: WebsocketRequestable, UrlConfigurable {
+    func urlMaker() -> URL {
+        url(
+            for: CryptoConstants.baseUrl,
+            with: ["token" : CryptoConstants.apiKey]
+        )!
+    }
+    
     fileprivate enum CryptoConstants {
         static let apiKey = "c3c6me2ad3iefuuilms0"
         static let baseUrl = "wss://ws.finnhub.io"
     }
+}
 
-    private var webSocketTask : URLSessionWebSocketTask?
-
-    var dataPublisher = PassthroughSubject<[Datum], Never>()
-
-    func disconnect() {
-        webSocketTask?.cancel(with: .goingAway, reason: nil)
-        webSocketTask = nil
+struct BithumSocket: WebsocketRequestable, UrlConfigurable {
+    func urlMaker() -> URL {
+        url(for:  "wss://pubwss.bithumb.com/pub/ws")!
     }
-
-    /// Setup Websocket with specific input values
-    func webSocket(symbols: [String]) {
-        DispatchQueue.global().async {
-            let set = Set(symbols)
-            for symbol in set {
-                let symbolForFinHub = "BINANCE:\(symbol)USDT"
-                let message = URLSessionWebSocketTask.Message.string("{\"type\":\"subscribe\",\"symbol\":\"\(symbolForFinHub)\"}")
-
-                self.webSocketTask?.send(message) { error in
-                    if let error = error {
-                        print("WebSocket couldn’t send message because: \(error)")
-                    }
-                }
-            }
-            self.webSocketTask?.resume()
-            self.ping()
-        }
-    }
-
-    private func ping() {
-        DispatchQueue.global().async(qos: .utility) {
-            self.webSocketTask?.sendPing { error in
-                if let error = error {
-                    print("Error when sending PING \(error)")
-                } else {
-//                    print("Web Socket connection is alive")
-                    DispatchQueue.global().asyncAfter(deadline: .now() + 5) {
-                        self.ping()
-                    }
-                }
-            }
-        }
-    }
-
-    /// Perform Websocket
-    func receiveMessage() {
-        DispatchQueue.global().async {
-            self.webSocketTask?.receive { [weak self] result in
-                guard let self = self else {return}
-                switch result {
-                case .failure(let error):
-                    print("Error in receiving message: \(error)")
-                case .success(let message):
-                    switch message {
-                    case .string(let text):
-                        if let data: Data = text.data(using: .utf8) {
-                            if let tickData = try? WebSocketData.decode(from: data)?.data {
-                                self.dataPublisher.send(tickData)
-                            }
-                        }
-                    case .data(let data):
-                        print("Received data: \(data)")
-                    @unknown default:
-                        fatalError()
-                    }
-                    self.receiveMessage()
-                }
-            }
-        }
+    
+    fileprivate enum BithumConstants {
+        static let baseUrl = "wss://pubwss.bithumb.com/pub/ws"
     }
 }
 
-class StarScreamWebSocket: WebSocketProtocol, UrlConfigurable {
-    var dataPublisher = PassthroughSubject<[Datum], Never>()
-    
-    func set(symbols: [String]) {
-        self.symbols = symbols
-    }
-    
-    private var symbols: [String] = []
+final class StarScreamWebSocket: WebSocketProtocol, UrlConfigurable {
     
     private var socket: WebSocket?
     
-    private func configure() {
-        guard
-            let url = url(
-                for: CryptoConstants.baseUrl,
-                with: ["token" : CryptoConstants.apiKey]
-            )
-        else { return }
-        
-        var request = URLRequest(url: url)
+    private func configure(with websocketRequestable: WebsocketRequestable) {
+        var request = URLRequest(url: websocketRequestable.urlMaker())
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         socket?.delegate = self
     }
     
-    func connect() {
-        configure()
+    func register(delegate: StarScreamWebSocketDelegate) {
+        self.delegate = delegate
+    }
+    
+    private weak var delegate: StarScreamWebSocketDelegate?
+    
+    func connect(to wsRequestable: WebsocketRequestable) {
+        configure(with: wsRequestable)
         socket?.connect()
     }
     
@@ -151,29 +84,33 @@ class StarScreamWebSocket: WebSocketProtocol, UrlConfigurable {
         static let apiKey = "c3c6me2ad3iefuuilms0"
         static let baseUrl = "wss://ws.finnhub.io"
     }
+    
+    fileprivate enum BithumConstants {
+        static let baseUrl = "wss://pubwss.bithumb.com/pub/ws"
+    }
+    
+    func write(_ text: String) {
+        socket?.write(string: text)
+    }
 }
 
-extension StarScreamWebSocket: WebSocketDelegate {
-    func didReceive(event: Starscream.WebSocketEvent, client: Starscream.WebSocketClient) {
+extension StarScreamWebSocket: Starscream.WebSocketDelegate {
+    func didReceive(
+        event: Starscream.WebSocketEvent,
+        client: Starscream.WebSocketClient
+    ) {
         switch event {
         case .connected:
-            DispatchQueue.global().async {[weak self] in
-                self?.symbols.forEach({ symbol in
-                    let symbolForFinHub = "BINANCE:\(symbol)USDT"
-                    let message = "{\"type\":\"subscribe\",\"symbol\":\"\(symbolForFinHub)\"}"
-                    client.write(string: message)
-                })
-            }
-        
-        case .disconnected(let reason, let code):
-            print("websocket is disconnected: \(reason) with code: \(code)")
+            self.delegate?.connected()
+            
+        case .disconnected(let reason, _):
+            delegate = nil
+            socket = nil
+            print(reason)
             
         case .text(let text):
-            if let data: Data = text.data(using: .utf8) {
-                if let tickData = try? WebSocketData.decode(from: data)?.data {
-                    self.dataPublisher.send(tickData)
-                }
-            }
+            self.delegate?.didReceive(text)
+            
         case .binary:
             break
         case .ping:
@@ -188,7 +125,7 @@ extension StarScreamWebSocket: WebSocketDelegate {
             break
         case .cancelled:
             print("cancelled")
-            connect()
+            delegate?.cancelled()
             
         case .error(let error):
             print(error?.localizedDescription)
