@@ -117,9 +117,14 @@ extension WatchlistInteractor {
     
     private func fetchFromNetwork(symbols: [Symbol]) {
         connectWebSocket()
+        
         dependency
             .watchlistRepository
-            .fetch(symbols: symbols)
+            .set(symbols: symbols)
+        
+        dependency
+            .watchlistRepository
+            .dataPublisher
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -144,7 +149,6 @@ extension WatchlistInteractor {
             .watchlistRepository
             .disconnect()
     }
-    
 }
 
 // MARK: - For Presentable
