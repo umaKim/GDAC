@@ -23,9 +23,16 @@ protocol CoinCapMetaNetworkable {
 }
 
 protocol CoinChartDataNetworkable {
-    func fetchCoinChart(of id: String, days: String) -> AnyPublisher<CoinChartData, Error>
-    
-    func fetchCoinChartData(of id: String) -> AnyPublisher<ChartData, Error>
+    func fetchCoinChartData(
+        of id: String,
+        resolution: String,
+        from fromDate: Int,
+        to endDate: Int
+    ) -> AnyPublisher<ChartData, Error>
+}
+
+protocol CoinOrderBookNetworkable {
+    func fetchOrderBook(of symbol: String) -> AnyPublisher<OrderBookResponse, Error>
 }
 
 final class NetworkManager: UrlConfigurable {
@@ -55,6 +62,10 @@ final class NetworkManager: UrlConfigurable {
     
     private enum CoinGeckoApi {
         static let baseUrl = "https://api.coingecko.com/api/v3/coins/"
+    }
+    
+    private enum BithumbApi {
+        static let baseUrl = "https://api.bithumb.com/public/orderbook/"
     }
     
     /// API Errors
@@ -115,20 +126,24 @@ extension NetworkManager: NewsNetWorkable {
 
 // MARK: - CoinChartDataNetworkable
 extension NetworkManager: CoinChartDataNetworkable {
-    func fetchCoinChartData(of id: String) -> AnyPublisher<ChartData, Error> {
+    func fetchCoinChartData(
+        of id: String,
+        resolution: String,
+        from fromDate: Int,
+        to endDate: Int
+    ) -> AnyPublisher<ChartData, Error> {
         let url = url(
             for: FinnHubApi.baseUrl + "/crypto/candle",
             queryParams: [
-                "symbol":"BINANCE:BTCUSDT",
-                "resolution":"D",
-                "from":"1572651390",
-                "to":"1575243390"
+                "symbol":"BINANCE:\(id)USDT",
+                "resolution":"\(resolution)",
+                "from":"\(fromDate)",
+                "to":"\(endDate)"
             ],
             with: [
                 "token": FinnHubApi.apiKey
             ]
         )
-        
         return request(url: url, expecting: ChartData.self)
     }
     
@@ -141,6 +156,17 @@ extension NetworkManager: CoinChartDataNetworkable {
             ]
         )
         return request(url: url, expecting: CoinChartData.self)
+    }
+}
+
+extension NetworkManager: CoinOrderBookNetworkable {
+    func fetchOrderBook(of symbol: String) -> AnyPublisher<OrderBookResponse, Error> {
+        let url = url(
+            for: BithumbApi.baseUrl + symbol,
+            queryParams: ["count": "30"]
+        )
+        
+        return request(url: url, expecting: OrderBookResponse.self)
     }
 }
 
