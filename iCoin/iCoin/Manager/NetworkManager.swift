@@ -151,7 +151,7 @@ extension NetworkManager {
     ///   - url: URL to hit
     ///   - expecting: Type we expect to decode data to
     ///   - completion: Result callback
-    private func request<T: Codable>(url: URL?, expecting: T.Type) -> AnyPublisher<T, Error> {
+    private func request<T: Decodable>(url: URL?, expecting: T.Type) -> AnyPublisher<T, Error> {
         Future { promise in
             guard let url = url else { return
                 promise(.failure(APIError.invalidUrl))}
