@@ -1,0 +1,6 @@
+framework module LightweightCharts {
+  umbrella header "LightweightCharts-umbrella.h"
+
+  export *
+  module * { export * }
+}

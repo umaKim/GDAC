@@ -1,0 +1,6 @@
+framework module Pods_iCoin_WidgetExtension {
+  umbrella header "Pods-iCoin-WidgetExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}

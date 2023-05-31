@@ -157,6 +157,9 @@
 		35CDAA1129A39401003FC005 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDAA1029A39401003FC005 /* ChartView.swift */; };
 		35D2AD772929E9B900E9F9B3 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD762929E9B900E9F9B3 /* RootTabBarController.swift */; };
 		35D2AD792929EA3600E9F9B3 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD782929EA3600E9F9B3 /* AppRootView.swift */; };
+		5848A752FC9A5F24B54393FE /* Pods_iCoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D1B4DE522BF210A41C3553 /* Pods_iCoin.framework */; };
+		5B7A2C23F7CCE4B64CFC0BD6 /* Pods_iCoin_WidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECAF96616FB56EC37C2D57BE /* Pods_iCoin_WidgetExtension.framework */; };
+		7A5EE53D2A273CF80039E2CF /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5EE53C2A273CF80039E2CF /* BarChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +187,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1DB1174151579CE021FA9B11 /* Pods-iCoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iCoin.release.xcconfig"; path = "Target Support Files/Pods-iCoin/Pods-iCoin.release.xcconfig"; sourceTree = "<group>"; };
 		3502026A296B1EBA00CEB6B1 /* PostContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostContent.swift; sourceTree = "<group>"; };
 		3502026C296B1F0100CEB6B1 /* OpinionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpinionsView.swift; sourceTree = "<group>"; };
 		3502026E296B1F2200CEB6B1 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -323,6 +327,12 @@
 		35CDAA1029A39401003FC005 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		35D2AD762929E9B900E9F9B3 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		35D2AD782929EA3600E9F9B3 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
+		6FA04AB6DF8632AD4257DC4F /* Pods-iCoin-WidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iCoin-WidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-iCoin-WidgetExtension/Pods-iCoin-WidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		7A5EE53C2A273CF80039E2CF /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		8E6E23B0DCED32FF0A2AB199 /* Pods-iCoin-WidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iCoin-WidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-iCoin-WidgetExtension/Pods-iCoin-WidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		91D1B4DE522BF210A41C3553 /* Pods_iCoin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iCoin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECAF96616FB56EC37C2D57BE /* Pods_iCoin_WidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iCoin_WidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2BFFE1F956BBA28911FEF7C /* Pods-iCoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iCoin.debug.xcconfig"; path = "Target Support Files/Pods-iCoin/Pods-iCoin.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +353,7 @@
 				350F69302969E9CC001F37D3 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				350F692E2969E9CC001F37D3 /* FirebaseFirestore in Frameworks */,
 				350F69282969E9CC001F37D3 /* FirebaseAuthCombine-Community in Frameworks */,
+				5848A752FC9A5F24B54393FE /* Pods_iCoin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +363,7 @@
 			files = (
 				35CDA9EA298923AE003FC005 /* SwiftUI.framework in Frameworks */,
 				35CDA9E8298923AE003FC005 /* WidgetKit.framework in Frameworks */,
+				5B7A2C23F7CCE4B64CFC0BD6 /* Pods_iCoin_WidgetExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +568,7 @@
 			isa = PBXGroup;
 			children = (
 				35CDAA1029A39401003FC005 /* ChartView.swift */,
+				7A5EE53C2A273CF80039E2CF /* BarChartView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -600,6 +613,7 @@
 				35CDA9EB298923AE003FC005 /* iCoin-Widget */,
 				35CDA9E6298923AE003FC005 /* Frameworks */,
 				357DCC83284BBBD200AA7570 /* Products */,
+				C47AF980C2559C827FD19629 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -754,6 +768,8 @@
 			children = (
 				35CDA9E7298923AE003FC005 /* WidgetKit.framework */,
 				35CDA9E9298923AE003FC005 /* SwiftUI.framework */,
+				91D1B4DE522BF210A41C3553 /* Pods_iCoin.framework */,
+				ECAF96616FB56EC37C2D57BE /* Pods_iCoin_WidgetExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -783,6 +799,17 @@
 			path = Chart;
 			sourceTree = "<group>";
 		};
+		C47AF980C2559C827FD19629 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F2BFFE1F956BBA28911FEF7C /* Pods-iCoin.debug.xcconfig */,
+				1DB1174151579CE021FA9B11 /* Pods-iCoin.release.xcconfig */,
+				6FA04AB6DF8632AD4257DC4F /* Pods-iCoin-WidgetExtension.debug.xcconfig */,
+				8E6E23B0DCED32FF0A2AB199 /* Pods-iCoin-WidgetExtension.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -790,10 +817,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 357DCC96284BBBD400AA7570 /* Build configuration list for PBXNativeTarget "iCoin" */;
 			buildPhases = (
+				FD2AF25A23C1F291CA1613D9 /* [CP] Check Pods Manifest.lock */,
 				357DCC7E284BBBD200AA7570 /* Sources */,
 				357DCC7F284BBBD200AA7570 /* Frameworks */,
 				357DCC80284BBBD200AA7570 /* Resources */,
 				35CDA9FB298923B0003FC005 /* Embed Foundation Extensions */,
+				E18424A59F185CA99D8E4DAF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -824,6 +853,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 35CDA9FE298923B0003FC005 /* Build configuration list for PBXNativeTarget "iCoin-WidgetExtension" */;
 			buildPhases = (
+				F4C88D9D036C67788BD61401 /* [CP] Check Pods Manifest.lock */,
 				35CDA9E1298923AE003FC005 /* Sources */,
 				35CDA9E2298923AE003FC005 /* Frameworks */,
 				35CDA9E3298923AE003FC005 /* Resources */,
@@ -903,6 +933,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E18424A59F185CA99D8E4DAF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iCoin/Pods-iCoin-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iCoin/Pods-iCoin-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iCoin/Pods-iCoin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4C88D9D036C67788BD61401 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iCoin-WidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD2AF25A23C1F291CA1613D9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iCoin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		357DCC7E284BBBD200AA7570 /* Sources */ = {
@@ -988,6 +1082,7 @@
 				3513804C2855CF630082D813 /* SearchBuilder.swift in Sources */,
 				356FF3FC2971C51C003BD4E8 /* PortfolioViewController.swift in Sources */,
 				35C1624C29757D41003FBA1B /* UITextField+Ext.swift in Sources */,
+				7A5EE53D2A273CF80039E2CF /* BarChartView.swift in Sources */,
 				357DCC88284BBBD300AA7570 /* SceneDelegate.swift in Sources */,
 				35C1625C29759C50003FBA1B /* SearchRepository.swift in Sources */,
 				35C1625229758026003FBA1B /* CaptionTextView.swift in Sources */,
@@ -1187,6 +1282,7 @@
 		};
 		357DCC97284BBBD400AA7570 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2BFFE1F956BBA28911FEF7C /* Pods-iCoin.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1216,6 +1312,7 @@
 		};
 		357DCC98284BBBD400AA7570 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1DB1174151579CE021FA9B11 /* Pods-iCoin.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1245,6 +1342,7 @@
 		};
 		35CDA9FC298923B0003FC005 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FA04AB6DF8632AD4257DC4F /* Pods-iCoin-WidgetExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
@@ -1274,6 +1372,7 @@
 		};
 		35CDA9FD298923B0003FC005 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E6E23B0DCED32FF0A2AB199 /* Pods-iCoin-WidgetExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;

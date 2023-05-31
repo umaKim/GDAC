@@ -1,0 +1,1152 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		012CFB2099C711351BBC18172FAAAB21 /* SeriesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4299A9BED0F75396F827701735ED8E /* SeriesApi.swift */; };
+		03D829DB4BC9B77946B159ECEFD45AB0 /* PriceLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD1FF96C00D8B6AB60D00DF81A7484 /* PriceLine.swift */; };
+		052A8CB43C389D7A48CE844F31DD2CF0 /* TrackingModeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778BA64D97F994426E79C3B8796D3FAA /* TrackingModeOptions.swift */; };
+		08D6727E6A71F09E03ABE2E2B8473460 /* AreaSeriesOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E7A549D0CA10E62C76E6A2DF09DED /* AreaSeriesOptions.swift */; };
+		0CF99015E61F217AA4A1A77866BAC308 /* SeriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C494E774457A8503E5EAC50DF6F62 /* SeriesData.swift */; };
+		0E665325BE1E76F11E73B14AA2ABE5A6 /* ChartColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3849BD6B681B1122E2E5276D122A7 /* ChartColor.swift */; };
+		0E86D2F07005453F86F8B182375B2EEF /* PriceScaleApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE211F441CC24963B2C570A2B8B01429 /* PriceScaleApi.swift */; };
+		107DC9AA4DC90BD80F2F1D9B334D06D0 /* lightweight-charts.js in Resources */ = {isa = PBXBuildFile; fileRef = 080E5B4D898F58DA962D403D615946A6 /* lightweight-charts.js */; };
+		124792B56D6BF2393E5EC2C099F303EB /* HistogramData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB703F519DCA5E15BA087CCC78A160C3 /* HistogramData.swift */; };
+		15023AA71CC29D203632BA40044B42BB /* ChartOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047790A28A1D5027099D431660D0F259 /* ChartOptions.swift */; };
+		16361F37BF2F7199AB0A99134D050983 /* PriceLineSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F6F27D10AEBB5BE747A23DD7F31C53 /* PriceLineSource.swift */; };
+		1BCE74AE53E7318547E563C027368C98 /* CrosshairLineOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA1D644268E5CD4C7363CCB18E86567 /* CrosshairLineOptions.swift */; };
+		1D3F26A78709A78D378B001D9735328F /* HistogramSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = F371689CCB29B5B8289D89DCF14D7A05 /* HistogramSeries.swift */; };
+		1D9DC916EA675D9E9467209505AE1890 /* JavaScriptObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F759FE9F73811EB9B2F529C124C0CD02 /* JavaScriptObject.swift */; };
+		1DCC1604F1AB7D05B492FA0A9A4522DC /* CandlestickSeriesOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48AF1927563BF1ADC3158C408F850E7 /* CandlestickSeriesOptions.swift */; };
+		1FD2A2EF9DFFB0E87F08221422564BFB /* Pods-iCoin-WidgetExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F62B134E0F11C24603A0D80DA1D9029C /* Pods-iCoin-WidgetExtension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2303DD29173380DC4A683EC5D5A136EA /* OhlcData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F55DAF3EB87EB1A0963FB15458FBE39 /* OhlcData.swift */; };
+		2DE4C50FED075FEB78FBEB7C03BCDBC5 /* BarSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED0676AFC9A9FEAB932911EA02FD927 /* BarSeries.swift */; };
+		30AF11DB457966A6F0506C8816A16D9F /* HistogramSeriesOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6BF27DE89E7E13014FD36AA72A2F7E /* HistogramSeriesOptions.swift */; };
+		340C6669DA54455D5CBA9325E6FAA195 /* ChartApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39A1D92AA9CFB6BE77630728DE6B570 /* ChartApi.swift */; };
+		3497DD1DA820977ACF08C00751C3CFFF /* AutoscaleInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23272A1CED3284AAAF0C78B3F55FE36F /* AutoscaleInfoProvider.swift */; };
+		3503DC91DF2FEB43A7C039A99748B02A /* LightweightCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A5B514D169EBCE0E9061A07899B7F4 /* LightweightCharts.swift */; };
+		3674A2360A7D32C79A90889D604C4FB4 /* AreaSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB97CBFFC311C3A48A9007D93BA1935 /* AreaSeries.swift */; };
+		3858543C3E25CE4E04ACAA84D7A1AE6B /* JavaScriptSyncMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B8334C0F5AA6DE9ECB1A71D8419AD /* JavaScriptSyncMethod.swift */; };
+		38985F0AE6E3435FAAEBFB30D57B7D11 /* PriceScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F90DA0DB353CAE42A608C6A36DC475 /* PriceScale.swift */; };
+		3A8022AEA5B5D727983DA63DC5B83B9F /* PromptHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5894F2BD347BBC7878FF32AC7766E0C0 /* PromptHandler.swift */; };
+		3B9B13165659C7FB77D091A1C7A5B3C0 /* BarSeriesOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D5939BA2685D11D9D53DF557E09ED /* BarSeriesOptions.swift */; };
+		3DE9C0AD137805051EDFA32FC803965F /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5764076E9F7F701CB637F1BA5467986A /* WebView.swift */; };
+		3EF59D3889E31F9A7FE7B751BF3EA570 /* SingleValueSeriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E51450C05424F7AAA4D807AEA2EB6 /* SingleValueSeriesData.swift */; };
+		41DEE1F911F36689582CF16486DAD6F6 /* JavaScriptMessageProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47D0FB3849AA21156C2385A5C875D68 /* JavaScriptMessageProducer.swift */; };
+		434A0F05E4B79090A27090E5AEB82C5F /* Pods-iCoin-WidgetExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 583EA7175E1A7A47CE5A1FD3248ADD3E /* Pods-iCoin-WidgetExtension-dummy.m */; };
+		43F2CFF02641A556799201B9F1AEDBB5 /* MouseEventParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F75345C097AFCEF1E0145607CB26B /* MouseEventParams.swift */; };
+		470467B16266DFB0DA238B1042B52490 /* KineticScrollOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C2F86C9BAC050B2DB92EE9B0A951CF /* KineticScrollOptions.swift */; };
+		482A9FDAA78772ACBE5813C307F3BE9D /* PriceLineOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3583697D4F6339EE90B7B41BD39E35 /* PriceLineOptions.swift */; };
+		48B867173DF12E65EC95CDAADA89108C /* BarPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E2112A429576B8806B03DA5415614 /* BarPrice.swift */; };
+		48E84F82F3A5DC0232371B5DA91C1A7A /* HandleScaleOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEBFB7654FE458ADB7A5905AB8556AE /* HandleScaleOptions.swift */; };
+		4933C428B8F443EC53B168333F5D2066 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB8E978594D5CBA1BFC4B2264AF1B69 /* Chart.swift */; };
+		52A150134BC8FB7AB8F810228945716D /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B919846576D817FCD810EC1DC2B123 /* Subscription.swift */; };
+		56DB224DCD12118F2A1DC3A91C28173A /* PriceFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DBF6F5609ECF5F5E6A05C38C2B4310 /* PriceFormatter.swift */; };
+		58992D1704B2336775A344AD2187E66F /* PriceLineApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F515C008A8FA45A9999E26125D13AF3 /* PriceLineApi.swift */; };
+		62214F9640FF32C551B9FB480CDDE4E7 /* wrapper_functions.js in Resources */ = {isa = PBXBuildFile; fileRef = 97EF0804B5E20620B6F87D403D40BC44 /* wrapper_functions.js */; };
+		63328EC3BFD955F8E9C86C380E2423A2 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C568A1558363022627DDE3879CC45E7D /* Coordinate.swift */; };
+		65BF4A7F4A04EAAAEEAABC0E46797AF6 /* PriceFormatterApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097350706A938006F5ECE6AF2059EDFA /* PriceFormatterApi.swift */; };
+		68D11A133490FB18869D94BE7C565929 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		6B4381D4228889CC029CD0B8F0E81CCA /* CandlestickSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05640C2D2936B508830CC96D5F475D46 /* CandlestickSeries.swift */; };
+		6EB7B6D730CE7173ED3F3CFDA2D39401 /* BaseValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C3DA28A3E47E03F74989941CABCC32 /* BaseValueType.swift */; };
+		6F569E02F7B08FB7964337CCC1001BEA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		70DD8D7B2E00EC0BF87078611DC8E362 /* LineStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41E5CBB0911AE25E0EAE39A574E95 /* LineStyle.swift */; };
+		71709B082549B2193820625EAFC5C24A /* BaselineSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7512E1FF29A749E52A532BE35BC87DE8 /* BaselineSeries.swift */; };
+		73457120B0209FB922BD6CD159D8375F /* SurfaceColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA2FB40866DB38F883C1AF97E55B3D5 /* SurfaceColor.swift */; };
+		77215EB67E9F5D330E7685F1571EDA4E /* JavaScriptMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE633030F9CE28BD11DBB68473E856 /* JavaScriptMethod.swift */; };
+		7AE0DC7776CD8562BC483B6709834904 /* PriceScaleOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26088770D7B78D331E8CA3001A1765 /* PriceScaleOptions.swift */; };
+		7DD6527C5BF616E69ED83E86A9D635C0 /* PriceFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A27583BBC42CFDCDBC835B169053877 /* PriceFormat.swift */; };
+		8011C6E62C8AF3317E39EC27D163AA8B /* LineType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1711825BD477A89C635BCA836703D3 /* LineType.swift */; };
+		8330124631EC933D10611348C9AF5A19 /* BaselineSeriesOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7490D046EDF1B61D221028DE1E3BE1 /* BaselineSeriesOptions.swift */; };
+		852F9499490442B1C0D6B380759C8F2C /* ColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A386ADF58B8CF78917926D7DCA0E /* ColorType.swift */; };
+		85C5C7B524B65A5175B225FB1E3DC025 /* JavaScriptEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002B87381783E8AF10830F072FC55ED3 /* JavaScriptEvaluator.swift */; };
+		86C17FAEDFD4E84F23642EB8A9DE9316 /* SeriesMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C419A5E349D389D9F76BEBA2FAED5C3 /* SeriesMarker.swift */; };
+		898E17DA9388F47219616B6B6B3F90AF /* SeriesDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D7CC6D0B19BBFC8E879EE53F38DC2 /* SeriesDataType.swift */; };
+		89D3812F44DBA1003369D822FE6DC485 /* LineSeriesOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8069F5EC70694F15F78A8B5BEF8EA /* LineSeriesOptions.swift */; };
+		8A567738DC0CE39A6694DD09DC8ED0FD /* CandlestickData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964EAEB9CBD5D768AEE4E160735378AD /* CandlestickData.swift */; };
+		8C8B1F35E33324DABCEF922EAE4A0159 /* BarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E38B1BABDEF0B1B2F0D90F3B77AE496 /* BarData.swift */; };
+		8DA5F176FA536C50A29F9531D6933F19 /* Encodable+JSONString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EABD935195BC8716AF1D6C9EF5636F /* Encodable+JSONString.swift */; };
+		8DFB83C9E000FECB865768D4D91DA880 /* LayoutOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7772AD0F371D5D13A7E8FFF9A8B34AA7 /* LayoutOptions.swift */; };
+		96CC214F321B007D9206077116149150 /* Bundle+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C28F1891D540A93165942B99BDA28C /* Bundle+Resources.swift */; };
+		972243D3996E6C87945F7F38D5A27C9B /* MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D0839CEA517FFAE8370A4316793EF /* MessageHandler.swift */; };
+		9854FC5C35E8114667BCA721A1810477 /* TimeScaleApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0496BEC824C88D3511E03A49A77AD69B /* TimeScaleApi.swift */; };
+		9ADFD675579F15F15D559C724B2F433C /* FromToRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACD17C8F70623731C2B2FA39E425B2B /* FromToRange.swift */; };
+		9B7B1B36D8DEA77296A554F1694A5F38 /* Int+ColorComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B25B0901F7967F9D8FBF7215702D3C9 /* Int+ColorComponent.swift */; };
+		9C7C33BB310DE7F1051E5BC70A19031E /* LightweightCharts-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1B8916741CC7A137B2743807D4F945 /* LightweightCharts-dummy.m */; };
+		A007953EBC1BCC6491953101E8D990BE /* LastPriceAnimationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CB9C39F95937205A284A499828FC84 /* LastPriceAnimationMode.swift */; };
+		A115DD545A28238A41F07341F1BD8DB8 /* LineSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339CF293F7DEF5625CEC370F8E507253 /* LineSeries.swift */; };
+		A35594239C30ECB0E2A5ED911B4E60F5 /* SeriesApi+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0824527DF45E3B4CA8E429C334A148 /* SeriesApi+Extension.swift */; };
+		A5128FCB5F308B092233D58DB8E98733 /* Pods-iCoin-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 019F0870D2EAF42E696A0377F2395FA3 /* Pods-iCoin-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A58F44B01DA6E6D1EECA947C729C266A /* LineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEBF138432E5A0669096FB64D05A81 /* LineData.swift */; };
+		A7C2558F6834D93FC291483261D0EB1E /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7D9A6C2C91FAA5B999CBA333F1FF3 /* Point.swift */; };
+		A90BEFEB778FF849C166B641BE7FA891 /* GridOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA6B32DC316F7A31D65AE3548433DBC /* GridOptions.swift */; };
+		AC1B2F210E9A289C0E169636D6D1A388 /* Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E01499ECCD002609363FCE39F03E9 /* Rectangle.swift */; };
+		B5BD9C94BAF254787F6E65E00DE006B3 /* BusinessDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AF7FC7F20DA2329AF5675AAB506E5C /* BusinessDay.swift */; };
+		BBC0522BD5B45EC127ABE0C002FA2E4D /* SeriesType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E3C6E87F883353C1B023AB4AD2E6 /* SeriesType.swift */; };
+		BD2B9FE2CCE37DE93E3D4EB68486C53C /* content-setup.js in Resources */ = {isa = PBXBuildFile; fileRef = C0557F674F84D282327E16BCCD2BDA14 /* content-setup.js */; };
+		C0626A0B63E2DF207F67045409DA3B0C /* HandleScrollOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEFE5194C6E902E2E04E2C82147A7EE /* HandleScrollOptions.swift */; };
+		C1D0CB3DA69790525F3BFB178D58150E /* LightweightCharts-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 22881AD50C5B5FB44CBDFE6B30476579 /* LightweightCharts-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3DD0A5F363987FFE14986616E61EF3D /* AxisPressedMouseMoveOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8BBB3EA7FFC00A8519A462EABC71BE /* AxisPressedMouseMoveOptions.swift */; };
+		C5716DABF2212A6A5E24FB8F1B9B2736 /* WatermarkOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1F912075CD15C84829A591CD26A839 /* WatermarkOptions.swift */; };
+		CCCC35C73755D64F2471CC69F0A5E7F2 /* String+UniqueString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F095D7E068EDCA46540AB60036D17650 /* String+UniqueString.swift */; };
+		D0DD2AF9DEDB7DB17FF082B76E8879E4 /* TickMarkFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5AD4AFCA934FE949E15E88374A0B4A /* TickMarkFormatter.swift */; };
+		D20F9E4392F7C0252C5359592624A840 /* TogglableOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D8CD410825736E6B4B430B3F55F903 /* TogglableOptions.swift */; };
+		D7A2AB76C23533E723F2A060AB6B0D73 /* UIColor+ColorComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC9C1BB8D505EEF6DF5BA5FF19190E2 /* UIColor+ColorComponents.swift */; };
+		D7EBBF9F05B229FA96FDDCE93BF966D8 /* LocalizationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554379C414E924FFD5A159ECD027868D /* LocalizationOptions.swift */; };
+		DB486D97408F0D69D329F9E88466A091 /* GridLineOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D0AB00D25E58A2DBEB59630C1BE967 /* GridLineOptions.swift */; };
+		E1C2AD6DA683213EE0849C8BA57CB41A /* NSRegularExpression+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DC7A724B0CD4F55CD376F725E06D16 /* NSRegularExpression+Color.swift */; };
+		E80C0DD9B817941E5D1E72A11251768C /* LineWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6220598BC170C16CA3955DA0741DE1B /* LineWidth.swift */; };
+		E90BF57D6178A1CB348EF1F656ACFB30 /* CrosshairOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBC6C9F13FE02871AE7D6C6BEF76CF /* CrosshairOptions.swift */; };
+		E9BC77C3F99F4DB8CB487BAAACF1CF5F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		EB44B766C6A389554F0451A2406AE5BA /* SeriesOptionsCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4C19E4E9062C9E6620D518079DEC04 /* SeriesOptionsCommon.swift */; };
+		F4E2B893A62135AF71D46898D302BCC2 /* TimeScaleOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B30D4EAACB6AC4FFE6D6D46A107C17 /* TimeScaleOptions.swift */; };
+		F54E5CEB39911F52C7DEAFD14BE3BC99 /* WhitespaceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA181F5F1B0BBAB7689629A69D802B /* WhitespaceData.swift */; };
+		FAB90DF97F0547576A119BA2FA43A77A /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DAA5374B8ACF5EC52C1EEA8DEE2469 /* Time.swift */; };
+		FCB6D831612D729266FDD51813370E92 /* BarsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4E823A0765919F5C096766C84E73A /* BarsInfo.swift */; };
+		FCE3A157D8314D94A5345DD08B5EB563 /* Pods-iCoin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C50EEE0D74FC5D61A2351CD363DE2D7D /* Pods-iCoin-dummy.m */; };
+		FD5E3C1C447551A5A8A69D73A8760342 /* SeriesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EBC4E1607E03FCBCEA5D0B441EAFC5 /* SeriesObject.swift */; };
+		FD70F5AB58514C799F311D0D61AB1295 /* TimeScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517E8BB23E7BA5E0BD36750982B06746 /* TimeScale.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		039F853C9914486BCE376E9BCD7F6263 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 858F3CF738D05E1407F7AF5FFF584A12;
+			remoteInfo = LightweightCharts;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		002B87381783E8AF10830F072FC55ED3 /* JavaScriptEvaluator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JavaScriptEvaluator.swift; path = Sources/LightweightCharts/Implementations/JavaScriptEvaluator.swift; sourceTree = "<group>"; };
+		00FC211E0606A92F4BBF1167ED13633F /* LightweightCharts-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LightweightCharts-Info.plist"; sourceTree = "<group>"; };
+		019F0870D2EAF42E696A0377F2395FA3 /* Pods-iCoin-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-iCoin-umbrella.h"; sourceTree = "<group>"; };
+		02179E87B18BB52E96909C51D2C4758F /* Pods-iCoin-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iCoin-Info.plist"; sourceTree = "<group>"; };
+		025856E01D9FE938452AC46E114D74DA /* Pods-iCoin-WidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iCoin-WidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		02C28F1891D540A93165942B99BDA28C /* Bundle+Resources.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Bundle+Resources.swift"; path = "Sources/LightweightCharts/Extensions/Bundle+Resources.swift"; sourceTree = "<group>"; };
+		047790A28A1D5027099D431660D0F259 /* ChartOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChartOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/ChartOptions/ChartOptions.swift; sourceTree = "<group>"; };
+		0496BEC824C88D3511E03A49A77AD69B /* TimeScaleApi.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimeScaleApi.swift; path = Sources/LightweightCharts/Protocols/TimeScaleApi.swift; sourceTree = "<group>"; };
+		04FBC6C9F13FE02871AE7D6C6BEF76CF /* CrosshairOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CrosshairOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/ChartOptions/CrosshairOptions.swift; sourceTree = "<group>"; };
+		05640C2D2936B508830CC96D5F475D46 /* CandlestickSeries.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CandlestickSeries.swift; path = Sources/LightweightCharts/Implementations/API/Series/CandlestickSeries.swift; sourceTree = "<group>"; };
+		05DEBF138432E5A0669096FB64D05A81 /* LineData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LineData.swift; path = Sources/LightweightCharts/LightweightChartsModels/Data/SeriesData/LineData.swift; sourceTree = "<group>"; };
+		080E5B4D898F58DA962D403D615946A6 /* lightweight-charts.js */ = {isa = PBXFileReference; includeInIndex = 1; name = "lightweight-charts.js"; path = "Sources/LightweightCharts/Assets/lightweight-charts.js"; sourceTree = "<group>"; };
+		097350706A938006F5ECE6AF2059EDFA /* PriceFormatterApi.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PriceFormatterApi.swift; path = Sources/LightweightCharts/Protocols/PriceFormatterApi.swift; sourceTree = "<group>"; };
+		0BA0E3C6E87F883353C1B023AB4AD2E6 /* SeriesType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SeriesType.swift; path = Sources/LightweightCharts/LightweightChartsModels/SeriesType.swift; sourceTree = "<group>"; };
+		0EC8069F5EC70694F15F78A8B5BEF8EA /* LineSeriesOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LineSeriesOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/SeriesOptions/Options/LineSeriesOptions.swift; sourceTree = "<group>"; };
+		0F515C008A8FA45A9999E26125D13AF3 /* PriceLineApi.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PriceLineApi.swift; path = Sources/LightweightCharts/Protocols/PriceLineApi.swift; sourceTree = "<group>"; };
+		0FD41E5CBB0911AE25E0EAE39A574E95 /* LineStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LineStyle.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/Basics/LineStyle.swift; sourceTree = "<group>"; };
+		15DAA5374B8ACF5EC52C1EEA8DEE2469 /* Time.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Time.swift; path = Sources/LightweightCharts/LightweightChartsModels/Time.swift; sourceTree = "<group>"; };
+		1E3FC3A00AF136FE63EA228278A9E054 /* Pods-iCoin-WidgetExtension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-iCoin-WidgetExtension.modulemap"; sourceTree = "<group>"; };
+		1ED0676AFC9A9FEAB932911EA02FD927 /* BarSeries.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BarSeries.swift; path = Sources/LightweightCharts/Implementations/API/Series/BarSeries.swift; sourceTree = "<group>"; };
+		22881AD50C5B5FB44CBDFE6B30476579 /* LightweightCharts-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LightweightCharts-umbrella.h"; sourceTree = "<group>"; };
+		23272A1CED3284AAAF0C78B3F55FE36F /* AutoscaleInfoProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AutoscaleInfoProvider.swift; path = Sources/LightweightCharts/LightweightChartsModels/AutoscaleInfoProvider.swift; sourceTree = "<group>"; };
+		24EABD935195BC8716AF1D6C9EF5636F /* Encodable+JSONString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Encodable+JSONString.swift"; path = "Sources/LightweightCharts/Extensions/Encodable+JSONString.swift"; sourceTree = "<group>"; };
+		27E75DCCB821AD4722134AFBBF34E5E5 /* LightweightCharts.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LightweightCharts.modulemap; sourceTree = "<group>"; };
+		28C2F86C9BAC050B2DB92EE9B0A951CF /* KineticScrollOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KineticScrollOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/ChartOptions/KineticScrollOptions.swift; sourceTree = "<group>"; };
+		2BFA181F5F1B0BBAB7689629A69D802B /* WhitespaceData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WhitespaceData.swift; path = Sources/LightweightCharts/LightweightChartsModels/Data/SeriesData/WhitespaceData.swift; sourceTree = "<group>"; };
+		2F01DACB0B95F8F6F95ED77E72B6E1DB /* Pods-iCoin-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iCoin-acknowledgements.markdown"; sourceTree = "<group>"; };
+		339CF293F7DEF5625CEC370F8E507253 /* LineSeries.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LineSeries.swift; path = Sources/LightweightCharts/Implementations/API/Series/LineSeries.swift; sourceTree = "<group>"; };
+		387515A1D5A38DD95D860C06944680FD /* Pods-iCoin-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iCoin-frameworks.sh"; sourceTree = "<group>"; };
+		3AB4E823A0765919F5C096766C84E73A /* BarsInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BarsInfo.swift; path = Sources/LightweightCharts/LightweightChartsModels/BarsInfo.swift; sourceTree = "<group>"; };
+		3ACD17C8F70623731C2B2FA39E425B2B /* FromToRange.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FromToRange.swift; path = Sources/LightweightCharts/LightweightChartsModels/FromToRange.swift; sourceTree = "<group>"; };
+		3C419A5E349D389D9F76BEBA2FAED5C3 /* SeriesMarker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SeriesMarker.swift; path = Sources/LightweightCharts/LightweightChartsModels/SeriesMarker/SeriesMarker.swift; sourceTree = "<group>"; };
+		3D0824527DF45E3B4CA8E429C334A148 /* SeriesApi+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SeriesApi+Extension.swift"; path = "Sources/LightweightCharts/Implementations/API/Series/SeriesApi+Extension.swift"; sourceTree = "<group>"; };
+		3DDF30722B82577209980CD412370CCA /* LightweightCharts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LightweightCharts.debug.xcconfig; sourceTree = "<group>"; };
+		3F55DAF3EB87EB1A0963FB15458FBE39 /* OhlcData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OhlcData.swift; path = Sources/LightweightCharts/LightweightChartsModels/Data/SeriesData/OhlcData.swift; sourceTree = "<group>"; };
+		3FA2FB40866DB38F883C1AF97E55B3D5 /* SurfaceColor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SurfaceColor.swift; path = Sources/LightweightCharts/LightweightChartsModels/SurfaceColor.swift; sourceTree = "<group>"; };
+		46C3DA28A3E47E03F74989941CABCC32 /* BaseValueType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseValueType.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/Basics/BaseValueType.swift; sourceTree = "<group>"; };
+		47313B027178B0E7E6E2921AD2E8A0D5 /* LightweightCharts-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LightweightCharts-prefix.pch"; sourceTree = "<group>"; };
+		496D7CC6D0B19BBFC8E879EE53F38DC2 /* SeriesDataType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SeriesDataType.swift; path = Sources/LightweightCharts/LightweightChartsModels/Data/SeriesData/SeriesDataType.swift; sourceTree = "<group>"; };
+		4A27583BBC42CFDCDBC835B169053877 /* PriceFormat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PriceFormat.swift; path = Sources/LightweightCharts/LightweightChartsModels/PriceFormat.swift; sourceTree = "<group>"; };
+		4DA6B32DC316F7A31D65AE3548433DBC /* GridOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GridOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/ChartOptions/GridOptions.swift; sourceTree = "<group>"; };
+		4DB8E978594D5CBA1BFC4B2264AF1B69 /* Chart.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Chart.swift; path = Sources/LightweightCharts/Implementations/API/Chart.swift; sourceTree = "<group>"; };
+		4E38B1BABDEF0B1B2F0D90F3B77AE496 /* BarData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BarData.swift; path = Sources/LightweightCharts/LightweightChartsModels/Data/SeriesData/BarData.swift; sourceTree = "<group>"; };
+		4E5AD4AFCA934FE949E15E88374A0B4A /* TickMarkFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TickMarkFormatter.swift; path = Sources/LightweightCharts/LightweightChartsModels/TickMarkFormatter.swift; sourceTree = "<group>"; };
+		517E8BB23E7BA5E0BD36750982B06746 /* TimeScale.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimeScale.swift; path = Sources/LightweightCharts/Implementations/API/TimeScale.swift; sourceTree = "<group>"; };
+		52632D397340CB3CFCA368C6C794393B /* Pods-iCoin-WidgetExtension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iCoin-WidgetExtension-acknowledgements.markdown"; sourceTree = "<group>"; };
+		5366FD2ED84C6E5906810BC40C9AD3FF /* Pods-iCoin-WidgetExtension-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iCoin-WidgetExtension-Info.plist"; sourceTree = "<group>"; };
+		554379C414E924FFD5A159ECD027868D /* LocalizationOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocalizationOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/ChartOptions/LocalizationOptions.swift; sourceTree = "<group>"; };
+		55E3FF6EEA862C1453DCE5FAE4A26027 /* Pods-iCoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iCoin.release.xcconfig"; sourceTree = "<group>"; };
+		563B3AE587E4868022B5618D77753530 /* LightweightCharts */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LightweightCharts; path = LightweightCharts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5764076E9F7F701CB637F1BA5467986A /* WebView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebView.swift; path = Sources/LightweightCharts/Implementations/WebView.swift; sourceTree = "<group>"; };
+		583EA7175E1A7A47CE5A1FD3248ADD3E /* Pods-iCoin-WidgetExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iCoin-WidgetExtension-dummy.m"; sourceTree = "<group>"; };
+		5894F2BD347BBC7878FF32AC7766E0C0 /* PromptHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PromptHandler.swift; path = Sources/LightweightCharts/Implementations/SyncScriptEvaluating/PromptHandler.swift; sourceTree = "<group>"; };
+		58DC7A724B0CD4F55CD376F725E06D16 /* NSRegularExpression+Color.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSRegularExpression+Color.swift"; path = "Sources/LightweightCharts/Extensions/NSRegularExpression+Color.swift"; sourceTree = "<group>"; };
+		5B6BF27DE89E7E13014FD36AA72A2F7E /* HistogramSeriesOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HistogramSeriesOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/SeriesOptions/Options/HistogramSeriesOptions.swift; sourceTree = "<group>"; };
+		5D7490D046EDF1B61D221028DE1E3BE1 /* BaselineSeriesOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaselineSeriesOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/SeriesOptions/Options/BaselineSeriesOptions.swift; sourceTree = "<group>"; };
+		5F4299A9BED0F75396F827701735ED8E /* SeriesApi.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SeriesApi.swift; path = Sources/LightweightCharts/Protocols/SeriesApi.swift; sourceTree = "<group>"; };
+		5FEFE5194C6E902E2E04E2C82147A7EE /* HandleScrollOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HandleScrollOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/ChartOptions/HandleScrollOptions.swift; sourceTree = "<group>"; };
+		6719BB505576CB2E8F81645BA6A25F3E /* Pods-iCoin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-iCoin.modulemap"; sourceTree = "<group>"; };
+		6925500E849CED68EA45F03EB3CD0C92 /* Pods-iCoin */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-iCoin"; path = Pods_iCoin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71A5B514D169EBCE0E9061A07899B7F4 /* LightweightCharts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LightweightCharts.swift; path = Sources/LightweightCharts/Implementations/API/LightweightCharts.swift; sourceTree = "<group>"; };
+		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		7512E1FF29A749E52A532BE35BC87DE8 /* BaselineSeries.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaselineSeries.swift; path = Sources/LightweightCharts/Implementations/API/Series/BaselineSeries.swift; sourceTree = "<group>"; };
+		7772AD0F371D5D13A7E8FFF9A8B34AA7 /* LayoutOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/ChartOptions/LayoutOptions.swift; sourceTree = "<group>"; };
+		778BA64D97F994426E79C3B8796D3FAA /* TrackingModeOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TrackingModeOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/ChartOptions/TrackingModeOptions.swift; sourceTree = "<group>"; };
+		786E7A549D0CA10E62C76E6A2DF09DED /* AreaSeriesOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AreaSeriesOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/SeriesOptions/Options/AreaSeriesOptions.swift; sourceTree = "<group>"; };
+		7EA1D644268E5CD4C7363CCB18E86567 /* CrosshairLineOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CrosshairLineOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/ChartOptions/CrosshairLineOptions.swift; sourceTree = "<group>"; };
+		7FBE633030F9CE28BD11DBB68473E856 /* JavaScriptMethod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JavaScriptMethod.swift; path = Sources/LightweightCharts/Implementations/SyncScriptEvaluating/JavaScriptMethod.swift; sourceTree = "<group>"; };
+		81EBC4E1607E03FCBCEA5D0B441EAFC5 /* SeriesObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SeriesObject.swift; path = Sources/LightweightCharts/Implementations/API/Series/SeriesObject.swift; sourceTree = "<group>"; };
+		86B30D4EAACB6AC4FFE6D6D46A107C17 /* TimeScaleOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimeScaleOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/Basics/TimeScaleOptions.swift; sourceTree = "<group>"; };
+		8A1E01499ECCD002609363FCE39F03E9 /* Rectangle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Rectangle.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/Basics/Rectangle.swift; sourceTree = "<group>"; };
+		8B25B0901F7967F9D8FBF7215702D3C9 /* Int+ColorComponent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Int+ColorComponent.swift"; path = "Sources/LightweightCharts/Extensions/Int+ColorComponent.swift"; sourceTree = "<group>"; };
+		8CEBFB7654FE458ADB7A5905AB8556AE /* HandleScaleOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HandleScaleOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/ChartOptions/HandleScaleOptions.swift; sourceTree = "<group>"; };
+		8D8BBB3EA7FFC00A8519A462EABC71BE /* AxisPressedMouseMoveOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AxisPressedMouseMoveOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/AxisPressedMouseMoveOptions.swift; sourceTree = "<group>"; };
+		8F1711825BD477A89C635BCA836703D3 /* LineType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LineType.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/Basics/LineType.swift; sourceTree = "<group>"; };
+		964EAEB9CBD5D768AEE4E160735378AD /* CandlestickData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CandlestickData.swift; path = Sources/LightweightCharts/LightweightChartsModels/Data/SeriesData/CandlestickData.swift; sourceTree = "<group>"; };
+		967D0839CEA517FFAE8370A4316793EF /* MessageHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageHandler.swift; path = Sources/LightweightCharts/Implementations/Subscription/MessageHandler.swift; sourceTree = "<group>"; };
+		97B919846576D817FCD810EC1DC2B123 /* Subscription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Subscription.swift; path = Sources/LightweightCharts/Implementations/Subscription/Subscription.swift; sourceTree = "<group>"; };
+		97EF0804B5E20620B6F87D403D40BC44 /* wrapper_functions.js */ = {isa = PBXFileReference; includeInIndex = 1; name = wrapper_functions.js; path = Sources/LightweightCharts/Assets/wrapper_functions.js; sourceTree = "<group>"; };
+		984B8334C0F5AA6DE9ECB1A71D8419AD /* JavaScriptSyncMethod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JavaScriptSyncMethod.swift; path = Sources/LightweightCharts/Implementations/SyncScriptEvaluating/JavaScriptSyncMethod.swift; sourceTree = "<group>"; };
+		98F90DA0DB353CAE42A608C6A36DC475 /* PriceScale.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PriceScale.swift; path = Sources/LightweightCharts/Implementations/API/PriceScale.swift; sourceTree = "<group>"; };
+		9C3E51450C05424F7AAA4D807AEA2EB6 /* SingleValueSeriesData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SingleValueSeriesData.swift; path = Sources/LightweightCharts/LightweightChartsModels/Data/SeriesData/SingleValueSeriesData.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9DC3849BD6B681B1122E2E5276D122A7 /* ChartColor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChartColor.swift; path = Sources/LightweightCharts/LightweightChartsModels/ChartColor.swift; sourceTree = "<group>"; };
+		9E8E4EAA628F751CDD91593AC2F44446 /* Pods-iCoin-WidgetExtension */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-iCoin-WidgetExtension"; path = Pods_iCoin_WidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F9C494E774457A8503E5EAC50DF6F62 /* SeriesData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SeriesData.swift; path = Sources/LightweightCharts/LightweightChartsModels/Data/SeriesData/SeriesData.swift; sourceTree = "<group>"; };
+		A2F6F27D10AEBB5BE747A23DD7F31C53 /* PriceLineSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PriceLineSource.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/Basics/PriceLineSource.swift; sourceTree = "<group>"; };
+		A33CC2CDCAE70D01757A8DC56A2BCEAD /* Pods-iCoin-WidgetExtension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iCoin-WidgetExtension-acknowledgements.plist"; sourceTree = "<group>"; };
+		A6AF7FC7F20DA2329AF5675AAB506E5C /* BusinessDay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BusinessDay.swift; path = Sources/LightweightCharts/LightweightChartsModels/BusinessDay.swift; sourceTree = "<group>"; };
+		A9CB9C39F95937205A284A499828FC84 /* LastPriceAnimationMode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LastPriceAnimationMode.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/Basics/LastPriceAnimationMode.swift; sourceTree = "<group>"; };
+		A9D0AB00D25E58A2DBEB59630C1BE967 /* GridLineOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GridLineOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/ChartOptions/GridLineOptions.swift; sourceTree = "<group>"; };
+		AD1B8916741CC7A137B2743807D4F945 /* LightweightCharts-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LightweightCharts-dummy.m"; sourceTree = "<group>"; };
+		ADC9C1BB8D505EEF6DF5BA5FF19190E2 /* UIColor+ColorComponents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIColor+ColorComponents.swift"; path = "Sources/LightweightCharts/Extensions/UIColor+ColorComponents.swift"; sourceTree = "<group>"; };
+		AE211F441CC24963B2C570A2B8B01429 /* PriceScaleApi.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PriceScaleApi.swift; path = Sources/LightweightCharts/Protocols/PriceScaleApi.swift; sourceTree = "<group>"; };
+		AE4F2DDAB1D13B0F153186608A292939 /* Pods-iCoin-WidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iCoin-WidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		B0C7D9A6C2C91FAA5B999CBA333F1FF3 /* Point.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Point.swift; path = Sources/LightweightCharts/LightweightChartsModels/Point.swift; sourceTree = "<group>"; };
+		B39A1D92AA9CFB6BE77630728DE6B570 /* ChartApi.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChartApi.swift; path = Sources/LightweightCharts/Protocols/ChartApi.swift; sourceTree = "<group>"; };
+		BA9F75345C097AFCEF1E0145607CB26B /* MouseEventParams.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MouseEventParams.swift; path = Sources/LightweightCharts/LightweightChartsModels/MouseEventParams.swift; sourceTree = "<group>"; };
+		BE3583697D4F6339EE90B7B41BD39E35 /* PriceLineOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PriceLineOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/Basics/PriceLineOptions.swift; sourceTree = "<group>"; };
+		C0557F674F84D282327E16BCCD2BDA14 /* content-setup.js */ = {isa = PBXFileReference; includeInIndex = 1; name = "content-setup.js"; path = "Sources/LightweightCharts/Assets/content-setup.js"; sourceTree = "<group>"; };
+		C0D8CD410825736E6B4B430B3F55F903 /* TogglableOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TogglableOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/TogglableOptions.swift; sourceTree = "<group>"; };
+		C1DBF6F5609ECF5F5E6A05C38C2B4310 /* PriceFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PriceFormatter.swift; path = Sources/LightweightCharts/Implementations/API/PriceFormatter.swift; sourceTree = "<group>"; };
+		C48AF1927563BF1ADC3158C408F850E7 /* CandlestickSeriesOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CandlestickSeriesOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/SeriesOptions/Options/CandlestickSeriesOptions.swift; sourceTree = "<group>"; };
+		C50EEE0D74FC5D61A2351CD363DE2D7D /* Pods-iCoin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iCoin-dummy.m"; sourceTree = "<group>"; };
+		C568A1558363022627DDE3879CC45E7D /* Coordinate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Coordinate.swift; path = Sources/LightweightCharts/LightweightChartsModels/Coordinate.swift; sourceTree = "<group>"; };
+		C75E2112A429576B8806B03DA5415614 /* BarPrice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BarPrice.swift; path = Sources/LightweightCharts/LightweightChartsModels/BarPrice.swift; sourceTree = "<group>"; };
+		CB703F519DCA5E15BA087CCC78A160C3 /* HistogramData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HistogramData.swift; path = Sources/LightweightCharts/LightweightChartsModels/Data/SeriesData/HistogramData.swift; sourceTree = "<group>"; };
+		CDCD1FF96C00D8B6AB60D00DF81A7484 /* PriceLine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PriceLine.swift; path = Sources/LightweightCharts/Implementations/API/PriceLine.swift; sourceTree = "<group>"; };
+		CF1F912075CD15C84829A591CD26A839 /* WatermarkOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatermarkOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/ChartOptions/WatermarkOptions.swift; sourceTree = "<group>"; };
+		D88759886EA25146B45CB917BC9B8908 /* Pods-iCoin-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iCoin-acknowledgements.plist"; sourceTree = "<group>"; };
+		DD67A386ADF58B8CF78917926D7DCA0E /* ColorType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorType.swift; path = Sources/LightweightCharts/LightweightChartsModels/ColorType.swift; sourceTree = "<group>"; };
+		E11FA629F0050808CD19E36E2B303A13 /* Pods-iCoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iCoin.debug.xcconfig"; sourceTree = "<group>"; };
+		E3B4AD0F32D61297FCF4C907BDAB3534 /* LightweightCharts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LightweightCharts.release.xcconfig; sourceTree = "<group>"; };
+		E47D0FB3849AA21156C2385A5C875D68 /* JavaScriptMessageProducer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JavaScriptMessageProducer.swift; path = Sources/LightweightCharts/Implementations/JavaScriptMessageProducer.swift; sourceTree = "<group>"; };
+		E6220598BC170C16CA3955DA0741DE1B /* LineWidth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LineWidth.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/Basics/LineWidth.swift; sourceTree = "<group>"; };
+		EB26088770D7B78D331E8CA3001A1765 /* PriceScaleOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PriceScaleOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/Basics/PriceScaleOptions.swift; sourceTree = "<group>"; };
+		ED4C19E4E9062C9E6620D518079DEC04 /* SeriesOptionsCommon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SeriesOptionsCommon.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/SeriesOptions/SeriesOptionsCommon.swift; sourceTree = "<group>"; };
+		EDB97CBFFC311C3A48A9007D93BA1935 /* AreaSeries.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AreaSeries.swift; path = Sources/LightweightCharts/Implementations/API/Series/AreaSeries.swift; sourceTree = "<group>"; };
+		F095D7E068EDCA46540AB60036D17650 /* String+UniqueString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+UniqueString.swift"; path = "Sources/LightweightCharts/Extensions/String+UniqueString.swift"; sourceTree = "<group>"; };
+		F371689CCB29B5B8289D89DCF14D7A05 /* HistogramSeries.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HistogramSeries.swift; path = Sources/LightweightCharts/Implementations/API/Series/HistogramSeries.swift; sourceTree = "<group>"; };
+		F62B134E0F11C24603A0D80DA1D9029C /* Pods-iCoin-WidgetExtension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-iCoin-WidgetExtension-umbrella.h"; sourceTree = "<group>"; };
+		F759FE9F73811EB9B2F529C124C0CD02 /* JavaScriptObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JavaScriptObject.swift; path = Sources/LightweightCharts/Implementations/JavaScriptObject.swift; sourceTree = "<group>"; };
+		FA3D5939BA2685D11D9D53DF557E09ED /* BarSeriesOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BarSeriesOptions.swift; path = Sources/LightweightCharts/LightweightChartsModels/Options/SeriesOptions/Options/BarSeriesOptions.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		31DC1F2B2ED7F4DF6D2F0F34895BB135 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9BC77C3F99F4DB8CB487BAAACF1CF5F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48E4C98CB34E640EA3F6BCE23389135D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F569E02F7B08FB7964337CCC1001BEA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA08CB7613BFA63B185A00941375B70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68D11A133490FB18869D94BE7C565929 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1102529DB846977841797A8870E61708 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				520B2294E968C2B0A8D0BF6A15170C58 /* Pods-iCoin */,
+				798730465B0E3FB86A26D007EB60717C /* Pods-iCoin-WidgetExtension */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		27AEA42AACDF7017286849CD7BA44FFB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C0557F674F84D282327E16BCCD2BDA14 /* content-setup.js */,
+				080E5B4D898F58DA962D403D615946A6 /* lightweight-charts.js */,
+				97EF0804B5E20620B6F87D403D40BC44 /* wrapper_functions.js */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		520B2294E968C2B0A8D0BF6A15170C58 /* Pods-iCoin */ = {
+			isa = PBXGroup;
+			children = (
+				6719BB505576CB2E8F81645BA6A25F3E /* Pods-iCoin.modulemap */,
+				2F01DACB0B95F8F6F95ED77E72B6E1DB /* Pods-iCoin-acknowledgements.markdown */,
+				D88759886EA25146B45CB917BC9B8908 /* Pods-iCoin-acknowledgements.plist */,
+				C50EEE0D74FC5D61A2351CD363DE2D7D /* Pods-iCoin-dummy.m */,
+				387515A1D5A38DD95D860C06944680FD /* Pods-iCoin-frameworks.sh */,
+				02179E87B18BB52E96909C51D2C4758F /* Pods-iCoin-Info.plist */,
+				019F0870D2EAF42E696A0377F2395FA3 /* Pods-iCoin-umbrella.h */,
+				E11FA629F0050808CD19E36E2B303A13 /* Pods-iCoin.debug.xcconfig */,
+				55E3FF6EEA862C1453DCE5FAE4A26027 /* Pods-iCoin.release.xcconfig */,
+			);
+			name = "Pods-iCoin";
+			path = "Target Support Files/Pods-iCoin";
+			sourceTree = "<group>";
+		};
+		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		75D074C10A35482DF97C0717D8FFF597 /* LightweightCharts */ = {
+			isa = PBXGroup;
+			children = (
+				EDB97CBFFC311C3A48A9007D93BA1935 /* AreaSeries.swift */,
+				786E7A549D0CA10E62C76E6A2DF09DED /* AreaSeriesOptions.swift */,
+				23272A1CED3284AAAF0C78B3F55FE36F /* AutoscaleInfoProvider.swift */,
+				8D8BBB3EA7FFC00A8519A462EABC71BE /* AxisPressedMouseMoveOptions.swift */,
+				4E38B1BABDEF0B1B2F0D90F3B77AE496 /* BarData.swift */,
+				C75E2112A429576B8806B03DA5415614 /* BarPrice.swift */,
+				1ED0676AFC9A9FEAB932911EA02FD927 /* BarSeries.swift */,
+				FA3D5939BA2685D11D9D53DF557E09ED /* BarSeriesOptions.swift */,
+				3AB4E823A0765919F5C096766C84E73A /* BarsInfo.swift */,
+				7512E1FF29A749E52A532BE35BC87DE8 /* BaselineSeries.swift */,
+				5D7490D046EDF1B61D221028DE1E3BE1 /* BaselineSeriesOptions.swift */,
+				46C3DA28A3E47E03F74989941CABCC32 /* BaseValueType.swift */,
+				02C28F1891D540A93165942B99BDA28C /* Bundle+Resources.swift */,
+				A6AF7FC7F20DA2329AF5675AAB506E5C /* BusinessDay.swift */,
+				964EAEB9CBD5D768AEE4E160735378AD /* CandlestickData.swift */,
+				05640C2D2936B508830CC96D5F475D46 /* CandlestickSeries.swift */,
+				C48AF1927563BF1ADC3158C408F850E7 /* CandlestickSeriesOptions.swift */,
+				4DB8E978594D5CBA1BFC4B2264AF1B69 /* Chart.swift */,
+				B39A1D92AA9CFB6BE77630728DE6B570 /* ChartApi.swift */,
+				9DC3849BD6B681B1122E2E5276D122A7 /* ChartColor.swift */,
+				047790A28A1D5027099D431660D0F259 /* ChartOptions.swift */,
+				DD67A386ADF58B8CF78917926D7DCA0E /* ColorType.swift */,
+				C568A1558363022627DDE3879CC45E7D /* Coordinate.swift */,
+				7EA1D644268E5CD4C7363CCB18E86567 /* CrosshairLineOptions.swift */,
+				04FBC6C9F13FE02871AE7D6C6BEF76CF /* CrosshairOptions.swift */,
+				24EABD935195BC8716AF1D6C9EF5636F /* Encodable+JSONString.swift */,
+				3ACD17C8F70623731C2B2FA39E425B2B /* FromToRange.swift */,
+				A9D0AB00D25E58A2DBEB59630C1BE967 /* GridLineOptions.swift */,
+				4DA6B32DC316F7A31D65AE3548433DBC /* GridOptions.swift */,
+				8CEBFB7654FE458ADB7A5905AB8556AE /* HandleScaleOptions.swift */,
+				5FEFE5194C6E902E2E04E2C82147A7EE /* HandleScrollOptions.swift */,
+				CB703F519DCA5E15BA087CCC78A160C3 /* HistogramData.swift */,
+				F371689CCB29B5B8289D89DCF14D7A05 /* HistogramSeries.swift */,
+				5B6BF27DE89E7E13014FD36AA72A2F7E /* HistogramSeriesOptions.swift */,
+				8B25B0901F7967F9D8FBF7215702D3C9 /* Int+ColorComponent.swift */,
+				002B87381783E8AF10830F072FC55ED3 /* JavaScriptEvaluator.swift */,
+				E47D0FB3849AA21156C2385A5C875D68 /* JavaScriptMessageProducer.swift */,
+				7FBE633030F9CE28BD11DBB68473E856 /* JavaScriptMethod.swift */,
+				F759FE9F73811EB9B2F529C124C0CD02 /* JavaScriptObject.swift */,
+				984B8334C0F5AA6DE9ECB1A71D8419AD /* JavaScriptSyncMethod.swift */,
+				28C2F86C9BAC050B2DB92EE9B0A951CF /* KineticScrollOptions.swift */,
+				A9CB9C39F95937205A284A499828FC84 /* LastPriceAnimationMode.swift */,
+				7772AD0F371D5D13A7E8FFF9A8B34AA7 /* LayoutOptions.swift */,
+				71A5B514D169EBCE0E9061A07899B7F4 /* LightweightCharts.swift */,
+				05DEBF138432E5A0669096FB64D05A81 /* LineData.swift */,
+				339CF293F7DEF5625CEC370F8E507253 /* LineSeries.swift */,
+				0EC8069F5EC70694F15F78A8B5BEF8EA /* LineSeriesOptions.swift */,
+				0FD41E5CBB0911AE25E0EAE39A574E95 /* LineStyle.swift */,
+				8F1711825BD477A89C635BCA836703D3 /* LineType.swift */,
+				E6220598BC170C16CA3955DA0741DE1B /* LineWidth.swift */,
+				554379C414E924FFD5A159ECD027868D /* LocalizationOptions.swift */,
+				967D0839CEA517FFAE8370A4316793EF /* MessageHandler.swift */,
+				BA9F75345C097AFCEF1E0145607CB26B /* MouseEventParams.swift */,
+				58DC7A724B0CD4F55CD376F725E06D16 /* NSRegularExpression+Color.swift */,
+				3F55DAF3EB87EB1A0963FB15458FBE39 /* OhlcData.swift */,
+				B0C7D9A6C2C91FAA5B999CBA333F1FF3 /* Point.swift */,
+				4A27583BBC42CFDCDBC835B169053877 /* PriceFormat.swift */,
+				C1DBF6F5609ECF5F5E6A05C38C2B4310 /* PriceFormatter.swift */,
+				097350706A938006F5ECE6AF2059EDFA /* PriceFormatterApi.swift */,
+				CDCD1FF96C00D8B6AB60D00DF81A7484 /* PriceLine.swift */,
+				0F515C008A8FA45A9999E26125D13AF3 /* PriceLineApi.swift */,
+				BE3583697D4F6339EE90B7B41BD39E35 /* PriceLineOptions.swift */,
+				A2F6F27D10AEBB5BE747A23DD7F31C53 /* PriceLineSource.swift */,
+				98F90DA0DB353CAE42A608C6A36DC475 /* PriceScale.swift */,
+				AE211F441CC24963B2C570A2B8B01429 /* PriceScaleApi.swift */,
+				EB26088770D7B78D331E8CA3001A1765 /* PriceScaleOptions.swift */,
+				5894F2BD347BBC7878FF32AC7766E0C0 /* PromptHandler.swift */,
+				8A1E01499ECCD002609363FCE39F03E9 /* Rectangle.swift */,
+				5F4299A9BED0F75396F827701735ED8E /* SeriesApi.swift */,
+				3D0824527DF45E3B4CA8E429C334A148 /* SeriesApi+Extension.swift */,
+				9F9C494E774457A8503E5EAC50DF6F62 /* SeriesData.swift */,
+				496D7CC6D0B19BBFC8E879EE53F38DC2 /* SeriesDataType.swift */,
+				3C419A5E349D389D9F76BEBA2FAED5C3 /* SeriesMarker.swift */,
+				81EBC4E1607E03FCBCEA5D0B441EAFC5 /* SeriesObject.swift */,
+				ED4C19E4E9062C9E6620D518079DEC04 /* SeriesOptionsCommon.swift */,
+				0BA0E3C6E87F883353C1B023AB4AD2E6 /* SeriesType.swift */,
+				9C3E51450C05424F7AAA4D807AEA2EB6 /* SingleValueSeriesData.swift */,
+				F095D7E068EDCA46540AB60036D17650 /* String+UniqueString.swift */,
+				97B919846576D817FCD810EC1DC2B123 /* Subscription.swift */,
+				3FA2FB40866DB38F883C1AF97E55B3D5 /* SurfaceColor.swift */,
+				4E5AD4AFCA934FE949E15E88374A0B4A /* TickMarkFormatter.swift */,
+				15DAA5374B8ACF5EC52C1EEA8DEE2469 /* Time.swift */,
+				517E8BB23E7BA5E0BD36750982B06746 /* TimeScale.swift */,
+				0496BEC824C88D3511E03A49A77AD69B /* TimeScaleApi.swift */,
+				86B30D4EAACB6AC4FFE6D6D46A107C17 /* TimeScaleOptions.swift */,
+				C0D8CD410825736E6B4B430B3F55F903 /* TogglableOptions.swift */,
+				778BA64D97F994426E79C3B8796D3FAA /* TrackingModeOptions.swift */,
+				ADC9C1BB8D505EEF6DF5BA5FF19190E2 /* UIColor+ColorComponents.swift */,
+				CF1F912075CD15C84829A591CD26A839 /* WatermarkOptions.swift */,
+				5764076E9F7F701CB637F1BA5467986A /* WebView.swift */,
+				2BFA181F5F1B0BBAB7689629A69D802B /* WhitespaceData.swift */,
+				27AEA42AACDF7017286849CD7BA44FFB /* Resources */,
+				9835EC92FDD66E6E4937DC2A3BFC9800 /* Support Files */,
+			);
+			name = LightweightCharts;
+			path = LightweightCharts;
+			sourceTree = "<group>";
+		};
+		798730465B0E3FB86A26D007EB60717C /* Pods-iCoin-WidgetExtension */ = {
+			isa = PBXGroup;
+			children = (
+				1E3FC3A00AF136FE63EA228278A9E054 /* Pods-iCoin-WidgetExtension.modulemap */,
+				52632D397340CB3CFCA368C6C794393B /* Pods-iCoin-WidgetExtension-acknowledgements.markdown */,
+				A33CC2CDCAE70D01757A8DC56A2BCEAD /* Pods-iCoin-WidgetExtension-acknowledgements.plist */,
+				583EA7175E1A7A47CE5A1FD3248ADD3E /* Pods-iCoin-WidgetExtension-dummy.m */,
+				5366FD2ED84C6E5906810BC40C9AD3FF /* Pods-iCoin-WidgetExtension-Info.plist */,
+				F62B134E0F11C24603A0D80DA1D9029C /* Pods-iCoin-WidgetExtension-umbrella.h */,
+				025856E01D9FE938452AC46E114D74DA /* Pods-iCoin-WidgetExtension.debug.xcconfig */,
+				AE4F2DDAB1D13B0F153186608A292939 /* Pods-iCoin-WidgetExtension.release.xcconfig */,
+			);
+			name = "Pods-iCoin-WidgetExtension";
+			path = "Target Support Files/Pods-iCoin-WidgetExtension";
+			sourceTree = "<group>";
+		};
+		9835EC92FDD66E6E4937DC2A3BFC9800 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				27E75DCCB821AD4722134AFBBF34E5E5 /* LightweightCharts.modulemap */,
+				AD1B8916741CC7A137B2743807D4F945 /* LightweightCharts-dummy.m */,
+				00FC211E0606A92F4BBF1167ED13633F /* LightweightCharts-Info.plist */,
+				47313B027178B0E7E6E2921AD2E8A0D5 /* LightweightCharts-prefix.pch */,
+				22881AD50C5B5FB44CBDFE6B30476579 /* LightweightCharts-umbrella.h */,
+				3DDF30722B82577209980CD412370CCA /* LightweightCharts.debug.xcconfig */,
+				E3B4AD0F32D61297FCF4C907BDAB3534 /* LightweightCharts.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/LightweightCharts";
+			sourceTree = "<group>";
+		};
+		B18D0F81F58D2F77A6A6A26FF6029D8C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				563B3AE587E4868022B5618D77753530 /* LightweightCharts */,
+				6925500E849CED68EA45F03EB3CD0C92 /* Pods-iCoin */,
+				9E8E4EAA628F751CDD91593AC2F44446 /* Pods-iCoin-WidgetExtension */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				E017729B0231B148FA0E80D06678725D /* Pods */,
+				B18D0F81F58D2F77A6A6A26FF6029D8C /* Products */,
+				1102529DB846977841797A8870E61708 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				578452D2E740E91742655AC8F1636D1F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E017729B0231B148FA0E80D06678725D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				75D074C10A35482DF97C0717D8FFF597 /* LightweightCharts */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		12897C7337E83068A25C312B38BB4D3A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1D0CB3DA69790525F3BFB178D58150E /* LightweightCharts-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94CCC22C65375CF9B5A6317EE44BCB6F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FD2A2EF9DFFB0E87F08221422564BFB /* Pods-iCoin-WidgetExtension-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9E3C171C1BB5FA44B6BF9B29D30D941 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5128FCB5F308B092233D58DB8E98733 /* Pods-iCoin-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		161C29FE8151EFD49C0C34209E1F0FF6 /* Pods-iCoin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4857943E4EE2BF7D86D7FD35E55D8574 /* Build configuration list for PBXNativeTarget "Pods-iCoin" */;
+			buildPhases = (
+				D9E3C171C1BB5FA44B6BF9B29D30D941 /* Headers */,
+				7C16D8D4E67A0C97CF50A7CF4A2AE4BB /* Sources */,
+				48E4C98CB34E640EA3F6BCE23389135D /* Frameworks */,
+				F969F34076328485303DE0B46D75C936 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B95C15AD74DEA10A90762CCB81286EB2 /* PBXTargetDependency */,
+			);
+			name = "Pods-iCoin";
+			productName = Pods_iCoin;
+			productReference = 6925500E849CED68EA45F03EB3CD0C92 /* Pods-iCoin */;
+			productType = "com.apple.product-type.framework";
+		};
+		858F3CF738D05E1407F7AF5FFF584A12 /* LightweightCharts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F23804DE0423F87396E3FCE2B5CB6D1C /* Build configuration list for PBXNativeTarget "LightweightCharts" */;
+			buildPhases = (
+				12897C7337E83068A25C312B38BB4D3A /* Headers */,
+				AAADA2694998711BAA8E3375C31E5EBF /* Sources */,
+				31DC1F2B2ED7F4DF6D2F0F34895BB135 /* Frameworks */,
+				C1F8FA2ADF48739296C2D4EEE28D7B32 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LightweightCharts;
+			productName = LightweightCharts;
+			productReference = 563B3AE587E4868022B5618D77753530 /* LightweightCharts */;
+			productType = "com.apple.product-type.framework";
+		};
+		F8E17E0BE390D9D5C86EAAA4E5E40B16 /* Pods-iCoin-WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7BEF9ABE0503B5D0DDBDD7EBD7D6962 /* Build configuration list for PBXNativeTarget "Pods-iCoin-WidgetExtension" */;
+			buildPhases = (
+				94CCC22C65375CF9B5A6317EE44BCB6F /* Headers */,
+				B00E9079CAB993DB5E9FA50C476D4616 /* Sources */,
+				BDA08CB7613BFA63B185A00941375B70 /* Frameworks */,
+				4C66E6AF39228D9FC5EFBE8DE1668F3F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-iCoin-WidgetExtension";
+			productName = Pods_iCoin_WidgetExtension;
+			productReference = 9E8E4EAA628F751CDD91593AC2F44446 /* Pods-iCoin-WidgetExtension */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = B18D0F81F58D2F77A6A6A26FF6029D8C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				858F3CF738D05E1407F7AF5FFF584A12 /* LightweightCharts */,
+				161C29FE8151EFD49C0C34209E1F0FF6 /* Pods-iCoin */,
+				F8E17E0BE390D9D5C86EAAA4E5E40B16 /* Pods-iCoin-WidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4C66E6AF39228D9FC5EFBE8DE1668F3F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1F8FA2ADF48739296C2D4EEE28D7B32 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD2B9FE2CCE37DE93E3D4EB68486C53C /* content-setup.js in Resources */,
+				107DC9AA4DC90BD80F2F1D9B334D06D0 /* lightweight-charts.js in Resources */,
+				62214F9640FF32C551B9FB480CDDE4E7 /* wrapper_functions.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F969F34076328485303DE0B46D75C936 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7C16D8D4E67A0C97CF50A7CF4A2AE4BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCE3A157D8314D94A5345DD08B5EB563 /* Pods-iCoin-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAADA2694998711BAA8E3375C31E5EBF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3674A2360A7D32C79A90889D604C4FB4 /* AreaSeries.swift in Sources */,
+				08D6727E6A71F09E03ABE2E2B8473460 /* AreaSeriesOptions.swift in Sources */,
+				3497DD1DA820977ACF08C00751C3CFFF /* AutoscaleInfoProvider.swift in Sources */,
+				C3DD0A5F363987FFE14986616E61EF3D /* AxisPressedMouseMoveOptions.swift in Sources */,
+				8C8B1F35E33324DABCEF922EAE4A0159 /* BarData.swift in Sources */,
+				48B867173DF12E65EC95CDAADA89108C /* BarPrice.swift in Sources */,
+				2DE4C50FED075FEB78FBEB7C03BCDBC5 /* BarSeries.swift in Sources */,
+				3B9B13165659C7FB77D091A1C7A5B3C0 /* BarSeriesOptions.swift in Sources */,
+				FCB6D831612D729266FDD51813370E92 /* BarsInfo.swift in Sources */,
+				71709B082549B2193820625EAFC5C24A /* BaselineSeries.swift in Sources */,
+				8330124631EC933D10611348C9AF5A19 /* BaselineSeriesOptions.swift in Sources */,
+				6EB7B6D730CE7173ED3F3CFDA2D39401 /* BaseValueType.swift in Sources */,
+				96CC214F321B007D9206077116149150 /* Bundle+Resources.swift in Sources */,
+				B5BD9C94BAF254787F6E65E00DE006B3 /* BusinessDay.swift in Sources */,
+				8A567738DC0CE39A6694DD09DC8ED0FD /* CandlestickData.swift in Sources */,
+				6B4381D4228889CC029CD0B8F0E81CCA /* CandlestickSeries.swift in Sources */,
+				1DCC1604F1AB7D05B492FA0A9A4522DC /* CandlestickSeriesOptions.swift in Sources */,
+				4933C428B8F443EC53B168333F5D2066 /* Chart.swift in Sources */,
+				340C6669DA54455D5CBA9325E6FAA195 /* ChartApi.swift in Sources */,
+				0E665325BE1E76F11E73B14AA2ABE5A6 /* ChartColor.swift in Sources */,
+				15023AA71CC29D203632BA40044B42BB /* ChartOptions.swift in Sources */,
+				852F9499490442B1C0D6B380759C8F2C /* ColorType.swift in Sources */,
+				63328EC3BFD955F8E9C86C380E2423A2 /* Coordinate.swift in Sources */,
+				1BCE74AE53E7318547E563C027368C98 /* CrosshairLineOptions.swift in Sources */,
+				E90BF57D6178A1CB348EF1F656ACFB30 /* CrosshairOptions.swift in Sources */,
+				8DA5F176FA536C50A29F9531D6933F19 /* Encodable+JSONString.swift in Sources */,
+				9ADFD675579F15F15D559C724B2F433C /* FromToRange.swift in Sources */,
+				DB486D97408F0D69D329F9E88466A091 /* GridLineOptions.swift in Sources */,
+				A90BEFEB778FF849C166B641BE7FA891 /* GridOptions.swift in Sources */,
+				48E84F82F3A5DC0232371B5DA91C1A7A /* HandleScaleOptions.swift in Sources */,
+				C0626A0B63E2DF207F67045409DA3B0C /* HandleScrollOptions.swift in Sources */,
+				124792B56D6BF2393E5EC2C099F303EB /* HistogramData.swift in Sources */,
+				1D3F26A78709A78D378B001D9735328F /* HistogramSeries.swift in Sources */,
+				30AF11DB457966A6F0506C8816A16D9F /* HistogramSeriesOptions.swift in Sources */,
+				9B7B1B36D8DEA77296A554F1694A5F38 /* Int+ColorComponent.swift in Sources */,
+				85C5C7B524B65A5175B225FB1E3DC025 /* JavaScriptEvaluator.swift in Sources */,
+				41DEE1F911F36689582CF16486DAD6F6 /* JavaScriptMessageProducer.swift in Sources */,
+				77215EB67E9F5D330E7685F1571EDA4E /* JavaScriptMethod.swift in Sources */,
+				1D9DC916EA675D9E9467209505AE1890 /* JavaScriptObject.swift in Sources */,
+				3858543C3E25CE4E04ACAA84D7A1AE6B /* JavaScriptSyncMethod.swift in Sources */,
+				470467B16266DFB0DA238B1042B52490 /* KineticScrollOptions.swift in Sources */,
+				A007953EBC1BCC6491953101E8D990BE /* LastPriceAnimationMode.swift in Sources */,
+				8DFB83C9E000FECB865768D4D91DA880 /* LayoutOptions.swift in Sources */,
+				3503DC91DF2FEB43A7C039A99748B02A /* LightweightCharts.swift in Sources */,
+				9C7C33BB310DE7F1051E5BC70A19031E /* LightweightCharts-dummy.m in Sources */,
+				A58F44B01DA6E6D1EECA947C729C266A /* LineData.swift in Sources */,
+				A115DD545A28238A41F07341F1BD8DB8 /* LineSeries.swift in Sources */,
+				89D3812F44DBA1003369D822FE6DC485 /* LineSeriesOptions.swift in Sources */,
+				70DD8D7B2E00EC0BF87078611DC8E362 /* LineStyle.swift in Sources */,
+				8011C6E62C8AF3317E39EC27D163AA8B /* LineType.swift in Sources */,
+				E80C0DD9B817941E5D1E72A11251768C /* LineWidth.swift in Sources */,
+				D7EBBF9F05B229FA96FDDCE93BF966D8 /* LocalizationOptions.swift in Sources */,
+				972243D3996E6C87945F7F38D5A27C9B /* MessageHandler.swift in Sources */,
+				43F2CFF02641A556799201B9F1AEDBB5 /* MouseEventParams.swift in Sources */,
+				E1C2AD6DA683213EE0849C8BA57CB41A /* NSRegularExpression+Color.swift in Sources */,
+				2303DD29173380DC4A683EC5D5A136EA /* OhlcData.swift in Sources */,
+				A7C2558F6834D93FC291483261D0EB1E /* Point.swift in Sources */,
+				7DD6527C5BF616E69ED83E86A9D635C0 /* PriceFormat.swift in Sources */,
+				56DB224DCD12118F2A1DC3A91C28173A /* PriceFormatter.swift in Sources */,
+				65BF4A7F4A04EAAAEEAABC0E46797AF6 /* PriceFormatterApi.swift in Sources */,
+				03D829DB4BC9B77946B159ECEFD45AB0 /* PriceLine.swift in Sources */,
+				58992D1704B2336775A344AD2187E66F /* PriceLineApi.swift in Sources */,
+				482A9FDAA78772ACBE5813C307F3BE9D /* PriceLineOptions.swift in Sources */,
+				16361F37BF2F7199AB0A99134D050983 /* PriceLineSource.swift in Sources */,
+				38985F0AE6E3435FAAEBFB30D57B7D11 /* PriceScale.swift in Sources */,
+				0E86D2F07005453F86F8B182375B2EEF /* PriceScaleApi.swift in Sources */,
+				7AE0DC7776CD8562BC483B6709834904 /* PriceScaleOptions.swift in Sources */,
+				3A8022AEA5B5D727983DA63DC5B83B9F /* PromptHandler.swift in Sources */,
+				AC1B2F210E9A289C0E169636D6D1A388 /* Rectangle.swift in Sources */,
+				012CFB2099C711351BBC18172FAAAB21 /* SeriesApi.swift in Sources */,
+				A35594239C30ECB0E2A5ED911B4E60F5 /* SeriesApi+Extension.swift in Sources */,
+				0CF99015E61F217AA4A1A77866BAC308 /* SeriesData.swift in Sources */,
+				898E17DA9388F47219616B6B6B3F90AF /* SeriesDataType.swift in Sources */,
+				86C17FAEDFD4E84F23642EB8A9DE9316 /* SeriesMarker.swift in Sources */,
+				FD5E3C1C447551A5A8A69D73A8760342 /* SeriesObject.swift in Sources */,
+				EB44B766C6A389554F0451A2406AE5BA /* SeriesOptionsCommon.swift in Sources */,
+				BBC0522BD5B45EC127ABE0C002FA2E4D /* SeriesType.swift in Sources */,
+				3EF59D3889E31F9A7FE7B751BF3EA570 /* SingleValueSeriesData.swift in Sources */,
+				CCCC35C73755D64F2471CC69F0A5E7F2 /* String+UniqueString.swift in Sources */,
+				52A150134BC8FB7AB8F810228945716D /* Subscription.swift in Sources */,
+				73457120B0209FB922BD6CD159D8375F /* SurfaceColor.swift in Sources */,
+				D0DD2AF9DEDB7DB17FF082B76E8879E4 /* TickMarkFormatter.swift in Sources */,
+				FAB90DF97F0547576A119BA2FA43A77A /* Time.swift in Sources */,
+				FD70F5AB58514C799F311D0D61AB1295 /* TimeScale.swift in Sources */,
+				9854FC5C35E8114667BCA721A1810477 /* TimeScaleApi.swift in Sources */,
+				F4E2B893A62135AF71D46898D302BCC2 /* TimeScaleOptions.swift in Sources */,
+				D20F9E4392F7C0252C5359592624A840 /* TogglableOptions.swift in Sources */,
+				052A8CB43C389D7A48CE844F31DD2CF0 /* TrackingModeOptions.swift in Sources */,
+				D7A2AB76C23533E723F2A060AB6B0D73 /* UIColor+ColorComponents.swift in Sources */,
+				C5716DABF2212A6A5E24FB8F1B9B2736 /* WatermarkOptions.swift in Sources */,
+				3DE9C0AD137805051EDFA32FC803965F /* WebView.swift in Sources */,
+				F54E5CEB39911F52C7DEAFD14BE3BC99 /* WhitespaceData.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B00E9079CAB993DB5E9FA50C476D4616 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				434A0F05E4B79090A27090E5AEB82C5F /* Pods-iCoin-WidgetExtension-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B95C15AD74DEA10A90762CCB81286EB2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LightweightCharts;
+			target = 858F3CF738D05E1407F7AF5FFF584A12 /* LightweightCharts */;
+			targetProxy = 039F853C9914486BCE376E9BCD7F6263 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		181BF5BB760EEA9963D299A6B067ADF7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE4F2DDAB1D13B0F153186608A292939 /* Pods-iCoin-WidgetExtension.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-iCoin-WidgetExtension/Pods-iCoin-WidgetExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-iCoin-WidgetExtension/Pods-iCoin-WidgetExtension.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		22D85E061CE0CC78BE6E648D071C96BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E3FF6EEA862C1453DCE5FAE4A26027 /* Pods-iCoin.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-iCoin/Pods-iCoin-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-iCoin/Pods-iCoin.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2C1DF7376A25C6E5C011932BA95EA969 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DDF30722B82577209980CD412370CCA /* LightweightCharts.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LightweightCharts/LightweightCharts-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LightweightCharts/LightweightCharts-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/LightweightCharts/LightweightCharts.modulemap";
+				PRODUCT_MODULE_NAME = LightweightCharts;
+				PRODUCT_NAME = LightweightCharts;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6B982B5AD3687EA5F62013CD0CF50D98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 025856E01D9FE938452AC46E114D74DA /* Pods-iCoin-WidgetExtension.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-iCoin-WidgetExtension/Pods-iCoin-WidgetExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-iCoin-WidgetExtension/Pods-iCoin-WidgetExtension.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		855A7423962DA979784BE2199316FCF8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3B4AD0F32D61297FCF4C907BDAB3534 /* LightweightCharts.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LightweightCharts/LightweightCharts-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LightweightCharts/LightweightCharts-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/LightweightCharts/LightweightCharts.modulemap";
+				PRODUCT_MODULE_NAME = LightweightCharts;
+				PRODUCT_NAME = LightweightCharts;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		90D4D09BCB6A4660E43ACBE9ECB6FE9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		9553C89E183877A5CB2F3C6801BEC129 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		DA3101A48CDB96AF0373C143DBD73C7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E11FA629F0050808CD19E36E2B303A13 /* Pods-iCoin.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-iCoin/Pods-iCoin-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-iCoin/Pods-iCoin.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90D4D09BCB6A4660E43ACBE9ECB6FE9A /* Debug */,
+				9553C89E183877A5CB2F3C6801BEC129 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4857943E4EE2BF7D86D7FD35E55D8574 /* Build configuration list for PBXNativeTarget "Pods-iCoin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA3101A48CDB96AF0373C143DBD73C7D /* Debug */,
+				22D85E061CE0CC78BE6E648D071C96BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7BEF9ABE0503B5D0DDBDD7EBD7D6962 /* Build configuration list for PBXNativeTarget "Pods-iCoin-WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B982B5AD3687EA5F62013CD0CF50D98 /* Debug */,
+				181BF5BB760EEA9963D299A6B067ADF7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F23804DE0423F87396E3FCE2B5CB6D1C /* Build configuration list for PBXNativeTarget "LightweightCharts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C1DF7376A25C6E5C011932BA95EA969 /* Debug */,
+				855A7423962DA979784BE2199316FCF8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

@@ -30,6 +30,6 @@ final class ChartViewController: UIViewController, ChartPresentable, ChartViewCo
     }
     
     func updateBarchartView(with data: ChartData) {
-        contentView.updateBarChartView(with: data)
+//        contentView.updateBarChartView(with: data)
     }
 }
