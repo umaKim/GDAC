@@ -9,9 +9,9 @@ import UIKit
 import LightweightCharts
 
 final class ChartView: UIView {
-    private var chart: LightweightCharts!
-    private var candleStickSeries: CandlestickSeries!
-    private var volumeSeries: HistogramSeries!
+    private var chart: LightweightCharts?
+    private var candleStickSeries: CandlestickSeries?
+    private var volumeSeries: HistogramSeries?
     init() {
         super.init(frame: .zero)
         backgroundColor = .systemBackground
@@ -42,8 +42,8 @@ extension ChartView {
                 value: data.volume[index]
             ))
         }
-        candleStickSeries.setData(data: candleStickDatum)
-        volumeSeries.setData(data: volumeDatum)
+        candleStickSeries?.setData(data: candleStickDatum)
+        volumeSeries?.setData(data: volumeDatum)
     }
 }
 //MARK: - Set up UI
@@ -63,6 +63,7 @@ extension ChartView {
             )
         )
         chart = LightweightCharts(options: options)
+        guard let chart else { return }
         addSubviews(chart)
         NSLayoutConstraint.activate([
             chart.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
@@ -83,7 +84,7 @@ extension ChartView {
             wickUpColor:.init(UIColor.systemGreen),
             wickDownColor: .init(UIColor.systemRed)
         )
-        candleStickSeries = chart.addCandlestickSeries(options: candleStickOptions)
+        candleStickSeries = chart?.addCandlestickSeries(options: candleStickOptions)
         // Volume Chart Setting
         let volumeSeriesOptions = HistogramSeriesOptions(
             priceScaleId: "123",
@@ -97,8 +98,8 @@ extension ChartView {
             ),
             color: "rgba(76, 175, 80, 0.5)"
         )
-        volumeSeries = chart.addHistogramSeries(options: volumeSeriesOptions)
-        volumeSeries.priceScale().applyOptions(
+        volumeSeries = chart?.addHistogramSeries(options: volumeSeriesOptions)
+        volumeSeries?.priceScale().applyOptions(
             options: PriceScaleOptions(
                 scaleMargins: PriceScaleMargins(
                     top: 0.85,
