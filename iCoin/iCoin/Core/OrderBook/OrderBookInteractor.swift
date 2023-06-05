@@ -16,7 +16,6 @@ protocol OrderBookPresentable: Presentable {
     var listener: OrderBookPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
     func ordeBookData(_ data: OrderBookData)
-//    func updateOrderBookData(with data: [OrderBook], for section: OrderBookViewController.Section)
     func updateOrderBookData(with bids: [OrderBook], asks: [OrderBook])
 }
 
@@ -72,14 +71,7 @@ final class OrderBookInteractor: PresentableInteractor<OrderBookPresentable>, Or
                 }
             } receiveValue: {[weak self] response in
                 guard let self = self else { return }
-//                self.orderBookData = response.data
-//                self.data = response.data
                 DispatchQueue.main.async {
-//                    self.presenter.ordeBookData(response.data)
-                    print(response.data.asks)
-                    print(response.data.bids)
-//                    self.presenter.updateOrderBookData(with: response.data.asks, for: .ask)
-//                    self.presenter.updateOrderBookData(with: response.data.bids, for: .bid)
                     self.presenter.updateOrderBookData(
                         with: response.data.bids,
                         asks: response.data.asks
@@ -89,8 +81,6 @@ final class OrderBookInteractor: PresentableInteractor<OrderBookPresentable>, Or
             .store(in: &cancellables)
     }
     
-//    private var orderBookData: OrderBookData?
-
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.

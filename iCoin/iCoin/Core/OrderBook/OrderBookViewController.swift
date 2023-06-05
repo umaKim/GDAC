@@ -44,16 +44,6 @@ final class OrderBookViewController: UIViewController, OrderBookPresentable, Ord
     override func loadView() {
         super.loadView()
         view = contentView
-//        configureDataSource()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        guard let data = orderBookData else {return }
-//        reloadData(with: data.asks, for: .ask)
-//        reloadData(with: data.bids, for: .bid)
-        
-//        self.contentView.tableView.scrollToCenter()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -100,9 +90,7 @@ final class OrderBookViewController: UIViewController, OrderBookPresentable, Ord
         snapshot.appendSections([.bid, .ask])
         snapshot.appendItems(bids, toSection: .bid)
         snapshot.appendItems(asks, toSection: .ask)
-        dataSource?.apply(snapshot, animatingDifferences: true, completion: {
-            
-        })
+        dataSource?.apply(snapshot, animatingDifferences: true)
         dataSource?.defaultRowAnimation = .middle
     }
 }
