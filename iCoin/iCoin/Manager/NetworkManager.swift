@@ -165,7 +165,6 @@ extension NetworkManager: CoinOrderBookNetworkable {
             for: BithumbApi.baseUrl + symbol,
             queryParams: ["count": "30"]
         )
-        
         return request(url: url, expecting: OrderBookResponse.self)
     }
 }

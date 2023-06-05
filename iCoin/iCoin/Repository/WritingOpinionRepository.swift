@@ -12,7 +12,7 @@ protocol WritingOpinionRepository {
 }
 
 struct WritingOpinionRepositoryImp: WritingOpinionRepository {
-    
+
     private let firebase: Firebaseable
     
     init(firebase: Firebaseable) {

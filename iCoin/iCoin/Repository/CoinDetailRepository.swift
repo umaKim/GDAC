@@ -8,7 +8,7 @@ import Combine
 import Foundation
 
 protocol CoinDetailRepository {
-    
+
     /// persistance
     func contains(_ symbol: CoinCapAsset) -> Bool
     func save(_ symbol: CoinCapAsset)
