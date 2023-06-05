@@ -25,11 +25,7 @@ final class ChartViewController: UIViewController, ChartPresentable, ChartViewCo
         view = contentView
     }
     
-    func updateCandleStickChartView(with data: ChartData) {
-        contentView.updateCandleStickChartView(with: data)
-    }
-    
-    func updateBarchartView(with data: ChartData) {
-//        contentView.updateBarChartView(with: data)
+    func updateData(with data: ChartData) {
+        contentView.updateData(with: data)
     }
 }

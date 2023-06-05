@@ -99,7 +99,10 @@ extension MainView {
         searchButton.tintColor        = .gdacBlue
         writeOpinionsButton.tintColor = .gdacBlue
         
-        addSubviews(menuTabBar, collectionView)
+        addSubviews(
+            menuTabBar,
+            collectionView
+        )
         
         NSLayoutConstraint.activate([
             menuTabBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
@@ -109,16 +112,20 @@ extension MainView {
             
             collectionView.topAnchor.constraint(
                 equalToSystemSpacingBelow: menuTabBar.bottomAnchor,
-                multiplier: 0),
+                multiplier: 0
+            ),
             collectionView.leadingAnchor.constraint(
                 equalToSystemSpacingAfter: leadingAnchor,
-                multiplier: 0),
+                multiplier: 0
+            ),
             trailingAnchor.constraint(
                 equalToSystemSpacingAfter: collectionView.trailingAnchor,
-                multiplier: 0),
+                multiplier: 0
+            ),
             safeAreaLayoutGuide.bottomAnchor.constraint(
                 equalToSystemSpacingBelow: collectionView.bottomAnchor,
-                multiplier: 0)
+                multiplier: 0
+            )
         ])
     }
 }

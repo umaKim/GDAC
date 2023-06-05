@@ -17,7 +17,6 @@ protocol ChartViewControllable: ViewControllable {
 }
 
 final class ChartRouter: ViewableRouter<ChartInteractable, ChartViewControllable>, ChartRouting {
-
     // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: ChartInteractable, viewController: ChartViewControllable) {
         super.init(interactor: interactor, viewController: viewController)

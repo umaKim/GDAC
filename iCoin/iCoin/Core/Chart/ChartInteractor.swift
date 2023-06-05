@@ -17,8 +17,7 @@ protocol ChartPresentable: Presentable {
     var listener: ChartPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
     
-    func updateCandleStickChartView(with data: ChartData)
-    func updateBarchartView(with data: ChartData)
+    func updateData(with data: ChartData)
 }
 
 protocol ChartListener: AnyObject {
@@ -74,7 +73,6 @@ extension ChartInteractor {
             }
             .store(in: &cancellables)
     }
-    
     private func fetchChartData(of symbol: String) {
         dependency
             .coinChartRepository
@@ -93,18 +91,11 @@ extension ChartInteractor {
                     print(error)
                 }
             } receiveValue: {[weak self] coinData in
-                self?.updateCandleStickChartView(with: coinData)
-                self?.updateBarChartView(with: coinData)
+                self?.updateData(with: coinData)
             }
             .store(in: &cancellables)
-
     }
-    
-    private func updateCandleStickChartView(with data: ChartData) {
-        presenter.updateCandleStickChartView(with: data)
-    }
-    
-    private func updateBarChartView(with data: ChartData) {
-        presenter.updateBarchartView(with: data)
+    private func updateData(with data: ChartData) {
+        presenter.updateData(with: data)
     }
 }

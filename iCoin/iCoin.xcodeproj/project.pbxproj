@@ -154,12 +154,11 @@
 		35CDAA0D29A3938B003FC005 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDAA0929A3938B003FC005 /* ChartViewController.swift */; };
 		35CDAA0E29A3938B003FC005 /* ChartBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDAA0A29A3938B003FC005 /* ChartBuilder.swift */; };
 		35CDAA0F29A3938B003FC005 /* ChartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDAA0B29A3938B003FC005 /* ChartInteractor.swift */; };
-		35CDAA1129A39401003FC005 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDAA1029A39401003FC005 /* ChartView.swift */; };
 		35D2AD772929E9B900E9F9B3 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD762929E9B900E9F9B3 /* RootTabBarController.swift */; };
 		35D2AD792929EA3600E9F9B3 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2AD782929EA3600E9F9B3 /* AppRootView.swift */; };
 		5848A752FC9A5F24B54393FE /* Pods_iCoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D1B4DE522BF210A41C3553 /* Pods_iCoin.framework */; };
 		5B7A2C23F7CCE4B64CFC0BD6 /* Pods_iCoin_WidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECAF96616FB56EC37C2D57BE /* Pods_iCoin_WidgetExtension.framework */; };
-		7A5EE53D2A273CF80039E2CF /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5EE53C2A273CF80039E2CF /* BarChartView.swift */; };
+		7A5EE55B2A2824030039E2CF /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5EE55A2A2824030039E2CF /* ChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -324,11 +323,10 @@
 		35CDAA0929A3938B003FC005 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		35CDAA0A29A3938B003FC005 /* ChartBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBuilder.swift; sourceTree = "<group>"; };
 		35CDAA0B29A3938B003FC005 /* ChartInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartInteractor.swift; sourceTree = "<group>"; };
-		35CDAA1029A39401003FC005 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		35D2AD762929E9B900E9F9B3 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		35D2AD782929EA3600E9F9B3 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 		6FA04AB6DF8632AD4257DC4F /* Pods-iCoin-WidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iCoin-WidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-iCoin-WidgetExtension/Pods-iCoin-WidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		7A5EE53C2A273CF80039E2CF /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		7A5EE55A2A2824030039E2CF /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		8E6E23B0DCED32FF0A2AB199 /* Pods-iCoin-WidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iCoin-WidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-iCoin-WidgetExtension/Pods-iCoin-WidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		91D1B4DE522BF210A41C3553 /* Pods_iCoin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iCoin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECAF96616FB56EC37C2D57BE /* Pods_iCoin_WidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iCoin_WidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -567,8 +565,7 @@
 		3555A6F229A739EB0011E4DB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				35CDAA1029A39401003FC005 /* ChartView.swift */,
-				7A5EE53C2A273CF80039E2CF /* BarChartView.swift */,
+				7A5EE55A2A2824030039E2CF /* ChartView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1033,7 +1030,6 @@
 				35C1623E29730F6A003FBA1B /* UIColor+Ext.swift in Sources */,
 				350F691A29688671001F37D3 /* CoinDetailRouter.swift in Sources */,
 				357DCCDB284BEBF000AA7570 /* NewsViewController.swift in Sources */,
-				35CDAA1129A39401003FC005 /* ChartView.swift in Sources */,
 				3555A70229A781E70011E4DB /* PortfolioWatchlistRepository.swift in Sources */,
 				35CDAA0C29A3938B003FC005 /* ChartRouter.swift in Sources */,
 				35C1628A297C537A003FBA1B /* NumberFormatter.swift in Sources */,
@@ -1074,6 +1070,7 @@
 				35138027284E47380082D813 /* MenuBarButton.swift in Sources */,
 				35C1624629756BAF003FBA1B /* WritingOpinionBuilder.swift in Sources */,
 				357DCCA8284BBCCA00AA7570 /* AppRootInteractor.swift in Sources */,
+				7A5EE55B2A2824030039E2CF /* ChartView.swift in Sources */,
 				35138017284D034B0082D813 /* WatchlistItemCell.swift in Sources */,
 				3555A6FF29A778190011E4DB /* OrderBookView.swift in Sources */,
 				357DCCD5284BEBE000AA7570 /* OpinionsInteractor.swift in Sources */,
@@ -1082,7 +1079,6 @@
 				3513804C2855CF630082D813 /* SearchBuilder.swift in Sources */,
 				356FF3FC2971C51C003BD4E8 /* PortfolioViewController.swift in Sources */,
 				35C1624C29757D41003FBA1B /* UITextField+Ext.swift in Sources */,
-				7A5EE53D2A273CF80039E2CF /* BarChartView.swift in Sources */,
 				357DCC88284BBBD300AA7570 /* SceneDelegate.swift in Sources */,
 				35C1625C29759C50003FBA1B /* SearchRepository.swift in Sources */,
 				35C1625229758026003FBA1B /* CaptionTextView.swift in Sources */,
