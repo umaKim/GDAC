@@ -37,7 +37,7 @@ extension ChartView {
             ))
             //Volume Data update
             volumeDatum.append(.init(
-                color: data.openPrice[index] > data.closePrice[index] ? .init(UIColor.systemRed) : .init(UIColor.systemGreen),
+                color: data.openPrice[index] > data.closePrice[index] ? .init(UIColor.systemRed.withAlphaComponent(0.5)) : .init(UIColor.systemGreen.withAlphaComponent(0.5)),
                 time: .utc(timestamp: data.time[index]),
                 value: data.volume[index]
             ))
