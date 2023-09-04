@@ -7,6 +7,31 @@ RIBs architecture based project
 
 ![addToPortfolio](https://user-images.githubusercontent.com/85341050/213864191-ee19aede-dde3-4eea-b433-62126fb170c6.gif) ![openNews](https://user-images.githubusercontent.com/85341050/213864193-064caaa0-70bb-43b7-9d7b-cff96bfe26a5.gif) ![searching](https://user-images.githubusercontent.com/85341050/213864195-f309d091-95f7-47cd-bff7-77f00f148366.gif)
 
+## 🛠️ Technologies and Libraries Used
+
+- Swift, iOS
+- RIBs
+- StarScream (Socket)
+- Combine
+- Firebase
+- AutoLayout
+- FloatingPanel
+- SDWebImage
+
+## 📱Responsibilities Undertaken (iOS)
+
+- Implemented the app using RIBs architecture.
+- Implemented real-time price fluctuation using WebSocket.
+- Implemented using Combine framework.
+- Represented charts using SwiftUI views.
+- Implemented fetching news, stock search, and specific stock data display on the client-side using REST API.
+- Implemented a bulletin board where users can discuss specific stocks using Firebase Realtime Database.
+- Implemented custom view - Custom menu tab-bar.
+- Implemented all UI and functionality purely through code without using Storyboard.
+- Implemented changes in the search bar using DiffableDataSource, introduced in WWDC 19.
+- Prevented performance degradation during image loading by enabling image caching using the SDWebImage library.
+- Improved user experience by applying auto cell sizing based on the amount of content in user-generated posts.
+
 ## 🛠️ 사용 기술 및 라이브러리
 
 - Swift, iOS
