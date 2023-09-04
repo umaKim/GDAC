@@ -577,8 +577,6 @@
 				3555A6F629A777FA0011E4DB /* OrderBookRouter.swift */,
 				3555A6F929A777FA0011E4DB /* OrderBookInteractor.swift */,
 				3555A6F729A777FA0011E4DB /* OrderBookViewController.swift */,
-				3555A70729AB90100011E4DB /* OrderBookBidTableViewCell.swift */,
-				3555A70529AB8FF90011E4DB /* OrderBookAskTableViewCell.swift */,
 				3555A70029A779600011E4DB /* View */,
 			);
 			path = OrderBook;
@@ -588,6 +586,8 @@
 			isa = PBXGroup;
 			children = (
 				3555A6FE29A778190011E4DB /* OrderBookView.swift */,
+				3555A70729AB90100011E4DB /* OrderBookBidTableViewCell.swift */,
+				3555A70529AB8FF90011E4DB /* OrderBookAskTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
