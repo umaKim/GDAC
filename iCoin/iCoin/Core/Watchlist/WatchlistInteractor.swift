@@ -49,7 +49,7 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     }
     
     private let dependency: WatchlistInteractorDependency
-    
+    private let lock = NSLock()
     private var cancellables: Set<AnyCancellable>
     
     init(
@@ -125,7 +125,7 @@ extension WatchlistInteractor {
         dependency
             .watchlistRepository
             .dataPublisher
-            .receive(on: DispatchQueue.main)
+            .receive(on: DispatchQueue.global())
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
@@ -186,7 +186,9 @@ extension WatchlistInteractor {
                 }) {
                     for (index, model) in self.watchlistItemModels.enumerated() {
                         if "BINANCE:\(model.symbol.uppercased())USDT" == data.s {
+                            self.lock.lock()
                             self.watchlistItemModels[index].price = "\(data.p)"
+                            self.lock.unlock()
                         }
                     }
                 } else {
@@ -203,7 +205,12 @@ extension WatchlistInteractor {
                     }
                 }
             }
-        reloadData()
+        DispatchQueue.main.async {[weak self] in
+            self?.lock.lock()
+            self?.reloadData()
+            self?.lock.unlock()
+        }
+        
     }
 }
 
