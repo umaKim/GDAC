@@ -39,7 +39,6 @@ class WatchlistRepositoryImp: WatchlistRepository {
 
 //MARK: - Socket API
 extension WatchlistRepositoryImp: StarScreamWebSocketDelegate {
-    
     func set(symbols: [String]) {
         self.symbols = symbols
     }

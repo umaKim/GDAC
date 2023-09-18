@@ -52,6 +52,8 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     
     private var cancellables: Set<AnyCancellable>
     
+    private let lock = NSLock()
+    
     init(
         presenter: WatchlistPresentable,
         dependency: WatchlistInteractorDependency
@@ -116,7 +118,9 @@ extension WatchlistInteractor {
     }
     
     private func fetchFromNetwork(symbols: [Symbol]) {
-        connectWebSocket()
+        dependency
+            .watchlistRepository
+            .connect()
         
         dependency
             .watchlistRepository
@@ -125,23 +129,21 @@ extension WatchlistInteractor {
         dependency
             .watchlistRepository
             .dataPublisher
-            .receive(on: DispatchQueue.main)
+            .receive(on: DispatchQueue.global())
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
                     print("finished fetchFromNetwork")
                 }
             }, receiveValue: {[weak self] datum in
-                guard let self = self else {return }
+                guard let self = self else { return }
                 self.myWatchlistItemMapper(receivedDatum: datum)
             })
             .store(in: &cancellables)
     }
     
     private func connectWebSocket() {
-        dependency
-            .watchlistRepository
-            .connect()
+        
     }
     
     private func disconnectWebSocket() {
@@ -154,10 +156,12 @@ extension WatchlistInteractor {
 // MARK: - For Presentable
 extension WatchlistInteractor {
     private func reloadData() {
+        
         presenter.reloadData(
             with: watchlistItemModels,
             animation: .none
         )
+        
     }
 }
 
@@ -186,7 +190,9 @@ extension WatchlistInteractor {
                 }) {
                     for (index, model) in self.watchlistItemModels.enumerated() {
                         if "BINANCE:\(model.symbol.uppercased())USDT" == data.s {
+                            self.lock.lock()
                             self.watchlistItemModels[index].price = "\(data.p)"
+                            self.lock.unlock()
                         }
                     }
                 } else {
@@ -203,7 +209,11 @@ extension WatchlistInteractor {
                     }
                 }
             }
-        reloadData()
+        DispatchQueue.main.async {[weak self] in
+            self?.lock.lock()
+            self?.reloadData()
+            self?.lock.unlock()
+        }
     }
 }
 
