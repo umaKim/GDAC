@@ -49,7 +49,7 @@ final class WatchlistInteractor: PresentableInteractor<WatchlistPresentable>, Wa
     }
     
     private let dependency: WatchlistInteractorDependency
-    private let lock = NSLock()
+    private var lock = NSLock()
     private var cancellables: Set<AnyCancellable>
     
     init(
@@ -180,15 +180,16 @@ extension WatchlistInteractor {
         receivedDatum
             .forEach {[weak self] data in
                 guard let self = self else { return }
+                self.lock.lock()
+                defer { self.lock.unlock() }
+                
                 //if watchlistItemModels already has the Symbol
                 if watchlistItemModels.contains(where: {
                     "BINANCE:\($0.symbol.uppercased())USDT" == data.s
                 }) {
                     for (index, model) in self.watchlistItemModels.enumerated() {
                         if "BINANCE:\(model.symbol.uppercased())USDT" == data.s {
-                            self.lock.lock()
                             self.watchlistItemModels[index].price = "\(data.p)"
-                            self.lock.unlock()
                         }
                     }
                 } else {
@@ -207,10 +208,9 @@ extension WatchlistInteractor {
             }
         DispatchQueue.main.async {[weak self] in
             self?.lock.lock()
+            defer { self?.lock.unlock() }
             self?.reloadData()
-            self?.lock.unlock()
         }
-        
     }
 }
 
