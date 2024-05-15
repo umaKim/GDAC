@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "933D4A86-5588-4A98-8511-9ECFEFE9CAA0"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4A02D443-7DA5-4565-A92D-C30A6F829166"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iCoin/Repository/WatchlistRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "connected()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4A02D443-7DA5-4565-A92D-C30A6F829166 - e86bb6b6c2a558b5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iCoin.WatchlistRepositoryImp.connected() -&gt; ()"
+                  moduleName = "iCoin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kim-yoonsuk/Documents/GitHub/GDAC/iCoin/iCoin/Repository/WatchlistRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "204">
+               </Location>
+               <Location
+                  uuid = "4A02D443-7DA5-4565-A92D-C30A6F829166 - fcf27de23ae59de1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in iCoin.WatchlistRepositoryImp.connected() -&gt; ()"
+                  moduleName = "iCoin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kim-yoonsuk/Documents/GitHub/GDAC/iCoin/iCoin/Repository/WatchlistRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "4A02D443-7DA5-4565-A92D-C30A6F829166 - e049cb0332387d41"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in closure #1 () -&gt; () in iCoin.WatchlistRepositoryImp.connected() -&gt; ()"
+                  moduleName = "iCoin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kim-yoonsuk/Documents/GitHub/GDAC/iCoin/iCoin/Repository/WatchlistRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4C7AB1CC-E7DA-46A4-BD2C-F8B938A47466"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iCoin/Repository/WatchlistRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "connect()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6FF9115F-CCF0-4733-AC96-59BC7DB83E2F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iCoin/Repository/WatchlistRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "cancelled()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6FF9115F-CCF0-4733-AC96-59BC7DB83E2F - ad5a51d799bd0e3e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iCoin.WatchlistRepositoryImp.cancelled() -&gt; ()"
+                  moduleName = "iCoin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kim-yoonsuk/Documents/GitHub/GDAC/iCoin/iCoin/Repository/WatchlistRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "6FF9115F-CCF0-4733-AC96-59BC7DB83E2F - ad5a51d799bd0e3e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iCoin.WatchlistRepositoryImp.cancelled() -&gt; ()"
+                  moduleName = "iCoin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kim-yoonsuk/Documents/GitHub/GDAC/iCoin/iCoin/Repository/WatchlistRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E85491D-100B-42D7-BB7A-2F2443998D2A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iCoin/Repository/WatchlistRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "connected()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -28,7 +28,7 @@ final class CoinDetailComponent: Component<CoinDetailDependency>,
         super.init(dependency: dependency)
     }
 }
-
+ 
 // MARK: - Builder
 
 protocol CoinDetailBuildable: Buildable {

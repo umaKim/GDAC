@@ -119,16 +119,18 @@ extension StarScreamWebSocket: Starscream.WebSocketDelegate {
             break
         case .viabilityChanged:
             print("viabilityChanged")
-            break
+            
         case .reconnectSuggested:
             print("reconnectSuggested")
-            break
+            
         case .cancelled:
             print("cancelled")
             delegate?.cancelled()
             
         case .error(let error):
             print(error?.localizedDescription)
+            
+        default:
             break
         }
     }
